@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CatTocDiSalon</string>
+    <string name="vn_phone">Số điện thoại</string>
+    <string name="vn_password">Mật khẩu</string>
+    <string name="vn_login">Đăng nhập</string>
+    <string name="vn_forgot_password">Quên mật khẩu?</string>
+    <string name="vn_no_account">Chưa có tài khoản?</string>
+    <string name="vn_register">Đăng ký</string>
+
+</resources>
