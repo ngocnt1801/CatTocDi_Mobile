@@ -6,5 +6,11 @@
     <string name="vn_forgot_password">Quên mật khẩu?</string>
     <string name="vn_no_account">Chưa có tài khoản?</string>
     <string name="vn_register">Đăng ký</string>
+    <string name="vn_skip_this_step">Bỏ qua bước này</string>
+    <string name="vn_home">Trang chủ</string>
+    <string name="vn_appointment">Lịch</string>
+    <string name="vn_search">Tìm kiếm</string>
+    <string name="vn_profile">Tài khoản</string>
+    <string name="vn_nearest_salon">Cửa hàng gần đây</string>
 
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:padding="24dp">
+    android:padding="@dimen/pd_layout_login_page">
     <LinearLayout
         android:layout_centerInParent="true"
         android:orientation="vertical"
@@ -18,7 +18,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"/>
+            android:inputType="phone"
+            android:id="@+id/login_activity_phone_et"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,23 +27,26 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:id="@+id/login_activity_password_et"/>
         <Button
-            android:layout_marginTop="16dp"
-            android:padding="8dp"
+            android:layout_marginTop="@dimen/mg_top_login_page"
+            android:padding="@dimen/pd_button_login_page"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/vn_login"
             android:textColor="#ffffff"
             android:textStyle="bold"
-            android:textSize="16dp"
-            android:background="@color/mainDark"/>
+            android:textSize="@dimen/ts_button_login_page"
+            android:background="@color/mainDark"
+            android:id="@+id/login_activity_login_btn"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/vn_forgot_password"
-            android:textColor="@color/textLink"/>
+            android:textColor="@color/textLink"
+            android:layout_marginTop="@dimen/mg_top_login_page"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,5 +63,10 @@
                 android:textColor="@color/textLink"/>
         </LinearLayout>
     </LinearLayout>
-
+    <Button
+        android:id="@+id/login_activity_skip_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/vn_skip_this_step" />
 </RelativeLayout>

@@ -2,4 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="pd_layout_login_page">24dp</dimen>
+    <dimen name="pd_button_login_page">8dp</dimen>
+    <dimen name="mg_top_login_page">16dp</dimen>
+    <dimen name="ts_button_login_page">16dp</dimen>
+    <dimen name="width_border_et">1dp</dimen>
+    <dimen name="radius_border_et">5dp</dimen>
+    <dimen name="pd_et">8dp</dimen>
 </resources>
