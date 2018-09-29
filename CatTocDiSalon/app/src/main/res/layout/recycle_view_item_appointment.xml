@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/mg_top_login_page">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/splash_gradient_background"
+            android:id="@+id/fg_appointment_iv"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tên Salon"
+            android:textSize="16dp"
+            android:id="@+id/fg_appointment_name_tv"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="123 Trần Văn Tông"
+            android:id="@+id/fg_appointment_address_tv"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cắt tóc, uốn, nhuộm"
+            android:id="@+id/fg_appointment_services_tv"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Người cắt Nguyễn Văn A"
+            android:id="@+id/fg_appointment_stylist_tv"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ngày 01/10/2018, 3:00PM"
+            android:id="@+id/fg_appointment_time_tv"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hủy lịch"
+            android:id="@+id/fg_appointment_cancel_btn"/>
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
