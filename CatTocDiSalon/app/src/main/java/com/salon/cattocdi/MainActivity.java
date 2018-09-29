@@ -6,18 +6,27 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
+import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
 import com.salon.cattocdi.fragements.AppointmentFragment;
 import com.salon.cattocdi.fragements.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
+    private RecyclerView rvListNearest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         bottomNav = findViewById(R.id.bottom_nav);
@@ -45,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
 
         //HOME FRAGMENT will show first
         showFragment(new HomeFragment());
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 
     private void showFragment(Fragment fragment){

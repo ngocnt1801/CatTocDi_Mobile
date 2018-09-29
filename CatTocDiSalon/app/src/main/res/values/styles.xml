@@ -11,9 +11,4 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/splash_gradient_background</item>
     </style>
-    <style name="RatingBar" parent="Base.Widget.AppCompat.RatingBar">
-        <item name="android:colorControlNormal">@color/secondLight</item>
-        <item name="android:colorControlActivated">@color/secondPrimary</item>
-        <item name="android:textAlignment">textStart</item>
-    </style>
 </resources>

@@ -12,5 +12,7 @@
     <string name="vn_search">Tìm kiếm</string>
     <string name="vn_profile">Tài khoản</string>
     <string name="vn_nearest_salon">Cửa hàng gần đây</string>
+    <string name="vn_top_rating">Cửa hàng được yêu thích</string>
+    <string name="vn_top_sale">Khuyến mãi</string>
 
 </resources>

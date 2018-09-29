@@ -9,4 +9,5 @@
     <dimen name="width_border_et">1dp</dimen>
     <dimen name="radius_border_et">5dp</dimen>
     <dimen name="pd_et">8dp</dimen>
+    <dimen name="mr_bottom_not_cover_content">40dp</dimen>
 </resources>

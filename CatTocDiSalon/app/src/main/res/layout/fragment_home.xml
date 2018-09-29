@@ -1,31 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="@dimen/pd_layout_login_page"
-    tools:context=".fragements.HomeFragment">
+    tools:context=".fragements.HomeFragment"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:scrollbarStyle="outsideInset">
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/vn_search"
-        android:drawableLeft="@drawable/ic_search_navigation"
-        android:background="@drawable/border_radius_edit_text"
-        android:padding="@dimen/pd_et"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/vn_nearest_salon"/>
-    <android.support.v7.widget.RecyclerView
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fg_home_rv">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/vn_search"
+            android:drawableLeft="@drawable/ic_search_navigation"
+            android:background="@drawable/border_radius_edit_text"
+            android:padding="@dimen/pd_et" />
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/vn_nearest_salon"
+            android:layout_marginTop="@dimen/mg_top_login_page"/>
 
-</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fg_home_rv_bookmark">
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/vn_top_rating"
+            android:layout_marginTop="@dimen/mg_top_login_page"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fg_home_rv_rating">
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/vn_top_sale"
+            android:layout_marginTop="@dimen/mg_top_login_page"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fg_home_rv_sale"
+            android:layout_marginBottom="@dimen/mr_bottom_not_cover_content">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+</ScrollView>
