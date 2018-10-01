@@ -6,17 +6,18 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 
 import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
 import com.salon.cattocdi.fragements.AppointmentFragment;
 import com.salon.cattocdi.fragements.HomeFragment;
 import com.salon.cattocdi.fragements.ProfileFragment;
+import com.salon.cattocdi.fragements.SearchFragment;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
                         showFragment(appointmentFragment);
                         return true;
                     case R.id.bottom_nav_search_item:
-
+                        SearchFragment searchFragment = new SearchFragment();
+                        showFragment(searchFragment);
                         return true;
                     case R.id.bottom_nav_profile_item:
                         ProfileFragment profileFragment = new ProfileFragment();

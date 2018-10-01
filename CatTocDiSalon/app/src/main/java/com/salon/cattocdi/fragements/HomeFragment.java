@@ -1,6 +1,7 @@
 package com.salon.cattocdi.fragements;
 
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
@@ -19,6 +21,8 @@ import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
 public class HomeFragment extends Fragment {
 
     RecyclerView rvBookmark, rvRating, rvSale;
+    private EditText etSearch;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -36,6 +40,15 @@ public class HomeFragment extends Fragment {
         testRecycleViewAdapter(rvBookmark);
         testRecycleViewAdapter(rvRating);
         testRecycleViewAdapter(rvSale);
+
+        etSearch = view.findViewById(R.id.fg_home_search_et);
+        etSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SearchFragment searchFragment = new SearchFragment();
+                showFragment(searchFragment);
+            }
+        });
         return view;
     }
 
@@ -47,6 +60,13 @@ public class HomeFragment extends Fragment {
         rv.setItemAnimator(new DefaultItemAnimator());
         TestRecycleViewAdapter adapter = new TestRecycleViewAdapter();
         rv.setAdapter(adapter);
+    }
+
+    private void showFragment(Fragment fragment){
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.activity_main_container_fl, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 }

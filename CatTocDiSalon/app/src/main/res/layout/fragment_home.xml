@@ -20,8 +20,8 @@
             android:drawableLeft="@drawable/ic_search_navigation"
             android:background="@drawable/border_radius_edit_text"
             android:padding="@dimen/pd_et"
-            android:textColor="@color/textForLight"/>
-
+            android:textColor="@color/textForLight"
+            android:id="@+id/fg_home_search_et"/>
 
         <TextView
             android:layout_width="match_parent"

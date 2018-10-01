@@ -60,7 +60,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/vn_register"
-                android:textColor="@color/textLink"/>
+                android:textColor="@color/textLink"
+                android:id="@+id/login_activity_register_tv"/>
         </LinearLayout>
     </LinearLayout>
     <Button

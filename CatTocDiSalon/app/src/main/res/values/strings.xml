@@ -20,5 +20,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="vn_name">Tên của bạn</string>
+    <string name="vn_email">Email</string>
+
 
 </resources>

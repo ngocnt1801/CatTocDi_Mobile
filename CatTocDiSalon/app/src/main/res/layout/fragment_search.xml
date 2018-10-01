@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragements.SearchFragment"
+    android:orientation="vertical"
+    android:padding="@dimen/pd_layout_login_page">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Địa điểm"
+        android:padding="@dimen/pd_et"
+        android:background="@drawable/border_radius_edit_text"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dịch vụ"
+        android:padding="@dimen/pd_et"
+        android:background="@drawable/border_radius_edit_text"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ngày"
+        android:padding="@dimen/pd_et"
+        android:background="@drawable/border_radius_edit_text"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/fg_search_date_et"
+        android:editable="false"/>
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mainPrimary"
+        android:text="Tìm kiếm"
+        android:textSize="@dimen/ts_button_login_page"
+        android:textColor="@color/textForDark"/>
+
+</LinearLayout>

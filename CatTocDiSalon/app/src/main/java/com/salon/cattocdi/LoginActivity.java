@@ -5,10 +5,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.salon.cattocdi.utils.MyContants;
 
@@ -17,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private Button btnLogin, btnSkip;
+    private TextView tvRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,15 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
                     showDialogLoginFail();
                 }
+            }
+        });
+
+        tvRegister = findViewById(R.id.login_activity_register_tv);
+        tvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
             }
         });
 
