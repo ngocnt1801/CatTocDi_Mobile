@@ -19,7 +19,8 @@
             android:hint="@string/vn_search"
             android:drawableLeft="@drawable/ic_search_navigation"
             android:background="@drawable/border_radius_edit_text"
-            android:padding="@dimen/pd_et" />
+            android:padding="@dimen/pd_et"
+            android:id="@+id/fg_home_search_et"/>
 
 
         <TextView
