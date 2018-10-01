@@ -18,4 +18,7 @@
     <string name="vn_appointment_past">Quá khứ</string>
     <string name="vn_my_appointment">Lịch của tôi</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
