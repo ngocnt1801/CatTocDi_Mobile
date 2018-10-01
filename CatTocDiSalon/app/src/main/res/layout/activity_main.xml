@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/mainLight"
+        android:background="@color/secondPrimary"
         app:itemIconTint="@color/textForLight"
         app:itemTextColor="@color/textForLight"
         app:menu="@menu/bottom_navigation"

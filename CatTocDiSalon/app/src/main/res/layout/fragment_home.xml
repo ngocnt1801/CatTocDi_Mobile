@@ -19,14 +19,16 @@
             android:hint="@string/vn_search"
             android:drawableLeft="@drawable/ic_search_navigation"
             android:background="@drawable/border_radius_edit_text"
-            android:padding="@dimen/pd_et" />
+            android:padding="@dimen/pd_et"
+            android:textColor="@color/textForLight"/>
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/vn_nearest_salon"
-            android:layout_marginTop="@dimen/mg_top_login_page"/>
+            android:layout_marginTop="@dimen/mg_top_login_page"
+            android:textColor="@color/textForLight"/>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -38,7 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/vn_top_rating"
-            android:layout_marginTop="@dimen/mg_top_login_page"/>
+            android:layout_marginTop="@dimen/mg_top_login_page"
+            android:textColor="@color/textForLight"/>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -50,7 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/vn_top_sale"
-            android:layout_marginTop="@dimen/mg_top_login_page"/>
+            android:layout_marginTop="@dimen/mg_top_login_page"
+            android:textColor="@color/textForLight"/>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
