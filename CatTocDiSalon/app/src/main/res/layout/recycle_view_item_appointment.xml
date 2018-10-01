@@ -18,37 +18,43 @@
             android:layout_height="wrap_content"
             android:text="Tên Salon"
             android:textSize="16dp"
-            android:id="@+id/fg_appointment_name_tv"/>
+            android:id="@+id/fg_appointment_name_tv"
+            android:textColor="@color/textForLight"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="123 Trần Văn Tông"
-            android:id="@+id/fg_appointment_address_tv"/>
+            android:id="@+id/fg_appointment_address_tv"
+            android:textColor="@color/textForLight"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cắt tóc, uốn, nhuộm"
-            android:id="@+id/fg_appointment_services_tv"/>
+            android:id="@+id/fg_appointment_services_tv"
+            android:textColor="@color/textForLight"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Người cắt Nguyễn Văn A"
-            android:id="@+id/fg_appointment_stylist_tv"/>
+            android:id="@+id/fg_appointment_stylist_tv"
+            android:textColor="@color/textForLight"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ngày 01/10/2018, 3:00PM"
-            android:id="@+id/fg_appointment_time_tv"/>
+            android:id="@+id/fg_appointment_time_tv"
+            android:textColor="@color/textForLight"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hủy lịch"
-            android:id="@+id/fg_appointment_cancel_btn"/>
+            android:id="@+id/fg_appointment_cancel_btn"
+            android:textColor="@color/textForLight"/>
     </LinearLayout>
 
 
