@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/vn_my_appointment"
-            android:textSize="16dp"/>
+            android:textSize="16dp"
+            android:textColor="@color/textForLight"/>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"

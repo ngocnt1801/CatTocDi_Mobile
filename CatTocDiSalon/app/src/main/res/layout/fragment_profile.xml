@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragements.ProfileFragment"
+    android:background="@drawable/splash_gradient_background"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <FrameLayout
+        android:id="@+id/activity_proflie_f1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="@dimen/mg_top_profile_name"
+
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_account_circle_black_24dp"
+            android:layout_marginLeft="@dimen/mg_left_profile_avata"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhi Nguyen"
+            android:textColor="@color/textForLight"
+            android:layout_marginLeft="@dimen/mg_left_profile"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thành viên"
+            android:textColor="@color/textForLight"
+            android:layout_marginLeft="@dimen/mg_left_profile"
+            android:paddingTop="@dimen/mg_top_profile"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"
+            android:layout_marginTop="80dp"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/activity_profile_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        >
+        <LinearLayout
+            android:id="@+id/activity_profile_f2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_grade_black_24dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+            <TextView
+                android:id="@+id/t"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Bảng xếp hạng"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_f2"
+                android:textSize="20dp"
+                android:textColor="@color/textForLight"/>
+                //android:onClick="onClickShop"
+                //android:clickable="true"
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activity_profile_f2_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mg_top_profile_from_username_f2_1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_history_black_24dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Lịch sử đặt lịch"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_f2"
+                android:textSize="20dp"
+                android:textColor="@color/textForLight"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activity_profile_f2_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mg_top_profile_from_username_f2_2">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_edit_black_24dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Chỉnh sửa thông tin cá nhân"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_f2"
+                android:textSize="20dp"
+                android:textColor="@color/textForLight"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activity_profile_f2_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mg_top_profile_from_username_f2_3">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_bookmark_border_black_24dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Đánh dấu"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_f2"
+                android:textSize="20dp"
+                android:textColor="@color/textForLight"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activity_profile_f2_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mg_top_profile_from_username_f2_4">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_help_outline_black_24dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Giúp đỡ"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_f2"
+                android:textSize="20dp"
+                android:textColor="@color/textForLight"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activity_profile_f2_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mg_top_profile_from_username_f2_5">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_settings_black_24dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Cài đặt"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_f2"
+                android:textSize="20dp"
+                android:textColor="@color/textForLight"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activity_profile_f2_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mg_top_profile_from_username_f2_logout">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_exit_to_app_black_24dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Đăng xuất"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="@dimen/mg_left_profile_f2"
+                android:textSize="20dp"
+                android:textColor="@color/textForLight"
+                android:onClick="onClickLogout"
+                android:clickable="true"
+                />
+        </LinearLayout>
+    </FrameLayout>
+
+
+
+</FrameLayout>
