@@ -14,8 +14,11 @@ import android.widget.EditText;
 
 import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
 import com.salon.cattocdi.fragements.AppointmentFragment;
+import com.salon.cattocdi.fragements.EditProfileFragment;
 import com.salon.cattocdi.fragements.HomeFragment;
+import com.salon.cattocdi.fragements.ProfileFragment;
 import com.salon.cattocdi.fragements.SearchFragment;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                         showFragment(searchFragment);
                         return true;
                     case R.id.bottom_nav_profile_item:
+                        EditProfileFragment editProfileFragment = new EditProfileFragment();
+                        showFragment(editProfileFragment);
                         return true;
                 }
 
@@ -72,4 +77,5 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
 }

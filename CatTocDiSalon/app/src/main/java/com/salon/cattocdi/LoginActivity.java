@@ -12,14 +12,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.salon.cattocdi.utils.MyContants;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
 
 
-    private Button btnLogin, btnSkip;
-    private TextView tvRegister;
+    private Button btnLogin ;
+    private TextView tvRegister,btnSkip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +37,6 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
-
-
 
         btnLogin = findViewById(R.id.login_activity_login_btn);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -84,4 +92,33 @@ public class LoginActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+
+//    private void sendRequest(){
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        String url = "http://192.168.0.120/cattocdi.api/token";
+//        StringRequest request = new StringRequest(Request.Method.POST, url,
+//                new Response.Listener<String>() {
+//                @Override
+//                public void onResponse(String response) {
+//                    Log.d("RESPONSE", response);
+//                }
+//        },
+//                new Response.ErrorListener(){
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.d("RESPONSE", error.getMessage());
+//                    }
+//                }
+//        ){
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> param = new HashMap<>();
+//                param.put("username","tiendat@gmail.com");
+//                param.put("password","Test@123");
+//                param.put("grant_type","password");
+//                return param;
+//            }
+//        };
+//        queue.add(request);
+//    }
 }

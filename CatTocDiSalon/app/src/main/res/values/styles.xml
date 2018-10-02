@@ -3,12 +3,17 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/mainPrimary</item>
+        <item name="colorPrimary">@color/firstColor</item>
         <item name="colorPrimaryDark">@color/mainDark</item>
-        <item name="colorAccent">@color/secondPrimary</item>
+        <item name="colorAccent">@color/icLogin</item>
     </style>
+
     <style name="SplashStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/splash_gradient_background</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
