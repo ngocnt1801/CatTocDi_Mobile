@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/firstColor</item>
         <item name="colorPrimaryDark">@color/mainDark</item>
-        <item name="colorAccent">@color/mainDark</item>
+        <item name="colorAccent">@color/icLogin</item>
     </style>
 
     <style name="SplashStyle" parent="Theme.AppCompat.Light.NoActionBar">

@@ -5,64 +5,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignUpActivity"
-    android:padding="@dimen/pd_layout_login_page">
+    android:background="@color/bgLogin"
+    android:clipToPadding="false"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vn_phone"/>
+        android:clipToPadding="false"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/pd_layout_login_page">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/vn_phone"
-            android:background="@drawable/border_radius_edit_text"
+            android:background="@drawable/border_radius_edit_text_login"
+            android:drawableLeft="@drawable/ic_phone"
+            android:drawablePadding="24dp"
+            android:textColor="@color/textForDark"
+            android:textColorHint="@color/textForDark"
             android:padding="@dimen/pd_et"
             android:layout_marginBottom="16dp"
             android:inputType="phone"
+
             />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vn_password"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/vn_password"
-            android:background="@drawable/border_radius_edit_text"
+            android:background="@drawable/border_radius_edit_text_login"
+            android:drawableLeft="@drawable/ic_password"
+            android:drawablePadding="24dp"
+            android:textColor="@color/textForDark"
+            android:textColorHint="@color/textForDark"
             android:padding="@dimen/pd_et"
             android:layout_marginBottom="16dp"
             android:inputType="textPassword"
             />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vn_name"/>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/vn_name"
-            android:background="@drawable/border_radius_edit_text"
+            android:background="@drawable/border_radius_edit_text_login"
+            android:drawableLeft="@drawable/ic_profile_navigation"
+            android:drawablePadding="24dp"
+            android:textColor="@color/textForDark"
+            android:textColorHint="@color/textForDark"
             android:padding="@dimen/pd_et"
             android:layout_marginBottom="16dp"
             android:inputType="textPersonName"
             />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vn_email"/>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/vn_email"
-            android:background="@drawable/border_radius_edit_text"
+            android:background="@drawable/border_radius_edit_text_login"
             android:padding="@dimen/pd_et"
             android:layout_marginBottom="16dp"
+            android:drawableLeft="@drawable/ic_mail"
+            android:drawablePadding="24dp"
+            android:textColor="@color/textForDark"
+            android:textColorHint="@color/textForDark"
             android:inputType="textEmailAddress"
             />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textForDark"
+            android:outlineAmbientShadowColor="@color/icLogin"
+            android:text="Tôi đã đọc và đồng ý với các điều khoản"/>
 
         <Button
             android:layout_width="match_parent"
@@ -70,7 +84,31 @@
             android:text="Đăng ký"
             android:textColor="@color/textForDark"
             android:textSize="@dimen/ts_button_login_page"
-            android:background="@color/mainPrimary"/>
+            android:layout_marginTop="12dp"
+            android:elevation="12dp"
+            android:stateListAnimator="@null"
+            android:background="@color/textLogin"/>
+
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/login_activity_register_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vn_login"
+            android:padding="@dimen/pd_button_login_page"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/border_radius_edit_text_singup_button"
+            android:textColor="@color/textForDark"
+            />
+    </LinearLayout>
+
 
 </RelativeLayout>

@@ -5,69 +5,92 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:padding="@dimen/pd_layout_login_page">
+    android:clipToPadding="false"
+    android:background="@color/bgLogin">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/logo_circle_border"/>
+
     <LinearLayout
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vn_phone"/>
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:padding="@dimen/pd_layout_login_page">
+        
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
-            android:id="@+id/login_activity_phone_et"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vn_password"/>
+            android:id="@+id/login_activity_phone_et"
+            android:textColor="@color/textForDark"
+            android:background="@drawable/border_radius_edit_text_login"
+            android:padding="@dimen/pd_et"
+            android:drawableLeft="@drawable/ic_phone"
+            android:hint="@string/vn_phone"
+            android:textColorHint="@color/textForDark"
+            android:layout_marginBottom="8dp"
+            android:drawablePadding="24dp"/>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:id="@+id/login_activity_password_et"/>
+            android:id="@+id/login_activity_password_et"
+            android:textColor="@color/textForDark"
+            android:background="@drawable/border_radius_edit_text_login"
+            android:padding="@dimen/pd_et"
+            android:drawableLeft="@drawable/ic_password"
+            android:hint="@string/vn_password"
+            android:textColorHint="@color/textForDark"
+            android:drawablePadding="24dp"/>
         <Button
             android:layout_marginTop="@dimen/mg_top_login_page"
             android:padding="@dimen/pd_button_login_page"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/vn_login"
-            android:textColor="#ffffff"
+            android:textColor="@color/textForDark"
             android:textStyle="bold"
             android:textSize="@dimen/ts_button_login_page"
-            android:background="@color/mainDark"
+            android:elevation="12dp"
+            android:stateListAnimator="@null"
+            android:background="@color/textLogin"
             android:id="@+id/login_activity_login_btn"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/vn_forgot_password"
-            android:textColor="@color/textLink"
-            android:layout_marginTop="@dimen/mg_top_login_page"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/vn_no_account"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/vn_register"
-                android:textColor="@color/textLink"
-                android:id="@+id/login_activity_register_tv"/>
-        </LinearLayout>
+
     </LinearLayout>
-    <Button
-        android:id="@+id/login_activity_skip_btn"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="@string/vn_skip_this_step" />
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/login_activity_register_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/vn_register"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/border_radius_edit_text_singup_button"
+            android:layout_marginTop="@dimen/mg_top_login_page"
+            android:textColor="@color/textForDark"
+            />
+
+        <TextView
+            android:id="@+id/login_activity_skip_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/vn_skip_this_step"
+            android:textColor="@color/bgLogin"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
 </RelativeLayout>
