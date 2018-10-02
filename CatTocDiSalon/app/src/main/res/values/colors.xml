@@ -22,12 +22,17 @@
 
     <color name="secondPrimary">#6B5B95</color>
     <color name="secondLight">#ffc947</color>
-        <color name="secondDark">#6B5B95</color>
+    <color name="secondDark">#6B5B95</color>
 
     <color name="textLink">#ffffff</color>
 
     <color name="textLogin">#6b5b95</color>
     <color name="bgLogin">#9a88c6</color>
     <color name="icLogin">#3e3167</color>
+
+    //profile
+    <color name="back_profile">#9A88C6</color>
+    <color name="test1">#f1e9ff</color>
+    <color name="test2">#e8bad2</color>
 </resources>
 
