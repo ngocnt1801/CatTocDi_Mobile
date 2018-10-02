@@ -38,7 +38,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/mainPrimary"
+        android:background="@color/mainDark"
         android:text="Tìm kiếm"
         android:textSize="@dimen/ts_button_login_page"
         android:textColor="@color/textForDark"/>
