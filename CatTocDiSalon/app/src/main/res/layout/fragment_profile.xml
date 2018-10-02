@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragements.ProfileFragment"
-    android:background="@drawable/splash_gradient_background"
+    android:background="@color/test1"
     >
 
     <!-- TODO: Update blank fragment layout -->
+
     <FrameLayout
         android:id="@+id/activity_proflie_f1"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="@dimen/mg_top_profile_name"
+        android:layout_height="150dp"
 
         >
         <ImageView
@@ -20,61 +20,235 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_account_circle_black_24dp"
             android:layout_marginLeft="@dimen/mg_left_profile_avata"
+            android:layout_marginTop="25dp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nhi Nguyen"
             android:textColor="@color/textForLight"
-            android:layout_marginLeft="@dimen/mg_left_profile"
-            android:textSize="20dp"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="23dp"
+            android:textSize="23dp">
+        </TextView>
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thành viên"
             android:textColor="@color/textForLight"
-            android:layout_marginLeft="@dimen/mg_left_profile"
-            android:paddingTop="@dimen/mg_top_profile"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black"
-            android:layout_marginTop="80dp"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="56dp"/>
+
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/activity_profile_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        >
+        android:layout_marginTop="150dp">
+        <android.support.v7.widget.CardView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="3dp" >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_grade_black_24dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="Bảng xếp hạng"
+                android:textColor="@color/textForLight"
+                android:textSize="18dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_bookmark_nhi" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="10dp"
+                android:text="Đánh dấu"
+                android:textColor="@color/textForLight"
+                android:textSize="18dp" />
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="3dp"
+            android:layout_marginTop="140dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_history_black_24dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="Lịch sử đặt lịch"
+                android:textColor="@color/textForLight"
+                android:textSize="18dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_edit_black_24dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="10dp"
+                android:text="Chỉnh sửa thông tin cá nhân"
+                android:textColor="@color/textForLight"
+                android:textSize="18dp" />
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="3dp"
+            android:layout_marginTop="280dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_help_outline_black_24dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="Giúp đỡ"
+                android:textColor="@color/textForLight"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_settings_black_24dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="50dp"
+                android:text="Cài đặt"
+                android:textColor="@color/textForLight"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_exit_to_app_black_24dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="90dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:onClick="onClickLogout"
+                android:text="Đăng xuất"
+                android:textColor="@color/textForLight"
+                android:textSize="18dp" />
+
+        </android.support.v7.widget.CardView>
+    <!--<FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/textForDark"
+        android:layout_marginTop="8dp">
+
         <LinearLayout
             android:id="@+id/activity_profile_f2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="12dp">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_grade_black_24dp"
-                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+                android:layout_marginLeft="13dp"
+                android:src="@drawable/ic_grade_black_24dp" />
+
             <TextView
                 android:id="@+id/t"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Bảng xếp hạng"
-                android:layout_marginTop="3dp"
                 android:layout_marginLeft="@dimen/mg_left_profile_f2"
-                android:textSize="20dp"
-                android:textColor="@color/textForLight"/>
-                //android:onClick="onClickShop"
-                //android:clickable="true"
+
+                android:text="Bảng xếp hạng"
+                android:textColor="@color/textForLight"
+                android:textSize="18dp" />
+            //android:onClick="onClickShop"
+            //android:clickable="true"
 
 
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/activity_profile_f2_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="13dp"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:src="@drawable/ic_bookmark_border_black_24dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/mg_left_profile_f2"
+                android:layout_marginTop="3dp"
+                android:text="Đánh dấu"
+                android:textColor="@color/textForLight"
+                android:textSize="18dp" />
+        </LinearLayout>
+    </FrameLayout>-->
+
+
+      <!--  <LinearLayout
             android:id="@+id/activity_profile_f2_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,19 +257,19 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_history_black_24dp"
-                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+                android:layout_marginLeft="@dimen/mg_left_profile_avata"
+                android:src="@drawable/ic_history_black_24dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Lịch sử đặt lịch"
-                android:layout_marginTop="3dp"
                 android:layout_marginLeft="@dimen/mg_left_profile_f2"
-                android:textSize="20dp"
+                android:layout_marginTop="3dp"
+                android:text="Lịch sử đặt lịch"
                 android:textColor="@color/textForLight"
-                />
+                android:textSize="18dp" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/activity_profile_f2_2"
             android:layout_width="match_parent"
@@ -105,41 +279,21 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_edit_black_24dp"
-                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+                android:layout_marginLeft="@dimen/mg_left_profile_avata"
+                android:src="@drawable/ic_edit_black_24dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/mg_left_profile_f2"
+                android:layout_marginTop="3dp"
                 android:text="Chỉnh sửa thông tin cá nhân"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="@dimen/mg_left_profile_f2"
-                android:textSize="20dp"
                 android:textColor="@color/textForLight"
-                />
+                android:textSize="18dp" />
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/activity_profile_f2_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/mg_top_profile_from_username_f2_3">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_bookmark_border_black_24dp"
-                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Đánh dấu"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="@dimen/mg_left_profile_f2"
-                android:textSize="20dp"
-                android:textColor="@color/textForLight"
-                />
-        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/activity_profile_f2_4"
             android:layout_width="match_parent"
@@ -149,19 +303,19 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_help_outline_black_24dp"
-                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+                android:layout_marginLeft="@dimen/mg_left_profile_avata"
+                android:src="@drawable/ic_help_outline_black_24dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Giúp đỡ"
-                android:layout_marginTop="3dp"
                 android:layout_marginLeft="@dimen/mg_left_profile_f2"
-                android:textSize="20dp"
+                android:layout_marginTop="3dp"
+                android:text="Giúp đỡ"
                 android:textColor="@color/textForLight"
-                />
+                android:textSize="18dp" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/activity_profile_f2_5"
             android:layout_width="match_parent"
@@ -171,19 +325,19 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_settings_black_24dp"
-                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+                android:layout_marginLeft="@dimen/mg_left_profile_avata"
+                android:src="@drawable/ic_settings_black_24dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Cài đặt"
-                android:layout_marginTop="3dp"
                 android:layout_marginLeft="@dimen/mg_left_profile_f2"
-                android:textSize="20dp"
+                android:layout_marginTop="3dp"
+                android:text="Cài đặt"
                 android:textColor="@color/textForLight"
-                />
+                android:textSize="18dp" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/activity_profile_f2_logout"
             android:layout_width="match_parent"
@@ -193,21 +347,20 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_exit_to_app_black_24dp"
-                android:layout_marginLeft="@dimen/mg_left_profile_avata"/>
+                android:layout_marginLeft="@dimen/mg_left_profile_avata"
+                android:src="@drawable/ic_exit_to_app_black_24dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Đăng xuất"
-                android:layout_marginTop="3dp"
                 android:layout_marginLeft="@dimen/mg_left_profile_f2"
-                android:textSize="20dp"
-                android:textColor="@color/textForLight"
-                android:onClick="onClickLogout"
+                android:layout_marginTop="3dp"
                 android:clickable="true"
-                />
-        </LinearLayout>
+                android:onClick="onClickLogout"
+                android:text="Đăng xuất"
+                android:textColor="@color/textForLight"
+                android:textSize="18dp" />
+        </LinearLayout>-->
     </FrameLayout>
 
 
