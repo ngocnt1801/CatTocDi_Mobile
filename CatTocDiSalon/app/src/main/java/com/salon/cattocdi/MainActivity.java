@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
                         showFragment(searchFragment);
                         return true;
                     case R.id.bottom_nav_profile_item:
-                        EditProfileFragment editProfileFragment = new EditProfileFragment();
-                        showFragment(editProfileFragment);
+                        ProfileFragment profileFragment = new ProfileFragment();
+                        showFragment(profileFragment);
                         return true;
                 }
 
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
 
     }
 

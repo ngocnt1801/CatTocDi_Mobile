@@ -27,4 +27,8 @@
     <dimen name="mg_top_profile_from_username_f2_4">300dp</dimen>
     <dimen name="mg_top_profile_from_username_f2_5">350dp</dimen>
     <dimen name="mg_top_profile_from_username_f2_logout">400dp</dimen>
+
+
+    <!-- Edit profile-->
+    <dimen name="mg_top_edit_text">16dp</dimen>
 </resources>

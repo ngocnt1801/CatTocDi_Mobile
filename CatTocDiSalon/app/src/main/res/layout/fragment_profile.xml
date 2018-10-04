@@ -9,52 +9,49 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <FrameLayout
-        android:id="@+id/activity_proflie_f1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-
-        >
+        android:layout_height="wrap_content"
+        android:background="@color/test1"
+        android:orientation="vertical">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_account_circle_black_24dp"
-            android:layout_marginLeft="@dimen/mg_left_profile_avata"
-            android:layout_marginTop="25dp"
-            />
+            android:id="@+id/avata_imv"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/test1"
+            android:src="@drawable/ic_account_circle_black_24dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nhi Nguyen"
-            android:textColor="@color/textForLight"
             android:layout_gravity="center"
-            android:layout_marginTop="23dp"
-            android:textSize="23dp">
-        </TextView>
-
-
+            android:textSize="18dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thành viên"
-            android:textColor="@color/textForLight"
+            android:text="Sdt: 0967776167"
             android:layout_gravity="center"
-            android:layout_marginTop="56dp"/>
-
-    </FrameLayout>
+            android:layout_marginBottom="16dp"
+            android:textSize="18dp"/>
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/activity_profile_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp">
+        android:layout_marginTop="190dp">
         <android.support.v7.widget.CardView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardUseCompatPadding="true"
             app:cardElevation="4dp"
-            app:cardCornerRadius="3dp" >
+            app:cardCornerRadius="3dp">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,7 +81,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="10dp"
-                android:text="Đánh dấu"
+                android:text="Yêu thích"
                 android:textColor="@color/textForLight"
                 android:textSize="18dp" />
         </android.support.v7.widget.CardView>
@@ -95,7 +92,7 @@
             app:cardUseCompatPadding="true"
             app:cardElevation="4dp"
             app:cardCornerRadius="3dp"
-            android:layout_marginTop="140dp">
+            android:layout_marginTop="100dp">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -119,6 +116,7 @@
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_edit_black_24dp" />
             <TextView
+                android:id="@+id/edit_information_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="50dp"
@@ -126,9 +124,10 @@
                 android:layout_marginBottom="10dp"
                 android:text="Chỉnh sửa thông tin cá nhân"
                 android:textColor="@color/textForLight"
-                android:onClick="onClickEditProfile"
+
                 android:clickable="true"
                 android:textSize="18dp" />
+
 
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
@@ -138,7 +137,7 @@
             app:cardUseCompatPadding="true"
             app:cardElevation="4dp"
             app:cardCornerRadius="3dp"
-            android:layout_marginTop="280dp">
+            android:layout_marginTop="200dp">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -180,6 +179,7 @@
                 android:src="@drawable/ic_exit_to_app_black_24dp" />
 
             <TextView
+                android:id="@+id/logout_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="50dp"
