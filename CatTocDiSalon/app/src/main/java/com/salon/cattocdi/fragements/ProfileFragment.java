@@ -4,13 +4,10 @@ package com.salon.cattocdi.fragements;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.salon.cattocdi.EditProfileActivity;
@@ -20,7 +17,7 @@ import com.salon.cattocdi.R;
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends android.app.Fragment {
-    TextView editProfile;
+    TextView editProfile, showLike, helpTv;
     //TextView logout;
     Context context;
     //private ProfileFragment profileFragment;
@@ -42,42 +39,43 @@ public class ProfileFragment extends android.app.Fragment {
             @Override
             public void onClick(View v) {
                 //swapFragment();
-                Intent intent = new Intent(context, EditProfileActivity.class);
-                startActivity(intent);
+                /*Intent intent = new Intent(context, EditProfileActivity.class);
+                startActivity(intent);*/
+                ViewProifileFragment viewProifileFragment = new ViewProifileFragment();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fg_profile, viewProifileFragment, null).addToBackStack(null).commit();
             }
 
 
         });
+        showLike = view.findViewById(R.id.show_top_tv);
+        showLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowTopFragment showTopFragment = new ShowTopFragment();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fg_profile, showTopFragment, null).addToBackStack(null).commit();
+               /*ShowTopFragment showTopFragment = new ShowTopFragment();
+               showFragment(showTopFragment);*/
+            }
+        });
+
+        helpTv = view.findViewById(R.id.help_tv);
+        helpTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HelpFragment helpFragment = new HelpFragment();
+                getFragmentManager()
+                        .beginTransaction().replace(R.id.fg_profile, helpFragment, null).addToBackStack(null).commit();
+            }
+        });
         return  view;
     }
 
-   /* private void swapFragment(){
-        EditProfileFragment editProfileFragment = new EditProfileFragment();
-        //ProfileFragment profileFragment = new ProfileFragment();
-        android.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-       *//* fragmentTransaction.add(R.id.activity_profile_2, editProfileFragment);
-        fragmentTransaction.addToBackStack(null);*//*
-       if (editProfileFragment.isAdded()){
-           fragmentTransaction.show(editProfileFragment);
-       }else {
-           fragmentTransaction.add(R.id.activity_profile_2, editProfileFragment, "E");
-       }
-       if(editProfileFragment.isAdded()){
-           fragmentTransaction.show(editProfileFragment);
-           fragmentTransaction.hide(profileFragment);
-       }
-        //fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }*/
-    public void onClickLogout(View view) {
-        //logout.setText("Log out");
-    }
-
-    public void onClickEditProfile(View view) {
-       /* EditProfileFragment editProfileFragment = new EditProfileFragment();
-        android.app.FragmentManager fragmentManager = getFragmentManager();
-        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.activity_profile_2, editProfileFragment);
-        fragmentTransaction.commit();*/
+    private void showFragment(android.app.Fragment fragment){
+        android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.show_top_tv, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

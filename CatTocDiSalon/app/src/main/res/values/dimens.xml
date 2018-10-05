@@ -16,6 +16,9 @@
     <dimen name="mg_top_profile">25dp</dimen>
     <dimen name="mg_top_profile_from_top">45dp</dimen>
     <dimen name="mg_top_profile_from_top_name">75dp</dimen>
+    <dimen name="size_name_shop">20dp</dimen>
+    <dimen name="size_name_card">22dp</dimen>
+    <dimen name="size_username">20dp</dimen>
 
     <!-- Name in profile-->
     <dimen name="mg_top_profile_name">30dp</dimen>

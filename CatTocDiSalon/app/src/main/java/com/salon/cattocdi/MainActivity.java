@@ -8,13 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
 
-import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
 import com.salon.cattocdi.fragements.AppointmentFragment;
-import com.salon.cattocdi.fragements.EditProfileFragment;
 import com.salon.cattocdi.fragements.HomeFragment;
 import com.salon.cattocdi.fragements.ProfileFragment;
 import com.salon.cattocdi.fragements.SearchFragment;
