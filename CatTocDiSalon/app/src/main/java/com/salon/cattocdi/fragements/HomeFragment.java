@@ -5,12 +5,14 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.GridLayout;
 
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
@@ -20,7 +22,7 @@ import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
  */
 public class HomeFragment extends Fragment {
 
-    RecyclerView rvBookmark, rvRating, rvSale;
+    RecyclerView rvNew, rvRating, rvSale;
     private EditText etSearch;
 
 
@@ -34,12 +36,24 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
-        rvBookmark = view.findViewById(R.id.fg_home_rv_bookmark);
+        rvNew = view.findViewById(R.id.fg_home_rv_new);
         rvRating = view.findViewById(R.id.fg_home_rv_rating);
         rvSale = view.findViewById(R.id.fg_home_rv_sale);
-        testRecycleViewAdapter(rvBookmark);
-        testRecycleViewAdapter(rvRating);
-        testRecycleViewAdapter(rvSale);
+
+        //set layout
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        rvSale.setLayoutManager(mLayoutManager);
+
+        rvRating.setLayoutManager(new GridLayoutManager(getActivity(),1));
+
+        rvNew.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+
+//        testRecycleViewAdapter(rvBookmark);,
+        testRecycleViewAdapter(rvRating, true);
+        testRecycleViewAdapter(rvSale, false);
+        testRecycleViewAdapter(rvNew, false);
+
+
 
         etSearch = view.findViewById(R.id.fg_home_search_et);
         etSearch.setOnClickListener(new View.OnClickListener() {
@@ -52,13 +66,11 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void testRecycleViewAdapter(RecyclerView rv){
+    private void testRecycleViewAdapter(RecyclerView rv, boolean isRating){
         //Show RECYCLEVIEW
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
 
-        rv.setLayoutManager(mLayoutManager);
         rv.setItemAnimator(new DefaultItemAnimator());
-        TestRecycleViewAdapter adapter = new TestRecycleViewAdapter();
+        TestRecycleViewAdapter adapter = new TestRecycleViewAdapter(isRating);
         rv.setAdapter(adapter);
     }
 

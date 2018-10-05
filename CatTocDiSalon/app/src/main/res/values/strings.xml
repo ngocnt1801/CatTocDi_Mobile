@@ -23,6 +23,7 @@
     <string name="vn_name">Tên của bạn</string>
     <string name="vn_email">Email</string>
     <string name="vn_or">hoặc</string>
+    <string name="vn_activation_Code">Nhập mã xác nhận</string>
 
 
 </resources>

@@ -22,18 +22,18 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 
     @Override
     public void onBindViewHolder(@NonNull AppointmentCardViewHolder viewHolder, int i) {
-        viewHolder.tvName.setText("Salon " + i);
-        viewHolder.tvAddress.setText("abc " + i + i + i);
-        viewHolder.tvServices.setText("Cắt, uống, nhuộm");
-        viewHolder.tvTime.setText("Thứ 2 1/10/2018, 3:00PM");
-        viewHolder.tvStylist.setText("Tran Van A");
+//        viewHolder.tvName.setText("Salon " + i);
+//        viewHolder.tvAddress.setText("abc " + i + i + i);
+//        viewHolder.tvServices.setText("Cắt, uống, nhuộm");
+//        viewHolder.tvTime.setText("Thứ 2 1/10/2018, 3:00PM");
+//        viewHolder.tvStylist.setText("Tran Van A");
 
-        viewHolder.btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+//        viewHolder.btnCancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
     }
 
     @Override
@@ -49,13 +49,13 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 
         public AppointmentCardViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvName = itemView.findViewById(R.id.fg_appointment_name_tv);
-            tvAddress = itemView.findViewById(R.id.fg_appointment_address_tv);
-            tvServices = itemView.findViewById(R.id.fg_appointment_services_tv);
-            tvStylist = itemView.findViewById(R.id.fg_appointment_stylist_tv);
-            tvTime = itemView.findViewById(R.id.fg_appointment_time_tv);
-            img = itemView.findViewById(R.id.fg_appointment_iv);
-            btnCancel = itemView.findViewById(R.id.fg_appointment_cancel_btn);
+//            tvName = itemView.findViewById(R.id.fg_appointment_name_tv);
+//            tvAddress = itemView.findViewById(R.id.fg_appointment_address_tv);
+//            tvServices = itemView.findViewById(R.id.fg_appointment_services_tv);
+//            tvStylist = itemView.findViewById(R.id.fg_appointment_stylist_tv);
+//            tvTime = itemView.findViewById(R.id.fg_appointment_time_tv);
+//            img = itemView.findViewById(R.id.fg_appointment_iv);
+//            btnCancel = itemView.findViewById(R.id.fg_appointment_cancel_btn);
             item = itemView;
         }
 

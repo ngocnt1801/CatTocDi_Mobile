@@ -14,10 +14,21 @@ import com.salon.cattocdi.R;
 
 public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleViewAdapter.MyCardViewHolder>{
 
+    private boolean isRating;
+
+    public TestRecycleViewAdapter(boolean isRating) {
+        this.isRating = isRating;
+    }
+
     @NonNull
     @Override
     public MyCardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon, viewGroup, false);
+        View itemView;
+        if(isRating){
+            itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_rating, viewGroup, false);
+        }else{
+            itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_sale, viewGroup, false);
+        }
         return new MyCardViewHolder(itemView);
     }
 
@@ -27,7 +38,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
         myCardViewHolder.salonTitle.setText("Cửa hàng " + (i + 1));
         myCardViewHolder.salonReviewsAmount.setText("("+ (i * 10) +")");
         myCardViewHolder.salonAddress.setText( i + i + i + " abc");
-        myCardViewHolder.salonImage.setBackgroundResource(R.drawable.splash_gradient_background);
+//        myCardViewHolder.salonImage.setBackgroundResource(R.drawable.splash_gradient_background);
 
         myCardViewHolder.item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +62,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
 
         public MyCardViewHolder(@NonNull View itemView) {
             super(itemView);
-            salonImage = itemView.findViewById(R.id.fg_home_rv_item_img);
+//            salonImage = itemView.findViewById(R.id.fg_home_rv_item_img);
             salonTitle = itemView.findViewById(R.id.fg_home_rv_item_title_tv);
             salonAddress = itemView.findViewById(R.id.fg_home_rv_item_address_tv);
             salonReviewsAmount = itemView.findViewById(R.id.fg_home_rv_item_amount_review_tv);

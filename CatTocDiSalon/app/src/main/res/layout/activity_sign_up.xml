@@ -8,6 +8,12 @@
     android:background="@color/bgLogin"
     android:clipToPadding="false"
     >
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="40dp"
+        android:background="@drawable/test_logo"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,26 +63,28 @@
             android:inputType="textPersonName"
             />
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/vn_email"
-            android:background="@drawable/border_radius_edit_text_login"
-            android:padding="@dimen/pd_et"
-            android:layout_marginBottom="16dp"
-            android:drawableLeft="@drawable/ic_mail"
-            android:drawablePadding="24dp"
-            android:textColor="@color/textForDark"
-            android:textColorHint="@color/textForDark"
-            android:inputType="textEmailAddress"
-            />
+            android:orientation="horizontal">
 
-        <CheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/textForDark"
-            android:outlineAmbientShadowColor="@color/icLogin"
-            android:text="Tôi đã đọc và đồng ý với các điều khoản"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nam"
+                android:textColor="@color/textForDark"
+                android:background="@drawable/border_radius_btn_gender_left"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nữ"
+                android:textColor="@color/textForDark"
+                android:background="@drawable/border_radius_btn_gender_right"/>
+
+        </LinearLayout>
 
         <Button
             android:layout_width="match_parent"

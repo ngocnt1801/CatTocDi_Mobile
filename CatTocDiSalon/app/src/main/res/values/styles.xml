@@ -13,6 +13,11 @@
         <item name="android:windowBackground">@drawable/splash_gradient_background</item>
     </style>
 
+    <style name="RatingSmall" parent="Base.Widget.AppCompat.RatingBar.Small">
+        <item name="android:colorControlNormal">@color/secondLight</item>
+        <item name="android:colorControlHighlight">@color/secondPrimary</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
