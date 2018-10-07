@@ -2,6 +2,7 @@ package com.salon.cattocdi.fragements;
 
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,7 +20,7 @@ import java.util.Calendar;
  */
 public class SearchFragment extends Fragment {
 
-    EditText etDate;
+    EditText etDate, etService;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -52,6 +53,19 @@ public class SearchFragment extends Fragment {
                 dialog.show();
             }
         });
+
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.fragment_search_service_dialog);
+        dialog.setTitle("Services");
+
+        etService = view.findViewById(R.id.fg_search_service_et);
+        etService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show();
+            }
+        });
+
         return view;
     }
 
