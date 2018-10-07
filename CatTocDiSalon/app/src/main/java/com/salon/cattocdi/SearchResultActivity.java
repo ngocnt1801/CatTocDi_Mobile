@@ -1,4 +1,4 @@
-package com.salon.cattocdi.fragements;
+package com.salon.cattocdi;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
