@@ -17,7 +17,7 @@ import com.salon.cattocdi.R;
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends android.app.Fragment {
-    TextView editProfile, showLike, helpTv;
+    TextView editProfile, showLike, helpTv, showPoint;
     //TextView logout;
     Context context;
     //private ProfileFragment profileFragment;
@@ -67,6 +67,14 @@ public class ProfileFragment extends android.app.Fragment {
                 HelpFragment helpFragment = new HelpFragment();
                 getFragmentManager()
                         .beginTransaction().replace(R.id.fg_profile, helpFragment, null).addToBackStack(null).commit();
+            }
+        });
+        showPoint = view.findViewById(R.id.show_user_point);
+        showPoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               PointFragment pointFragment = new PointFragment();
+               getFragmentManager().beginTransaction().replace(R.id.fg_profile, pointFragment, null).addToBackStack(null).commit();
             }
         });
         return  view;

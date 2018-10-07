@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragements.PointFragment"
+    android:background="@color/textForDark">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:id="@+id/fg_member_point"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/textForDark">
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
+            android:padding="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="36dp"
+            app:cardBackgroundColor="@color/secondMainDark">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:padding="24dp"
+                android:text="Nhi Nguyen"
+                android:textColor="@color/textForDark"
+                android:textSize="@dimen/size_username"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thành viên mới"
+                android:layout_marginTop="80dp"
+                android:padding="24dp"
+                android:textColor="@color/textForDark"/>
+            <!--<ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_member_point"
+                android:layout_marginTop="65dp"
+                android:paddingLeft="160dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="65dp"
+                android:paddingLeft="280dp"
+                android:text="11"
+                android:textSize="20dp"
+                android:textColor="@color/textForDark"/>-->
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_member_point" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:text="12 điểm"
+                android:textColor="@color/textForLight"
+                android:textSize="16dp"
+               />
+
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="4dp"
+            android:padding="16dp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="(12/100)"
+                android:textColor="@color/textForLight"
+                android:textSize="12dp"
+                />
+            <ProgressBar
+                android:id="@+id/determinatePointGoldBar"
+                style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+                android:layout_width="350dp"
+                android:layout_height="8dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="40dp"
+                android:progress="12"
+                android:max="100"
+                android:progressDrawable="@drawable/custom_progress"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:padding="12dp"
+                android:text="78 điểm nữa bạn thăng hạng Vàng"
+                android:textColor="@color/textForLight"
+                android:textSize="12dp"
+                />
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="4dp"
+            android:padding="16dp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="(12/500)"
+                android:textColor="@color/textForLight"
+                android:textSize="12dp"
+                />
+            <ProgressBar
+                android:id="@+id/determinatePointDiadBar"
+                style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+                android:layout_width="350dp"
+                android:layout_height="8dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="40dp"
+                android:progress="6"
+                android:max="100"
+                android:progressDrawable="@drawable/custom_progress"/>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="48dp"
+                android:padding="12dp"
+                android:text="478 điểm nữa bạn thăng hạng Kim cương"
+                android:textColor="@color/textForLight"
+                android:textSize="12dp"
+                />
+        </android.support.v7.widget.CardView>
+
+        <!--<android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            app:cardBackgroundColor="@color/textForGrey">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_member_point" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:text="78 điểm nữa bạnn thăng hạng Vàng"
+                android:textColor="@color/textForLight"
+                android:textSize="14dp"
+                />
+
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            app:cardBackgroundColor="@color/textForGrey">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_member_point" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:text="478 điểm nữa bạn thăng hạng kim cương"
+                android:textColor="@color/textForLight"
+                android:textSize="14dp"
+                />
+
+
+        </android.support.v7.widget.CardView>-->
+
+    </LinearLayout>
+
+</FrameLayout>
