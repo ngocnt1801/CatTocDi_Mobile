@@ -3,15 +3,18 @@ package com.salon.cattocdi.fragements;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.SearchResultActivity;
 
 import java.util.Calendar;
 
@@ -21,6 +24,7 @@ import java.util.Calendar;
 public class SearchFragment extends Fragment {
 
     EditText etDate, etService;
+    Button btSearch;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -63,6 +67,15 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 dialog.show();
+            }
+        });
+
+        btSearch = view.findViewById(R.id.fg_search_search_btn);
+        btSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SearchResultActivity.class);
+                startActivity(intent);
             }
         });
 

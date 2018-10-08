@@ -78,18 +78,4 @@
         </LinearLayout>
     </ScrollView>
 
-
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/vn_top_sale"-->
-            <!--android:layout_marginTop="@dimen/mg_top_login_page"-->
-            <!--android:textColor="@color/textForLight"/>-->
-
-        <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/fg_home_rv_sale"-->
-            <!--android:layout_marginBottom="@dimen/mr_bottom_not_cover_content">-->
-        <!--</android.support.v7.widget.RecyclerView>-->
 </LinearLayout>

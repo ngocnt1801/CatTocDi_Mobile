@@ -24,6 +24,7 @@
     <string name="vn_email">Email</string>
     <string name="vn_or">hoặc</string>
     <string name="vn_activation_Code">Nhập mã xác nhận</string>
+    <string name="vn_services">Dịch vụ</string>
 
 
 </resources>
