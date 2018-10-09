@@ -13,11 +13,13 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.SalonDetailActivity;
 import com.salon.cattocdi.utils.MyContants;
 
 public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleViewAdapter.MyCardViewHolder> {
 
     private boolean isRating;
+    private Context context;
 
     public TestRecycleViewAdapter(boolean isRating, Context context) {
         this.context = context;
