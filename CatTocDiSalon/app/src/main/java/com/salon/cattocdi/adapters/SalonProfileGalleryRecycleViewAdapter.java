@@ -21,12 +21,12 @@ public class SalonProfileGalleryRecycleViewAdapter extends RecyclerView.Adapter<
 
     @Override
     public void onBindViewHolder(@NonNull ImageHolder imageHolder, int i) {
-        imageHolder.image.setBackgroundResource(MyContants.IMAGE_IDS[i]);
+        imageHolder.image.setBackgroundResource(MyContants.SALON_MODELS_IDS[i]);
     }
 
     @Override
     public int getItemCount() {
-        return MyContants.IMAGE_IDS.length;
+        return MyContants.SALON_MODELS_IDS.length;
     }
 
     public class ImageHolder extends RecyclerView.ViewHolder{
