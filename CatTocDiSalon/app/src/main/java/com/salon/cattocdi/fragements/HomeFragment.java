@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
         //Show RECYCLEVIEW
 
         rv.setItemAnimator(new DefaultItemAnimator());
-        TestRecycleViewAdapter adapter = new TestRecycleViewAdapter(isRating);
+        TestRecycleViewAdapter adapter = new TestRecycleViewAdapter(isRating, getActivity());
         rv.setAdapter(adapter);
     }
 

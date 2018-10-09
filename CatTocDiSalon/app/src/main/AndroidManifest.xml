@@ -29,7 +29,8 @@
             android:name=".MainActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".SearchResultActivity"></activity>
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".SearchResultActivity" />
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".SalonDetailActivity"></activity>
     </application>
 </manifest>
