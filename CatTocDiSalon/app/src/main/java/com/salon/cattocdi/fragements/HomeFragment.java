@@ -4,6 +4,7 @@ package com.salon.cattocdi.fragements;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -53,6 +54,7 @@ public class HomeFragment extends Fragment {
         testRecycleViewAdapter(rvSale, false);
         testRecycleViewAdapter(rvNew, false);
 
+        ViewCompat.setNestedScrollingEnabled(rvRating, false);
 
 
         etSearch = view.findViewById(R.id.fg_home_search_et);

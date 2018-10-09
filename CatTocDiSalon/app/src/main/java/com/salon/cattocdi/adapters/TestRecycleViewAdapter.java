@@ -11,6 +11,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.utils.MyContants;
 
 public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleViewAdapter.MyCardViewHolder>{
 
@@ -38,7 +39,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
         myCardViewHolder.salonTitle.setText("Cửa hàng " + (i + 1));
         myCardViewHolder.salonReviewsAmount.setText("("+ (i * 10) +")");
         myCardViewHolder.salonAddress.setText( i + i + i + " abc");
-//        myCardViewHolder.salonImage.setBackgroundResource(R.drawable.splash_gradient_background);
+        myCardViewHolder.salonImage.setBackgroundResource(MyContants.IMAGE_IDS[i]);
 
         myCardViewHolder.item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +56,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
 
     public class MyCardViewHolder extends RecyclerView.ViewHolder{
 
-        public ImageView salonImage;
+        public View salonImage;
         public TextView salonTitle, salonAddress, salonReviewsAmount;
         public RatingBar salonRatingBar;
         public CardView item;
@@ -67,6 +68,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             salonAddress = itemView.findViewById(R.id.fg_home_rv_item_address_tv);
             salonReviewsAmount = itemView.findViewById(R.id.fg_home_rv_item_amount_review_tv);
             salonRatingBar = itemView.findViewById(R.id.fg_home_rv_item_rb);
+            salonImage = itemView.findViewById(R.id.fg_home_rv_item_img);
             item = (CardView) itemView;
         }
     }

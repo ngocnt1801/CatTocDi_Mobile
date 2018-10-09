@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.utils.MyContants;
 
 public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<FragementAppointmentTestAdapter.AppointmentCardViewHolder> {
 
@@ -34,6 +35,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //
 //            }
 //        });
+        viewHolder.img.setBackgroundResource(MyContants.IMAGE_IDS[i]);
     }
 
     @Override
@@ -54,7 +56,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //            tvServices = itemView.findViewById(R.id.fg_appointment_services_tv);
 //            tvStylist = itemView.findViewById(R.id.fg_appointment_stylist_tv);
 //            tvTime = itemView.findViewById(R.id.fg_appointment_time_tv);
-//            img = itemView.findViewById(R.id.fg_appointment_iv);
+            img = itemView.findViewById(R.id.fg_appointment_iv);
 //            btnCancel = itemView.findViewById(R.id.fg_appointment_cancel_btn);
             item = itemView;
         }
