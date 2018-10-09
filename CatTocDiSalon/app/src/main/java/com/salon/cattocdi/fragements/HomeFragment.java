@@ -53,8 +53,6 @@ public class HomeFragment extends Fragment {
         testRecycleViewAdapter(rvSale, false);
         testRecycleViewAdapter(rvNew, false);
 
-
-
         etSearch = view.findViewById(R.id.fg_home_search_et);
         etSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +68,7 @@ public class HomeFragment extends Fragment {
         //Show RECYCLEVIEW
 
         rv.setItemAnimator(new DefaultItemAnimator());
-        TestRecycleViewAdapter adapter = new TestRecycleViewAdapter(isRating);
+        TestRecycleViewAdapter adapter = new TestRecycleViewAdapter(isRating, getActivity());
         rv.setAdapter(adapter);
     }
 

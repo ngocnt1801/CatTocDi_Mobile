@@ -1,5 +1,7 @@
 package com.salon.cattocdi.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,12 +13,15 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.SalonDetailActivity;
 
-public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleViewAdapter.MyCardViewHolder>{
+public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleViewAdapter.MyCardViewHolder> {
 
     private boolean isRating;
+    private Context context;
 
-    public TestRecycleViewAdapter(boolean isRating) {
+    public TestRecycleViewAdapter(boolean isRating, Context context) {
+        this.context = context;
         this.isRating = isRating;
     }
 
@@ -24,9 +29,9 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
     @Override
     public MyCardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView;
-        if(isRating){
+        if (isRating) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_rating, viewGroup, false);
-        }else{
+        } else {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_sale, viewGroup, false);
         }
         return new MyCardViewHolder(itemView);
@@ -36,14 +41,15 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
     public void onBindViewHolder(@NonNull MyCardViewHolder myCardViewHolder, int i) {
         myCardViewHolder.salonRatingBar.setRating(4.6f);
         myCardViewHolder.salonTitle.setText("Cửa hàng " + (i + 1));
-        myCardViewHolder.salonReviewsAmount.setText("("+ (i * 10) +")");
-        myCardViewHolder.salonAddress.setText( i + i + i + " abc");
+        myCardViewHolder.salonReviewsAmount.setText("(" + (i * 10) + ")");
+        myCardViewHolder.salonAddress.setText(i + i + i + " abc");
 //        myCardViewHolder.salonImage.setBackgroundResource(R.drawable.splash_gradient_background);
 
         myCardViewHolder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, SalonDetailActivity.class);
+                context.startActivity(intent);
             }
         });
     }
@@ -53,7 +59,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
         return 10;
     }
 
-    public class MyCardViewHolder extends RecyclerView.ViewHolder{
+    public class MyCardViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView salonImage;
         public TextView salonTitle, salonAddress, salonReviewsAmount;
