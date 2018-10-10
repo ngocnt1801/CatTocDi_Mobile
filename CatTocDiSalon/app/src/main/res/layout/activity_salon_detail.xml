@@ -189,7 +189,7 @@
                     android:layout_marginHorizontal="4dp"/>
             </TableRow>
             <TableRow android:layout_marginVertical="2dp">
-                <TextView android:text="Chủ nhật:"
+                <TextView android:text="CN:"
                     android:textSize="16dp"
                     android:textAlignment="textEnd"
                     android:layout_marginHorizontal="4dp"/>

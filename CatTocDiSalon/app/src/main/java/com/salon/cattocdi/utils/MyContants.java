@@ -18,6 +18,15 @@ public class MyContants {
            R.drawable.salon10,
 
    };
+   public static final int[] SALON_MODELS_IDS = {
+           R.drawable.salon_model_1,
+           R.drawable.salon_model_2,
+           R.drawable.salon_model_3,
+           R.drawable.salon_model_4,
+           R.drawable.salon_model_5,
+           R.drawable.salon_model_6,
+           R.drawable.salon_model_7,
+   };
 
    public static final int[] IMAGE_DISOUNT_IDS = {
            R.drawable.discount_1,
