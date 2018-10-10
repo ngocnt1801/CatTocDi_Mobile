@@ -27,5 +27,6 @@
     <string name="vn_services">Dịch vụ</string>
     <string name="vn_favorite">Yêu thích</string>
 
-
+    <!-- TODO: API Keys -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAkGcUBkhQpd3oBBg_E6KvA83W9Y3EZmlI</string>
 </resources>

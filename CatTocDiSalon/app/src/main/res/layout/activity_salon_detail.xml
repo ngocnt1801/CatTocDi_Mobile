@@ -210,6 +210,17 @@
             android:layout_below="@id/tbl_working_hour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:id="@+id/salon_detail_map"
+            android:layout_below="@id/salon_image_recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            map:cameraZoom="13"
+            map:mapType="normal"
+            map:liteMode="true"
+            />
     </RelativeLayout>
 </ScrollView>
 
