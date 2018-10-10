@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -18,34 +17,40 @@ import com.salon.cattocdi.utils.MyContants;
 
 public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleViewAdapter.MyCardViewHolder> {
 
-    private boolean isRating;
+    private int type;
     private Context context;
 
-    public TestRecycleViewAdapter(boolean isRating, Context context) {
+    public TestRecycleViewAdapter(int type, Context context) {
         this.context = context;
-        this.isRating = isRating;
+        this.type = type;
     }
 
     @NonNull
     @Override
     public MyCardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView;
-        if (isRating) {
+        if (type == 1) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_rating, viewGroup, false);
+        } else if (type == 2) {
+            itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_voucher, viewGroup, false);
         } else {
-            itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_sale, viewGroup, false);
+            itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_new, viewGroup, false);
         }
         return new MyCardViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyCardViewHolder myCardViewHolder, int i) {
-        myCardViewHolder.salonRatingBar.setRating(4.6f);
-        myCardViewHolder.salonTitle.setText("Cửa hàng " + (i + 1));
-        myCardViewHolder.salonReviewsAmount.setText("("+ (i * 10) +")");
-        myCardViewHolder.salonAddress.setText( i + i + i + " abc");
-        myCardViewHolder.salonImage.setBackgroundResource(MyContants.IMAGE_IDS[i]);
+        if (type != 2) {
+            myCardViewHolder.salonRatingBar.setRating(4.6f);
+            myCardViewHolder.salonTitle.setText("Cửa hàng " + (i + 1));
+            myCardViewHolder.salonReviewsAmount.setText("(" + (i * 10) + ")");
+            myCardViewHolder.salonAddress.setText(i + i + i + " abc");
+            myCardViewHolder.salonImage.setBackgroundResource(MyContants.IMAGE_IDS[i]);
 
+        } else {
+            myCardViewHolder.salonImage.setBackgroundResource(MyContants.IMAGE_IDS[i]);
+        }
         myCardViewHolder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -19,4 +19,17 @@ public class MyContants {
 
    };
 
+   public static final int[] IMAGE_DISOUNT_IDS = {
+           R.drawable.discount_1,
+           R.drawable.discount_2,
+           R.drawable.discount_3,
+           R.drawable.discount_4,
+           R.drawable.discount_5,
+           R.drawable.discount_6,
+           R.drawable.discount_7,
+           R.drawable.discount_8,
+           R.drawable.discount_9,
+           R.drawable.discount_10,
+
+   };
 }
