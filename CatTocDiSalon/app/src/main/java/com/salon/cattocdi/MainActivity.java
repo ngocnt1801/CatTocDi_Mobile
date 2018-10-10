@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.salon.cattocdi.fragements.AppointmentFragment;
+import com.salon.cattocdi.fragements.FavoriteFragment;
 import com.salon.cattocdi.fragements.HomeFragment;
 import com.salon.cattocdi.fragements.ProfileFragment;
 import com.salon.cattocdi.fragements.SearchFragment;
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.bottom_nav_search_item:
                         SearchFragment searchFragment = new SearchFragment();
                         showFragment(searchFragment);
+                        return true;
+                    case R.id.bottom_nav_favorite_item:
+                        FavoriteFragment favoriteFragment = new FavoriteFragment();
+                        showFragment(favoriteFragment);
                         return true;
                     case R.id.bottom_nav_profile_item:
                         ProfileFragment profileFragment = new ProfileFragment();

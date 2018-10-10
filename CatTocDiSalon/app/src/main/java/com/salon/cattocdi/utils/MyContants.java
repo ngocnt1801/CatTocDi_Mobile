@@ -5,7 +5,7 @@ import com.salon.cattocdi.R;
 public class MyContants {
    public static final String PHONE_TEST = "0123456789";
    public static final String PASSWORD_TEST = "123";
-   public static final int[] IMAGE_IDS = {
+   public static final int[] SALON_IMAGE_IDS = {
            R.drawable.salon1,
            R.drawable.salon2,
            R.drawable.salon3,
@@ -27,18 +27,5 @@ public class MyContants {
            R.drawable.salon_model_6,
            R.drawable.salon_model_7,
    };
-
-   public static final int[] IMAGE_DISOUNT_IDS = {
-           R.drawable.discount_1,
-           R.drawable.discount_2,
-           R.drawable.discount_3,
-           R.drawable.discount_4,
-           R.drawable.discount_5,
-           R.drawable.discount_6,
-           R.drawable.discount_7,
-           R.drawable.discount_8,
-           R.drawable.discount_9,
-           R.drawable.discount_10,
-
-   };
+   
 }

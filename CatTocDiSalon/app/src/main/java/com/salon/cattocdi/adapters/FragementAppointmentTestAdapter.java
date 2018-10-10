@@ -35,7 +35,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //
 //            }
 //        });
-        viewHolder.img.setBackgroundResource(MyContants.IMAGE_IDS[i]);
+        viewHolder.img.setBackgroundResource(MyContants.SALON_IMAGE_IDS[i]);
     }
 
     @Override

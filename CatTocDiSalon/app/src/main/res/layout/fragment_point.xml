@@ -14,44 +14,43 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/textForDark">
-        <android.support.v7.widget.CardView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
             android:padding="24dp"
-            app:cardBackgroundColor="@color/secondMainDark">
+            android:background="@drawable/card_member_normal">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="38dp"
-                android:padding="24dp"
                 android:text="Nhi Nguyen"
+                android:layout_above="@id/fg_point_member_type_tv"
                 android:textColor="@color/textForDark"
                 android:textSize="@dimen/size_username"/>
             <TextView
+                android:id="@+id/fg_point_member_type_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Thành viên mới"
-                android:layout_marginTop="80dp"
-                android:padding="24dp"
+                android:layout_alignParentBottom="true"
                 android:textColor="@color/textForDark"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="95dp"
-                android:layout_marginTop="40dp"
+                android:layout_toLeftOf="@id/fg_point_member_point_tv"
+                android:layout_alignBottom="@id/fg_point_member_point_tv"
                 android:src="@drawable/ic_dollar" />
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/fg_point_member_point_tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="224dp"
-                android:layout_marginTop="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:text="12 điểm"
                 android:textColor="@color/textForDark"
                 android:textSize="16dp"
                 />
-        </android.support.v7.widget.CardView>
+        </RelativeLayout>
 
         <android.support.v7.widget.CardView
             android:id="@+id/fg_explain_point"

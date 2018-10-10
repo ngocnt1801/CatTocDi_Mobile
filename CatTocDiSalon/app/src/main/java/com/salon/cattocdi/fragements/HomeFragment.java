@@ -50,9 +50,9 @@ public class HomeFragment extends Fragment {
         rvNew.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
 //        testRecycleViewAdapter(rvBookmark);,
-        testRecycleViewAdapter(rvRating, 1);
-        testRecycleViewAdapter(rvSale, 2);
-        testRecycleViewAdapter(rvNew, 30);
+        testRecycleViewAdapter(rvRating, TestRecycleViewAdapter.TYPE_RATING);
+        testRecycleViewAdapter(rvSale, TestRecycleViewAdapter.TYPE_VOUCHER);
+        testRecycleViewAdapter(rvNew, TestRecycleViewAdapter.TYPE_NEW);
 
         ViewCompat.setNestedScrollingEnabled(rvRating, false);
 
