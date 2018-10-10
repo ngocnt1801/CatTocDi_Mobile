@@ -82,9 +82,10 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Tên"
+                            android:hint="Nhi"
                             android:imeOptions="actionNext"
-                            android:textColorHint="@color/textForLight" />
+                            android:textColorHint="@color/textForLight"
+                            android:inputType="text"/>
 
                     </android.support.design.widget.TextInputLayout>
                     <android.support.design.widget.TextInputLayout
@@ -96,9 +97,10 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Họ"
+                            android:hint="Nguyen"
                             android:imeOptions="actionNext"
-                            android:textColorHint="@color/textForLight" />
+                            android:textColorHint="@color/textForLight"
+                            android:inputType="text"/>
 
                     </android.support.design.widget.TextInputLayout>
                     
@@ -112,7 +114,7 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Email"
+                            android:hint="abc@gmail.com"
                             android:imeOptions="actionNext"
                             android:inputType="textEmailAddress"
                             android:textColorHint="@color/textForLight" />
