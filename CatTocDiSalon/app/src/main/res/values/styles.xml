@@ -10,7 +10,7 @@
 
     <style name="SplashStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@drawable/splash_gradient_background</item>
+        <item name="android:windowBackground">@drawable/slash_purple</item>
     </style>
 
     <style name="RatingSmall" parent="Base.Widget.AppCompat.RatingBar.Small">
