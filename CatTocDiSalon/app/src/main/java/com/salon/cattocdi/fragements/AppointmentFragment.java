@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.adapters.FragementAppointmentTestAdapter;
@@ -33,6 +34,8 @@ public class AppointmentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_appointment, container, false);
         rvUpcomming = view.findViewById(R.id.fg_appointment_rv_upcoming);
         testRecycleViewAdapter(rvUpcomming);
+
+
         return view;
     }
 
