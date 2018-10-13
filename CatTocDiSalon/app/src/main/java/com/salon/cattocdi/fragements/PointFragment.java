@@ -39,14 +39,14 @@ RecyclerView explainPoint;
         testRecycleViewAdapter(explainPoint);*/
         return view;
     }
-    private void testRecycleViewAdapter(RecyclerView rv){
+  /*  private void testRecycleViewAdapter(RecyclerView rv){
         //Show RECYCLEVIEW
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(mLayoutManager);
         rv.setItemAnimator(new DefaultItemAnimator());
         FragementUserPointAdapter adapter = new FragementUserPointAdapter();
         rv.setAdapter(adapter);
-    }
+    }*/
 
 
 }
