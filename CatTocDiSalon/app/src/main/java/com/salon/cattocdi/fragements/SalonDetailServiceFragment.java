@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.adapters.SalonDetailPromotionRecycleView;
@@ -17,7 +18,6 @@ import com.salon.cattocdi.adapters.ServiceRecycleViewAdapter;
  * A simple {@link Fragment} subclass.
  */
 public class SalonDetailServiceFragment extends Fragment {
-
 
     public SalonDetailServiceFragment() {
         // Required empty public constructor
@@ -36,6 +36,7 @@ public class SalonDetailServiceFragment extends Fragment {
         RecyclerView promotionRecycleView = view.findViewById(R.id.salon_promotion_recycle_view);
         promotionRecycleView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         promotionRecycleView.setAdapter(new SalonDetailPromotionRecycleView());
+
         return view;
     }
 
