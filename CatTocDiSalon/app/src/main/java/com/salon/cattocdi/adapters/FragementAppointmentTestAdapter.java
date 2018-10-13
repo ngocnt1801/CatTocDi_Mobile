@@ -2,6 +2,7 @@ package com.salon.cattocdi.adapters;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //        });
 //        viewHolder.img.setImageResource(MyContants.SALON_IMAGE_IDS[i]);
 
+
         if(i == 0){
             viewHolder.appointmentDetail.expand();
             activeAppointment(viewHolder);
@@ -70,6 +72,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         public ImageView img, icExpand;
         public Button btnCancel;
         public View item;
+        public CardView icMap;
         public RelativeLayout appointmentRl;
         public ExpandableLayout appointmentDetail;
 
@@ -102,26 +105,26 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
     }
 
     public void activeAppointment(AppointmentCardViewHolder itemView){
-        itemView.appointmentRl.setBackgroundResource(R.color.icLogin);
-        itemView.tvAppoinmentType.setTextColor(Color.parseColor("#ffffff"));
-        itemView.tvAppoinmentType.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_calendar_white, 0,0,0);
-        itemView.tvSalonName.setTextColor(Color.parseColor("#ffffff"));
-        itemView.tvDate.setTextColor(Color.parseColor("#ffffff"));
-        itemView.tvStartTime.setTextColor(Color.parseColor("#ffffff"));
-        itemView.tvDot.setTextColor(Color.parseColor("#ffffff"));
-        itemView.tvEndTime.setTextColor(Color.parseColor("#ffffff"));
+//        itemView.appointmentRl.setBackgroundResource(R.color.icLogin);
+//        itemView.tvAppoinmentType.setTextColor(Color.parseColor("#ffffff"));
+//        itemView.tvAppoinmentType.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_calendar_white, 0,0,0);
+//        itemView.tvSalonName.setTextColor(Color.parseColor("#ffffff"));
+//        itemView.tvDate.setTextColor(Color.parseColor("#ffffff"));
+//        itemView.tvStartTime.setTextColor(Color.parseColor("#ffffff"));
+//        itemView.tvDot.setTextColor(Color.parseColor("#ffffff"));
+//        itemView.tvEndTime.setTextColor(Color.parseColor("#ffffff"));
         itemView.icExpand.setImageResource(R.drawable.ic_collapse);
     }
 
     public void inactiveAppointment(AppointmentCardViewHolder itemView){
-        itemView.appointmentRl.setBackgroundResource(0);
-        itemView.tvAppoinmentType.setTextColor(Color.parseColor("#6b5b95"));
-        itemView.tvAppoinmentType.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_calendar_active, 0,0,0);
-        itemView.tvSalonName.setTextColor(Color.parseColor("#000000"));
-        itemView.tvDate.setTextColor(Color.parseColor("#000000"));
-        itemView.tvStartTime.setTextColor(Color.parseColor("#000000"));
-        itemView.tvDot.setTextColor(Color.parseColor("#000000"));
-        itemView.tvEndTime.setTextColor(Color.parseColor("#000000"));
+//        itemView.appointmentRl.setBackgroundResource(0);
+//        itemView.tvAppoinmentType.setTextColor(Color.parseColor("#6b5b95"));
+//        itemView.tvAppoinmentType.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_calendar_active, 0,0,0);
+//        itemView.tvSalonName.setTextColor(Color.parseColor("#000000"));
+//        itemView.tvDate.setTextColor(Color.parseColor("#000000"));
+//        itemView.tvStartTime.setTextColor(Color.parseColor("#000000"));
+//        itemView.tvDot.setTextColor(Color.parseColor("#000000"));
+//        itemView.tvEndTime.setTextColor(Color.parseColor("#000000"));
         itemView.icExpand.setImageResource(R.drawable.ic_expand);
     }
 

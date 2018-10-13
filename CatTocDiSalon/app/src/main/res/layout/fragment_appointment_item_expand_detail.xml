@@ -5,7 +5,6 @@
     android:id="@+id/appointment_item_expand_rl"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/icLogin"
     android:padding="24dp">
 
     <TextView
@@ -13,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Salon Name"
-        android:textColor="@color/textForDark"
+        android:textColor="@color/textForLight"
         android:textSize="18dp"
         android:textStyle="bold" />
 
@@ -23,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/appointment_item_expand_name_tv"
         android:text="Thứ 5, 18/10/2018"
-        android:textColor="@color/textForDark" />
+        android:textColor="@color/textForLight" />
 
     <TextView
         android:id="@+id/appointment_item_expand_start_time_tv"
@@ -31,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/appointment_item_expand_date_tv"
         android:text="3:00PM"
-        android:textColor="@color/textForDark" />
+        android:textColor="@color/textForLight" />
 
     <TextView
         android:id="@+id/appointment_item_expand_dot_tv"
@@ -41,7 +40,7 @@
         android:layout_marginHorizontal="4dp"
         android:layout_toRightOf="@id/appointment_item_expand_start_time_tv"
         android:text="-"
-        android:textColor="@color/textForDark" />
+        android:textColor="@color/textForLight" />
 
     <TextView
         android:id="@+id/appointment_item_expand_end_time_tv"
@@ -50,15 +49,18 @@
         android:layout_below="@id/appointment_item_expand_date_tv"
         android:layout_toRightOf="@id/appointment_item_expand_dot_tv"
         android:text="4:00PM"
-        android:textColor="@color/textForDark" />
+        android:textColor="@color/textForLight" />
 
-    <ImageView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/appointment_item_expand_name_tv"
-        android:layout_marginRight="12dp"
-        android:src="@drawable/ic_map_expand" />
+        android:src="@drawable/ic_map"
+        android:padding="12dp"
+        android:background="@drawable/border_radius_outline_btn_white"
+        android:elevation="8dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_alignParentRight="true"/>
 
     <TableLayout
         android:id="@+id/tbl_service_bill"
@@ -72,84 +74,84 @@
 
             <TextView
                 android:text="Top Knot Bun"
-                android:textColor="@color/textForDark" />
+                android:textColor="@color/textForLight" />
 
             <TextView
                 android:layout_marginRight="4dp"
                 android:text="30,000"
                 android:textAlignment="textEnd"
-                android:textColor="@color/textForDark" />
+                android:textColor="@color/textForLight" />
 
             <TextView
                 android:layout_gravity="right"
                 android:text="vnd"
-                android:textColor="@color/textForDark" />
+                android:textColor="@color/textForLight" />
         </TableRow>
 
         <TableRow android:layout_marginBottom="4dp">
 
             <TextView
                 android:text="Top Knot Bun"
-                android:textColor="@color/textForDark" />
+                android:textColor="@color/textForLight" />
 
             <TextView
                 android:layout_marginRight="4dp"
                 android:text="30,000"
                 android:textAlignment="textEnd"
-                android:textColor="@color/textForDark" />
+                android:textColor="@color/textForLight" />
 
             <TextView
                 android:layout_gravity="right"
                 android:text="vnd"
-                android:textColor="@color/textForDark" />
+                android:textColor="@color/textForLight" />
         </TableRow >
 
         <TableRow android:layout_marginBottom="4dp">
 
             <TextView
                 android:text="Top Knot Bun"
-                android:textColor="@color/textForDark" />
+                android:textColor="@color/textForLight" />
 
             <TextView
                 android:layout_marginRight="4dp"
                 android:text="30,000"
                 android:textAlignment="textEnd"
-                android:textColor="@color/textForDark" />
+                android:textColor="@color/textForLight" />
 
             <TextView
                 android:layout_gravity="right"
                 android:text="vnd"
-                android:textColor="@color/textForDark" />
+                android:textColor="@color/textForLight" />
         </TableRow>
 
         <TableRow android:layout_marginBottom="4dp">
 
             <TextView
                 android:text="Top Knot Bun"
-                android:textColor="@color/textForDark" />
+                android:textColor="@color/textForLight" />
 
             <TextView
                 android:layout_marginRight="4dp"
                 android:text="30,000"
                 android:textAlignment="textEnd"
-                android:textColor="@color/textForDark" />
+                android:textColor="@color/textForLight" />
 
             <TextView
                 android:layout_gravity="right"
                 android:text="vnd"
-                android:textColor="@color/textForDark" />
+                android:textColor="@color/textForLight" />
         </TableRow>
 
         <View
             android:layout_height="1dp"
             android:layout_marginVertical="12dp"
-            android:background="@color/bgLogin" />
+            android:background="#eee" />
 
         <TableRow android:layout_marginBottom="4dp">
 
             <TextView
                 android:text="Tổng giá dịch vụ"
-                android:textColor="@color/textForDark"
+                android:textColor="@color/textForLight"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -157,14 +159,14 @@
                 android:layout_marginRight="4dp"
                 android:text="120,000"
                 android:textAlignment="textEnd"
-                android:textColor="@color/textForDark"
+                android:textColor="@color/textForLight"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_gravity="right"
                 android:text="vnd"
-                android:textColor="@color/textForDark"
+                android:textColor="@color/textForLight"
                 android:textSize="16dp"
                 android:textStyle="bold" />
         </TableRow>
@@ -172,7 +174,7 @@
 
             <TextView
                 android:text="Giảm giá"
-                android:textColor="@color/textForDark"
+                android:textColor="@color/textForLight"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -180,36 +182,36 @@
                 android:layout_marginRight="4dp"
                 android:text=""
                 android:textAlignment="textEnd"
-                android:textColor="@color/textForDark"
+                android:textColor="@color/textForLight"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_gravity="right"
                 android:text="30%"
-                android:textColor="@color/textForDark"
+                android:textColor="@color/textForLight"
                 android:textSize="16dp"
                 android:textStyle="bold" />
         </TableRow>
         <TableRow android:layout_marginBottom="-12dp">
             <TextView
                 android:text=""
-                android:textColor="@color/textForDark"
+                android:textColor="@color/textForLight"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
             <View
                 android:layout_height="1.5dp"
-                android:background="@color/bgLogin"/>
+                android:background="#ccc"/>
             <View
                 android:layout_height="1.5dp"
-                android:background="@color/bgLogin"/>
+                android:background="#ccc"/>
         </TableRow>
         <TableRow android:layout_marginBottom="4dp">
 
             <TextView
                 android:text="TỔNG CỘNG"
-                android:textColor="@color/textForDark"
+                android:textColor="@color/textLogin"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -217,14 +219,14 @@
                 android:layout_marginRight="4dp"
                 android:text="84,000"
                 android:textAlignment="textEnd"
-                android:textColor="@color/textForDark"
+                android:textColor="@color/textLogin"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_gravity="right"
                 android:text="vnd"
-                android:textColor="@color/textForDark"
+                android:textColor="@color/textLogin"
                 android:textSize="16dp"
                 android:textStyle="bold" />
         </TableRow>
