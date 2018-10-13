@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.adapters.SalonDetailPromotionRecycleView;
 import com.salon.cattocdi.adapters.ServiceRecycleViewAdapter;
 
 /**
@@ -31,6 +32,10 @@ public class SalonDetailServiceFragment extends Fragment {
         RecyclerView serviceRecycleView = view.findViewById(R.id.salon_service_recycle_view);
         serviceRecycleView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         serviceRecycleView.setAdapter(new ServiceRecycleViewAdapter());
+
+        RecyclerView promotionRecycleView = view.findViewById(R.id.salon_promotion_recycle_view);
+        promotionRecycleView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        promotionRecycleView.setAdapter(new SalonDetailPromotionRecycleView());
         return view;
     }
 

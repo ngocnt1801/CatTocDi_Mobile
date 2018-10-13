@@ -14,7 +14,7 @@ public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecyc
     @NonNull
     @Override
     public ServiceViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.salon_service, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_salon_detail_service_recycle_view, viewGroup, false);
         return new ServiceViewHolder(view);
     }
 
