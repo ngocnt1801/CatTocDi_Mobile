@@ -51,16 +51,16 @@
         android:text="4:00PM"
         android:textColor="@color/textForLight" />
 
-    <ImageButton
+    <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_map"
-        android:padding="12dp"
-        android:background="@drawable/border_radius_outline_btn_white"
-        android:elevation="8dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginTop="6dp"
-        android:layout_alignParentRight="true"/>
+        android:layout_height="32dp"
+        android:background="@drawable/border_radius_edit_text"
+        android:elevation="6dp"
+        android:text="Chỉ đường"
+        android:paddingHorizontal="24dp"
+        android:textColor="@color/bgLogin"
+        android:layout_alignTop="@id/appointment_item_expand_date_tv"
+        android:layout_alignParentRight="true" />
 
     <TableLayout
         android:id="@+id/tbl_service_bill"
