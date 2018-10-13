@@ -1,21 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:padding="12dp"
+    android:stretchColumns="0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="@color/textForLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stylist:"
+            android:layout_marginRight="8dp"
+            />
+        <TextView
+            android:textColor="@color/textForLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trần Văn A"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:textColor="@color/textForLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thời gian dự tính:"
+            android:layout_marginRight="8dp"
+
+            />
+        <TextView
+            android:textColor="@color/textForLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2h30p"
+            />
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cắt tóc"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Uốn tóc"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nhuộm tóc"/>
+        android:text="@string/vn_services"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/textForLight"
+        android:textAlignment="center"/>
 
 
-</LinearLayout>
+    <TableRow>
+
+        <TextView
+            android:text="Cắt tóc"
+            android:textColor="@color/textForLight"
+            />
+
+        <TextView
+            android:textAlignment="textEnd"
+            android:textColor="@color/textForLight"
+            android:text="50,000"/>
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:text="Uốn tóc"
+            android:textColor="@color/textForLight"
+            />
+
+        <TextView
+            android:textAlignment="textEnd"
+            android:textColor="@color/textForLight"
+            android:text="300,000"/>
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:textColor="@color/textForLight"
+            android:text="Nhuộm tóc"/>
+
+        <TextView
+            android:textAlignment="textEnd"
+            android:textColor="@color/textForLight"
+            android:text="750,000"/>
+    </TableRow>
+
+    <View
+        android:layout_height="2dp"
+        android:background="@color/textLogin"
+        android:layout_marginVertical="8dp"/>
+
+    <TableRow>
+
+        <TextView
+            android:textColor="@color/textForLight"
+            android:text="Tổng cộng"/>
+
+        <TextView
+            android:textColor="@color/textForLight"
+            android:textAlignment="textEnd"
+            android:text="1,100,000"/>
+    </TableRow>
+
+</TableLayout>

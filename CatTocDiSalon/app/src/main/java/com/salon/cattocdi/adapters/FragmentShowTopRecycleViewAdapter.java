@@ -11,6 +11,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.utils.MyContants;
 
 public class FragmentShowTopRecycleViewAdapter extends RecyclerView.Adapter<FragmentShowTopRecycleViewAdapter.MyCardViewHolder>{
 
@@ -27,7 +28,7 @@ public class FragmentShowTopRecycleViewAdapter extends RecyclerView.Adapter<Frag
         myCardViewHolder.salonTitle.setText("Cửa hàng " + (i + 1));
         myCardViewHolder.salonReviewsAmount.setText("("+ (i * 10) +")");
         myCardViewHolder.salonAddress.setText( i + i + i + " abc");
-        myCardViewHolder.salonImage.setBackgroundResource(R.drawable.splash_gradient_background);
+        myCardViewHolder.salonImage.setBackgroundResource(MyContants.SALON_IMAGE_IDS[i]);
 
         myCardViewHolder.item.setOnClickListener(new View.OnClickListener() {
             @Override

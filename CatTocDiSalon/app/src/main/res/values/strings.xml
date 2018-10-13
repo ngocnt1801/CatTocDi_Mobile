@@ -13,7 +13,7 @@
     <string name="vn_profile">Tài khoản</string>
     <string name="vn_nearest_salon">Cửa hàng gần đây</string>
     <string name="vn_top_rating">Cửa hàng được yêu thích</string>
-    <string name="vn_top_sale">Khuyến mãi</string>
+    <string name="vn_top_sale">Khuyến mãi HOT</string>
     <string name="vn_upcoming_appointment">Lịch đặt sắp tới</string>
     <string name="vn_appointment_past">Quá khứ</string>
     <string name="vn_my_appointment">Lịch của tôi</string>
@@ -24,6 +24,9 @@
     <string name="vn_email">Email</string>
     <string name="vn_or">hoặc</string>
     <string name="vn_activation_Code">Nhập mã xác nhận</string>
+    <string name="vn_services">Dịch vụ</string>
+    <string name="vn_favorite">Yêu thích</string>
 
-
+    <!-- TODO: API Keys -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAkGcUBkhQpd3oBBg_E6KvA83W9Y3EZmlI</string>
 </resources>

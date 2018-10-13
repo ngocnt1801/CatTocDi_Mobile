@@ -5,19 +5,24 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.alespero.expandablecardview.ExpandableCardView
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="Nam"
-        app:expandOnClick="true"
-        app:inner_view="@layout/fragment_search_service_dialog_item"
-        />
+        android:elevation="8dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dịch vụ"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            android:padding="12dp"/>
+    </android.support.v7.widget.CardView>
+    <ExpandableListView
+        android:id="@+id/fg_search_elv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#cccccc"
+        android:dividerHeight="1dp">
 
-    <com.alespero.expandablecardview.ExpandableCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="Nữ"
-        app:inner_view="@layout/fragment_search_service_dialog_item"
-        app:expandOnClick="true"/>
+    </ExpandableListView>
 
 </LinearLayout>

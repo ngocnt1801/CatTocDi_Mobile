@@ -4,6 +4,7 @@ package com.salon.cattocdi.fragements;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,10 +50,11 @@ public class HomeFragment extends Fragment {
         rvNew.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
 //        testRecycleViewAdapter(rvBookmark);,
-        testRecycleViewAdapter(rvRating, true);
-        testRecycleViewAdapter(rvSale, false);
-        testRecycleViewAdapter(rvNew, false);
+        testRecycleViewAdapter(rvRating, TestRecycleViewAdapter.TYPE_RATING);
+        testRecycleViewAdapter(rvSale, TestRecycleViewAdapter.TYPE_VOUCHER);
+        testRecycleViewAdapter(rvNew, TestRecycleViewAdapter.TYPE_NEW);
 
+        ViewCompat.setNestedScrollingEnabled(rvRating, false);
 
 
         etSearch = view.findViewById(R.id.fg_home_search_et);
@@ -66,11 +68,11 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void testRecycleViewAdapter(RecyclerView rv, boolean isRating){
+    private void testRecycleViewAdapter(RecyclerView rv, int type){
         //Show RECYCLEVIEW
 
         rv.setItemAnimator(new DefaultItemAnimator());
-        TestRecycleViewAdapter adapter = new TestRecycleViewAdapter(isRating);
+        TestRecycleViewAdapter adapter = new TestRecycleViewAdapter(type, getActivity());
         rv.setAdapter(adapter);
     }
 

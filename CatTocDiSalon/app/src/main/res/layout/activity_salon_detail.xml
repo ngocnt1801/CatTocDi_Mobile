@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Cover Image -->
+        <ImageView
+            android:focusableInTouchMode="true"
+            android:id="@+id/header_cover_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/salon_pic1" />
+        <!-- Avatar -->
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/avatar"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/header_cover_image"
+            android:layout_marginTop="-62dp"
+            android:src="@drawable/contact_avatar"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="2dp"
+            app:civ_shadow="true"
+            app:civ_shadow_radius="10"
+            app:civ_shadow_color="#8BC34A"/>
+        <!-- Salon Name -->
+        <TextView
+            android:id="@+id/salonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Beautiful Hair"
+            android:textFontWeight="10dp"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_below="@id/avatar"
+            android:textAlignment="center"
+            />
+        <!-- Contact Buttons -->
+        <LinearLayout
+            android:id="@+id/contact_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/salonName"
+            android:layout_marginVertical="12dp"
+            android:layout_centerHorizontal="true">
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="32dp"
+                android:background="@drawable/border_radius_outline_btn"
+                android:textSize="12dp"
+                android:textColor="@color/textLogin"
+                android:layout_marginHorizontal="10dp"
+                android:text="Nhắn tin"/>
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="32dp"
+                android:background="@drawable/border_radius_outline_btn"
+                android:textSize="12dp"
+                android:textColor="@color/textLogin"
+                android:layout_marginHorizontal="10dp"
+                android:text="Gọi điện"/>
+        </LinearLayout>
+        <!-- Bookmark Icon -->
+        <ImageView
+            android:id="@+id/bookmark"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/header_cover_image"
+            android:src="@drawable/ic_share"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
+        <!-- Share Icon -->
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/header_cover_image"
+            android:src="@drawable/ic_bookmark_nhi"
+            android:layout_toLeftOf="@id/bookmark"
+            android:layout_marginTop="5dp"
+        />
+        <!-- Review Bar -->
+        <RelativeLayout
+            android:id="@+id/star_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/contact_bar"
+            android:layout_marginTop="15dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:paddingVertical="10px"
+            android:background="#eee">
+            <RatingBar
+                android:id="@+id/fg_home_rv_item_rb"
+                style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:progressTint="@color/secondLight"
+                android:secondaryProgressTint="@color/textLogin"
+                android:numStars="5"
+                android:rating="4.5"
+                android:stepSize="0.5"/>
+        </RelativeLayout>
+        <!-- Service Recycle View -->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/salon_service_recycle_view"
+            android:scrollbars="vertical"
+            android:layout_below="@id/star_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:id="@+id/working_hour_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#eee"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/salon_service_recycle_view">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:text="GIỜ LÀM VIỆC"/>
+        </LinearLayout>
+        <TableLayout
+            android:id="@+id/tbl_working_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/working_hour_title"
+            android:layout_centerHorizontal="true"
+            >
+            <TableRow android:layout_marginVertical="2dp">
+                <TextView android:text="Thứ 2:"
+                    android:textSize="16dp"
+                    android:textAlignment="textEnd"
+                    android:layout_marginHorizontal="4dp"/>
+                <TextView android:text="7:00AM"
+                    android:textSize="16dp"
+                    android:layout_marginHorizontal="4dp"/>
+                <TextView android:text="-"
+                    android:textSize="16dp"
+                    android:layout_marginHorizontal="4dp"/>
+                <TextView android:text="9:00PM"
+                    android:textSize="16dp"
+                    android:layout_marginHorizontal="4dp"/>
+            </TableRow>
+            <TableRow android:layout_marginVertical="2dp">
+                <TextView android:text="Thứ 6:"
+                    android:textSize="16dp"
+                    android:textAlignment="textEnd"
+                    android:layout_marginHorizontal="4dp"/>
+                <TextView android:text="7:00AM"
+                    android:textSize="16dp"
+                    android:layout_marginHorizontal="4dp"/>
+                <TextView android:text="-"
+                    android:textSize="16dp"
+                    android:layout_marginHorizontal="4dp"/>
+                <TextView android:text="9:00PM"
+                    android:textSize="16dp"
+                    android:layout_marginHorizontal="4dp"/>
+            </TableRow>
+            <TableRow android:layout_marginVertical="2dp">
+                <TextView android:text="Thứ 7:"
+                    android:textSize="16dp"
+                    android:textAlignment="textEnd"
+                    android:layout_marginHorizontal="4dp"/>
+                <TextView android:text="7:00AM"
+                    android:textSize="16dp"
+                    android:layout_marginHorizontal="4dp"/>
+                <TextView android:text="-"
+                    android:textSize="16dp"
+                    android:layout_marginHorizontal="4dp"/>
+                <TextView android:text="9:00PM"
+                    android:textSize="16dp"
+                    android:layout_marginHorizontal="4dp"/>
+            </TableRow>
+            <TableRow android:layout_marginVertical="2dp">
+                <TextView android:text="CN:"
+                    android:textSize="16dp"
+                    android:textAlignment="textEnd"
+                    android:layout_marginHorizontal="4dp"/>
+                <TextView android:text="7:00AM"
+                    android:textSize="16dp"
+                    android:layout_marginHorizontal="4dp"/>
+                <TextView android:text="-"
+                    android:textSize="16dp"
+                    android:layout_marginHorizontal="4dp"/>
+                <TextView android:text="9:00PM"
+                    android:textSize="16dp"
+                    android:layout_marginHorizontal="4dp"/>
+            </TableRow>
+        </TableLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/salon_image_recycle_view"
+            android:scrollbars="vertical"
+            android:layout_below="@id/tbl_working_hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:id="@+id/salon_detail_map"
+            android:layout_below="@id/salon_image_recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            map:cameraZoom="13"
+            map:mapType="normal"
+            map:liteMode="true"
+            />
+    </RelativeLayout>
+</ScrollView>
+
