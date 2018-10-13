@@ -82,7 +82,7 @@ public class ProfileFragment extends android.app.Fragment {
             @Override
             public void onClick(View v) {
                 AppointmentFragment appointmentFragment = new AppointmentFragment();
-                getFragmentManager().beginTransaction().replace(R.id.fg_profile_2, appointmentFragment, null)
+                getFragmentManager().beginTransaction().replace(R.id.activity_main_container_fl, appointmentFragment, null)
                         .addToBackStack(null).commit();
             }
         });

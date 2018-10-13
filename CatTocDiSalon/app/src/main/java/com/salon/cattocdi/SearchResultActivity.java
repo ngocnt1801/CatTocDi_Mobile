@@ -20,7 +20,7 @@ public class SearchResultActivity extends AppCompatActivity {
         rv = findViewById(R.id.activity_search_result_rv);
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rv.setAdapter(new TestRecycleViewAdapter(1, this));
+        rv.setAdapter(new TestRecycleViewAdapter(TestRecycleViewAdapter.TYPE_RATING, this));
 
 
     }
