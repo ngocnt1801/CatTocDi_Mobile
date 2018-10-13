@@ -42,11 +42,10 @@ public class ShowTopFragment extends Fragment {
     private void testRecycleViewAdapter(RecyclerView rv){
         //Show RECYCLEVIEW
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-
         rv.setLayoutManager(mLayoutManager);
         rv.setItemAnimator(new DefaultItemAnimator());
-        FragmentShowTopRecycleViewAdapter adapter = new FragmentShowTopRecycleViewAdapter();
-        rv.setAdapter(adapter);
+//        FragmentShowTopRecycleViewAdapter adapter = new FragmentShowTopRecycleViewAdapter();
+        rv.setAdapter(new TestRecycleViewAdapter(TestRecycleViewAdapter.TYPE_RATING, getActivity()));
     }
 
 }

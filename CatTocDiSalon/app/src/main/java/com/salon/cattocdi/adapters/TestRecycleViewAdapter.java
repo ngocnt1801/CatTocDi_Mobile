@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.SalonDetailActivity;
+import com.salon.cattocdi.TestTabActivity;
 import com.salon.cattocdi.utils.MyContants;
 
 public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleViewAdapter.MyCardViewHolder> {
@@ -58,6 +59,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SalonDetailActivity.class);
+//                Intent intent = new Intent(context, TestTabActivity.class);
                 context.startActivity(intent);
             }
         });
