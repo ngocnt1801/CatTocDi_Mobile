@@ -29,10 +29,20 @@
 
     <color name="textLink">#65b7d7</color>
 
-    <color name="textLogin">#6b5b95</color>
-    <color name="bgLogin">#9a88c6</color>
-    <color name="icLogin">#3e3167</color>
+    <!--<color name="textLogin">#6b5b95</color>-->
 
+    <color name="textLogin">#5f3f72</color>
+    <color name="bgLogin">#8d6aa1</color>
+    <color name="icLogin">#5f3f72</color>
+    <!--<color name="icLogin">#341746</color>-->
+<!--<color name="bgLogin">#9a88c6</color>-->
+    <!--<color name="icLogin">#3e3167</color>-->
+
+    <color name="primary">#5f3f72</color>
+    <color name="light">#8d6aa1</color>
+    <color name="dark">#341746</color>
+    <color name="highlight">#c158dc</color>
+    
     //profile
     <color name="back_profile">#9A88C6</color>
     <color name="test1">#f1e9ff</color>

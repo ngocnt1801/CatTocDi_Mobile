@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
 
 import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
+import com.salon.cattocdi.utils.MyContants;
 
 public class SearchResultActivity extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class SearchResultActivity extends AppCompatActivity {
         rv = findViewById(R.id.activity_search_result_rv);
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rv.setAdapter(new TestRecycleViewAdapter(TestRecycleViewAdapter.TYPE_RATING, this));
+        rv.setAdapter(new TestRecycleViewAdapter(MyContants.RV_ITEM_NORMAL, this));
 
 
     }

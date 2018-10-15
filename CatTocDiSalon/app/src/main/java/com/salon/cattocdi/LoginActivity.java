@@ -60,14 +60,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnSkip = findViewById(R.id.login_activity_skip_btn);
-        btnSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private boolean checkLogin(){

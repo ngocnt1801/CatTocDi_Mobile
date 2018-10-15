@@ -54,8 +54,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:background="@drawable/border_radius_edit_text"
-        android:elevation="6dp"
+        android:background="@drawable/ripple_btn"
         android:text="Chỉ đường"
         android:paddingHorizontal="24dp"
         android:textColor="@color/bgLogin"

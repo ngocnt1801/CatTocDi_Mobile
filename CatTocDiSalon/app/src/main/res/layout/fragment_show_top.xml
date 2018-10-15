@@ -17,7 +17,10 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:text="Bảng xếp hạng"
-           android:textSize="20dp"
+           android:textSize="16dp"
+           android:textStyle="bold"
+           android:gravity="center"
+           android:layout_marginVertical="12dp"
            android:textColor="@color/textForLight"/>
        <!--<android.support.v7.widget.RecyclerView
            android:layout_width="match_parent"
@@ -28,8 +31,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:id="@+id/fg_show_top_rv_upcoming"
-           android:layout_marginTop="16dp"
-           android:layout_marginBottom="40dp">
+           android:layout_marginBottom="@dimen/mr_bottom_not_cover_content">
 
        </android.support.v7.widget.RecyclerView>
 

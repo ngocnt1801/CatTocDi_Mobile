@@ -5,7 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +14,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 
+import com.salon.cattocdi.ListSalonActivity;
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.SearchResultActivity;
 import com.salon.cattocdi.adapters.ExpandableListViewAdapter;
+import com.salon.cattocdi.utils.MyContants;
 
 import java.util.Calendar;
 
@@ -80,7 +82,11 @@ public class SearchFragment extends Fragment {
         btSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SearchResultActivity.class);
+                Intent intent = new Intent(getActivity(), ListSalonActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("title", "Kết quả tìm kiếm");
+                bundle.putInt("type", MyContants.RV_ITEM_NORMAL);
+                intent.putExtra("activity_content",bundle);
                 startActivity(intent);
             }
         });

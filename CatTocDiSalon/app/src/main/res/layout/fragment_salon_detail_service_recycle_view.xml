@@ -27,7 +27,9 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:background="@drawable/border_radius_edit_text_singup_button"
-        android:elevation="8dp"
+        android:stateListAnimator="@drawable/click_effect_btn"
+        style="@style/MyButton"
+        android:textAllCaps="true"
         android:text="Đặt"
         android:textColor="@color/textForDark"
         android:textSize="12dp" />

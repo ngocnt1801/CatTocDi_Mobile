@@ -4,7 +4,8 @@ package com.salon.cattocdi.fragements;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ import com.salon.cattocdi.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileFragment extends android.app.Fragment {
+public class ProfileFragment extends Fragment {
     TextView editProfile, showLike, helpTv, showPoint, showHistory;
     //TextView logout;
     Context context;
@@ -90,10 +91,4 @@ public class ProfileFragment extends android.app.Fragment {
         return  view;
     }
 
-    private void showFragment(android.app.Fragment fragment){
-        android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.show_top_tv, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
 }

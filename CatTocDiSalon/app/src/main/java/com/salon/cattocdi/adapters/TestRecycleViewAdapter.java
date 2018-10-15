@@ -2,7 +2,10 @@ package com.salon.cattocdi.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,10 +24,6 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
     private int type;
     private Context context;
 
-    public static final int TYPE_RATING = 1;
-    public static int TYPE_VOUCHER = 2;
-    public static int TYPE_NEW = 3;
-
     public TestRecycleViewAdapter(int type, Context context) {
         this.context = context;
         this.type = type;
@@ -34,11 +33,11 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
     @Override
     public MyCardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView;
-        if (type == TYPE_RATING) {
+        if (type == MyContants.RV_ITEM_NORMAL) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_rating, viewGroup, false);
-        } else if (type == TYPE_VOUCHER) {
+        } else if (type == MyContants.RV_ITEM_VOUCHER) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_voucher, viewGroup, false);
-        } else if (type == TYPE_NEW) {
+        } else if (type == MyContants.RV_ITEM_NEW) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_new, viewGroup, false);
         } else {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_new, viewGroup, false);
@@ -47,7 +46,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyCardViewHolder myCardViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final MyCardViewHolder myCardViewHolder, int i) {
 
 //        myCardViewHolder.salonRatingBar.setRating(4.6f);
 //        myCardViewHolder.salonTitle.setText("Cửa hàng " + (i + 1));
@@ -59,8 +58,10 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SalonDetailActivity.class);
-//                Intent intent = new Intent(context, TestTabActivity.class);
-                context.startActivity(intent);
+                Bundle options = ActivityOptionsCompat.makeScaleUpAnimation(
+                        myCardViewHolder.item, 0, 0, myCardViewHolder.item.getWidth(), myCardViewHolder.item.getHeight()).toBundle();
+                ActivityCompat.startActivity(context, intent, options);
+
             }
         });
     }
