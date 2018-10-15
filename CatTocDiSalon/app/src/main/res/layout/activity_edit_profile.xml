@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sdt: 0967776167"
+            android:text="Thanh vien"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
             android:textColor="@color/textForDark"
@@ -131,9 +131,9 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Mật khẩu"
+                            android:hint="0967776167"
                             android:imeOptions="actionNext"
-                            android:inputType="textPassword"
+                            android:inputType="textPhonetic"
                             android:textColorHint="@color/textForLight"
                             />
 

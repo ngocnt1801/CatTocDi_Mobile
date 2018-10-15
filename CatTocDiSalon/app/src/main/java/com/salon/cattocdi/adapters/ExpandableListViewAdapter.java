@@ -1,6 +1,7 @@
 package com.salon.cattocdi.adapters;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
         }
         TextView categoryView = view.findViewById(R.id.fg_search_dialog_category_tv);
+        categoryView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 19);
         categoryView.setText(category);
         return view;
     }
@@ -97,6 +99,8 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
             view = inflater.inflate(android.R.layout.simple_list_item_multiple_choice, null);
         }
         TextView childView = view.findViewById(android.R.id.text1);
+        childView.setTextSize(TypedValue.COMPLEX_UNIT_DIP,17);
+
         childView.setText(child);
         return view;
     }

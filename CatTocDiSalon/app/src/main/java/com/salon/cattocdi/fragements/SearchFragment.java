@@ -9,6 +9,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -69,10 +70,15 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 Dialog dialog = new Dialog(getActivity());
                 dialog.setContentView(R.layout.fragment_search_service_dialog);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
                 dialog.setTitle("Services");
                 listService = dialog.findViewById(R.id.fg_search_elv);
                 listService.setAdapter(new ExpandableListViewAdapter(getActivity()));
                 dialog.show();
+                dialog.getWindow().setAttributes(lp);
             }
         });
 

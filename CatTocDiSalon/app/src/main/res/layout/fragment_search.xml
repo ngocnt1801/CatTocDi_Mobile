@@ -13,7 +13,7 @@
         android:hint="Địa điểm"
         android:padding="@dimen/pd_et"
         android:background="@drawable/border_radius_edit_text"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:padding="@dimen/pd_et"
         android:id="@+id/fg_search_service_et"
         android:background="@drawable/border_radius_edit_text"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
         android:hint="Ngày"
         android:padding="@dimen/pd_et"
         android:background="@drawable/border_radius_edit_text"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:id="@+id/fg_search_date_et"
         android:editable="false"/>
 

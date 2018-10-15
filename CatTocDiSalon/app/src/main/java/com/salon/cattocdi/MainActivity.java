@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                         showFragment(favoriteFragment);
                         return true;
                     case R.id.bottom_nav_profile_item:
-                        
                         ProfileFragment profileFragment = new ProfileFragment();
                         showFragment(profileFragment);
                         return true;
