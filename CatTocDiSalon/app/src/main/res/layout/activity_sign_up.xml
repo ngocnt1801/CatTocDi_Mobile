@@ -28,7 +28,7 @@
             android:drawableLeft="@drawable/ic_phone"
             android:drawablePadding="24dp"
             android:textColor="@color/textForLight"
-            android:textColorHint="@color/textForLight"
+            android:textColorHint="@color/textColorTint"
             android:padding="@dimen/pd_et"
             android:layout_marginBottom="16dp"
             android:inputType="phone"
@@ -42,7 +42,7 @@
             android:drawableLeft="@drawable/ic_password"
             android:drawablePadding="24dp"
             android:textColor="@color/textForLight"
-            android:textColorHint="@color/textForLight"
+            android:textColorHint="@color/textColorTint"
             android:padding="@dimen/pd_et"
             android:layout_marginBottom="16dp"
             android:inputType="textPassword"
@@ -56,7 +56,7 @@
             android:drawableLeft="@drawable/ic_profile_navigation"
             android:drawablePadding="24dp"
             android:textColor="@color/textForLight"
-            android:textColorHint="@color/textForLight"
+            android:textColorHint="@color/textColorTint"
             android:padding="@dimen/pd_et"
             android:layout_marginBottom="16dp"
             android:inputType="textPersonName"
@@ -88,6 +88,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/signup_activity_signup_btn"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:text="Đăng ký"

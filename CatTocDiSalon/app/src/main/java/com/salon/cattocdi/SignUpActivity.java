@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private Button loginBtn, maleBtn, femaleBtn;
+    private Button loginBtn, maleBtn, femaleBtn, signupBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +23,13 @@ public class SignUpActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.signup_activity_login_btn);
         maleBtn = findViewById(R.id.signup_activity_male_btn);
         femaleBtn = findViewById(R.id.signup_activity_female_btn);
+        signupBtn = findViewById(R.id.signup_activity_signup_btn);
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -52,6 +53,14 @@ public class SignUpActivity extends AppCompatActivity {
                 femaleBtn.setTextColor(Color.parseColor("#ffffff"));
                 maleBtn.setBackgroundResource(R.drawable.border_radius_btn_gender_left);
                 maleBtn.setTextColor(Color.parseColor("#000000"));
+            }
+        });
+
+        signupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

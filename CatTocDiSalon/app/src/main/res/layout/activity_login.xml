@@ -33,7 +33,7 @@
             android:padding="@dimen/pd_et"
             android:drawableLeft="@drawable/ic_phone"
             android:hint="@string/vn_phone"
-            android:textColorHint="@color/textForLight"
+            android:textColorHint="@color/textColorTint"
             android:layout_marginBottom="8dp"
             android:text="0123456789"
             android:drawablePadding="24dp"/>
@@ -48,7 +48,7 @@
             android:padding="@dimen/pd_et"
             android:drawableLeft="@drawable/ic_password"
             android:hint="@string/vn_password"
-            android:textColorHint="@color/textForLight"
+            android:textColorHint="@color/textColorTint"
             android:text="123"
             android:drawablePadding="24dp"/>
 

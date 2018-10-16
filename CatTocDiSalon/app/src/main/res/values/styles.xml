@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/firstColor</item>
-        <item name="colorPrimaryDark">@color/mainDark</item>
-        <item name="colorAccent">@color/icLogin</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/dark</item>
+        <item name="colorAccent">@color/light</item>
     </style>
 
     <style name="SplashStyle" parent="Theme.AppCompat.Light.NoActionBar">
@@ -28,7 +28,7 @@
     </style>
 
     <style name="MyOutlineButton" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">@color/textLogin</item>
+        <item name="colorControlHighlight">@color/primary</item>
         <item name="colorButtonNormal">#ffffff</item>
     </style>
 

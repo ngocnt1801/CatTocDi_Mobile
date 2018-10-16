@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -64,6 +65,20 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
 
             }
         });
+
+        if(myCardViewHolder.icFavorite != null){
+            myCardViewHolder.icFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(myCardViewHolder.icFavorite.getDrawable().getConstantState().equals(context.getDrawable(R.drawable.ic_favorite_border).getConstantState())){
+                        myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
+                    }else{
+                        myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_border);
+                    }
+                }
+            });
+        }
+
     }
 
     @Override
@@ -77,6 +92,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
         public TextView salonTitle, salonAddress, salonReviewsAmount;
         public RatingBar salonRatingBar;
         public CardView item;
+        public ImageView icFavorite;
 
         public MyCardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -86,6 +102,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             salonReviewsAmount = itemView.findViewById(R.id.fg_home_rv_item_amount_review_tv);
             salonRatingBar = itemView.findViewById(R.id.fg_home_rv_item_rb);
             salonImage = itemView.findViewById(R.id.fg_home_rv_item_img);
+            icFavorite = itemView.findViewById(R.id.fg_home_rv_item_favorite_ic);
             item = (CardView) itemView;
         }
     }
