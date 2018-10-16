@@ -39,7 +39,8 @@
 
         <activity android:name=".TestTabActivity">
         </activity>
-        <activity android:name=".ListSalonActivity"></activity>
+        <activity android:name=".ListSalonActivity" />
+        <activity android:name=".SalonAppointmentActivity"></activity>
     </application>
 
 </manifest>

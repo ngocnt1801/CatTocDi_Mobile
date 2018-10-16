@@ -1,15 +1,25 @@
 package com.salon.cattocdi.adapters;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.SalonAppointmentActivity;
 
 public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecycleViewAdapter.ServiceViewHolder>{
+    private Context context;
 
+    public ServiceRecycleViewAdapter(Context context) {
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -20,7 +30,13 @@ public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecyc
 
     @Override
     public void onBindViewHolder(@NonNull ServiceViewHolder serviceViewHolder, int i) {
-
+        serviceViewHolder.btnAddService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SalonAppointmentActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -30,9 +46,11 @@ public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecyc
 
     public class ServiceViewHolder extends RecyclerView.ViewHolder {
         public View item;
+        public Button btnAddService;
         public ServiceViewHolder(@NonNull View itemView) {
             super(itemView);
             this.item = itemView;
+            this.btnAddService = itemView.findViewById(R.id.btn_add_service_to_appointment);
         }
     }
 }
