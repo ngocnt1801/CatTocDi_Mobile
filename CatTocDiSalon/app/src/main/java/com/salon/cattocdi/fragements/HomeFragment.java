@@ -4,6 +4,8 @@ package com.salon.cattocdi.fragements;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -75,6 +77,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 SearchFragment searchFragment = new SearchFragment();
                 showFragment(searchFragment);
+                BottomNavigationView navigationView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_nav);
+                navigationView.getMenu().getItem(2).setChecked(true);
             }
         });
 

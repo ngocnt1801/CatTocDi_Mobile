@@ -24,12 +24,18 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
 
     private int type;
     private Context context;
+    private boolean isFavorite = false;
 
     public TestRecycleViewAdapter(int type, Context context) {
         this.context = context;
         this.type = type;
     }
 
+    public TestRecycleViewAdapter(boolean isFavorite, int type, Context context) {
+        this.context = context;
+        this.type = type;
+        this.isFavorite = isFavorite;
+    }
     @NonNull
     @Override
     public MyCardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -66,10 +72,15 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             }
         });
 
+
+        if(isFavorite){
+            myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
+        }
         if(myCardViewHolder.icFavorite != null){
             myCardViewHolder.icFavorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     if(myCardViewHolder.icFavorite.getDrawable().getConstantState().equals(context.getDrawable(R.drawable.ic_favorite_border).getConstantState())){
                         myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
                     }else{

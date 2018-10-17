@@ -4,6 +4,8 @@ package com.salon.cattocdi.fragements;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -85,6 +87,8 @@ public class ProfileFragment extends Fragment {
                 AppointmentFragment appointmentFragment = new AppointmentFragment();
                 getFragmentManager().beginTransaction().replace(R.id.activity_main_container_fl, appointmentFragment, null)
                         .addToBackStack(null).commit();
+                BottomNavigationView navigationView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_nav);
+                navigationView.getMenu().getItem(1).setChecked(true);
             }
         });
 
