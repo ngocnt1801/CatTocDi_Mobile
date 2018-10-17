@@ -42,6 +42,7 @@
     <color name="light">#8d6aa1</color>
     <color name="dark">#341746</color>
     <color name="highlight">#c158dc</color>
+    <color name="textColorTint">#808080</color>
     
     //profile
     <color name="back_profile">#9A88C6</color>

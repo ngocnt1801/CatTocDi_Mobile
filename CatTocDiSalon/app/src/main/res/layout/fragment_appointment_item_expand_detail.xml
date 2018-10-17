@@ -55,9 +55,10 @@
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:background="@drawable/ripple_btn"
+        android:stateListAnimator="@drawable/click_effect_btn"
         android:text="Chỉ đường"
         android:paddingHorizontal="24dp"
-        android:textColor="@color/bgLogin"
+        android:textColor="@color/light"
         android:layout_alignTop="@id/appointment_item_expand_date_tv"
         android:layout_alignParentRight="true" />
 
