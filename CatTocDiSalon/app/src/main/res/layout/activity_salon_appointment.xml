@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SalonAppointmentActivity">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,13 +59,46 @@
             android:layout_alignParentBottom="true"
             />
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/activity_appointment_dates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_appointment_service">
+        <TextView
+            android:id="@+id/activity_appoinment_title_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="THÁNG 10, Tuần này"
+            android:layout_alignParentTop="true"
+            android:textStyle="bold"
+            android:textSize="16dp"
+        />
+        <devs.mulham.horizontalcalendar.HorizontalCalendarView
+            android:id="@+id/my_calendar_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:textColorNormal="@color/light"
+            app:textColorSelected="@color/textForDark"
+            app:selectorColor="@color/primary"
+            app:selectedDateBackground="@color/primary"
+            android:layout_below="@id/activity_appoinment_title_date"
+            android:paddingVertical="8dp">
+        </devs.mulham.horizontalcalendar.HorizontalCalendarView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eee"
+            android:layout_below="@id/my_calendar_view"
+            />
+    </RelativeLayout>
     <LinearLayout
         android:id="@+id/activity_appointment_available_slot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="8dp"
         android:orientation="vertical"
-        android:layout_below="@id/activity_appointment_service">
+        android:layout_below="@id/activity_appointment_dates">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Thứ 2, 15/10"
+                android:text="SÁNG"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
             <LinearLayout
@@ -128,7 +162,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Thứ 2, 15/10"
+                android:text="CHIỀU"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
             <LinearLayout
@@ -182,7 +216,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Thứ 2, 15/10"
+                android:text="TỐI"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
             <LinearLayout
@@ -227,14 +261,6 @@
                     />
             </LinearLayout>
         </LinearLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Xem thêm ngày"/>
-        </RelativeLayout>
     </LinearLayout>
 
 </RelativeLayout>
