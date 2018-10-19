@@ -36,8 +36,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
         <activity android:name=".ListSalonActivity" />
-        <activity android:name=".SalonAppointmentActivity"></activity>
+        <activity android:name=".SalonAppointmentActivity" />
+        <activity android:name=".ReviewAppointmentActivity"></activity>
     </application>
 
 </manifest>

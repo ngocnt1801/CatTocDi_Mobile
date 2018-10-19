@@ -5,11 +5,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.salon.cattocdi.adapters.AppointmentServiceRecycleViewAdapter;
+import com.salon.cattocdi.adapters.ServiceRecycleViewAdapter;
+import com.salon.cattocdi.adapters.TimeSlotRecycleViewAdapter;
 
 import java.time.Month;
 import java.util.ArrayList;
@@ -27,12 +34,20 @@ import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
 public class SalonAppointmentActivity extends AppCompatActivity {
 
+    private RecyclerView rvMorning, rvAfternoon, rvNight, rvService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_salon_appointment);
+
+        rvService = findViewById(R.id.activity_salon_appointment_service_rv);
+        rvMorning = findViewById(R.id.activity_salon_appointment_morning_rv);
+        rvAfternoon = findViewById(R.id.activity_salon_appointment_afternoon_rv);
+        rvNight = findViewById(R.id.activity_salon_appointment_night_rv);
+
 
         /* starts before 1 month from now */
         Calendar startDate = Calendar.getInstance();
@@ -104,5 +119,24 @@ public class SalonAppointmentActivity extends AppCompatActivity {
                 titleDate.setText(textDay + ", " + textDayOfMonth + "/" + textMonth);
             }
         });
+
+        rvService.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvService.setAdapter(new AppointmentServiceRecycleViewAdapter());
+
+        loadTimeSlotList();
+
     }
+
+    private void loadTimeSlotList(){
+        rvMorning.setLayoutManager(new GridLayoutManager(this, 4));
+        rvMorning.setAdapter(new TimeSlotRecycleViewAdapter(this));
+
+        rvAfternoon.setLayoutManager(new GridLayoutManager(this, 4));
+        rvAfternoon.setAdapter(new TimeSlotRecycleViewAdapter(this));
+
+        rvNight.setLayoutManager(new GridLayoutManager(this, 4));
+        rvNight.setAdapter(new TimeSlotRecycleViewAdapter(this));
+
+    }
+
 }
