@@ -17,6 +17,7 @@ import com.salon.cattocdi.fragements.HomeFragment;
 import com.salon.cattocdi.fragements.ProfileFragment;
 import com.salon.cattocdi.fragements.ReviewsFragment;
 import com.salon.cattocdi.fragements.SearchFragment;
+import com.salon.cattocdi.fragements.ShowServiceFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.bottom_nav_profile_item:
                         ProfileFragment profileFragment = new ProfileFragment();
                         showFragment(profileFragment);
+
                         return true;
                 }
 

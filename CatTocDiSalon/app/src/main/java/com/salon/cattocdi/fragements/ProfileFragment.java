@@ -81,7 +81,7 @@ public class ProfileFragment extends android.app.Fragment {
         showHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppointmentFragment appointmentFragment = new AppointmentFragment();
+                ShowServiceFragment appointmentFragment = new ShowServiceFragment();
                 getFragmentManager().beginTransaction().replace(R.id.activity_main_container_fl, appointmentFragment, null)
                         .addToBackStack(null).commit();
             }

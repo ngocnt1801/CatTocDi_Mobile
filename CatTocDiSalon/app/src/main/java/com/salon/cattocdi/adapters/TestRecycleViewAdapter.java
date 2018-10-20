@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.salon.cattocdi.R;
@@ -20,6 +21,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
 
     private int type;
     private Context context;
+
 
     public static final int TYPE_RATING = 1;
     public static int TYPE_VOUCHER = 2;
@@ -40,7 +42,8 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_voucher, viewGroup, false);
         } else if (type == TYPE_NEW) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_new, viewGroup, false);
-        } else {
+        }
+        else {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_new, viewGroup, false);
         }
         return new MyCardViewHolder(itemView);
@@ -75,6 +78,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
         public View salonImage;
         public TextView salonTitle, salonAddress, salonReviewsAmount;
         public RatingBar salonRatingBar;
+        public RelativeLayout searchService;
         public CardView item;
 
         public MyCardViewHolder(@NonNull View itemView) {
@@ -85,6 +89,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             salonReviewsAmount = itemView.findViewById(R.id.fg_home_rv_item_amount_review_tv);
             salonRatingBar = itemView.findViewById(R.id.fg_home_rv_item_rb);
             salonImage = itemView.findViewById(R.id.fg_home_rv_item_img);
+
             item = (CardView) itemView;
         }
     }
