@@ -17,6 +17,7 @@
     <color name="mainLight">#F7CAC9</color>
     <color name="mainDark">#6B5B95</color>
     <color name="secondMainDark">#ae52d4</color>
+    <color name="second_main_dark">#ae52d4</color>
     <color name="yellowPrimary">#ffff00</color>
 
     <color name="textForDark">#ffffff</color>

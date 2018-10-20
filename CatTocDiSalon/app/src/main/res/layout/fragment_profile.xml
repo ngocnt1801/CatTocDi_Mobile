@@ -10,9 +10,6 @@ android:background="@color/textForDark"
     tools:context=".fragements.ProfileFragment"
 >
 
-    android:background="@color/textForDark"
-    android:id="@+id/fg_profile"
-    >
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView

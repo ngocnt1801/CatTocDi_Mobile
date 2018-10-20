@@ -22,7 +22,6 @@
         android:layout_height="wrap_content"
         android:divider="#cccccc"
         android:dividerHeight="1dp">
-
     </ExpandableListView>
 
 </LinearLayout>
