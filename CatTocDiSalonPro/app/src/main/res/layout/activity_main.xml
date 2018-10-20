@@ -5,35 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="12dp"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/salon1"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
-        android:background="@drawable/border_radius_edit_text"
+        android:background="@drawable/border_radius_edit_text_fill_white"
         android:drawableRight="@drawable/ic_search"
         android:drawablePadding="@dimen/padding_icon_with_content_edit_text"
         android:hint="Số điện thoại khách hàng"
         android:padding="@dimen/padding_edit_text"
+        android:layout_marginTop="-36px"
+        android:layout_marginHorizontal="24dp"
         android:textColor="@color/darkTextColor" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right"
-        android:text="19/10/2018"
-        android:drawablePadding="@dimen/padding_icon_with_content_edit_text"
-        android:layout_marginVertical="12dp"
-        android:drawableRight="@drawable/ic_calendar_active"/>
+        android:orientation="horizontal">
 
-    <com.github.eunsiljo.timetablelib.view.TimeTableView
-        android:id="@+id/salon_schedule"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        
 
-    </com.github.eunsiljo.timetablelib.view.TimeTableView>
+    </LinearLayout>
+
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="right"-->
+        <!--android:text="19/10/2018"-->
+        <!--android:drawablePadding="@dimen/padding_icon_with_content_edit_text"-->
+        <!--android:layout_marginVertical="12dp"-->
+        <!--android:drawableRight="@drawable/ic_calendar_active"/>-->
+
+    <!--<com.github.eunsiljo.timetablelib.view.TimeTableView-->
+        <!--android:id="@+id/salon_schedule"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1">-->
+
+    <!--</com.github.eunsiljo.timetablelib.view.TimeTableView>-->
 
 </LinearLayout>
