@@ -52,6 +52,7 @@
         android:textColor="@color/textForLight" />
 
     <Button
+        android:id="@+id/btnDirection"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:background="@drawable/ripple_btn"

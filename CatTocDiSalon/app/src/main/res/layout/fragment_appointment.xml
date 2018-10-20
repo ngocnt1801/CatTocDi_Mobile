@@ -1,32 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".fragements.AppointmentFragment"
-    android:padding="@dimen/pd_layout_login_page"
-    android:scrollbarStyle="outsideInset"
-    >
-    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/pd_layout_login_page"
+        android:scrollbarStyle="outsideInset"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/vn_my_appointment"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_marginBottom="12dp"
+                android:textColor="@color/textForLight"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fg_appointment_rv_upcoming"
+                android:layout_marginBottom="@dimen/mr_bottom_not_cover_content">
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <fragment
+        android:id="@+id/frmOpenMap"
+        android:name="com.salon.cattocdi.fragements.OpenMapFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vn_my_appointment"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:layout_marginBottom="12dp"
-            android:textColor="@color/textForLight"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/fg_appointment_rv_upcoming"
-            android:layout_marginBottom="@dimen/mr_bottom_not_cover_content">
-        </android.support.v7.widget.RecyclerView>
-
-    </LinearLayout>
-</ScrollView>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="60dp" />
+</RelativeLayout>
