@@ -45,22 +45,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        scheduleTable = findViewById(R.id.salon_schedule);
-//
-//        scheduleTable.setOnTimeItemClickListener(new TimeTableItemViewHolder.OnTimeItemClickListener() {
-//            @Override
-//            public void onTimeItemClick(View view, int i, TimeGridData timeGridData) {
-//                Log.d("CLICK NE", "" + timeGridData.getTime().getTitle());
-//            }
-//        });
-//
-//        scheduleTable.setStartHour(7);
-//        scheduleTable.setTableMode(TimeTableView.TableMode.SHORT);
-//
-//        //assign data test
-//        ArrayList<TimeTableData> table = null;
-//        table = getSamples(DateTime.now().withTimeAtStartOfDay().getMillis());
-//        scheduleTable.setTimeTable(DateTime.now().withTimeAtStartOfDay().getMillis(), table);
 
         bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
