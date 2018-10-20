@@ -14,7 +14,7 @@ import com.pro.salon.cattocdi.R;
  */
 public class ScheduleFragment extends Fragment {
 
-
+    int failed = 5;
     public ScheduleFragment() {
         // Required empty public constructor
     }
