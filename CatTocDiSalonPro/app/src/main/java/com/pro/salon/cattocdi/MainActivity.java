@@ -1,10 +1,16 @@
 package com.pro.salon.cattocdi;
 
+import android.annotation.SuppressLint;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.github.eunsiljo.timetablelib.data.TimeData;
@@ -12,6 +18,10 @@ import com.github.eunsiljo.timetablelib.data.TimeGridData;
 import com.github.eunsiljo.timetablelib.data.TimeTableData;
 import com.github.eunsiljo.timetablelib.view.TimeTableView;
 import com.github.eunsiljo.timetablelib.viewholder.TimeTableItemViewHolder;
+import com.pro.salon.cattocdi.fragments.ClientFragment;
+import com.pro.salon.cattocdi.fragments.HomeFragment;
+import com.pro.salon.cattocdi.fragments.ProfileFragment;
+import com.pro.salon.cattocdi.fragments.ScheduleFragment;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -27,6 +37,8 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     TimeTableView scheduleTable;
+    private BottomNavigationView bottomNav;
+    private int currentPos = 0, nextPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +61,42 @@ public class MainActivity extends AppCompatActivity {
 //        ArrayList<TimeTableData> table = null;
 //        table = getSamples(DateTime.now().withTimeAtStartOfDay().getMillis());
 //        scheduleTable.setTimeTable(DateTime.now().withTimeAtStartOfDay().getMillis(), table);
+
+        bottomNav = findViewById(R.id.bottom_nav);
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.bottom_nav_home_item:
+                        currentPos = nextPos;
+                        nextPos = 0;
+                        HomeFragment homeFragment = new HomeFragment();
+                        showFragment(homeFragment);
+                        return true;
+                    case R.id.bottom_nav_schedule_item:
+                        currentPos = nextPos;
+                        nextPos = 1;
+                        ScheduleFragment scheduleFragment = new ScheduleFragment();
+                        showFragment(scheduleFragment);
+                        return true;
+                    case R.id.bottom_nav_client_item:
+                        currentPos = nextPos;
+                        nextPos = 2;
+                        ClientFragment clientFragment = new ClientFragment();
+                        showFragment(clientFragment);
+                        return true;
+                    case R.id.bottom_nav_profile_item:
+                        currentPos = nextPos;
+                        nextPos = 4;
+                        ProfileFragment profileFragment = new ProfileFragment();
+                        showFragment(profileFragment);
+                        return true;
+                }
+                return false;
+            }
+        });
+        //HOME FRAGMENT will show first
+        showFragment(new HomeFragment());
 
     }
 
@@ -134,5 +182,17 @@ public class MainActivity extends AppCompatActivity {
     }
     private DateTimeFormatter getDateTimePattern(){
         return DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+    }
+
+    @SuppressLint("ResourceType")
+    private void showFragment(Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if(currentPos < nextPos){
+            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+        }else if(currentPos > nextPos){
+            transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+        }
+        transaction.replace(R.id.activity_main_container_fl, fragment);
+        transaction.commit();
     }
 }
