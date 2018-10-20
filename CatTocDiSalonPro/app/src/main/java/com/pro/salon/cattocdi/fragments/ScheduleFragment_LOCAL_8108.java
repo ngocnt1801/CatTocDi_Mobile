@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 public class ScheduleFragment extends Fragment {
 
-    int failed = 5;    
+    int failed = 4;
     public ScheduleFragment() {
         // Required empty public constructor
     }
