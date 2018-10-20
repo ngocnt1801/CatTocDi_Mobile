@@ -19,9 +19,11 @@ import com.github.eunsiljo.timetablelib.data.TimeTableData;
 import com.github.eunsiljo.timetablelib.view.TimeTableView;
 import com.github.eunsiljo.timetablelib.viewholder.TimeTableItemViewHolder;
 import com.pro.salon.cattocdi.fragments.ClientFragment;
+import com.pro.salon.cattocdi.fragments.HomeAppointmentFragment;
 import com.pro.salon.cattocdi.fragments.HomeFragment;
 import com.pro.salon.cattocdi.fragments.ProfileFragment;
 import com.pro.salon.cattocdi.fragments.ScheduleFragment;
+import com.pro.salon.cattocdi.utils.MyContants;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -54,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.bottom_nav_home_item:
                         currentPos = nextPos;
                         nextPos = 0;
-                        HomeFragment homeFragment = new HomeFragment();
+                        HomeFragment homeFragment = new HomeFragment(MainActivity.this);
+//                        HomeAppointmentFragment homeAppointmentFragment = new HomeAppointmentFragment();
                         showFragment(homeFragment);
+//                        showFragment(homeAppointmentFragment, MyContants.FRAGMENT_BELOW);
                         return true;
                     case R.id.bottom_nav_schedule_item:
                         currentPos = nextPos;
@@ -80,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //HOME FRAGMENT will show first
-        showFragment(new HomeFragment());
+        showFragment(new HomeFragment(MainActivity.this));
+//        showFragment(new HomeAppointmentFragment(),MyContants.FRAGMENT_BELOW);
 
     }
 
@@ -176,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         }else if(currentPos > nextPos){
             transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
         }
+
         transaction.replace(R.id.activity_main_container_fl, fragment);
         transaction.commit();
     }

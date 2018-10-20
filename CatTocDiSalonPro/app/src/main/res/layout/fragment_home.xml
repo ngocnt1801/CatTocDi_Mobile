@@ -5,32 +5,36 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.HomeFragment"
+    >
 
-    <ImageView
-        android:id="@+id/salon_cover"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/salon1" />
+    <!--<EditText-->
+        <!--android:id="@+id/fg_home_phone_et"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="6dp"-->
+        <!--android:layout_marginTop="6dp"-->
+        <!--android:background="@drawable/border_radius_edit_text_fill_white"-->
+        <!--android:drawablePadding="@dimen/padding_icon_with_content_edit_text"-->
+        <!--android:drawableRight="@drawable/ic_search"-->
+        <!--android:elevation="4dp"-->
+        <!--android:hint="Số điện thoại khách hàng"-->
+        <!--android:padding="@dimen/padding_edit_text"-->
+        <!--android:textColor="@color/darkTextColor"-->
+        <!--android:textSize="14dp"-->
+        <!--android:imeOptions="actionSearch"/>-->
 
-    <EditText
-        android:id="@+id/fg_home_phone_et"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/detail_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="-16dp"
-        android:background="@drawable/border_radius_edit_text_fill_white"
-        android:drawablePadding="@dimen/padding_icon_with_content_edit_text"
-        android:drawableRight="@drawable/ic_search"
-        android:elevation="4dp"
-        android:hint="Số điện thoại khách hàng"
-        android:padding="@dimen/padding_edit_text"
-        android:textColor="@color/darkTextColor"
-        android:textSize="14dp" />
+        >
 
-    <include layout="@layout/appointment_cart_view"></include>
-    <include layout="@layout/appointment_cart_view"></include>
-
+        <android.support.design.widget.TabLayout
+            android:id="@+id/detail_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top" />
+    </android.support.v4.view.ViewPager>
 
 </LinearLayout>

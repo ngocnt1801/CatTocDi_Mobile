@@ -17,6 +17,7 @@
     </FrameLayout>
 
     <FrameLayout
+        android:layout_below="@id/activity_main_container_fl"
         android:id="@+id/activity_main_container_fl_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
