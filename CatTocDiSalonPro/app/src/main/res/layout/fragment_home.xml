@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/salon_cover"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="180dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/salon1" />
 
-</FrameLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/salon_cover"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="-16dp"
+        android:background="@drawable/border_radius_edit_text_fill_white"
+        android:drawablePadding="@dimen/padding_icon_with_content_edit_text"
+        android:drawableRight="@drawable/ic_search"
+        android:elevation="4dp"
+        android:hint="Số điện thoại khách hàng"
+        android:padding="@dimen/padding_edit_text"
+        android:textColor="@color/darkTextColor"
+        android:textSize="14dp" />
+
+</RelativeLayout>
