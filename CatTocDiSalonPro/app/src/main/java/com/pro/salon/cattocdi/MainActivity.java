@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.bottom_nav_profile_item:
                         currentPos = nextPos;
                         nextPos = 4;
-                        ProfileFragment profileFragment = new ProfileFragment();
+                        ProfileFragment profileFragment = new ProfileFragment(MainActivity.this);
                         showFragment(profileFragment);
                         return true;
                 }
