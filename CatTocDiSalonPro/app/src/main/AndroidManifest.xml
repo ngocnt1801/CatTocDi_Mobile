@@ -22,7 +22,16 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".ListAppointmentActivity" />
-        <activity android:name=".AppointmentDetailActivity"></activity>
+        <activity android:name=".AppointmentDetailActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".PromotionActivity" />
+        <activity android:name=".ServiceActivity" />
+        <activity android:name=".WorkingHoursActivity" />
+        <activity android:name=".InformationActivity"></activity>
     </application>
 
 </manifest>
