@@ -8,48 +8,59 @@ android:background="@color/textForDark"
     tools:context=".fragements.ProfileFragment"
 >
 
-
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"        android:layout_marginBottom="@dimen/mr_bottom_not_cover_content">
         <LinearLayout
-            android:scrollbarStyle="insideOverlay"
+            
+android:scrollbarStyle="insideOverlay"
             android:id="@+id/fg_profile_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:background="@color/mainDark"
+                
+android:layout_height="240dp"
+                
+android:background="@color/primary"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/avata_imv"
-                    android:layout_width="match_parent"
+                    
+android:layout_gravity="center"
+                    android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="64dp"
                     android:layout_marginBottom="16dp"
-                    android:background="@color/mainDark"
-                    android:src="@drawable/ic_account_circle_black_24dp"/>
+                    
+android:layout_marginTop="48dp"
+                    
+android:src="@drawable/ic_account_circle_black_24dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    
+android:layout_gravity="center"
                     android:text="Nhi Nguyen"
                     android:textColor="@color/textForDark"
-                    android:layout_gravity="center"
-                    android:textSize="22dp"/>
+                    
+android:textSize="20dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    
+android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
                     android:text="Thành viên"
-                    android:layout_gravity="center"
                     android:textColor="@color/textForDark"
-                    android:layout_marginTop="16dp"
-                    android:textSize="18dp"/>
+                    
+android:textSize="14dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -59,38 +70,56 @@ android:background="@color/textForDark"
                 android:orientation="vertical"
 
                 >
+
                 <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp">
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_btn">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_grade_black_24dp"
-                        android:padding="24dp"/>
+                        android:padding="24dp"
+                        android:src="@drawable/ic_grade_black_24dp" />
 
                     <TextView
                         android:id="@+id/show_top_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="24dp"
                         android:layout_marginLeft="48dp"
+                        android:clickable="true"
+                        android:padding="24dp"
                         android:text="Top cửa hàng"
                         android:textColor="@color/textForLight"
-                        android:textSize="18dp"
-                        android:clickable="true" />
+                        android:textSize="16dp" />
+
+                    
+<!--<ImageView-->
+                        
+<!--android:layout_width="wrap_content"-->
+                        
+<!--android:layout_height="wrap_content"-->
+                        
+<!--android:layout_gravity="right|center_vertical"-->
+                        
+<!--android:layout_marginRight="16dp"-->
+                        
+<!--android:clickable="true"-->
+                        
+<!--android:src="@drawable/ic_arrow_right" />-->
 
                     <View
-                        android:layout_height="0.5dp"
                         android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
                         android:layout_gravity="bottom"
-                        android:background="@color/textLogin"
-                        android:layout_marginVertical="8dp">
-                    </View>
+                        android:background="@color/light">
+</View>
                 </android.support.v7.widget.CardView>
+
                 <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp">
+                    
+android:layout_height="wrap_content">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -103,26 +132,24 @@ android:background="@color/textForDark"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="48dp"
+                        android:clickable="true"
                         android:padding="24dp"
                         android:text="Điểm tích lũy"
                         android:textColor="@color/textForLight"
-                        android:textSize="18dp"
-                        android:clickable="true" />
+                        android:textSize="16dp" />
 
                     <View
-                        android:layout_height="0.5dp"
                         android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
                         android:layout_gravity="bottom"
-                        android:background="@color/textLogin"
-                        android:layout_marginVertical="8dp">
-                    </View>
-
+                        android:background="@color/light">
+</View>
 
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp">
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -135,23 +162,23 @@ android:background="@color/textForDark"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="48dp"
+                        android:clickable="true"
                         android:padding="24dp"
                         android:text="Lịch sử đặt lịch"
                         android:textColor="@color/textForLight"
-                        android:textSize="18dp"
-                        android:clickable="true"/>
+                        android:textSize="16dp" />
 
                     <View
-                        android:layout_height="0.5dp"
                         android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
                         android:layout_gravity="bottom"
-                        android:background="@color/textLogin"
-                        android:layout_marginVertical="8dp">
-                    </View>
+                        android:background="@color/light">
+</View>
                 </android.support.v7.widget.CardView>
+
                 <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp">
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -164,23 +191,24 @@ android:background="@color/textForDark"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="48dp"
-                        android:padding="24dp"
                         android:clickable="true"
+                        android:padding="24dp"
                         android:text="Xem thông tin cá nhân"
                         android:textColor="@color/textForLight"
-                        android:textSize="18dp" />
+                        android:textSize="16dp" />
 
                     <View
-                        android:layout_height="0.5dp"
                         android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
                         android:layout_gravity="bottom"
-                        android:background="@color/textLogin"
-                        android:layout_marginVertical="8dp">
-                    </View>
+                        android:background="@color/light">
+</View>
                 </android.support.v7.widget.CardView>
+
                 <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp">
+                    android:layout_height="wrap_content">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -195,19 +223,19 @@ android:background="@color/textForDark"
                         android:padding="24dp"
                         android:text="Giúp đỡ"
                         android:textColor="@color/textForLight"
-                        android:textSize="18dp" />
+                        android:textSize="16dp" />
 
                     <View
-                        android:layout_height="0.5dp"
                         android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
                         android:layout_gravity="bottom"
-                        android:background="@color/textLogin"
-                        android:layout_marginVertical="8dp">
-                    </View>
+                        android:background="@color/light">
+</View>
                 </android.support.v7.widget.CardView>
+
                 <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp">
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -220,133 +248,20 @@ android:background="@color/textForDark"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="48dp"
-                        android:padding="24dp"
                         android:clickable="true"
+                        android:padding="24dp"
                         android:text="Đăng xuất"
                         android:textColor="@color/textForLight"
-                        android:textSize="18dp" />
+                        android:textSize="16dp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        android:background="@color/light"></View>
 
-                </android.support.v7.widget.CardView>
-                <!--<android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_dollar" />
-
-                <TextView
-                    android:id="@+id/show_user_point"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="50dp"
-                    android:padding="12dp"
-                    android:text="Điểm tích lũy"
-                    android:textColor="@color/textForLight"
-                    android:textSize="18dp"
-                    android:clickable="true" />
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/ic_history_black_24dp" />
-
-                <TextView
-                    android:id="@+id/fg_show_history"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="50dp"
-                    android:padding="12dp"
-                    android:text="Lịch sử đặt lịch"
-                    android:textColor="@color/textForLight"
-                    android:textSize="18dp"
-                    android:clickable="true"/>
-            </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_edit_black_24dp" />
-
-                <TextView
-                    android:id="@+id/edit_information_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="50dp"
-                    android:padding="12dp"
-                    android:clickable="true"
-                    android:text="Xem thông tin cá nhân"
-                    android:textColor="@color/textForLight"
-                    android:textSize="18dp" />
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_help_outline_black_24dp" />
-
-                <TextView
-                    android:id="@+id/help_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="50dp"
-                    android:padding="12dp"
-                    android:text="Giúp đỡ"
-                    android:textColor="@color/textForLight"
-                    android:textSize="18dp" />
-
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_exit_to_app_black_24dp" />
-
-                <TextView
-                    android:id="@+id/logout_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="50dp"
-                    android:padding="12dp"
-                    android:clickable="true"
-                    android:text="Đăng xuất"
-                    android:textColor="@color/textForLight"
-                    android:textSize="18dp" />
-            </android.support.v7.widget.CardView>
-
-    -->
-
-            </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                        </LinearLayout>
         </LinearLayout>
-
     
 </ScrollView>
 </FrameLayout>

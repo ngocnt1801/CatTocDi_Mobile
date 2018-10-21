@@ -1,6 +1,10 @@
 package com.salon.cattocdi.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.location.Location;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +21,17 @@ import com.salon.cattocdi.R;
 import net.cachapa.expandablelayout.ExpandableLayout;
 
 public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<FragementAppointmentTestAdapter.AppointmentCardViewHolder> {
+    Context context;
+    Location curLocation;
+
+    public FragementAppointmentTestAdapter(Context context, Location curLocation) {
+        this.context = context;
+        this.curLocation = curLocation;
+    }
+
+    public FragementAppointmentTestAdapter() {
+    }
+
 
     @NonNull
     @Override
@@ -59,6 +74,18 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                 }
             }
         });
+        viewHolder.directionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?saddr="
+                                +Double.toString(curLocation.getLatitude())
+                                +","+Double.toString(curLocation.getLongitude())+"&daddr=10.7483033,106.6090311"));
+                context.startActivity(intent);
+
+
+            }
+        });
 
     }
 
@@ -75,6 +102,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         public CardView icMap;
         public RelativeLayout appointmentRl;
         public ExpandableLayout appointmentDetail;
+        public Button directionBtn;
 
         public TextView tvAppoinmentType, tvDate, tvSalonName, tvStartTime, tvDot, tvEndTime;
 
@@ -97,7 +125,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
             tvStartTime = itemView.findViewById(R.id.fg_appointment_start_time);
             tvDot = itemView.findViewById(R.id.fg_appointment_dot_tv);
             tvEndTime = itemView.findViewById(R.id.fg_appointment_end_time);
-
+            directionBtn = itemView.findViewById(R.id.btnDirection);
             item = itemView;
 
         }

@@ -2,12 +2,16 @@ package com.salon.cattocdi.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,7 +26,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
     private int type;
     private Context context;
 
-
+private boolean isFavorite = false;
     public static final int TYPE_RATING = 1;
     public static int TYPE_VOUCHER = 2;
     public static int TYPE_NEW = 3;
@@ -32,15 +36,20 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
         this.type = type;
     }
 
+    public TestRecycleViewAdapter(boolean isFavorite, int type, Context context) {
+        this.context = context;
+        this.type = type;
+        this.isFavorite = isFavorite;
+    }
     @NonNull
     @Override
     public MyCardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView;
-        if (type == TYPE_RATING) {
+        if (type == MyContants.RV_ITEM_NORMAL) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_rating, viewGroup, false);
-        } else if (type == TYPE_VOUCHER) {
+        } else if (type == MyContants.RV_ITEM_VOUCHER) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_voucher, viewGroup, false);
-        } else if (type == TYPE_NEW) {
+        } else if (type == MyContants.RV_ITEM_NEW) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_new, viewGroup, false);
         }
         else {
@@ -50,7 +59,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyCardViewHolder myCardViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final MyCardViewHolder myCardViewHolder, int i) {
 
 //        myCardViewHolder.salonRatingBar.setRating(4.6f);
 //        myCardViewHolder.salonTitle.setText("Cửa hàng " + (i + 1));
@@ -62,10 +71,31 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SalonDetailActivity.class);
-//                Intent intent = new Intent(context, TestTabActivity.class);
-                context.startActivity(intent);
+                Bundle options = ActivityOptionsCompat.makeScaleUpAnimation(
+                        myCardViewHolder.item, 0, 0, myCardViewHolder.item.getWidth(), myCardViewHolder.item.getHeight()).toBundle();
+                ActivityCompat.startActivity(context, intent, options);
+
             }
         });
+
+
+        if(isFavorite){
+            myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
+        }
+        if(myCardViewHolder.icFavorite != null){
+            myCardViewHolder.icFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if(myCardViewHolder.icFavorite.getDrawable().getConstantState().equals(context.getDrawable(R.drawable.ic_favorite_border).getConstantState())){
+                        myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
+                    }else{
+                        myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_border);
+                    }
+            }
+        });
+    }
+
     }
 
     @Override
@@ -80,6 +110,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
         public RatingBar salonRatingBar;
         public RelativeLayout searchService;
         public CardView item;
+        public ImageView icFavorite;
 
         public MyCardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -89,7 +120,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             salonReviewsAmount = itemView.findViewById(R.id.fg_home_rv_item_amount_review_tv);
             salonRatingBar = itemView.findViewById(R.id.fg_home_rv_item_rb);
             salonImage = itemView.findViewById(R.id.fg_home_rv_item_img);
-
+            icFavorite = itemView.findViewById(R.id.fg_home_rv_item_favorite_ic);
             item = (CardView) itemView;
         }
     }

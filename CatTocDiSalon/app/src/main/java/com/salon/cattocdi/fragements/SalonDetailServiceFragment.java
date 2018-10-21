@@ -23,7 +23,6 @@ public class SalonDetailServiceFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,12 +30,11 @@ public class SalonDetailServiceFragment extends Fragment {
         // Inflate the layout for this fragment
         RecyclerView serviceRecycleView = view.findViewById(R.id.salon_service_recycle_view);
         serviceRecycleView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        serviceRecycleView.setAdapter(new ServiceRecycleViewAdapter());
+        serviceRecycleView.setAdapter(new ServiceRecycleViewAdapter(getActivity()));
 
         RecyclerView promotionRecycleView = view.findViewById(R.id.salon_promotion_recycle_view);
         promotionRecycleView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         promotionRecycleView.setAdapter(new SalonDetailPromotionRecycleView());
-
         return view;
     }
 

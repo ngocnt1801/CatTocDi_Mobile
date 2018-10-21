@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +22,7 @@
             android:theme="@style/SplashStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -36,12 +39,14 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".TestTabActivity">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>-->
-        </activity>
+        <activity 
+android:name=".ListSalonActivity" />
+            
+<activity android:name=".SalonAppointmentActivity" />
+        
+<activity android:name=".ReviewAppointmentActivity" />
+            
+<activity android:name=".MapsActivity"></activity>
     </application>
 
 </manifest>

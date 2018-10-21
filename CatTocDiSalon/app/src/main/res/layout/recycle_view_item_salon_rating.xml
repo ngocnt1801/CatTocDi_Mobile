@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:layout_marginBottom="16dp"
+    android:stateListAnimator="@drawable/click_effect_btn"
     android:elevation="12dp">
 
         <RelativeLayout
@@ -12,6 +13,7 @@
             android:clipToPadding="false">
 
             <ImageView
+                android:id="@+id/fg_home_rv_item_favorite_ic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_favorite_border"
@@ -99,31 +101,17 @@
                 android:text="20 phút" />
 
             <Button
-                android:id="@+id/fg_home_rv_item_more_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_below="@id/fg_home_rv_item_address_tv"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/border_radius_outline_btn"
-                android:layout_toRightOf="@id/fg_home_rv_item_img"
-                android:elevation="12dp"
-                android:text="@string/vn_detail"
-                android:textAllCaps="false"
-                android:textColor="#696666" />
-
-            <Button
                 android:id="@+id/fg_home_rv_item_book_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_below="@id/fg_home_rv_item_address_tv"
                 android:layout_marginTop="8dp"
-                android:layout_toRightOf="@id/fg_home_rv_item_more_btn"
-                android:background="@drawable/border_radius_outline_btn"
-                android:elevation="12dp"
+                android:layout_toRightOf="@id/fg_home_rv_item_img"
+                android:background="@drawable/ripple_btn"
+                android:stateListAnimator="@drawable/click_effect_btn"
                 android:text="@string/vn_book_appointment"
                 android:textAllCaps="false"
-                android:textColor="#696666" />
+                android:textColor="@color/light" />
 
         </RelativeLayout>
 

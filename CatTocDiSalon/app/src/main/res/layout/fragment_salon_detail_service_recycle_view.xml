@@ -22,15 +22,19 @@
         android:text="20,000 trong 20 phút"/>
 
     <Button
+        android:id="@+id/btn_add_service_to_appointment"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:background="@drawable/border_radius_edit_text_singup_button"
-        android:elevation="8dp"
+        android:stateListAnimator="@drawable/click_effect_btn"
+        style="@style/MyButton"
+        android:textAllCaps="true"
         android:text="Đặt"
         android:textColor="@color/textForDark"
-        android:textSize="12dp" />
+        android:textSize="12dp"
+        />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

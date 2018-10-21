@@ -1,9 +1,15 @@
 package com.salon.cattocdi.fragements;
 
 
-import android.app.FragmentTransaction;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,17 +20,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.TextView;
 
+import com.salon.cattocdi.ListSalonActivity;
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
+import com.salon.cattocdi.utils.MyContants;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
 
-    RecyclerView rvNew, rvRating, rvSale;
+    private RecyclerView rvNew, rvRating, rvSale;
     private EditText etSearch;
+    private TextView voucherSeeAllTv, newSeeAllTv;
 
 
     public HomeFragment() {
@@ -41,6 +51,11 @@ public class HomeFragment extends Fragment {
         rvRating = view.findViewById(R.id.fg_home_rv_rating);
         rvSale = view.findViewById(R.id.fg_home_rv_sale);
 
+        etSearch = view.findViewById(R.id.fg_home_search_et);
+
+        voucherSeeAllTv = view.findViewById(R.id.fg_home_voucher_see_all_tv);
+        newSeeAllTv = view.findViewById(R.id.fg_home_new_see_all_tv);
+
         //set layout
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvSale.setLayoutManager(mLayoutManager);
@@ -50,21 +65,53 @@ public class HomeFragment extends Fragment {
         rvNew.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
 //        testRecycleViewAdapter(rvBookmark);,
-        testRecycleViewAdapter(rvRating, TestRecycleViewAdapter.TYPE_RATING);
-        testRecycleViewAdapter(rvSale, TestRecycleViewAdapter.TYPE_VOUCHER);
-        testRecycleViewAdapter(rvNew, TestRecycleViewAdapter.TYPE_NEW);
+        testRecycleViewAdapter(rvRating, MyContants.RV_ITEM_NORMAL);
+        testRecycleViewAdapter(rvSale, MyContants.RV_ITEM_VOUCHER);
+        testRecycleViewAdapter(rvNew, MyContants.RV_ITEM_NEW);
 
         ViewCompat.setNestedScrollingEnabled(rvRating, false);
 
 
-        etSearch = view.findViewById(R.id.fg_home_search_et);
         etSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SearchFragment searchFragment = new SearchFragment();
                 showFragment(searchFragment);
+                BottomNavigationView navigationView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_nav);
+                navigationView.getMenu().getItem(2).setChecked(true);
             }
         });
+
+
+        voucherSeeAllTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ListSalonActivity.class);
+                Bundle option = ActivityOptionsCompat.makeScaleUpAnimation(voucherSeeAllTv,0,0,voucherSeeAllTv.getWidth(), voucherSeeAllTv.getLineHeight()).toBundle();
+                Bundle bundle = new Bundle();
+                bundle.putString("title","Khuyến mãi");
+                bundle.putInt("type", MyContants.RV_ITEM_VOUCHER);
+                intent.putExtra("activity_content", bundle);
+                ActivityCompat.startActivity(getActivity(), intent, option);
+
+            }
+        });
+
+        newSeeAllTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ListSalonActivity.class);
+                Bundle option = ActivityOptionsCompat.makeScaleUpAnimation(voucherSeeAllTv,0,0,voucherSeeAllTv.getWidth(), voucherSeeAllTv.getLineHeight()).toBundle();
+                Bundle bundle = new Bundle();
+                bundle.putString("title","Cửa hàng mới");
+                bundle.putInt("type", MyContants.RV_ITEM_NORMAL);
+                intent.putExtra("activity_content", bundle);
+                ActivityCompat.startActivity(getActivity(), intent, option);
+            }
+        });
+
+
+
         return view;
     }
 
@@ -77,7 +124,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void showFragment(Fragment fragment){
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.activity_main_container_fl, fragment);
         transaction.addToBackStack(null);
         transaction.commit();

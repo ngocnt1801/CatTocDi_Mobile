@@ -3,14 +3,14 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/firstColor</item>
-        <item name="colorPrimaryDark">@color/mainDark</item>
-        <item name="colorAccent">@color/icLogin</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/dark</item>
+        <item name="colorAccent">@color/light</item>
     </style>
 
     <style name="SplashStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@drawable/slash_purple</item>
+        <item name="android:windowBackground">@drawable/test_splash</item>
     </style>
 
     <style name="RatingSmall" parent="Base.Widget.AppCompat.RatingBar.Small">
@@ -22,5 +22,20 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="MyButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/highlight</item>
+        <item name="colorButtonNormal">@color/primary</item>
+    </style>
 
+    <style name="MyOutlineButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/primary</item>
+        <item name="colorButtonNormal">#ffffff</item>
+    </style>
+
+    <style name="ActivitySlideAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_in_left</item>
+    </style>
 </resources>
