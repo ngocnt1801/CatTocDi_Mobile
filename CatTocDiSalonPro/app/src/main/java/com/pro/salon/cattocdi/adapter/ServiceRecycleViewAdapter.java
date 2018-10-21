@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.pro.salon.cattocdi.R;
+import com.pro.salon.cattocdi.ServiceActivity;
+import com.pro.salon.cattocdi.ServiceDetailActivity;
+import com.pro.salon.cattocdi.utils.MyContants;
 
 public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecycleViewAdapter.ServiceViewHolder>{
     private Context context;
@@ -27,9 +30,11 @@ public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecyc
 
     @Override
     public void onBindViewHolder(@NonNull ServiceViewHolder serviceViewHolder, int i) {
-        serviceViewHolder.btnAddService.setOnClickListener(new View.OnClickListener() {
+        serviceViewHolder.btnEditService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(context, ServiceDetailActivity.class);
+                context.startActivity(intent);
             }
         });
     }
@@ -41,11 +46,11 @@ public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecyc
 
     public class ServiceViewHolder extends RecyclerView.ViewHolder {
         public View item;
-        public Button btnAddService;
+        public Button btnEditService;
         public ServiceViewHolder(@NonNull View itemView) {
             super(itemView);
             this.item = itemView;
-            this.btnAddService = itemView.findViewById(R.id.btn_add_service_to_appointment);
+            this.btnEditService = itemView.findViewById(R.id.edit_service_btn);
         }
     }
 }

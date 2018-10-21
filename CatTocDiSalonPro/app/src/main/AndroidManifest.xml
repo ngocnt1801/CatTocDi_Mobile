@@ -31,7 +31,9 @@
         <activity android:name=".PromotionActivity" />
         <activity android:name=".ServiceActivity" />
         <activity android:name=".WorkingHoursActivity" />
-        <activity android:name=".InformationActivity"></activity>
+        <activity android:name=".InformationActivity" />
+        <activity android:name=".ContactDetailActivity" />
+        <activity android:name=".ServiceDetailActivity"></activity>
     </application>
 
 </manifest>

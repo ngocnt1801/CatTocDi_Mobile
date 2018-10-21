@@ -9,4 +9,5 @@
     <color name="lightTextColor">#ffffff</color>
     <color name="darkTextColor">#000000</color>
     <color name="ratingColor">#ffc947</color>
+    <color name="errorColor">#bc0609</color>
 </resources>

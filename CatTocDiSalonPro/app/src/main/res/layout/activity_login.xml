@@ -11,10 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp"
+        android:layout_above="@id/login_activity_ln"
         android:background="@drawable/logo"/>
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:layout_width="match_parent"

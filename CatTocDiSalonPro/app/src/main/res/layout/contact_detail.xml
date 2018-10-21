@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cập nhật dịch vụ"
+            android:text="Thông tin khách hàng"
             android:gravity="center"
             android:textStyle="bold"
             android:padding="12dp"
@@ -22,28 +22,41 @@
             android:textColor="@color/darkTextColor" />
     </android.support.v7.widget.CardView>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ngọc Nguyễn"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:textColor="@color/darkTextColor"
+        android:paddingHorizontal="24dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="@string/vn_add"
-        android:textColor="@color/primary"
-        android:gravity="center_vertical"
-        android:paddingVertical="12dp"
-        android:paddingHorizontal="24dp"
-        android:drawablePadding="8dp"
-        android:drawableLeft="@drawable/ic_add"/>
+        android:text="0123456798"
+        android:paddingHorizontal="24dp"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ddd"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/activity_service_rv"
+        android:background="#ccc"
+        android:layout_marginTop="12dp" />
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical" />
+        android:text="Hoạt động"
+        android:paddingVertical="4dp"
+        android:background="#fff"
+        android:gravity="center_horizontal"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ccc"
+        android:layout_marginBottom="12dp"/>
+
+    <include layout="@layout/appointment_cart_view"/>
+    <include layout="@layout/appointment_cart_view"/>
+    <include layout="@layout/appointment_cart_view"/>
 
 </LinearLayout>
