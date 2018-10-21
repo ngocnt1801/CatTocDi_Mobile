@@ -3,6 +3,7 @@ package com.salon.cattocdi.fragements;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,7 @@ import com.salon.cattocdi.R;
  * A simple {@link Fragment} subclass.
  */
 public class OpenMapFragment extends Fragment {
-ImageView btnOpenMap;
+FloatingActionButton btnOpenMap;
 
     public OpenMapFragment() {
         // Required empty public constructor

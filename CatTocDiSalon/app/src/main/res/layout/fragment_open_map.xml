@@ -3,20 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center|right"
     android:layout_margin="10dp"
     tools:context=".fragements.OpenMapFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <ImageView
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/btOpenMap"
         android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:textColor="@color/textForLight"
+        app:fabSize="normal"
+        android:backgroundTint="#341746"
+        app:fabCustomSize="64dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="#341746"
         android:src="@drawable/ic_circle_map"
-        android:background="@drawable/profile_circular_border_imageview"
         android:elevation="8dp" />
 
 </RelativeLayout>
