@@ -74,7 +74,7 @@ public class SearchFragment extends Fragment {
                 dialog.setContentView(R.layout.fragment_search_service_dialog);
                 dialog.setTitle("Services");
                 listService = dialog.findViewById(R.id.fg_search_elv);
-                listService.setAdapter(new ExpandableListViewAdapter(getActivity()));
+                listService.setAdapter(new ExpandableListViewAdapter());
                 dialog.show();
             }
         });

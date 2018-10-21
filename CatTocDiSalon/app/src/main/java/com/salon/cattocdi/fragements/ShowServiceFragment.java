@@ -3,7 +3,7 @@ package com.salon.cattocdi.fragements;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.salon.cattocdi.R;
-import com.salon.cattocdi.adapters.ServiceRecycleViewAdapter;
 import com.salon.cattocdi.adapters.SuggestServiceCardAdapter;
 import com.salon.cattocdi.utils.Model;
 
