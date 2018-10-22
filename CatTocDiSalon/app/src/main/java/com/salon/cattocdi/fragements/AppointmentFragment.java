@@ -73,7 +73,8 @@ public class AppointmentFragment extends Fragment {
         //Show RECYCLEVIEW
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-
+        FragementAppointmentTestAdapter adapter = new FragementAppointmentTestAdapter(getActivity(), mCurrentLocation);
+        rvUpcomming.setAdapter(adapter);
         rvUpcomming.setLayoutManager(mLayoutManager);
         rvUpcomming.setItemAnimator(new DefaultItemAnimator());
     }
