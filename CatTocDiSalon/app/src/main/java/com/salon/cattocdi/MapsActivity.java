@@ -97,12 +97,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(addressList.get(i));
             markerOptions.title("Beauty Salon");
+            builder.include(addressList.get(i));
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
             mCurrLocationmMarker = mMap.addMarker(markerOptions);
         }
 
-//        CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), 15);
-//       mMap.animateCamera(cu);
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(builder.build(), 15);
+       mMap.animateCamera(cu);
     }
 
     LocationCallback mLocationCallBack = new LocationCallback() {
