@@ -84,7 +84,7 @@ public class ProfileFragment extends Fragment {
         showHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowServiceFragment appointmentFragment = new ShowServiceFragment();
+                AppointmentFragment appointmentFragment = new AppointmentFragment();
                 getFragmentManager().beginTransaction().replace(R.id.activity_main_container_fl, appointmentFragment, null)
                         .addToBackStack(null).commit();
                 BottomNavigationView navigationView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_nav);

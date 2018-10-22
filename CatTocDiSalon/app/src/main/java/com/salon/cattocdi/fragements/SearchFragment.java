@@ -70,12 +70,9 @@ public class SearchFragment extends Fragment {
         etService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.fragment_search_service_dialog);
-                dialog.setTitle("Services");
-                listService = dialog.findViewById(R.id.fg_search_elv);
-                listService.setAdapter(new ExpandableListViewAdapter());
-                dialog.show();
+                ShowServiceFragment showServiceFragment = new ShowServiceFragment();
+                getFragmentManager().beginTransaction().replace(R.id.activity_main_container_fl, showServiceFragment, null)
+                        .addToBackStack(null).commit();
             }
         });
 
