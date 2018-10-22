@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.salon.cattocdi.R;
 
@@ -77,11 +78,16 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         viewHolder.directionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://maps.google.com/maps?saddr="
-                                +Double.toString(curLocation.getLatitude())
-                                +","+Double.toString(curLocation.getLongitude())+"&daddr=10.7483033,106.6090311"));
-                context.startActivity(intent);
+                if(curLocation != null) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://maps.google.com/maps?saddr="
+                                    +Double.toString(curLocation.getLatitude())
+                                    +","+Double.toString(curLocation.getLongitude())+"&daddr=10.7483033,106.6090311"));
+                    context.startActivity(intent);
+                }else {
+                    Toast.makeText(context, "Hãy bật vị trí để chúng tôi có thể chỉ đường cho bạn!", Toast.LENGTH_SHORT).show();
+                }
+                
 
 
             }
