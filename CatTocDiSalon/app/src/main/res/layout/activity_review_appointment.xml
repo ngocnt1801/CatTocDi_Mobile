@@ -229,8 +229,9 @@
         android:textSize="@dimen/ts_button_login_page"
         android:stateListAnimator="@drawable/click_effect_btn"
         android:theme="@style/MyButton"
-        android:id="@+id/login_activity_login_btn"
+        android:id="@+id/review_appointment_activity"
         android:layout_below="@id/tbl_service_bill"
+        android:clickable="true"
         />
 
 

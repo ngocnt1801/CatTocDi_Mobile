@@ -22,7 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fg_favorite_rv"
-        android:layout_marginHorizontal="12dp"
         android:layout_marginBottom="@dimen/mr_bottom_not_cover_content">
 
     </android.support.v7.widget.RecyclerView>

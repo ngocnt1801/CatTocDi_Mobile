@@ -32,4 +32,12 @@
     <string name="vn_detail">Chi tiết</string>
     <string name="vn_book_appointment">Đặt lịch</string>
     <string name="vn_map">Bản đồ</string>
+
+    <!--TODO: Book Appoinment -->
+    <string name="vn_service">Chọn dịch vụ</string>
+    <string name="vn_delete_appoinment">Đồng ý</string>
+    <string name="vn_cancel">Không</string>
+    <string name="dialog_text">Bạn có muốn hủy cuộc hẹn này không?</string>
+    <string name="dialog_text_late">Bạn chỉ được hủy cuộc hẹn trước 1 ngày</string>
+    <string name="dialog_title">Hủy lịch</string>
 </resources>

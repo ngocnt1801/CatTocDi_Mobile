@@ -11,25 +11,31 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.SalonAppointmentActivity;
 import com.salon.cattocdi.SalonDetailActivity;
 import com.salon.cattocdi.TestTabActivity;
 import com.salon.cattocdi.utils.MyContants;
+
+import static com.salon.cattocdi.utils.MyContants.RV_ITEM_NORMAL;
+import static com.salon.cattocdi.utils.MyContants.RV_ITEM_VOUCHER;
 
 public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleViewAdapter.MyCardViewHolder> {
 
     private int type;
     private Context context;
 
+
 private boolean isFavorite = false;
-    public static final int TYPE_RATING = 1;
+    /*public static final int TYPE_RATING = 1;
     public static int TYPE_VOUCHER = 2;
-    public static int TYPE_NEW = 3;
+    public static int TYPE_NEW = 3;*/
 
     public TestRecycleViewAdapter(int type, Context context) {
         this.context = context;
@@ -47,7 +53,7 @@ private boolean isFavorite = false;
         View itemView;
         if (type == MyContants.RV_ITEM_NORMAL) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_rating, viewGroup, false);
-        } else if (type == MyContants.RV_ITEM_VOUCHER) {
+        } else if (type == RV_ITEM_VOUCHER) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_voucher, viewGroup, false);
         } else if (type == MyContants.RV_ITEM_NEW) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_new, viewGroup, false);
@@ -77,6 +83,25 @@ private boolean isFavorite = false;
 
             }
         });
+        if(type == RV_ITEM_NORMAL){
+
+            Button btnBook;
+            btnBook = myCardViewHolder.item.findViewById(R.id.btn_book_service);
+            btnBook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, SalonAppointmentActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+        }
+      /* myCardViewHolder.btnBook.setOnClickListener(new View.OnClickListener() {
+          @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SalonAppointmentActivity.class);
+                context.startActivity(intent);
+            }
+        });*/
 
 
         if(isFavorite){
@@ -111,6 +136,8 @@ private boolean isFavorite = false;
         public RelativeLayout searchService;
         public CardView item;
         public ImageView icFavorite;
+        //public Button btnBook;
+
 
         public MyCardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -121,6 +148,7 @@ private boolean isFavorite = false;
             salonRatingBar = itemView.findViewById(R.id.fg_home_rv_item_rb);
             salonImage = itemView.findViewById(R.id.fg_home_rv_item_img);
             icFavorite = itemView.findViewById(R.id.fg_home_rv_item_favorite_ic);
+            //btnBook = itemView.findViewById(R.id.btn_book_service);
             item = (CardView) itemView;
         }
     }

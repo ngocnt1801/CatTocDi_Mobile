@@ -13,7 +13,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.salon.cattocdi.ListSalonActivity;
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.SearchResultActivity;
@@ -27,9 +29,10 @@ import java.util.Calendar;
  */
 public class SearchFragment extends Fragment {
 
-    private EditText etDate, etService;
+    private EditText etDate, etService, etPlace;
     private Button btSearch;
     ExpandableListView listService;
+    CircularImageView circularImageView1, circularImageView2, circularImageView3, circularImageView4;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -64,12 +67,42 @@ public class SearchFragment extends Fragment {
         });
 
 
+        etPlace = (EditText) view.findViewById(R.id.edt_place_fg_search);
+        circularImageView1 = (CircularImageView) view.findViewById(R.id.img_district_1);
+        circularImageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etPlace.setText("Quận 1", TextView.BufferType.EDITABLE);
+            }
+        });
+        circularImageView2 = (CircularImageView) view.findViewById(R.id.img_district_2);
+        circularImageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etPlace.setText("Quận 2", TextView.BufferType.EDITABLE);
+            }
+        });
+        circularImageView3 = (CircularImageView) view.findViewById(R.id.img_district_3);
+        circularImageView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etPlace.setText("Quận 3", TextView.BufferType.EDITABLE);
+            }
+        });
+        circularImageView4 = (CircularImageView) view.findViewById(R.id.img_district_4);
+        circularImageView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etPlace.setText("Quận 4", TextView.BufferType.EDITABLE);
+            }
+        });
 
+        etService = (EditText) view.findViewById(R.id.fg_search_service_et);
 
-        etService = view.findViewById(R.id.fg_search_service_et);
         etService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 ShowServiceFragment showServiceFragment = new ShowServiceFragment();
                 getFragmentManager().beginTransaction().replace(R.id.activity_main_container_fl, showServiceFragment, null)
                         .addToBackStack(null).commit();
@@ -77,6 +110,12 @@ public class SearchFragment extends Fragment {
         });
 
         btSearch = view.findViewById(R.id.fg_search_search_btn);
+
+            String service = null;
+            Bundle bundle = null;
+            service = getBundle(bundle);
+            etService.setText(service, TextView.BufferType.EDITABLE);
+
         btSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,6 +130,14 @@ public class SearchFragment extends Fragment {
 
 
         return view;
+    }
+    private String getBundle(Bundle bundle){
+         bundle = getArguments();
+        String service = null;
+         if (bundle != null){
+              service = bundle.getString("s1");
+         }
+        return service;
     }
 
 }

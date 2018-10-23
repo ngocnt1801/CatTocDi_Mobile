@@ -3,9 +3,9 @@
     android:id="@+id/fg_home_rv_item_img"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:layout_marginRight="8dp"
+    android:layout_marginHorizontal="12dp"
     android:stateListAnimator="@drawable/click_effect_btn"
-    android:layout_marginBottom="4dp">
+    android:layout_marginBottom="12dp">
 
     <FrameLayout
         android:layout_gravity="center_vertical|center_horizontal"

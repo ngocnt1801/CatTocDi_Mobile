@@ -1,6 +1,7 @@
 package com.salon.cattocdi;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.bottom_nav_home_item:
                         currentPos = nextPos;
                         nextPos = 0;
@@ -74,17 +75,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //HOME FRAGMENT will show first
-        showFragment(new HomeFragment());
+        String flag = "";
+        Intent intent = getIntent();
+        flag = intent.getStringExtra("done");
+        if (flag != null) {
+            BottomNavigationView navigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
+            navigationView.getMenu().getItem(1).setChecked(true);
+            AppointmentFragment appointmentFragment = new AppointmentFragment();
+            showFragment(appointmentFragment);
+        } else {
+            showFragment(new HomeFragment());
+        }
     }
 
     @SuppressLint("ResourceType")
-    private void showFragment(Fragment fragment){
+    private void showFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if(currentPos < nextPos){
+        if (currentPos < nextPos) {
             transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
-        }else if(currentPos > nextPos){
+        } else if (currentPos > nextPos) {
             transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
-    }
+        }
         transaction.replace(R.id.activity_main_container_fl, fragment);
         transaction.commit();
     }

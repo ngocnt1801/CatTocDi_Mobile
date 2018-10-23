@@ -1,6 +1,7 @@
 package com.salon.cattocdi.fragements;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import com.salon.cattocdi.utils.MyContants;
 public class FavoriteFragment extends Fragment {
 
     private RecyclerView rv;
+    private Context context;
 
     public FavoriteFragment() {
         // Required empty public constructor
@@ -31,8 +33,14 @@ public class FavoriteFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
         rv = view.findViewById(R.id.fg_favorite_rv);
+
         rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         rv.setAdapter(new TestRecycleViewAdapter(true, MyContants.RV_ITEM_NORMAL, getActivity()));
+
+        //Set onclick for button book appoinment
+
+
+
         return view;
     }
 

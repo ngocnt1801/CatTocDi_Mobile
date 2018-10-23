@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         android:padding="@dimen/pd_layout_login_page"
         android:scrollbarStyle="outsideInset"
+        android:background="@color/textForDark"
         >
         <LinearLayout
             android:layout_width="match_parent"

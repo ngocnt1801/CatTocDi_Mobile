@@ -1,7 +1,6 @@
 package com.salon.cattocdi.fragements;
 
-import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,11 +12,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.SalonAppointmentActivity;
 import com.salon.cattocdi.adapters.SuggestServiceCardAdapter;
 import com.salon.cattocdi.utils.Model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,13 +25,13 @@ import java.util.List;
 
  * to handle interaction events.
  */
-public class ShowServiceFragment extends Fragment {
+public class ShowAddServiceFragment extends Fragment {
 
 private RecyclerView rcService;
 private Button btnChoose;
 
 
-    public ShowServiceFragment() {
+    public ShowAddServiceFragment() {
         // Required empty public constructor
     }
 
@@ -50,15 +49,19 @@ private Button btnChoose;
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
+                //Bundle bundle = new Bundle();
                 String name = "Cắt tóc";
-                bundle.putString("s1",name);
-                SearchFragment searchFragment = new SearchFragment();
-                searchFragment.setArguments(bundle);
+                //bundle.putString("s1",name);
+               // SearchFragment searchFragment = new SearchFragment();
+                //searchFragment.setArguments(bundle);
                // Toast.makeText(getActivity(),"Bạn đã chọn dịch vụ",Toast.LENGTH_SHORT).show();
                 //SearchFragment searchFragment = new SearchFragment();
-                getFragmentManager().beginTransaction().replace(R.id.activity_main_container_fl, searchFragment, null)
-                        .addToBackStack(null).commit();
+                //getFragmentManager().beginTransaction().replace(R.id.activity_salon_appointment, searchFragment, null)
+                        //.addToBackStack(null).commit();
+                Toast.makeText(getActivity(),"Bạn đã chọn dịch vụ",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), SalonAppointmentActivity.class);
+                intent.putExtra("s1", name);
+                startActivity(intent);
             }
         });
 
@@ -97,6 +100,7 @@ private Button btnChoose;
         listServices.add("Gội đầu");
         listServices.add("Cắt móng");
         listServices.add("Đắp mặt nạ");
+        listServices.add("Mát xa da đầu");
         /*services.put(categories.get(0), listServices);
         services.put(categories.get(1), listServices);
         services.put(categories.get(2), listServices);

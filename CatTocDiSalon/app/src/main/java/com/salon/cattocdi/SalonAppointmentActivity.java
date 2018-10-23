@@ -1,8 +1,11 @@
 package com.salon.cattocdi;
 
 
+import android.annotation.SuppressLint;
+import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,13 +13,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salon.cattocdi.adapters.AppointmentServiceRecycleViewAdapter;
 import com.salon.cattocdi.adapters.ServiceRecycleViewAdapter;
 import com.salon.cattocdi.adapters.TimeSlotRecycleViewAdapter;
+import com.salon.cattocdi.fragements.ShowAddServiceFragment;
+import com.salon.cattocdi.fragements.ShowServiceFragment;
 
 import java.time.Month;
 import java.util.ArrayList;
@@ -35,6 +42,7 @@ import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 public class SalonAppointmentActivity extends AppCompatActivity {
 
     private RecyclerView rvMorning, rvAfternoon, rvNight, rvService;
+    private Button btnAddService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,14 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         rvAfternoon = findViewById(R.id.activity_salon_appointment_afternoon_rv);
         rvNight = findViewById(R.id.activity_salon_appointment_night_rv);
 
+        btnAddService = findViewById(R.id.btn_add_more_service_to_appointment);
+        btnAddService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowAddServiceFragment showAddServiceFragment = new ShowAddServiceFragment();
+                showFragment(showAddServiceFragment);
+            }
+        });
 
         /* starts before 1 month from now */
         Calendar startDate = Calendar.getInstance();
@@ -137,6 +153,12 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         rvNight.setLayoutManager(new GridLayoutManager(this, 4));
         rvNight.setAdapter(new TimeSlotRecycleViewAdapter(this));
 
+    }
+    @SuppressLint("ResourceType")
+    private void showFragment(android.support.v4.app.Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.activity_salon_appointment, fragment);
+        transaction.commit();
     }
 
 }

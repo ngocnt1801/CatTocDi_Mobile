@@ -9,9 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"
-        android:textAppearance="?android:textAppearanceLarge"
+        android:textAppearance="?android:textAppearanceMedium"
         android:checked = "false"
         android:drawableStart="@null"
         android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"
+        android:textColor="@color/textForLight"
+        />
 </LinearLayout>

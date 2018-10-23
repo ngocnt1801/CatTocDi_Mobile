@@ -8,13 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.salon.cattocdi.LoginActivity;
 import com.salon.cattocdi.R;
 
-public class AppointmentServiceRecycleViewAdapter extends RecyclerView.Adapter<AppointmentServiceRecycleViewAdapter.AppointmentSeriveViewHolder>{
+public class AppointmentServiceRecycleViewAdapter extends RecyclerView.Adapter<AppointmentServiceRecycleViewAdapter.AppointmentSeriveViewHolder> {
 
     private int count = 4;
 
@@ -42,17 +43,18 @@ public class AppointmentServiceRecycleViewAdapter extends RecyclerView.Adapter<A
         return count;
     }
 
-    public class AppointmentSeriveViewHolder extends RecyclerView.ViewHolder{
+    public class AppointmentSeriveViewHolder extends RecyclerView.ViewHolder {
 
         private View item;
         private TextView tvService;
         private ImageView ivDelete;
+        //private Button btn_cancle_appointment;
 
         public AppointmentSeriveViewHolder(@NonNull View itemView) {
             super(itemView);
             tvService = itemView.findViewById(R.id.activity_salon_appointmet_service_tv);
             this.item = itemView;
-            this.ivDelete = itemView.findViewById(R.id.activity_salon_appointmet_delete_iv);
+            ivDelete = itemView.findViewById(R.id.activity_salon_appointmet_delete_iv);
         }
     }
 

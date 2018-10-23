@@ -1,10 +1,14 @@
 package com.salon.cattocdi.adapters;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +28,7 @@ import net.cachapa.expandablelayout.ExpandableLayout;
 public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<FragementAppointmentTestAdapter.AppointmentCardViewHolder> {
     Context context;
     Location curLocation;
+    private int count = 5;
 
     public FragementAppointmentTestAdapter(Context context, Location curLocation) {
         this.context = context;
@@ -43,8 +48,10 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final AppointmentCardViewHolder viewHolder, int i) {
-//        viewHolder.tvName.setText("Salon " + i);
+    public void onBindViewHolder(@NonNull final AppointmentCardViewHolder viewHolder, final int i) {
+
+
+        //        viewHolder.tvName.setText("Salon " + i);
 //        viewHolder.tvAddress.setText("abc " + i + i + i);
 //        viewHolder.tvServices.setText("Cắt, uống, nhuộm");
 //        viewHolder.tvTime.setText("Thứ 2 1/10/2018, 3:00PM");
@@ -58,8 +65,10 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //        });
 //        viewHolder.img.setImageResource(MyContants.SALON_IMAGE_IDS[i]);
 
-
-        if(i == 0){
+        if (i >= 2){
+            viewHolder.tvDate.setText("17/10/2018");
+        }
+        if (i == 0) {
             viewHolder.appointmentDetail.expand();
             activeAppointment(viewHolder);
         }
@@ -68,9 +77,9 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
             @Override
             public void onClick(View view) {
                 viewHolder.appointmentDetail.toggle();
-                if(viewHolder.appointmentDetail.isExpanded()){
+                if (viewHolder.appointmentDetail.isExpanded()) {
                     activeAppointment(viewHolder);
-                }else{
+                } else {
                     inactiveAppointment(viewHolder);
                 }
             }
@@ -78,16 +87,44 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         viewHolder.directionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(curLocation != null) {
+                if (curLocation != null) {
                     Intent intent = new Intent(Intent.ACTION_VIEW,
                             Uri.parse("http://maps.google.com/maps?saddr="
-                                    +Double.toString(curLocation.getLatitude())
-                                    +","+Double.toString(curLocation.getLongitude())+"&daddr=10.7483033,106.6090311"));
+                                    + Double.toString(curLocation.getLatitude())
+                                    + "," + Double.toString(curLocation.getLongitude()) + "&daddr=10.7483033,106.6090311"));
                     context.startActivity(intent);
-                }else {
+                } else {
                     Toast.makeText(context, "Hãy bật vị trí để chúng tôi có thể chỉ đường cho bạn!", Toast.LENGTH_SHORT).show();
                 }
-                
+
+
+            }
+        });
+        viewHolder.icDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Button btnDelete, btnCancle;
+                final Dialog dialog = new Dialog(context); // Context, this, etc.
+                if (i >= 2) {
+                    viewHolder.icDelete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.setContentView(R.layout.dialog_appointment_late);
+                            dialog.setTitle(R.string.dialog_title);
+                            dialog.show();
+
+                        }
+                    });
+                } else {
+                    viewHolder.icDelete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.setContentView(R.layout.dialog_appointment);
+                            dialog.setTitle(R.string.dialog_title);
+                            dialog.show();
+                        }
+                    });
+                }
 
 
             }
@@ -100,7 +137,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         return 5;
     }
 
-    public class AppointmentCardViewHolder extends RecyclerView.ViewHolder{
+    public class AppointmentCardViewHolder extends RecyclerView.ViewHolder {
         public TextView tvName, tvAddress, tvServices, tvStylist, tvTime;
         public ImageView img, icExpand;
         public Button btnCancel;
@@ -109,6 +146,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         public RelativeLayout appointmentRl;
         public ExpandableLayout appointmentDetail;
         public Button directionBtn;
+        public ImageView icDelete;
 
         public TextView tvAppoinmentType, tvDate, tvSalonName, tvStartTime, tvDot, tvEndTime;
 
@@ -132,13 +170,14 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
             tvDot = itemView.findViewById(R.id.fg_appointment_dot_tv);
             tvEndTime = itemView.findViewById(R.id.fg_appointment_end_time);
             directionBtn = itemView.findViewById(R.id.btnDirection);
+            icDelete = itemView.findViewById(R.id.rc_appointment_ic_delete);
             item = itemView;
 
         }
 
     }
 
-    public void activeAppointment(AppointmentCardViewHolder itemView){
+    public void activeAppointment(AppointmentCardViewHolder itemView) {
 //        itemView.appointmentRl.setBackgroundResource(R.color.icLogin);
 //        itemView.tvAppoinmentType.setTextColor(Color.parseColor("#ffffff"));
 //        itemView.tvAppoinmentType.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_calendar_white, 0,0,0);
@@ -150,7 +189,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         itemView.icExpand.setImageResource(R.drawable.ic_collapse);
     }
 
-    public void inactiveAppointment(AppointmentCardViewHolder itemView){
+    public void inactiveAppointment(AppointmentCardViewHolder itemView) {
 //        itemView.appointmentRl.setBackgroundResource(0);
 //        itemView.tvAppoinmentType.setTextColor(Color.parseColor("#6b5b95"));
 //        itemView.tvAppoinmentType.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_calendar_active, 0,0,0);
