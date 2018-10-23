@@ -72,28 +72,28 @@ public class SearchFragment extends Fragment {
         circularImageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                etPlace.setText("Quận 1", TextView.BufferType.EDITABLE);
+                searchTrend("Quận 1");
             }
         });
         circularImageView2 = (CircularImageView) view.findViewById(R.id.img_district_2);
         circularImageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                etPlace.setText("Quận 2", TextView.BufferType.EDITABLE);
+                searchTrend("Quận 2");
             }
         });
         circularImageView3 = (CircularImageView) view.findViewById(R.id.img_district_3);
         circularImageView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                etPlace.setText("Quận 3", TextView.BufferType.EDITABLE);
+                searchTrend("Quận 3");
             }
         });
         circularImageView4 = (CircularImageView) view.findViewById(R.id.img_district_4);
         circularImageView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                etPlace.setText("Quận 4", TextView.BufferType.EDITABLE);
+                searchTrend("Quận 10");
             }
         });
 
@@ -138,6 +138,14 @@ public class SearchFragment extends Fragment {
               service = bundle.getString("s1");
          }
         return service;
+    }
+    private void searchTrend(String nameTrend){
+        Intent intent = new Intent(getActivity(), ListSalonActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "Xu hướng tìm kiếm " + nameTrend);
+        bundle.putInt("type", MyContants.RV_ITEM_NORMAL);
+        intent.putExtra("activity_content",bundle);
+        startActivity(intent);
     }
 
 }

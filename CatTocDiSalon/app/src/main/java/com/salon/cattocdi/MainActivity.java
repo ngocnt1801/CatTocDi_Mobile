@@ -83,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
             navigationView.getMenu().getItem(1).setChecked(true);
             AppointmentFragment appointmentFragment = new AppointmentFragment();
             showFragment(appointmentFragment);
-        } else {
+        }
+        else {
             showFragment(new HomeFragment());
         }
     }

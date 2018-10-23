@@ -66,12 +66,17 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //        viewHolder.img.setImageResource(MyContants.SALON_IMAGE_IDS[i]);
 
         if (i >= 2){
-            viewHolder.tvDate.setText("17/10/2018");
+            viewHolder.tvDate.setText("25/10/2018");
         }
         if (i == 0) {
             viewHolder.appointmentDetail.expand();
             activeAppointment(viewHolder);
         }
+        if(i == 4){
+            viewHolder.tvDate.setText("10/10/2018");
+            viewHolder.tvAppoinmentType.setText("Lịch đã qua");
+        }
+
 
         viewHolder.appointmentRl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,27 +108,23 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         viewHolder.icDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Button btnDelete, btnCancle;
-                final Dialog dialog = new Dialog(context); // Context, this, etc.
-                if (i >= 2) {
-                    viewHolder.icDelete.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.setContentView(R.layout.dialog_appointment_late);
-                            dialog.setTitle(R.string.dialog_title);
-                            dialog.show();
 
-                        }
-                    });
-                } else {
-                    viewHolder.icDelete.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.setContentView(R.layout.dialog_appointment);
-                            dialog.setTitle(R.string.dialog_title);
-                            dialog.show();
-                        }
-                    });
+                final Dialog dialog = new Dialog(context); // Context, this, etc.
+                if (i == 2 || i == 3) {
+                    dialog.setContentView(R.layout.dialog_appointment_late);
+                    dialog.setTitle(R.string.dialog_title);
+                    dialog.show();
+                }if (i == 4){
+                    TextView tvText;
+                    dialog.setContentView(R.layout.dialog_appointment);
+                    tvText = dialog.findViewById(R.id.dialog_info);
+                    tvText.setText(R.string.dialog_text_expired);
+                    dialog.show();
+                }
+                if(i == 0 || i == 1) {
+                    dialog.setContentView(R.layout.dialog_appointment);
+                    dialog.setTitle(R.string.dialog_title);
+                    dialog.show();
                 }
 
 
