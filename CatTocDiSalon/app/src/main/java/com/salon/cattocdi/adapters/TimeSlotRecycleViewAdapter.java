@@ -13,12 +13,22 @@ import android.widget.Button;
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.ReviewAppointmentActivity;
 
+import java.util.Random;
+
 public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRecycleViewAdapter.TimeSlotViewHolder>{
 
     private Context context;
+    private int count;
+    private int type;
 
-    public TimeSlotRecycleViewAdapter(Context context) {
+    public static final int MORNING = 1;
+    public static final int AFTERNOON = 2;
+    public static int EVENING = 3;
+
+    public TimeSlotRecycleViewAdapter(Context context, int count, int type) {
         this.context = context;
+        this.count = count;
+        this.type = type;
     }
 
     @NonNull
@@ -30,6 +40,23 @@ public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRec
 
     @Override
     public void onBindViewHolder(@NonNull final TimeSlotViewHolder timeSlotViewHolder, int i) {
+
+        if(type == MORNING){
+            int hour = i + 8;
+            String textMinute = i%2==0?"00" : "30";
+            timeSlotViewHolder.item.setText(hour + ":" + textMinute);
+        }else if (type == AFTERNOON){
+            int hour = i + 12;
+            int minute = 30 * (i%2);
+            String textMinute = i%2==0?"00" : "30";
+            timeSlotViewHolder.item.setText(hour + ":" + textMinute);
+        }else {
+            int hour = i + 18;
+            int minute = 30 * (i%2);
+            String textMinute = i%2==0?"00" : "30";
+            timeSlotViewHolder.item.setText(hour + ":" + textMinute);
+        }
+
         timeSlotViewHolder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,7 +68,7 @@ public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRec
 
     @Override
     public int getItemCount() {
-        return 5;
+        return count > 0 ? count : 1;
     }
 
     public class TimeSlotViewHolder extends RecyclerView.ViewHolder{

@@ -139,25 +139,26 @@ public class SalonAppointmentActivity extends AppCompatActivity {
                     textDay = "Ngày mốt";
                 }
                 titleDate.setText(textDay + ", " + textDayOfMonth + "/" + textMonth);
+                loadTimeSlotList();
             }
         });
-
+        loadTimeSlotList();
         rvService.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvService.setAdapter(new AppointmentServiceRecycleViewAdapter());
 
-        loadTimeSlotList();
 
     }
 
     private void loadTimeSlotList(){
+        Random random = new Random();
         rvMorning.setLayoutManager(new GridLayoutManager(this, 4));
-        rvMorning.setAdapter(new TimeSlotRecycleViewAdapter(this));
+        rvMorning.setAdapter(new TimeSlotRecycleViewAdapter(this, random.nextInt(5), TimeSlotRecycleViewAdapter.MORNING));
 
         rvAfternoon.setLayoutManager(new GridLayoutManager(this, 4));
-        rvAfternoon.setAdapter(new TimeSlotRecycleViewAdapter(this));
+        rvAfternoon.setAdapter(new TimeSlotRecycleViewAdapter(this, random.nextInt(5),TimeSlotRecycleViewAdapter.AFTERNOON ));
 
         rvNight.setLayoutManager(new GridLayoutManager(this, 4));
-        rvNight.setAdapter(new TimeSlotRecycleViewAdapter(this));
+        rvNight.setAdapter(new TimeSlotRecycleViewAdapter(this, random.nextInt(5), TimeSlotRecycleViewAdapter.EVENING));
 
     }
     @SuppressLint("ResourceType")
