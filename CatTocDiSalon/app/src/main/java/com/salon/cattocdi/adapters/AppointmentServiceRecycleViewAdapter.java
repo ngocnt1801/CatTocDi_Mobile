@@ -36,6 +36,18 @@ public class AppointmentServiceRecycleViewAdapter extends RecyclerView.Adapter<A
                 notifyDataSetChanged();
             }
         });
+        if(i == 0){
+            viewHolder.tvService.setText("Cắt tóc");
+        }if(i == 1){
+            viewHolder.tvService.setText("Gội đầu");
+        }if(i == 2){
+            viewHolder.tvService.setText("Uốn tóc");
+        }if(i == 3){
+            viewHolder.tvService.setText("Hấp dầu");
+        }
+
+
+
     }
 
     @Override
