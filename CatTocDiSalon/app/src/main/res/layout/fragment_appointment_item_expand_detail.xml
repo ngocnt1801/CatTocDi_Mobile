@@ -11,7 +11,7 @@
         android:id="@+id/appointment_item_expand_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Salon Name"
+        android:text="Salon 1"
         android:textColor="@color/textForLight"
         android:textSize="18dp"
         android:textStyle="bold" />

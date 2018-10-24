@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/fg_appointment_upcomming_tv"
             android:textColor="@color/textForLight"
-            android:text="Godness Braids"
+            android:text="Salon 1"
             android:textSize="16dp" />
         <TextView
             android:id="@+id/fg_appointment_date_tv"
