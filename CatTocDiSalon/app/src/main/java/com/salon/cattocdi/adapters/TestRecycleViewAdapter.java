@@ -32,7 +32,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
     private Context context;
 
 
-private boolean isFavorite = false;
+    private boolean isFavorite = false;
     /*public static final int TYPE_RATING = 1;
     public static int TYPE_VOUCHER = 2;
     public static int TYPE_NEW = 3;*/
@@ -47,6 +47,7 @@ private boolean isFavorite = false;
         this.type = type;
         this.isFavorite = isFavorite;
     }
+
     @NonNull
     @Override
     public MyCardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -57,8 +58,7 @@ private boolean isFavorite = false;
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_voucher, viewGroup, false);
         } else if (type == MyContants.RV_ITEM_NEW) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_new, viewGroup, false);
-        }
-        else {
+        } else {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_new, viewGroup, false);
         }
         return new MyCardViewHolder(itemView);
@@ -68,10 +68,43 @@ private boolean isFavorite = false;
     public void onBindViewHolder(@NonNull final MyCardViewHolder myCardViewHolder, int i) {
 
 //        myCardViewHolder.salonRatingBar.setRating(4.6f);
-//        myCardViewHolder.salonTitle.setText("Cửa hàng " + (i + 1));
-//        myCardViewHolder.salonReviewsAmount.setText("(" + (i * 10) + ")");
-//        myCardViewHolder.salonAddress.setText(i + i + i + " abc");
+        if(myCardViewHolder.salonTitle != null && myCardViewHolder.salonAddress != null && myCardViewHolder.tvDiscount != null){
+            myCardViewHolder.salonTitle.setText("Cửa hàng " + (i + 1));
+            //myCardViewHolder.salonReviewsAmount.setText("(" + (i * 10) + ")");
+            if (i == 0){
+                myCardViewHolder.salonAddress.setText(i + i + 1 + " Nguyễn Văn Quá");
+            }if(i == 1){
+                myCardViewHolder.salonAddress.setText(i + i + i + " Phan Văn Trị");
+            }if(i == 2){
+                myCardViewHolder.salonTitle.setText("Beautiful Hair");
+            }
+            if (i == 3){
+                myCardViewHolder.salonAddress.setText(i + i + i + " Phạm Văn Đồng");
+            }
+            if (i == 4){
+                myCardViewHolder.salonAddress.setText(i + i + i + " Sư Vạn Hạnh");
+            }
+            if (i == 5){
+                myCardViewHolder.salonAddress.setText(i + i + i + " Quang Trung");
+            }
+            if (i == 6){
+                myCardViewHolder.salonAddress.setText(i + i + i + " Trường Chinh");
+            }
+            if (i == 7){
+                myCardViewHolder.salonAddress.setText(i + i + i + " Lê Quí Đôn");
+            }
+            if (i == 8){
+                myCardViewHolder.salonAddress.setText(i + i + i + " Nguyễn Văn Quá");
+            }
+            if (i == 9){
+                myCardViewHolder.salonAddress.setText(i + i + i + " Quang Trung");
+            }
+
+            myCardViewHolder.tvDiscount.setText((((i + 1) * 5) + 15) + " % OFF");
+        }
+
         myCardViewHolder.salonImage.setBackgroundResource(MyContants.SALON_IMAGE_IDS[i]);
+
 
         myCardViewHolder.item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +116,7 @@ private boolean isFavorite = false;
 
             }
         });
-        if(type == RV_ITEM_NORMAL){
+        if (type == RV_ITEM_NORMAL) {
 
             Button btnBook;
             btnBook = myCardViewHolder.item.findViewById(R.id.btn_book_service);
@@ -104,22 +137,22 @@ private boolean isFavorite = false;
         });*/
 
 
-        if(isFavorite){
+        if (isFavorite) {
             myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
         }
-        if(myCardViewHolder.icFavorite != null){
+        if (myCardViewHolder.icFavorite != null) {
             myCardViewHolder.icFavorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    if(myCardViewHolder.icFavorite.getDrawable().getConstantState().equals(context.getDrawable(R.drawable.ic_favorite_border).getConstantState())){
+                    if (myCardViewHolder.icFavorite.getDrawable().getConstantState().equals(context.getDrawable(R.drawable.ic_favorite_border).getConstantState())) {
                         myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
-                    }else{
+                    } else {
                         myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_border);
                     }
-            }
-        });
-    }
+                }
+            });
+        }
 
     }
 
@@ -136,6 +169,7 @@ private boolean isFavorite = false;
         public RelativeLayout searchService;
         public CardView item;
         public ImageView icFavorite;
+        public TextView tvDiscount;
         //public Button btnBook;
 
 
@@ -148,6 +182,7 @@ private boolean isFavorite = false;
             salonRatingBar = itemView.findViewById(R.id.fg_home_rv_item_rb);
             salonImage = itemView.findViewById(R.id.fg_home_rv_item_img);
             icFavorite = itemView.findViewById(R.id.fg_home_rv_item_favorite_ic);
+            tvDiscount = itemView.findViewById(R.id.rv_discount);
             //btnBook = itemView.findViewById(R.id.btn_book_service);
             item = (CardView) itemView;
         }
