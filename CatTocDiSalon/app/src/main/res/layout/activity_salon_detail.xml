@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dylan Salon"
+        android:text="Beautiful Hair"
         android:textColor="@color/textForDark"
         android:layout_alignTop="@id/header_cover_image"
         android:textStyle="bold"
@@ -22,14 +22,17 @@
         android:paddingVertical="8dp"
         android:paddingHorizontal="24dp"
         android:background="#9d000000"/>
+
+
     <ImageView
-        android:id="@+id/fg_profile_favorite_ic"
+        android:id="@+id/activity_review_favorite_ic"
         android:layout_alignParentRight="true"
         android:layout_marginRight="8dp"
         android:focusableInTouchMode="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
+        android:background="@drawable/circle_opacity"
         android:padding="4dp"
         android:src="@drawable/ic_favorite_border_white" />
         <!-- Avatar

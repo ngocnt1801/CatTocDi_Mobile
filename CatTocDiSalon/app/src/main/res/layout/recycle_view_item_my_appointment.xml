@@ -20,7 +20,7 @@
             android:drawableLeft="@drawable/ic_calendar_active"
             android:drawablePadding="8dp"
             android:gravity="center_vertical"
-            android:text="Lịch sắp tới"
+            android:text="Cuộc hẹn sắp tới"
             android:textColor="@color/textLogin" />
         <ImageView
             android:id="@+id/rc_appointment_ic_delete"

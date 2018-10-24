@@ -1,178 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SalonAppointmentActivity"
-    android:id="@+id/activity_salon_appointment">
+    android:layout_height="wrap_content"
+    tools:context=".SalonAppointmentActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/activity_appointment_title"
-        android:paddingVertical="8dp"
-        android:layout_marginBottom="12dp"
-        android:textSize="16dp"
-        android:textColor="@color/textForLight"
-        android:gravity="center"
-        android:background="#eee"
-        android:text="Đặt lịch với Beautiful Hair"
-        android:textStyle="bold"/>
     <RelativeLayout
-        android:id="@+id/activity_appointment_service"
-        android:layout_below="@id/activity_appointment_title"
+        android:id="@+id/activity_salon_appointment"
         android:layout_width="match_parent"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="8dp"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/activity_salon_appointment_service_title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:text="Dịch vụ"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:textColor="@color/textForLight"/>
-
-        <Button
-            android:id="@+id/btn_add_more_service_to_appointment"
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/border_radius_edit_text_singup_button"
-            android:stateListAnimator="@drawable/click_effect_btn"
-            style="@style/MyButton"
-            android:textAllCaps="true"
-            android:text="Thêm"
-            android:textColor="@color/textForDark"
-            android:textSize="12dp"
-            android:clickable="true"
-            />
-        <android.support.v7.widget.RecyclerView
+            android:id="@+id/activity_appointment_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:id="@+id/activity_salon_appointment_service_rv"
-            android:layout_below="@id/btn_add_more_service_to_appointment">
-
-        </android.support.v7.widget.RecyclerView>
-
-
-        <View
-            android:layout_below="@id/activity_salon_appointment_service_rv"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_marginBottom="12dp"
             android:background="#eee"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/activity_appointment_dates"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/activity_appointment_service">
-        <TextView
-            android:id="@+id/activity_appoinment_title_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="THÁNG 10, Tuần này"
-            android:layout_alignParentTop="true"
-            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingVertical="8dp"
+            android:text="Đặt lịch với Beautiful Hair"
+            android:textColor="@color/textForLight"
             android:textSize="16dp"
-        />
-        <devs.mulham.horizontalcalendar.HorizontalCalendarView
-            android:id="@+id/my_calendar_view"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/activity_appointment_service"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:textColorNormal="@color/light"
-            app:textColorSelected="@color/textForDark"
-            app:selectorColor="@color/primary"
-            app:selectedDateBackground="@color/primary"
-            android:layout_below="@id/activity_appoinment_title_date"
+            android:layout_below="@id/activity_appointment_title"
+            android:paddingHorizontal="8dp"
             android:paddingVertical="8dp">
-        </devs.mulham.horizontalcalendar.HorizontalCalendarView>
-        <View
+
+            <TextView
+                android:id="@+id/activity_salon_appointment_service_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:text="Dịch vụ"
+                android:textColor="@color/textForLight"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_add_more_service_to_appointment"
+                style="@style/MyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/border_radius_edit_text_singup_button"
+                android:clickable="true"
+                android:stateListAnimator="@drawable/click_effect_btn"
+                android:text="Thêm"
+                android:textAllCaps="true"
+                android:textColor="@color/textForDark"
+                android:textSize="12dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/activity_salon_appointment_service_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_add_more_service_to_appointment"
+                android:layout_marginTop="8dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/activity_salon_appointment_service_rv"
+                android:background="#eee" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/activity_appointment_dates"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#eee"
-            android:layout_below="@id/my_calendar_view"
-            />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_appointment_service">
+
+            <TextView
+                android:id="@+id/activity_appoinment_title_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="THÁNG 10, Tuần này"
+                android:textAlignment="center"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <devs.mulham.horizontalcalendar.HorizontalCalendarView
+                android:id="@+id/my_calendar_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_appoinment_title_date"
+                android:paddingVertical="8dp"
+                app:selectedDateBackground="@color/primary"
+                app:selectorColor="@color/primary"
+                app:textColorNormal="@color/light"
+                app:textColorSelected="@color/textForDark"></devs.mulham.horizontalcalendar.HorizontalCalendarView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/my_calendar_view"
+                android:background="#eee" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/activity_appointment_available_slot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/activity_appointment_dates"
+            android:orientation="vertical"
+            android:paddingHorizontal="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="SÁNG"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/activity_salon_appointment_morning_rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="CHIỀU"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/activity_salon_appointment_afternoon_rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+
+                    >
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="TỐI"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/activity_salon_appointment_night_rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+
+                    >
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
-    <LinearLayout
-        android:id="@+id/activity_appointment_available_slot"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="8dp"
-        android:orientation="vertical"
-        android:layout_below="@id/activity_appointment_dates">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="8dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="SÁNG"
-                android:textSize="16dp"
-                android:textStyle="bold"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/activity_salon_appointment_morning_rv"
-                android:scrollbars="none"
-                >
-
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="8dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="CHIỀU"
-                android:textSize="16dp"
-                android:textStyle="bold"/>
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/activity_salon_appointment_afternoon_rv"
-                android:scrollbars="none"
-
-                >
-
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="8dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="TỐI"
-                android:textSize="16dp"
-                android:textStyle="bold"/>
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/activity_salon_appointment_night_rv"
-                android:scrollbars="none"
-
-                >
-
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
-    </LinearLayout>
-
-</RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

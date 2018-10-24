@@ -53,7 +53,7 @@
             android:text="@string/vn_service"
             android:textColor="@color/textForDark"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/mr_bottom_not_cover_content"
             android:layout_margin="16dp"
             android:textSize="@dimen/ts_button_login_page"
             android:stateListAnimator="@drawable/click_effect_btn"

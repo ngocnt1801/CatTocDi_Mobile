@@ -31,6 +31,7 @@
             android:background="@drawable/border_radius_edit_text"
             android:hint="Dịch vụ"
             android:padding="@dimen/pd_et"
+            android:editable="false"
             android:textColor="@color/textForLight" />
 
         <EditText

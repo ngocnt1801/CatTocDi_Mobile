@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="380dp"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:background="@color/textForDark">
 
     <TextView
@@ -13,7 +13,22 @@
         android:paddingTop="32dp"
         android:text="@string/dialog_text_late"
         android:textColor="@color/textForLight"
-        android:textSize="18dp"/>
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/dialog_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_info"
+        android:layout_weight="0.50"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:layout_alignParentRight="true"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:textColor="@color/primary"
+        android:text="OK"/>
 
     <!--<LinearLayout
         android:layout_width="match_parent"

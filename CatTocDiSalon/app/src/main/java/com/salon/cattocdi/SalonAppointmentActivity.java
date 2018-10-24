@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -56,6 +57,11 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         rvAfternoon = findViewById(R.id.activity_salon_appointment_afternoon_rv);
         rvNight = findViewById(R.id.activity_salon_appointment_night_rv);
 
+        ViewCompat.setNestedScrollingEnabled(rvService, false);
+        ViewCompat.setNestedScrollingEnabled(rvMorning, false);
+        ViewCompat.setNestedScrollingEnabled(rvAfternoon, false);
+        ViewCompat.setNestedScrollingEnabled(rvNight, false);
+
         btnAddService = findViewById(R.id.btn_add_more_service_to_appointment);
         btnAddService.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,11 +77,11 @@ public class SalonAppointmentActivity extends AppCompatActivity {
 
         // set Default Date Title
         TextView textTitleDate = findViewById(R.id.activity_appoinment_title_date);
-        int month = startDate.get(Calendar.MONTH);
+        int month = startDate.get(Calendar.MONTH) + 1;
         String textMonth = Integer.toString(month);
         int dayOfMonth = startDate.get(Calendar.DAY_OF_MONTH);
         String textDayOfMonth = Integer.toString(dayOfMonth);
-        textTitleDate.setText("Hôm nay" + ", " + dayOfMonth + "/" + month);
+        textTitleDate.setText("Hôm nay" + ", " + textDayOfMonth + "/" + textMonth);
 
         /* ends after 1 month from now */
         Calendar endDate = Calendar.getInstance();
@@ -95,8 +101,8 @@ public class SalonAppointmentActivity extends AppCompatActivity {
             @Override
             public void onDateSelected(Calendar date, int position) {
                 String selectedDateStr = DateFormat.format("EEE, MMM d, yyyy", date).toString();
-                Toast.makeText(SalonAppointmentActivity.this, selectedDateStr + " selected!", Toast.LENGTH_SHORT).show();
-                Log.i("onDateSelected", selectedDateStr + " - Position = " + position);
+//                Toast.makeText(SalonAppointmentActivity.this, selectedDateStr + " selected!", Toast.LENGTH_SHORT).show();
+//                Log.i("onDateSelected", selectedDateStr + " - Position = " + position);
                 TextView titleDate = findViewById(R.id.activity_appoinment_title_date);
                 int day = date.get(Calendar.DAY_OF_WEEK);
                 String textDay = "Chủ nhật";
@@ -120,7 +126,7 @@ public class SalonAppointmentActivity extends AppCompatActivity {
                         textDay = "Thứ 7";
                         break;
                 }
-                int month = date.get(Calendar.MONTH);
+                int month = date.get(Calendar.MONTH) + 1;
                 String textMonth = Integer.toString(month);
                 int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                 String textDayOfMonth = Integer.toString(dayOfMonth);

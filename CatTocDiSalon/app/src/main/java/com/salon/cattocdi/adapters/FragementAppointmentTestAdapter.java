@@ -65,16 +65,16 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //        });
 //        viewHolder.img.setImageResource(MyContants.SALON_IMAGE_IDS[i]);
 
-        if (i >= 2){
+        if (i >= 2) {
             viewHolder.tvDate.setText("25/10/2018");
         }
         if (i == 0) {
             viewHolder.appointmentDetail.expand();
             activeAppointment(viewHolder);
         }
-        if(i == 4){
+        if (i == 4) {
             viewHolder.tvDate.setText("10/10/2018");
-            viewHolder.tvAppoinmentType.setText("Lịch đã qua");
+            viewHolder.tvAppoinmentType.setText("Cuộc hẹn đã qua");
         }
 
 
@@ -111,19 +111,76 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 
                 final Dialog dialog = new Dialog(context); // Context, this, etc.
                 if (i == 2 || i == 3) {
+                    TextView btnOk;
                     dialog.setContentView(R.layout.dialog_appointment_late);
                     dialog.setTitle(R.string.dialog_title);
+                    btnOk = dialog.findViewById(R.id.dialog_ok);
+                    btnOk.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
                     dialog.show();
-                }if (i == 4){
+
+//                    AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+//                    alertDialog.setTitle("Không thể hủy");
+//                    alertDialog.setMessage(context.getResources().getString(R.string.dialog_text_late));
+//                    alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            dialog.dismiss();
+//                        }
+//                    });
+//                    dialog.show();
+                }
+                if (i == 4) {
                     TextView tvText;
                     dialog.setContentView(R.layout.dialog_appointment);
                     tvText = dialog.findViewById(R.id.dialog_info);
                     tvText.setText(R.string.dialog_text_expired);
+
+                    Button btnCancel = dialog.findViewById(R.id.dialog_cancel);
+                    Button btnOk = dialog.findViewById(R.id.dialog_ok);
+
+                    btnCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    btnOk.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+
                     dialog.show();
+
                 }
-                if(i == 0 || i == 1) {
+                if (i == 0 || i == 1) {
                     dialog.setContentView(R.layout.dialog_appointment);
                     dialog.setTitle(R.string.dialog_title);
+
+                    Button btnCancel = dialog.findViewById(R.id.dialog_cancel);
+                    Button btnOk = dialog.findViewById(R.id.dialog_ok);
+
+                    btnCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    btnOk.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+
                     dialog.show();
                 }
 
