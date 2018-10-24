@@ -12,9 +12,11 @@
         android:gravity="center_vertical"
         android:layout_weight="1"
         android:text="Cắt tóc"/>
+
     <ImageView
         android:id="@+id/activity_salon_appointmet_delete_iv"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/ic_delete"/>
+
 </LinearLayout>
