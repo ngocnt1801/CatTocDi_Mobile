@@ -74,7 +74,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         }
         if (i == 4) {
             viewHolder.tvDate.setText("10/10/2018");
-            viewHolder.tvAppoinmentType.setText("Cuộc hẹn đã qua");
+            viewHolder.tvAppoinmentType.setText("Lịch đã qua");
             viewHolder.appointmentRl.setBackgroundColor(Color.parseColor("#eeeeee"));
         }
 

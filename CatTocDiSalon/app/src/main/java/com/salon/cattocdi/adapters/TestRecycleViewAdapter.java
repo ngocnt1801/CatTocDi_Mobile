@@ -72,32 +72,32 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             myCardViewHolder.salonTitle.setText("Cửa hàng " + (i + 1));
             //myCardViewHolder.salonReviewsAmount.setText("(" + (i * 10) + ")");
             if (i == 0){
-                myCardViewHolder.salonAddress.setText(i + i + 1 + " Nguyễn Văn Quá");
+                myCardViewHolder.salonAddress.setText(i + i + 1 + " Trường Chinh,Q.12");
             }if(i == 1){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Phan Văn Trị");
+                myCardViewHolder.salonAddress.setText(i + i + i + " Phan Văn Trị,Q.12");
             }if(i == 2){
                 myCardViewHolder.salonTitle.setText("Beautiful Hair");
             }
             if (i == 3){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Phạm Văn Đồng");
+                myCardViewHolder.salonAddress.setText(i + i + i + " Cây Trâm,Q.12");
             }
             if (i == 4){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Sư Vạn Hạnh");
+                myCardViewHolder.salonAddress.setText(i + i + i + " Sư Vạn Hạnh,Q.10");
             }
             if (i == 5){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Quang Trung");
+                myCardViewHolder.salonAddress.setText(i + i + i + " Quang Trung,Q.12");
             }
             if (i == 6){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Trường Chinh");
+                myCardViewHolder.salonAddress.setText(i + i + i + " Trường Chinh,Q.12");
             }
             if (i == 7){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Lê Quí Đôn");
+                myCardViewHolder.salonAddress.setText(i + i + i + " Lê Quí Đôn,Q.12");
             }
             if (i == 8){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Nguyễn Văn Quá");
+                myCardViewHolder.salonAddress.setText(i + i + i + " Nguyễn Kiệm,Q.12");
             }
             if (i == 9){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Quang Trung");
+                myCardViewHolder.salonAddress.setText(i + i + i + " Quang Trung,Q.12");
             }
 
             myCardViewHolder.tvDiscount.setText((((i + 1) * 5) + 15) + " % OFF");
