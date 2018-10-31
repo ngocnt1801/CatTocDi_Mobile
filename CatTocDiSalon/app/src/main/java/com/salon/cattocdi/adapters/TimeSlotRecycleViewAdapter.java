@@ -20,6 +20,7 @@ public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRec
     private Context context;
     private int count;
     private int type;
+    private boolean isToday = false;
 
     public static final int MORNING = 1;
     public static final int AFTERNOON = 2;
@@ -29,6 +30,13 @@ public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRec
         this.context = context;
         this.count = count;
         this.type = type;
+    }
+
+    public TimeSlotRecycleViewAdapter(Context context, int count, int type, boolean isToday) {
+        this.context = context;
+        this.count = count;
+        this.type = type;
+        this.isToday = isToday;
     }
 
     @NonNull
@@ -46,11 +54,16 @@ public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRec
             String textMinute = i%2==0?"00" : "30";
             timeSlotViewHolder.item.setText(hour + ":" + textMinute);
         }else if (type == AFTERNOON){
-            int hour = i + 12;
+            int hour = 16;
+            if(isToday){
+                hour = i + 16;
+            }else{
+                hour = i + 12;
+            }
             int minute = 30 * (i%2);
             String textMinute = i%2==0?"00" : "30";
             timeSlotViewHolder.item.setText(hour + ":" + textMinute);
-        }else {
+        }else if (type == EVENING){
             int hour = i + 18;
             int minute = 30 * (i%2);
             String textMinute = i%2==0?"00" : "30";
@@ -68,6 +81,7 @@ public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRec
 
     @Override
     public int getItemCount() {
+        if (type == MORNING && isToday)  return 0;
         return count > 0 ? count : 1;
     }
 
