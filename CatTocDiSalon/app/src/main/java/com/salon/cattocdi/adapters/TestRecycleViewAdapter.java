@@ -73,16 +73,21 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             //myCardViewHolder.salonReviewsAmount.setText("(" + (i * 10) + ")");
             if (i == 0){
                 myCardViewHolder.salonAddress.setText(i + i + 1 + " Trường Chinh,Q.12");
+                //myCardViewHolder.tvDistance.setText("0.2km");
             }if(i == 1){
                 myCardViewHolder.salonAddress.setText(i + i + i + " Phan Văn Trị,Q.12");
+                //myCardViewHolder.tvDistance.setText("0.4km");
             }if(i == 2){
                 myCardViewHolder.salonTitle.setText("Beautiful Hair");
+                //myCardViewHolder.tvDistance.setText("0.5km");
             }
             if (i == 3){
                 myCardViewHolder.salonAddress.setText(i + i + i + " Cây Trâm,Q.12");
+                //myCardViewHolder.tvDistance.setText("0.7km");
             }
             if (i == 4){
                 myCardViewHolder.salonAddress.setText(i + i + i + " Sư Vạn Hạnh,Q.10");
+               // myCardViewHolder.tvDistance.setText("0.8km");
             }
             if (i == 5){
                 myCardViewHolder.salonAddress.setText(i + i + i + " Quang Trung,Q.12");
@@ -95,9 +100,11 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             }
             if (i == 8){
                 myCardViewHolder.salonAddress.setText(i + i + i + " Nguyễn Kiệm,Q.12");
+               // myCardViewHolder.tvDistance.setText("1.2km");
             }
             if (i == 9){
                 myCardViewHolder.salonAddress.setText(i + i + i + " Quang Trung,Q.12");
+                //myCardViewHolder.tvDistance.setText("1.4km");
             }
 
             myCardViewHolder.tvDiscount.setText((((i + 1) * 5) + 15) + " % OFF");
@@ -170,6 +177,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
         public CardView item;
         public ImageView icFavorite;
         public TextView tvDiscount;
+        public TextView tvDistance;
         //public Button btnBook;
 
 
@@ -181,6 +189,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             salonReviewsAmount = itemView.findViewById(R.id.fg_home_rv_item_amount_review_tv);
             salonRatingBar = itemView.findViewById(R.id.fg_home_rv_item_rb);
             salonImage = itemView.findViewById(R.id.fg_home_rv_item_img);
+            tvDistance = itemView.findViewById(R.id.fg_home_rv_item_time_tv);
             icFavorite = itemView.findViewById(R.id.fg_home_rv_item_favorite_ic);
             tvDiscount = itemView.findViewById(R.id.rv_discount);
             //btnBook = itemView.findViewById(R.id.btn_book_service);
