@@ -112,21 +112,21 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
         if(type == RV_ITEM_NORMAL){
             if (i == 0){
 
-                myCardViewHolder.tvDistance.setText("0.2km");
+                myCardViewHolder.tvDistance.setText("200m");
             }if(i == 1){
 
-                myCardViewHolder.tvDistance.setText("0.4km");
+                myCardViewHolder.tvDistance.setText("400m");
             }if(i == 2){
 
-                myCardViewHolder.tvDistance.setText("0.5km");
+                myCardViewHolder.tvDistance.setText("500m");
             }
             if (i == 3){
 
-                myCardViewHolder.tvDistance.setText("0.7km");
+                myCardViewHolder.tvDistance.setText("700m");
             }
             if (i == 4){
 
-                 myCardViewHolder.tvDistance.setText("0.8km");
+                 myCardViewHolder.tvDistance.setText("800m");
             }
             if (i == 5){
 

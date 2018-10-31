@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
@@ -114,7 +115,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
             if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
                 mFusuedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallBack, Looper.myLooper());
-                mMap.setMyLocationEnabled(true);
+                mMap.setMyLocationEnabled(false);
                 LocationManager mLocationManager = (LocationManager)getActivity().getSystemService(LOCATION_SERVICE);
                 List<String> providers = mLocationManager.getProviders(true);
                 Location currentLocation = null;
@@ -136,7 +137,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
                         .build();
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
                 mMap.animateCamera(cameraUpdate);
-//                myLocationMarker = createMarker(currentPosition);
+                Marker myLocationMarker = createMarker(currentPosition);
                 makeMarker();
 
             } else {
@@ -144,6 +145,20 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
             }
         }
     }
+
+    private Marker createMarker(LatLng location){
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_my_location_arrow);
+        Canvas canvas = new Canvas();
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        canvas.setBitmap(bitmap);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        drawable.draw(canvas);
+
+        MarkerOptions markerOptions = new MarkerOptions().position(location)
+                .icon(BitmapDescriptorFactory.fromBitmap(bitmap));
+        return mMap.addMarker(markerOptions);
+    }
+
     LocationCallback mLocationCallBack = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
