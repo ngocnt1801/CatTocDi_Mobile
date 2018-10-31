@@ -39,8 +39,8 @@
     <string name="vn_service">Chọn dịch vụ</string>
     <string name="vn_delete_appoinment">Đồng ý</string>
     <string name="vn_cancel">Không</string>
-    <string name="dialog_text">Bạn có muốn hủy cuộc hẹn này không?</string>
-    <string name="dialog_text_late">Bạn chỉ được hủy cuộc hẹn trước 1 ngày</string>
-    <string name="dialog_text_expired">Bạn có muốn xóa cuộc hẹn đã qua này không?</string>
+    <string name="dialog_text">Bạn có muốn hủy lịch hẹn này không?</string>
+    <string name="dialog_text_late">Bạn chỉ được hủy lịch hẹn trước 1 ngày</string>
+    <string name="dialog_text_expired">Bạn có muốn xóa lịch đã qua này không?</string>
     <string name="dialog_title">Hủy lịch</string>
 </resources>

@@ -32,7 +32,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            android:text="Không"/>
+            android:text="Có"/>
 
         <Button
             android:id="@+id/dialog_ok"
@@ -44,6 +44,6 @@
             android:clickable="true"
             android:background="@color/textLogin"
             android:textColor="@color/textForDark"
-            android:text="Có"/>
+            android:text="Không"/>
     </LinearLayout>
 </RelativeLayout>
