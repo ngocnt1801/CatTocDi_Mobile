@@ -79,46 +79,46 @@
                     android:layout_below="@id/fg_home_sale_tv" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="8dp">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:paddingBottom="8dp">-->
 
 
-                <TextView
-                    android:id="@+id/fg_home_new_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:drawablePadding="8dp"
-                    android:drawableRight="@drawable/ic_new"
-                    android:gravity="center_vertical"
-                    android:layout_marginHorizontal="12dp"
-                    android:text="Mới"
-                    android:textColor="@color/textForLight"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                <!--<TextView-->
+                    <!--android:id="@+id/fg_home_new_tv"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="48dp"-->
+                    <!--android:layout_marginBottom="8dp"-->
+                    <!--android:layout_marginLeft="8dp"-->
+                    <!--android:drawablePadding="8dp"-->
+                    <!--android:drawableRight="@drawable/ic_new"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:layout_marginHorizontal="12dp"-->
+                    <!--android:text="Mới"-->
+                    <!--android:textColor="@color/textForLight"-->
+                    <!--android:textSize="16dp"-->
+                    <!--android:textStyle="bold" />-->
 
-                <TextView
-                    android:id="@+id/fg_home_new_see_all_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_alignBottom="@id/fg_home_new_tv"
-                    android:layout_alignParentRight="true"
-                    android:drawableRight="@drawable/ic_arrow_right_blue"
-                    android:gravity="center_vertical"
-                    android:layout_marginHorizontal="12dp"
-                    android:text="Xem tất cả"
-                    android:textColor="@color/textLink" />
+                <!--<TextView-->
+                    <!--android:id="@+id/fg_home_new_see_all_tv"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="48dp"-->
+                    <!--android:layout_alignBottom="@id/fg_home_new_tv"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:drawableRight="@drawable/ic_arrow_right_blue"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:layout_marginHorizontal="12dp"-->
+                    <!--android:text="Xem tất cả"-->
+                    <!--android:textColor="@color/textLink" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/fg_home_rv_new"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:layout_below="@id/fg_home_new_tv" />
-            </RelativeLayout>
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/fg_home_rv_new"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="6dp"-->
+                    <!--android:layout_below="@id/fg_home_new_tv" />-->
+            <!--</RelativeLayout>-->
 
 
             <RelativeLayout

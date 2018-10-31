@@ -192,6 +192,8 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
         rb.setRating(salon.getRatingNumber());
 
         if (salon.isFull()) {
+            tvDiscount.setBackgroundResource(R.drawable.ic_discount_map_disable);
+
             RelativeLayout rl = layout.findViewById(R.id.marker_info_window);
             rl.setBackgroundResource(R.drawable.ic_marker_background_disable);
 

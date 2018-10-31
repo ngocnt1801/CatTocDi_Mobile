@@ -216,7 +216,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //        tv.setText("Beat It!!");
 
         TextView tvDiscount = layout.findViewById(R.id.salon_image);
-        tvDiscount.setTextColor(salon.getDiscount());
+        tvDiscount.setText(salon.getDiscount() + "%");
 
         TextView tvName = layout.findViewById(R.id.salon_name_map);
         tvName.setText(salon.getName());
@@ -225,6 +225,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         rb.setRating(salon.getRatingNumber());
 
         if (salon.isFull()) {
+            tvDiscount.setBackgroundResource(R.drawable.ic_discount_map_disable);
+
             RelativeLayout rl = layout.findViewById(R.id.marker_info_window);
             rl.setBackgroundResource(R.drawable.ic_marker_background_disable);
 
