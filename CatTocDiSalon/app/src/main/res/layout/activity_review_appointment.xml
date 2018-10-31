@@ -228,7 +228,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="Đặt lịch hẹn"
+        android:text="Đặt lịch"
         android:textColor="@color/textForDark"
         android:textStyle="bold"
         android:textSize="@dimen/ts_button_login_page"

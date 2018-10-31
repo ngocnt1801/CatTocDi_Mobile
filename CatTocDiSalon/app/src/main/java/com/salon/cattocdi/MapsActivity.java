@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -71,6 +72,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     FusedLocationProviderClient mFusuedLocationClient;
     Geocoder geocoder;
     List<LatLng> addressList;
+    LatLng currentPosition;
     Marker myLocationMarker;
 
     @Override
@@ -88,8 +90,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void initData() {
-        Double[] lattitude = {10.858228, 10.855226, 10.850321, 10.851248, 10.850826};
-        Double[] longtitude = {106.629373, 106.624505, 106.623503, 106.628643, 106.631089};
+        Double[] lattitude = {10.858228, 10.855226, 10.850321, 10.849861, 10.850826};
+        Double[] longtitude = {106.629373, 106.624505, 106.623503, 106.627374, 106.631089};
         for (int i = 0; i < lattitude.length; i++) {
             addressList.add(new LatLng(lattitude[i], longtitude[i]));
         }
@@ -125,14 +127,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 }
 
-                LatLng currentPosition = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                currentPosition = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(currentPosition)
                         .zoom(17f)
                         .build();
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
                 mMap.animateCamera(cameraUpdate);
-//                myLocationMarker = createMarker(currentPosition);
+
             } else {
                 checkLocationPermission();
             }
@@ -269,5 +271,57 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+    private double bearingBetweenLocations(LatLng latLng1,LatLng latLng2) {
 
+        double PI = 3.14159;
+        double lat1 = latLng1.latitude * PI / 180;
+        double long1 = latLng1.longitude * PI / 180;
+        double lat2 = latLng2.latitude * PI / 180;
+        double long2 = latLng2.longitude * PI / 180;
+
+        double dLon = (long2 - long1);
+
+        double y = Math.sin(dLon) * Math.cos(lat2);
+        double x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1)
+                * Math.cos(lat2) * Math.cos(dLon);
+
+        double brng = Math.atan2(y, x);
+
+        brng = Math.toDegrees(brng);
+        brng = (brng + 360) % 360;
+
+        return brng;
+    }
+
+    private boolean isMarkerRotating = false;
+    private void rotateMarker(final Marker marker, final float toRotation) {
+        if(!isMarkerRotating) {
+            final Handler handler = new Handler();
+            final long start = SystemClock.uptimeMillis();
+            final float startRotation = marker.getRotation();
+            final long duration = 1000;
+
+            final Interpolator interpolator = new LinearInterpolator();
+
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    isMarkerRotating = true;
+
+                    long elapsed = SystemClock.uptimeMillis() - start;
+                    float t = interpolator.getInterpolation((float) elapsed / duration);
+
+                    float rot = t * toRotation + (1 - t) * startRotation;
+
+                    marker.setRotation(-rot > 180 ? rot / 2 : rot);
+                    if (t < 1.0) {
+                        // Post again 16ms later.
+                        handler.postDelayed(this, 16);
+                    } else {
+                        isMarkerRotating = false;
+                    }
+                }
+            });
+        }
+    }
 }

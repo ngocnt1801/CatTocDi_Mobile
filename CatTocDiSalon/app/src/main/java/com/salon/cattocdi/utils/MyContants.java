@@ -37,8 +37,9 @@ public class MyContants {
            new Salon().setName("Hair Style").setRatingNumber(4f).setDiscount(20).setFull(false),
            new Salon().setName("Nhung").setRatingNumber(4.8f).setDiscount(50).setFull(false),
            new Salon().setName("Phước An").setRatingNumber(4.6f).setDiscount(40).setFull(true),
-           new Salon().setName("Style").setRatingNumber(4.5f).setDiscount(30).setFull(false),
-           new Salon().setName("Bồng bềnh").setRatingNumber(4.7f).setDiscount(40).setFull(true)
+           new Salon().setName("Thảo Tây").setRatingNumber(4f).setDiscount(30).setFull(false),
+           new Salon().setName("Quốc An").setRatingNumber(4.2f).setDiscount(50).setFull(false),
+           new Salon().setName("Tây Hòa").setRatingNumber(4.7f).setDiscount(60).setFull(true)
    };
    
 }

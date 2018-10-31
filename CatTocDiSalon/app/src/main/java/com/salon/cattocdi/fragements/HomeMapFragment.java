@@ -92,8 +92,8 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
     }
 
     private void initData() {
-        Double[] lattitude = {10.858228, 10.855226, 10.850321, 10.851248, 10.850826};
-        Double[] longtitude = {106.629373, 106.624505, 106.623503, 106.628643, 106.631089};
+        Double[] lattitude = {10.858228, 10.855226, 10.850321, 10.849307, 10.850826, 10.855239, 10.851772};
+        Double[] longtitude = {106.629373, 106.624505, 106.623503, 106.626485, 106.631089, 106.633389, 106.634312};
         for (int i = 0; i < lattitude.length; i++) {
             addressList.add(new LatLng(lattitude[i], longtitude[i]));
         }

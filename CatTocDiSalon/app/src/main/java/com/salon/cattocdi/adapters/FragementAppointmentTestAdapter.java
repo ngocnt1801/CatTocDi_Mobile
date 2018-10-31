@@ -64,20 +64,19 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //            }
 //        });
 //        viewHolder.img.setImageResource(MyContants.SALON_IMAGE_IDS[i]);
-
-        if (i >= 2) {
-            viewHolder.tvDate.setText("25/10/2018");
-        }
-        if (i == 0) {
+        if (i == 0){
+            viewHolder.tvDate.setText("07/11/2018");
             viewHolder.appointmentDetail.expand();
             activeAppointment(viewHolder);
         }
-        if (i == 4) {
+        if (i == 1) {
+            viewHolder.tvDate.setText("1/11/2018");
+        }
+        if (i == 2) {
             viewHolder.tvDate.setText("10/10/2018");
             viewHolder.tvAppoinmentType.setText("Lịch đã qua");
             viewHolder.appointmentRl.setBackgroundColor(Color.parseColor("#eeeeee"));
         }
-
 
         viewHolder.appointmentRl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +110,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
             public void onClick(View v) {
 
                 final Dialog dialog = new Dialog(context); // Context, this, etc.
-                if (i == 2 || i == 3) {
+                if (i == 1) {
                     TextView btnOk;
                     dialog.setContentView(R.layout.dialog_appointment_late);
                     dialog.setTitle(R.string.dialog_title);
@@ -135,7 +134,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //                    });
 //                    dialog.show();
                 }
-                if (i == 4) {
+                if (i == 2) {
                     TextView tvText;
                     dialog.setContentView(R.layout.dialog_appointment);
                     tvText = dialog.findViewById(R.id.dialog_info);
@@ -161,7 +160,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                     dialog.show();
 
                 }
-                if (i == 0 || i == 1) {
+                if (i == 0) {
                     dialog.setContentView(R.layout.dialog_appointment);
                     dialog.setTitle(R.string.dialog_title);
 
@@ -193,7 +192,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 3;
     }
 
     public class AppointmentCardViewHolder extends RecyclerView.ViewHolder {
