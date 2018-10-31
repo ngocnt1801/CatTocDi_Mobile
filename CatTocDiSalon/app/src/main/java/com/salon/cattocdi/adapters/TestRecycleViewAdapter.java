@@ -109,6 +109,37 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
 
             myCardViewHolder.tvDiscount.setText((((i + 1) * 5) + 15) + " % OFF");
         }
+        if(type == RV_ITEM_NORMAL){
+            if (i == 0){
+
+                myCardViewHolder.tvDistance.setText("0.2km");
+            }if(i == 1){
+
+                myCardViewHolder.tvDistance.setText("0.4km");
+            }if(i == 2){
+
+                myCardViewHolder.tvDistance.setText("0.5km");
+            }
+            if (i == 3){
+
+                myCardViewHolder.tvDistance.setText("0.7km");
+            }
+            if (i == 4){
+
+                 myCardViewHolder.tvDistance.setText("0.8km");
+            }
+            if (i == 5){
+
+            }
+            if (i == 8){
+
+                 myCardViewHolder.tvDistance.setText("1.2km");
+            }
+            if (i == 9){
+
+                myCardViewHolder.tvDistance.setText("1.4km");
+            }
+        }
 
         myCardViewHolder.salonImage.setBackgroundResource(MyContants.SALON_IMAGE_IDS[i]);
 
