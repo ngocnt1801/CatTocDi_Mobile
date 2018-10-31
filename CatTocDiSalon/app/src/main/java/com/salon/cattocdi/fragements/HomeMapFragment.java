@@ -1,33 +1,27 @@
-package com.salon.cattocdi;
+package com.salon.cattocdi.fragements;
+
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.location.Address;
-import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.SystemClock;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Looper;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -42,11 +36,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.LocationSource;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -54,7 +45,9 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.salon.cattocdi.adapters.CustomInfoWindowAdapter;
+import com.salon.cattocdi.MapsActivity;
+import com.salon.cattocdi.R;
+import com.salon.cattocdi.SalonDetailActivity;
 import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.utils.MyContants;
 
@@ -62,7 +55,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener{
+import static android.content.Context.LOCATION_SERVICE;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class HomeMapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+
     GoogleMap mMap;
     SupportMapFragment mapFragment;
     LocationRequest mLocationRequest;
@@ -71,20 +70,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     FusedLocationProviderClient mFusuedLocationClient;
     Geocoder geocoder;
     List<LatLng> addressList;
-    Marker myLocationMarker;
+    LayoutInflater mInflater;
+    public HomeMapFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_home_map, container, false);
 
-        mFusuedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.salons_map);
+        mFusuedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.salons_map);
         mapFragment.getMapAsync(this);
-        geocoder = new Geocoder(this, Locale.getDefault());
+        geocoder = new Geocoder(getActivity(), Locale.getDefault());
         addressList = new ArrayList<>();
-
         initData();
+        return view;
     }
 
     private void initData() {
@@ -101,17 +105,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
         mMap.setOnMarkerClickListener(this);
 //        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_styled));
+        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getActivity(), R.raw.map_styled));
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1200);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
                 mFusuedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallBack, Looper.myLooper());
                 mMap.setMyLocationEnabled(true);
-                LocationManager mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
+                LocationManager mLocationManager = (LocationManager)getActivity().getSystemService(LOCATION_SERVICE);
                 List<String> providers = mLocationManager.getProviders(true);
                 Location currentLocation = null;
                 for (String provider : providers) {
@@ -133,24 +137,27 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
                 mMap.animateCamera(cameraUpdate);
 //                myLocationMarker = createMarker(currentPosition);
+                makeMarker();
+
             } else {
                 checkLocationPermission();
             }
         }
     }
+    LocationCallback mLocationCallBack = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
 
-    private Marker createMarker(LatLng location){
-        Drawable drawable = getResources().getDrawable(R.drawable.ic_my_location_arrow);
-        Canvas canvas = new Canvas();
-        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        canvas.setBitmap(bitmap);
-        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        drawable.draw(canvas);
+            Location location = locationResult.getLastLocation();
+            if (location != null) {
+                mLastLocation = location;
+                if (mCurrLocationmMarker != null) {
+                    mCurrLocationmMarker.remove();
+                }
+            }
 
-        MarkerOptions markerOptions = new MarkerOptions().position(location)
-                                                        .icon(BitmapDescriptorFactory.fromBitmap(bitmap));
-        return mMap.addMarker(markerOptions);
-    }
+        }
+    };
 
     private void makeMarker() {
         Bitmap bm;
@@ -167,56 +174,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    LocationCallback mLocationCallBack = new LocationCallback() {
-        @Override
-        public void onLocationResult(LocationResult locationResult) {
-
-            Location location = locationResult.getLastLocation();
-            if (location != null) {
-                mLastLocation = location;
-                if (mCurrLocationmMarker != null) {
-                    mCurrLocationmMarker.remove();
-                }
-                makeMarker();
-            }
-
-        }
-    };
-
-    private void checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-                new AlertDialog.Builder(this)
-                        .setTitle("Location Permission Nedded")
-                        .setMessage("This app needs the Location permissio, Please accept")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ActivityCompat.requestPermissions(MapsActivity.this,
-                                        new String[]{
-                                                Manifest.permission.ACCESS_FINE_LOCATION
-                                        }, 88);
-                            }
-                        }).create().show();
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{
-                        Manifest.permission.ACCESS_FINE_LOCATION
-                }, 88);
-            }
-        }
-    }
-
     public Bitmap createBitmapFromLayoutWithText(Salon salon) {
-        LayoutInflater mInflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater mInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        LinearLayout view = new LinearLayout(this);
+        LinearLayout view = new LinearLayout(getActivity());
         View layout = mInflater.inflate(R.layout.info_window_marker, view, true);
 //        TextView tv = (TextView) findViewById(R.id.my_text);
 //        tv.setText("Beat It!!");
 
         TextView tvDiscount = layout.findViewById(R.id.salon_image);
-        tvDiscount.setTextColor(salon.getDiscount());
+        tvDiscount.setText(salon.getDiscount() + "%");
 
         TextView tvName = layout.findViewById(R.id.salon_name_map);
         tvName.setText(salon.getName());
@@ -260,12 +227,35 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return bitmap;
     }
 
+    private void checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Location Permission Nedded")
+                        .setMessage("This app needs the Location permissio, Please accept")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ActivityCompat.requestPermissions(getActivity(),
+                                        new String[]{
+                                                Manifest.permission.ACCESS_FINE_LOCATION
+                                        }, 88);
+                            }
+                        }).create().show();
+            } else {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                }, 88);
+            }
+        }
+    }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
         mMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+        Intent intent = new Intent(getActivity(), SalonDetailActivity.class);
+        startActivity(intent);
         return true;
     }
-
-
 }

@@ -1,6 +1,7 @@
 package com.salon.cattocdi.utils;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.models.Salon;
 
 public class MyContants {
    public static final String PHONE_TEST = "0123456789";
@@ -29,6 +30,15 @@ public class MyContants {
            R.drawable.salon_model_5,
            R.drawable.salon_model_6,
            R.drawable.salon_model_7,
+   };
+
+   public static final Salon[] SALONS = {
+           new Salon().setName("Beautiful Hair").setRatingNumber(4.5f).setDiscount(30).setFull(false),
+           new Salon().setName("Hair Style").setRatingNumber(4f).setDiscount(20).setFull(false),
+           new Salon().setName("Nhung").setRatingNumber(4.8f).setDiscount(50).setFull(false),
+           new Salon().setName("Phước An").setRatingNumber(4.6f).setDiscount(40).setFull(true),
+           new Salon().setName("Style").setRatingNumber(4.5f).setDiscount(30).setFull(false),
+           new Salon().setName("Bồng bềnh").setRatingNumber(4.7f).setDiscount(40).setFull(true)
    };
    
 }
