@@ -32,7 +32,7 @@
     <!-- TODO: API Keys -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAkGcUBkhQpd3oBBg_E6KvA83W9Y3EZmlI</string>
     <string name="vn_detail">Chi tiết</string>
-    <string name="vn_book_appointment">Đặt lịch</string>
+    <string name="vn_book_appointment">Đặt ngay</string>
     <string name="vn_map">Bản đồ</string>
 
     <!--TODO: Book Appoinment -->

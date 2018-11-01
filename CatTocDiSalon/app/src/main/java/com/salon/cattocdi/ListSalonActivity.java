@@ -8,9 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.salon.cattocdi.adapters.SalonAdapter;
 import com.salon.cattocdi.utils.MyContants;
-
-import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
 
 public class ListSalonActivity extends AppCompatActivity {
 
@@ -36,10 +35,10 @@ public class ListSalonActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         switch (type){
             case MyContants.RV_ITEM_VOUCHER:
-                rv.setAdapter(new TestRecycleViewAdapter(MyContants.RV_ITEM_VOUCHER, this));
+                rv.setAdapter(new SalonAdapter(MyContants.RV_ITEM_VOUCHER, this));
                 break;
             case MyContants.RV_ITEM_NORMAL:
-                rv.setAdapter(new TestRecycleViewAdapter(MyContants.RV_ITEM_NORMAL, this));
+                rv.setAdapter(new SalonAdapter(MyContants.RV_ITEM_NORMAL, this));
                 break;
         }
 

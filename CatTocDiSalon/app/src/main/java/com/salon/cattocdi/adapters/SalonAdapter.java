@@ -20,29 +20,24 @@ import android.widget.TextView;
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.SalonAppointmentActivity;
 import com.salon.cattocdi.SalonDetailActivity;
-import com.salon.cattocdi.TestTabActivity;
 import com.salon.cattocdi.utils.MyContants;
 
 import static com.salon.cattocdi.utils.MyContants.RV_ITEM_NORMAL;
 import static com.salon.cattocdi.utils.MyContants.RV_ITEM_VOUCHER;
+import static com.salon.cattocdi.utils.MyContants.SALONS;
 
-public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleViewAdapter.MyCardViewHolder> {
+public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHolder> {
 
     private int type;
     private Context context;
-
-
     private boolean isFavorite = false;
-    /*public static final int TYPE_RATING = 1;
-    public static int TYPE_VOUCHER = 2;
-    public static int TYPE_NEW = 3;*/
 
-    public TestRecycleViewAdapter(int type, Context context) {
+    public SalonAdapter(int type, Context context) {
         this.context = context;
         this.type = type;
     }
 
-    public TestRecycleViewAdapter(boolean isFavorite, int type, Context context) {
+    public SalonAdapter(boolean isFavorite, int type, Context context) {
         this.context = context;
         this.type = type;
         this.isFavorite = isFavorite;
@@ -56,86 +51,54 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_rating, viewGroup, false);
         } else if (type == RV_ITEM_VOUCHER) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_voucher, viewGroup, false);
-        } else if (type == MyContants.RV_ITEM_NEW) {
-            itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_new, viewGroup, false);
-        } else {
-            itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_new, viewGroup, false);
+        } else{
+            itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_rating, viewGroup, false);
         }
         return new MyCardViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MyCardViewHolder myCardViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final MyCardViewHolder myCardViewHolder, final int i) {
 
 //        myCardViewHolder.salonRatingBar.setRating(4.6f);
-        if(myCardViewHolder.salonTitle != null && myCardViewHolder.salonAddress != null && myCardViewHolder.tvDiscount != null){
-            myCardViewHolder.salonTitle.setText("Cửa hàng " + (i + 1));
-            //myCardViewHolder.salonReviewsAmount.setText("(" + (i * 10) + ")");
-            if (i == 0){
-                myCardViewHolder.salonAddress.setText(i + i + 1 + " Trường Chinh,Q.12");
-                //myCardViewHolder.tvDistance.setText("0.2km");
-            }if(i == 1){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Phan Văn Trị,Q.12");
-                //myCardViewHolder.tvDistance.setText("0.4km");
-            }if(i == 2){
-                myCardViewHolder.salonTitle.setText("Beautiful Hair");
-                //myCardViewHolder.tvDistance.setText("0.5km");
+        if (type == RV_ITEM_NORMAL) {
+            myCardViewHolder.salonTitle.setText(SALONS[i].getName());
+            myCardViewHolder.salonAddress.setText(SALONS[i].getAddress());
+            myCardViewHolder.tvDiscount.setText(SALONS[i].getDiscount() + "% OFF");
+            myCardViewHolder.salonRatingBar.setRating(SALONS[i].getRatingNumber());
+            if(myCardViewHolder.salonReviewsAmount != null){
+                myCardViewHolder.salonReviewsAmount.setText("("+SALONS[i].getReviewsAmount()+")");
             }
-            if (i == 3){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Cây Trâm,Q.12");
-                //myCardViewHolder.tvDistance.setText("0.7km");
-            }
-            if (i == 4){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Sư Vạn Hạnh,Q.10");
-               // myCardViewHolder.tvDistance.setText("0.8km");
-            }
-            if (i == 5){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Quang Trung,Q.12");
-            }
-            if (i == 6){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Trường Chinh,Q.12");
-            }
-            if (i == 7){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Lê Quí Đôn,Q.12");
-            }
-            if (i == 8){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Nguyễn Kiệm,Q.12");
-               // myCardViewHolder.tvDistance.setText("1.2km");
-            }
-            if (i == 9){
-                myCardViewHolder.salonAddress.setText(i + i + i + " Quang Trung,Q.12");
-                //myCardViewHolder.tvDistance.setText("1.4km");
-            }
-
-            myCardViewHolder.tvDiscount.setText((((i + 1) * 5) + 15) + " % OFF");
         }
-        if(type == RV_ITEM_NORMAL){
-            if (i == 0){
+        if (type == RV_ITEM_NORMAL) {
+            if (i == 0) {
 
                 myCardViewHolder.tvDistance.setText("200m");
-            }if(i == 1){
+            }
+            if (i == 1) {
 
                 myCardViewHolder.tvDistance.setText("400m");
-            }if(i == 2){
+            }
+            if (i == 2) {
 
                 myCardViewHolder.tvDistance.setText("500m");
             }
-            if (i == 3){
+            if (i == 3) {
 
                 myCardViewHolder.tvDistance.setText("700m");
             }
-            if (i == 4){
+            if (i == 4) {
 
-                 myCardViewHolder.tvDistance.setText("800m");
+                myCardViewHolder.tvDistance.setText("800m");
             }
-            if (i == 5){
+            if (i == 5) {
 
             }
-            if (i == 8){
+            if (i == 8) {
 
-                 myCardViewHolder.tvDistance.setText("1.2km");
+                myCardViewHolder.tvDistance.setText("1.2km");
             }
-            if (i == 9){
+            if (i == 9) {
 
                 myCardViewHolder.tvDistance.setText("1.4km");
             }
@@ -150,6 +113,7 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
                 Intent intent = new Intent(context, SalonDetailActivity.class);
                 Bundle options = ActivityOptionsCompat.makeScaleUpAnimation(
                         myCardViewHolder.item, 0, 0, myCardViewHolder.item.getWidth(), myCardViewHolder.item.getHeight()).toBundle();
+                intent.putExtra("salon_id", i);
                 ActivityCompat.startActivity(context, intent, options);
 
             }
@@ -175,28 +139,28 @@ public class TestRecycleViewAdapter extends RecyclerView.Adapter<TestRecycleView
         });*/
 
 
-        if (isFavorite) {
-            myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
-        }
-        if (myCardViewHolder.icFavorite != null) {
-            myCardViewHolder.icFavorite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if (myCardViewHolder.icFavorite.getDrawable().getConstantState().equals(context.getDrawable(R.drawable.ic_favorite_border).getConstantState())) {
-                        myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
-                    } else {
-                        myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_border);
-                    }
-                }
-            });
-        }
+//        if (isFavorite) {
+//            myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
+//        }
+//        if (myCardViewHolder.icFavorite != null) {
+//            myCardViewHolder.icFavorite.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                    if (myCardViewHolder.icFavorite.getDrawable().getConstantState().equals(context.getDrawable(R.drawable.ic_favorite_border).getConstantState())) {
+//                        myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
+//                    } else {
+//                        myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_border);
+//                    }
+//                }
+//            });
+//        }
 
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return SALONS.length;
     }
 
     public class MyCardViewHolder extends RecyclerView.ViewHolder {

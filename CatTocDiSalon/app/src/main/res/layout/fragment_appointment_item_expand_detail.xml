@@ -25,30 +25,11 @@
         android:textColor="@color/textForLight" />
 
     <TextView
-        android:id="@+id/appointment_item_expand_start_time_tv"
+        android:id="@+id/appointment_item_expand_time_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/appointment_item_expand_date_tv"
-        android:text="3:00PM"
-        android:textColor="@color/textForLight" />
-
-    <TextView
-        android:id="@+id/appointment_item_expand_dot_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/appointment_item_expand_date_tv"
-        android:layout_marginHorizontal="4dp"
-        android:layout_toRightOf="@id/appointment_item_expand_start_time_tv"
-        android:text="-"
-        android:textColor="@color/textForLight" />
-
-    <TextView
-        android:id="@+id/appointment_item_expand_end_time_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/appointment_item_expand_date_tv"
-        android:layout_toRightOf="@id/appointment_item_expand_dot_tv"
-        android:text="4:00PM"
+        android:text="3:00PM - 4:00PM"
         android:textColor="@color/textForLight" />
 
     <Button
@@ -68,81 +49,9 @@
         android:id="@+id/tbl_service_bill"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/appointment_item_expand_start_time_tv"
+        android:layout_below="@id/appointment_item_expand_time_tv"
         android:layout_marginTop="16dp"
         android:stretchColumns="0">
-
-        <TableRow android:layout_marginBottom="4dp">
-
-            <TextView
-                android:text="Cắt tóc"
-                android:textColor="@color/textForLight" />
-
-            <TextView
-                android:layout_marginRight="4dp"
-                android:text="30,000"
-                android:textAlignment="textEnd"
-                android:textColor="@color/textForLight" />
-
-            <TextView
-                android:layout_gravity="right"
-                android:text="vnd"
-                android:textColor="@color/textForLight" />
-        </TableRow>
-
-        <TableRow android:layout_marginBottom="4dp">
-
-            <TextView
-                android:text="Gội đầu"
-                android:textColor="@color/textForLight" />
-
-            <TextView
-                android:layout_marginRight="4dp"
-                android:text="20,000"
-                android:textAlignment="textEnd"
-                android:textColor="@color/textForLight" />
-
-            <TextView
-                android:layout_gravity="right"
-                android:text="vnd"
-                android:textColor="@color/textForLight" />
-        </TableRow>
-
-        <TableRow android:layout_marginBottom="4dp">
-
-            <TextView
-                android:text="Uốn tóc"
-                android:textColor="@color/textForLight" />
-
-            <TextView
-                android:layout_marginRight="4dp"
-                android:text="300,000"
-                android:textAlignment="textEnd"
-                android:textColor="@color/textForLight" />
-
-            <TextView
-                android:layout_gravity="right"
-                android:text="vnd"
-                android:textColor="@color/textForLight" />
-        </TableRow>
-
-        <TableRow android:layout_marginBottom="4dp">
-
-            <TextView
-                android:text="Nhuộm tóc"
-                android:textColor="@color/textForLight" />
-
-            <TextView
-                android:layout_marginRight="4dp"
-                android:text="200,000"
-                android:textAlignment="textEnd"
-                android:textColor="@color/textForLight" />
-
-            <TextView
-                android:layout_gravity="right"
-                android:text="vnd"
-                android:textColor="@color/textForLight" />
-        </TableRow>
 
         <View
             android:layout_height="1dp"
@@ -158,6 +67,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/appointment_item_expand_sub_total_tv"
                 android:layout_marginRight="4dp"
                 android:text="550,000"
                 android:textAlignment="textEnd"
@@ -166,6 +76,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/appointment_item_expand_unit_tv"
                 android:layout_gravity="right"
                 android:text="vnd"
                 android:textColor="@color/textForLight"
@@ -190,6 +101,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/appointment_item_expand_discount_tv"
                 android:layout_gravity="right"
                 android:text="30%"
                 android:textColor="@color/textForLight"
@@ -223,6 +135,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/appointment_item_expand_total_tv"
                 android:layout_marginRight="4dp"
                 android:text="385,000"
                 android:textAlignment="textEnd"

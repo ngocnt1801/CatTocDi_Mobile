@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
 
-import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
+import com.salon.cattocdi.adapters.SalonAdapter;
 import com.salon.cattocdi.utils.MyContants;
 
 public class SearchResultActivity extends AppCompatActivity {
@@ -21,7 +21,7 @@ public class SearchResultActivity extends AppCompatActivity {
         rv = findViewById(R.id.activity_search_result_rv);
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rv.setAdapter(new TestRecycleViewAdapter(MyContants.RV_ITEM_NORMAL, this));
+        rv.setAdapter(new SalonAdapter(MyContants.RV_ITEM_NORMAL, this));
 
 
     }

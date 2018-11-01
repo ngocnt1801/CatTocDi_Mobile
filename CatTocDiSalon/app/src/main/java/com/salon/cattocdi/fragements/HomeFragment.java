@@ -1,34 +1,17 @@
 package com.salon.cattocdi.fragements;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.GridLayout;
-import android.widget.TextView;
 
-import com.salon.cattocdi.ListSalonActivity;
 import com.salon.cattocdi.R;
-import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
-import com.salon.cattocdi.utils.MyContants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,7 +110,7 @@ public class HomeFragment extends Fragment {
 //        //Show RECYCLEVIEW
 //
 //        rv.setItemAnimator(new DefaultItemAnimator());
-//        TestRecycleViewAdapter adapter = new TestRecycleViewAdapter(type, getActivity());
+//        SalonAdapter adapter = new SalonAdapter(type, getActivity());
 //        rv.setAdapter(adapter);
 //    }
 //

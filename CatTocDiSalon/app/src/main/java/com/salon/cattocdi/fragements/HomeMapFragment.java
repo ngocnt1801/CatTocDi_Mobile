@@ -87,8 +87,8 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.salons_map);
         mapFragment.getMapAsync(this);
         geocoder = new Geocoder(getActivity(), Locale.getDefault());
-        addressList = new ArrayList<>();
-        initData();
+//        addressList = new ArrayList<>();
+//        initData();
         return view;
     }
 
@@ -138,6 +138,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
                 mMap.animateCamera(cameraUpdate);
                 Marker myLocationMarker = createMarker(currentPosition);
+                myLocationMarker.setTag("Me");
                 makeMarker();
 
             } else {
@@ -176,16 +177,16 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
 
     private void makeMarker() {
         Bitmap bm;
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        for (int i = 0; i < addressList.size(); i++) {
+//        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (int i = 0; i < MyContants.SALONS.length; i++) {
             MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(addressList.get(i));
-            builder.include(addressList.get(i));
+            markerOptions.position(MyContants.SALONS[i].getLatLng());
+//            builder.include(addressList.get(i));
             bm = createBitmapFromLayoutWithText(MyContants.SALONS[i]);
 //            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bm));
             mCurrLocationmMarker = mMap.addMarker(markerOptions);
-
+            mCurrLocationmMarker.setTag(i);
         }
     }
 
@@ -194,8 +195,6 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
 
         LinearLayout view = new LinearLayout(getActivity());
         View layout = mInflater.inflate(R.layout.info_window_marker, view, true);
-//        TextView tv = (TextView) findViewById(R.id.my_text);
-//        tv.setText("Beat It!!");
 
         TextView tvDiscount = layout.findViewById(R.id.salon_image);
         tvDiscount.setText(salon.getDiscount() + "%");
@@ -271,8 +270,11 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
     @Override
     public boolean onMarkerClick(Marker marker) {
         mMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
-        Intent intent = new Intent(getActivity(), SalonDetailActivity.class);
-        startActivity(intent);
+        if(!marker.getTag().equals("Me")){
+            Intent intent = new Intent(getActivity(), SalonDetailActivity.class);
+            intent.putExtra("salon_id", (int)marker.getTag());
+            startActivity(intent);
+        }
         return true;
     }
 }

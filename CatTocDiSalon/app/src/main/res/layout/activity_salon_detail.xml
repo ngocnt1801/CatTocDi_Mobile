@@ -12,6 +12,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/salon_pic1" />
     <TextView
+        android:id="@+id/salon_detail_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Beautiful Hair"

@@ -32,7 +32,7 @@
             android:layout_alignParentRight="true"
             android:elevation="8dp"
             android:textStyle="bold"
-            android:text="5/11 - 8/11"/>
+            android:text="29/10 - 2/11"/>
 
 
         <ImageView
@@ -107,7 +107,7 @@
                     android:background="@drawable/ic_tag_full"
                     android:textColor="@color/textForDark"
                     android:gravity="center|right"
-                    android:text="20%"
+                    android:text="30%"
                     android:textSize="14dp" />
             </TableRow>
             <View android:layout_width="match_parent"

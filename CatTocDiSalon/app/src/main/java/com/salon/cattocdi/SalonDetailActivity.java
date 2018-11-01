@@ -1,5 +1,6 @@
 package com.salon.cattocdi;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,11 +25,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.salon.cattocdi.adapters.SalonProfileGalleryRecycleViewAdapter;
 import com.salon.cattocdi.adapters.ServiceRecycleViewAdapter;
 import com.salon.cattocdi.adapters.TestTabAdapter;
+import com.salon.cattocdi.utils.MyContants;
 
 public class SalonDetailActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
     private ViewPager viewPager;
 
     @Override
@@ -36,21 +37,20 @@ public class SalonDetailActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_salon_detail);
-        // SET UP TAB LAYOUT
-        viewPager = (ViewPager) findViewById(R.id.detail_pager);
-        TestTabAdapter adapter = new TestTabAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(adapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.detail_tab_layout);
-        tabLayout.setupWithViewPager(viewPager);
-        // END SET UP TAB LAYOUT
 
-//        RecyclerView serviceRecycleView = findViewById(R.id.salon_service_recycle_view);
-//        serviceRecycleView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-//        serviceRecycleView.setAdapter(new ServiceRecycleViewAdapter());
-//
-//        RecyclerView galleryRecycleView = findViewById(R.id.salon_image_recycle_view);
-//        galleryRecycleView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-//        galleryRecycleView.setAdapter(new SalonProfileGalleryRecycleViewAdapter());
-////        10.8459529,106.6322835
+        Intent intent = getIntent();
+        int salonId = intent.getIntExtra("salon_id", -1);
+        if(salonId >= 0){
+            //set name salon
+            TextView tvName = findViewById(R.id.salon_detail_name);
+            tvName.setText(MyContants.SALONS[salonId].getName());
+
+            //setup view pager
+            viewPager = findViewById(R.id.detail_pager);
+            TestTabAdapter adapter = new TestTabAdapter(getSupportFragmentManager(), salonId);
+            viewPager.setAdapter(adapter);
+            TabLayout tabLayout = findViewById(R.id.detail_tab_layout);
+            tabLayout.setupWithViewPager(viewPager);
+        }
     }
 }

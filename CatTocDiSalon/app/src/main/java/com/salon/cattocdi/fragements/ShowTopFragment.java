@@ -6,14 +6,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.salon.cattocdi.R;
-import com.salon.cattocdi.adapters.FragementAppointmentTestAdapter;
-import com.salon.cattocdi.adapters.FragmentShowTopRecycleViewAdapter;
-import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
+import com.salon.cattocdi.adapters.SalonAdapter;
 import com.salon.cattocdi.utils.MyContants;
 
 /**
@@ -47,7 +44,7 @@ public class ShowTopFragment extends Fragment {
         rv.setLayoutManager(mLayoutManager);
         rv.setItemAnimator(new DefaultItemAnimator());
 //        FragmentShowTopRecycleViewAdapter adapter = new FragmentShowTopRecycleViewAdapter();
-        rv.setAdapter(new TestRecycleViewAdapter(MyContants.RV_ITEM_NORMAL, getActivity()));
+        rv.setAdapter(new SalonAdapter(MyContants.RV_ITEM_NORMAL, getActivity()));
     }
 
 }

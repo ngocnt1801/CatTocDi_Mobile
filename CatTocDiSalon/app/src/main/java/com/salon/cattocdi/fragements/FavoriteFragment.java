@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.salon.cattocdi.R;
-import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
+import com.salon.cattocdi.adapters.SalonAdapter;
 import com.salon.cattocdi.utils.MyContants;
 
 /**
@@ -35,7 +35,7 @@ public class FavoriteFragment extends Fragment {
         rv = view.findViewById(R.id.fg_favorite_rv);
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        rv.setAdapter(new TestRecycleViewAdapter(true, MyContants.RV_ITEM_NORMAL, getActivity()));
+        rv.setAdapter(new SalonAdapter(true, MyContants.RV_ITEM_NORMAL, getActivity()));
 
         //Set onclick for button book appoinment
 

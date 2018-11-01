@@ -20,8 +20,8 @@ public class TestTabActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_test_tab);
         viewPager = (ViewPager) findViewById(R.id.pager);
-        TestTabAdapter adapter = new TestTabAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(adapter);
+//        TestTabAdapter adapter = new TestTabAdapter(getSupportFragmentManager());
+//        viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);

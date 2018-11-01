@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 import com.salon.cattocdi.ListSalonActivity;
 import com.salon.cattocdi.R;
-import com.salon.cattocdi.adapters.TestRecycleViewAdapter;
+import com.salon.cattocdi.adapters.SalonAdapter;
 import com.salon.cattocdi.utils.MyContants;
 
 /**
@@ -41,16 +41,14 @@ public class HomeListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragmentX
         View view = inflater.inflate(R.layout.fragment_home_list, container, false);
-//        rvNew = view.findViewById(R.id.fg_home_rv_new);
         rvRating = view.findViewById(R.id.fg_home_rv_rating);
         rvSale = view.findViewById(R.id.fg_home_rv_sale);
 
         etSearch = view.findViewById(R.id.fg_home_search_et);
 
         voucherSeeAllTv = view.findViewById(R.id.fg_home_voucher_see_all_tv);
-//        newSeeAllTv = view.findViewById(R.id.fg_home_new_see_all_tv);
 
         //set layout
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -58,15 +56,10 @@ public class HomeListFragment extends Fragment {
 
         rvRating.setLayoutManager(new GridLayoutManager(getActivity(),1));
 
-//        rvNew.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-
-//        testRecycleViewAdapter(rvBookmark);,
         testRecycleViewAdapter(rvRating, MyContants.RV_ITEM_NORMAL);
         testRecycleViewAdapter(rvSale, MyContants.RV_ITEM_VOUCHER);
-//        testRecycleViewAdapter(rvNew, MyContants.RV_ITEM_NEW);
 
         ViewCompat.setNestedScrollingEnabled(rvRating, false);
-
 
         etSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,26 +85,12 @@ public class HomeListFragment extends Fragment {
 
             }
         });
-
-//        newSeeAllTv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), ListSalonActivity.class);
-//                Bundle option = ActivityOptionsCompat.makeScaleUpAnimation(voucherSeeAllTv,0,0,voucherSeeAllTv.getWidth(), voucherSeeAllTv.getLineHeight()).toBundle();
-//                Bundle bundle = new Bundle();
-//                bundle.putString("title","Cửa hàng mới");
-//                bundle.putInt("type", MyContants.RV_ITEM_NORMAL);
-//                intent.putExtra("activity_content", bundle);
-//                ActivityCompat.startActivity(getActivity(), intent, option);
-//            }
-//        });
         return view;
     }
     private void testRecycleViewAdapter(RecyclerView rv, int type){
         //Show RECYCLEVIEW
-
         rv.setItemAnimator(new DefaultItemAnimator());
-        TestRecycleViewAdapter adapter = new TestRecycleViewAdapter(type, getActivity());
+        SalonAdapter adapter = new SalonAdapter(type, getActivity());
         rv.setAdapter(adapter);
     }
 

@@ -12,20 +12,22 @@ import com.salon.cattocdi.fragements.TestTabFragment;
 
 public class TestTabAdapter extends FragmentPagerAdapter{
     private String title[] = {"DỊCH VỤ", "LIÊN HỆ", "ĐÁNH GIÁ"};
+    private int salonId;
 
-    public TestTabAdapter(FragmentManager fm) {
+    public TestTabAdapter(FragmentManager fm, int salonId) {
         super(fm);
+        this.salonId = salonId;
     }
 
     @Override
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new SalonDetailServiceFragment();
+                return new SalonDetailServiceFragment(salonId);
             case 1:
-                return new SalonDetailContactFragment();
+                return new SalonDetailContactFragment(salonId);
             case 2:
-                return new ReviewsFragment();
+                return new ReviewsFragment(salonId);
         }
         return null;
     }

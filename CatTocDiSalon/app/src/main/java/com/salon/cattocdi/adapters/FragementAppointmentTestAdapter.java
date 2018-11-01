@@ -18,12 +18,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.models.Appointment;
+import com.salon.cattocdi.models.Service;
+import com.salon.cattocdi.models.enums.AppointmentStatus;
+import com.salon.cattocdi.utils.MyContants;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<FragementAppointmentTestAdapter.AppointmentCardViewHolder> {
     Context context;
@@ -49,33 +62,23 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 
     @Override
     public void onBindViewHolder(@NonNull final AppointmentCardViewHolder viewHolder, final int i) {
+        final Appointment appointment = MyContants.APPOINTMENTS[i];
 
+        viewHolder.tvSalonName.setText(appointment.getSalon().getName());
 
-        //        viewHolder.tvName.setText("Salon " + i);
-//        viewHolder.tvAddress.setText("abc " + i + i + i);
-//        viewHolder.tvServices.setText("Cắt, uống, nhuộm");
-//        viewHolder.tvTime.setText("Thứ 2 1/10/2018, 3:00PM");
-//        viewHolder.tvStylist.setText("Tran Van A");
-
-//        viewHolder.btnCancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//        viewHolder.img.setImageResource(MyContants.SALON_IMAGE_IDS[i]);
-        if (i == 0){
-            viewHolder.tvDate.setText("07/11/2018");
-            viewHolder.appointmentDetail.expand();
-            activeAppointment(viewHolder);
-        }
-        if (i == 1) {
-            viewHolder.tvDate.setText("1/11/2018");
-        }
-        if (i == 2) {
-            viewHolder.tvDate.setText("10/10/2018");
+        viewHolder.tvDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(appointment.getStartTime()));
+        viewHolder.tvTime.setText(new SimpleDateFormat("hh:mm a").format(appointment.getStartTime())
+                + " - "
+                + new SimpleDateFormat("hh:mm a").format(appointment.getEndTime()));
+        loadDataToTable(viewHolder, appointment);
+        if (appointment.getStartTime().getTime() <= Calendar.getInstance().getTimeInMillis()) {
             viewHolder.tvAppoinmentType.setText("Lịch đã qua");
             viewHolder.appointmentRl.setBackgroundColor(Color.parseColor("#eeeeee"));
+        }
+
+        if (i == 0) {
+            viewHolder.appointmentDetail.expand();
+            activeAppointment(viewHolder, appointment.getStatus());
         }
 
         viewHolder.appointmentRl.setOnClickListener(new View.OnClickListener() {
@@ -83,34 +86,20 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
             public void onClick(View view) {
                 viewHolder.appointmentDetail.toggle();
                 if (viewHolder.appointmentDetail.isExpanded()) {
-                    activeAppointment(viewHolder);
+                    activeAppointment(viewHolder, appointment.getStatus());
                 } else {
-                    inactiveAppointment(viewHolder);
+                    inactiveAppointment(viewHolder, appointment.getStatus());
                 }
             }
         });
-        viewHolder.directionBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (curLocation != null) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("http://maps.google.com/maps?saddr="
-                                    + Double.toString(curLocation.getLatitude())
-                                    + "," + Double.toString(curLocation.getLongitude()) + "&daddr=10.7483033,106.6090311"));
-                    context.startActivity(intent);
-                } else {
-                    Toast.makeText(context, "Hãy bật vị trí để chúng tôi có thể chỉ đường cho bạn!", Toast.LENGTH_SHORT).show();
-                }
 
-
-            }
-        });
         viewHolder.icDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 final Dialog dialog = new Dialog(context); // Context, this, etc.
-                if (i == 1) {
+                if (appointment.getStartTime().getTime() > Calendar.getInstance().getTimeInMillis()
+                        && appointment.getStartTime().getTime() - Calendar.getInstance().getTimeInMillis() <= 24 * 60 * 60 * 1000) {
                     TextView btnOk;
                     dialog.setContentView(R.layout.dialog_appointment_late);
                     dialog.setTitle(R.string.dialog_title);
@@ -122,19 +111,8 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                         }
                     });
                     dialog.show();
-
-//                    AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-//                    alertDialog.setTitle("Không thể hủy");
-//                    alertDialog.setMessage(context.getResources().getString(R.string.dialog_text_late));
-//                    alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            dialog.dismiss();
-//                        }
-//                    });
-//                    dialog.show();
                 }
-                if (i == 2) {
+                if (appointment.getStartTime().getTime() < Calendar.getInstance().getTimeInMillis()) {
                     TextView tvText;
                     dialog.setContentView(R.layout.dialog_appointment);
                     tvText = dialog.findViewById(R.id.dialog_info);
@@ -160,7 +138,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                     dialog.show();
 
                 }
-                if (i == 0) {
+                if (appointment.getStartTime().getTime() - Calendar.getInstance().getTimeInMillis() > 24 * 60 * 60 * 1000) {
                     dialog.setContentView(R.layout.dialog_appointment);
                     dialog.setTitle(R.string.dialog_title);
 
@@ -190,13 +168,65 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 
     }
 
+    private void loadDataToTable(AppointmentCardViewHolder holder, final Appointment appointment) {
+        TextView tvName = holder.appointmentDetail.findViewById(R.id.appointment_item_expand_name_tv);
+        tvName.setText(appointment.getSalon().getName());
+
+        TextView tvDate = holder.appointmentDetail.findViewById(R.id.appointment_item_expand_date_tv);
+        tvDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(appointment.getStartTime()));
+
+        TextView tvTime = holder.appointmentDetail.findViewById(R.id.appointment_item_expand_time_tv);
+        tvTime.setText(new SimpleDateFormat("hh:mm a").format(appointment.getStartTime()) + " - " + new SimpleDateFormat("hh:mm a").format(appointment.getEndTime()));
+
+        holder.directionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (curLocation != null) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://maps.google.com/maps?saddr="
+                                    + Double.toString(curLocation.getLatitude())
+                                    + "," + Double.toString(curLocation.getLongitude()) + "&daddr=" + appointment.getSalon().getLatitude() + "," + appointment.getSalon().getLongtitude() + ""));
+                    context.startActivity(intent);
+                } else {
+                    Toast.makeText(context, "Hãy bật vị trí để chúng tôi có thể chỉ đường cho bạn!", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
+        TableLayout table = holder.appointmentDetail.findViewById(R.id.tbl_service_bill);
+        float subTotal = 0;
+        for (int i = 0; i < appointment.getServices().size(); i++) {
+            Service s = appointment.getServices().get(i);
+            TableRow row = (TableRow) LayoutInflater.from(context).inflate(R.layout.service_table_row, table, false);
+            TextView tvServiceName = row.findViewById(R.id.table_row_service_name);
+            tvServiceName.setText(s.getName());
+            TextView tvServicePrice = row.findViewById(R.id.table_row_service_price);
+            tvServicePrice.setText(NumberFormat.getNumberInstance(Locale.US).format(s.getPrice()));
+
+            table.addView(row, i);
+            subTotal += s.getPrice();
+        }
+
+        TextView tvSubtotal = holder.appointmentDetail.findViewById(R.id.appointment_item_expand_sub_total_tv);
+        tvSubtotal.setText(NumberFormat.getNumberInstance(Locale.US).format(subTotal));
+
+        TextView tvDiscount = holder.appointmentDetail.findViewById(R.id.appointment_item_expand_discount_tv);
+        tvDiscount.setText(appointment.getDiscount() + "%");
+
+        TextView tvTotal = holder.appointmentDetail.findViewById(R.id.appointment_item_expand_total_tv);
+        float total = subTotal * (1 - (float)appointment.getDiscount()/100);
+        tvTotal.setText(NumberFormat.getNumberInstance(Locale.US).format(total));
+
+    }
+
     @Override
     public int getItemCount() {
-        return 3;
+        return MyContants.APPOINTMENTS.length;
     }
 
     public class AppointmentCardViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvName, tvAddress, tvServices, tvStylist, tvTime;
         public ImageView img, icExpand;
         public Button btnCancel;
         public View item;
@@ -206,17 +236,11 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         public Button directionBtn;
         public ImageView icDelete;
 
-        public TextView tvAppoinmentType, tvDate, tvSalonName, tvStartTime, tvDot, tvEndTime;
+        public TextView tvAppoinmentType, tvDate, tvSalonName, tvTime;
 
         public AppointmentCardViewHolder(@NonNull View itemView) {
             super(itemView);
-//            tvName = itemView.findViewById(R.id.fg_appointment_name_tv);
-//            tvAddress = itemView.findViewById(R.id.fg_appointment_address_tv);
-//            tvServices = itemView.findViewById(R.id.fg_appointment_services_tv);
-//            tvStylist = itemView.findViewById(R.id.fg_appointment_stylist_tv);
-//            tvTime = itemView.findViewById(R.id.fg_appointment_time_tv);
-//            img = itemView.findViewById(R.id.appointment_item_excpand_image_cirle);
-//            btnCancel = itemView.findViewById(R.id.fg_appointment_cancel_btn);
+
             appointmentRl = itemView.findViewById(R.id.fg_appointment_rv_item_rl);
             appointmentDetail = itemView.findViewById(R.id.expandable_layout);
             icExpand = itemView.findViewById(R.id.fg_appointment_expand_ic);
@@ -224,9 +248,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
             tvAppoinmentType = itemView.findViewById(R.id.fg_appointment_upcomming_tv);
             tvDate = itemView.findViewById(R.id.fg_appointment_date_tv);
             tvSalonName = itemView.findViewById(R.id.fg_appointment_salon_name);
-            tvStartTime = itemView.findViewById(R.id.fg_appointment_start_time);
-            tvDot = itemView.findViewById(R.id.fg_appointment_dot_tv);
-            tvEndTime = itemView.findViewById(R.id.fg_appointment_end_time);
+            tvTime = itemView.findViewById(R.id.fg_appointment_time);
             directionBtn = itemView.findViewById(R.id.btnDirection);
             icDelete = itemView.findViewById(R.id.rc_appointment_ic_delete);
             item = itemView;
@@ -235,7 +257,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 
     }
 
-    public void activeAppointment(AppointmentCardViewHolder itemView) {
+    public void activeAppointment(AppointmentCardViewHolder itemView, AppointmentStatus status) {
 //        itemView.appointmentRl.setBackgroundResource(R.color.icLogin);
 //        itemView.tvAppoinmentType.setTextColor(Color.parseColor("#ffffff"));
 //        itemView.tvAppoinmentType.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_calendar_white, 0,0,0);
@@ -245,9 +267,12 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //        itemView.tvDot.setTextColor(Color.parseColor("#ffffff"));
 //        itemView.tvEndTime.setTextColor(Color.parseColor("#ffffff"));
         itemView.icExpand.setImageResource(R.drawable.ic_collapse);
+        if(status == AppointmentStatus.APPROVED){
+            itemView.appointmentDetail.setBackgroundColor(Color.parseColor("#fafafa"));
+        }
     }
 
-    public void inactiveAppointment(AppointmentCardViewHolder itemView) {
+    public void inactiveAppointment(AppointmentCardViewHolder itemView, AppointmentStatus status) {
 //        itemView.appointmentRl.setBackgroundResource(0);
 //        itemView.tvAppoinmentType.setTextColor(Color.parseColor("#6b5b95"));
 //        itemView.tvAppoinmentType.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_calendar_active, 0,0,0);
@@ -257,6 +282,9 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //        itemView.tvDot.setTextColor(Color.parseColor("#000000"));
 //        itemView.tvEndTime.setTextColor(Color.parseColor("#000000"));
         itemView.icExpand.setImageResource(R.drawable.ic_expand);
+        if(status == AppointmentStatus.APPROVED){
+            itemView.appointmentDetail.setBackgroundColor(Color.parseColor("#eeeeee"));
+        }
     }
 
 }
