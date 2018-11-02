@@ -96,6 +96,17 @@
             android:layout_alignParentRight="true"
             />
 
+        <Button
+            android:id="@+id/appointment_item_review_btn"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhận xét"
+            android:layout_alignParentRight="true"
+            android:stateListAnimator="@drawable/click_effect_btn"
+            android:theme="@style/MyButton"
+            android:textColor="@color/textForDark"/>
+
     </RelativeLayout>
 
 

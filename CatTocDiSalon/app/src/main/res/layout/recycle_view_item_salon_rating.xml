@@ -64,7 +64,6 @@
             android:numStars="5"
             android:progressTint="@color/secondLight"
             android:rating="4.5"
-            android:secondaryProgressTint="@color/textLogin"
             android:stepSize="0.5" />
 
         <TextView

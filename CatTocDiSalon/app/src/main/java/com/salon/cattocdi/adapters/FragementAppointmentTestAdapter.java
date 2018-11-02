@@ -12,11 +12,16 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -74,6 +79,8 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         if (appointment.getStartTime().getTime() <= Calendar.getInstance().getTimeInMillis()) {
             viewHolder.tvAppoinmentType.setText("Lịch đã qua");
             viewHolder.appointmentRl.setBackgroundColor(Color.parseColor("#eeeeee"));
+            viewHolder.icDelete.setVisibility(View.GONE);
+            viewHolder.btnReview.setVisibility(View.VISIBLE);
         }
 
         if (i == 0) {
@@ -90,6 +97,50 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                 } else {
                     inactiveAppointment(viewHolder, appointment.getStatus());
                 }
+            }
+        });
+
+        //show dialog and handle dialog
+        viewHolder.btnReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.review_dialog);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                lp.gravity = Gravity.CENTER;
+
+                dialog.getWindow().setAttributes(lp);
+                final RatingBar rb = dialog.findViewById(R.id.review_dialog_rb);
+                rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+                    @Override
+                    public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                       ratingBar.setRating(v);
+                    }
+                });
+
+                //send comment
+                //disappear reviewBtn
+                //visible comment in expand
+                Button btnSend = dialog.findViewById(R.id.review_dialog_btn);
+                btnSend.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        EditText et = dialog.findViewById(R.id.review_dialog_et);
+                        float rating = rb.getRating();
+
+                        viewHolder.tvComment.setText(et.getText().toString());
+                        viewHolder.rb.setRating(rating);
+                        viewHolder.commentLn.setVisibility(View.VISIBLE);
+
+                        viewHolder.btnReview.setVisibility(View.GONE);
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
             }
         });
 
@@ -227,16 +278,18 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
     }
 
     public class AppointmentCardViewHolder extends RecyclerView.ViewHolder {
-        public ImageView img, icExpand;
-        public Button btnCancel;
+        public ImageView icExpand;
+        public Button btnReview;
         public View item;
         public CardView icMap;
         public RelativeLayout appointmentRl;
         public ExpandableLayout appointmentDetail;
         public Button directionBtn;
         public ImageView icDelete;
+        public RatingBar rb;
+        public LinearLayout commentLn;
 
-        public TextView tvAppoinmentType, tvDate, tvSalonName, tvTime;
+        public TextView tvAppoinmentType, tvDate, tvSalonName, tvTime, tvComment;
 
         public AppointmentCardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -251,6 +304,12 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
             tvTime = itemView.findViewById(R.id.fg_appointment_time);
             directionBtn = itemView.findViewById(R.id.btnDirection);
             icDelete = itemView.findViewById(R.id.rc_appointment_ic_delete);
+            btnReview = itemView.findViewById(R.id.appointment_item_review_btn);
+
+            commentLn = itemView.findViewById(R.id.appointment_item_expand_review_ln);
+            rb = itemView.findViewById(R.id.appointment_item_expand_rb);
+            tvComment = itemView.findViewById(R.id.appointment_item_expand_comment_tv);
+
             item = itemView;
 
         }

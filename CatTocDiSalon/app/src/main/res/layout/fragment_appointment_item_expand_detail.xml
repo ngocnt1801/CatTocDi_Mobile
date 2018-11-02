@@ -152,6 +152,43 @@
         </TableRow>
     </TableLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/tbl_service_bill"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        android:id="@+id/appointment_item_expand_review_ln">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đánh giá của bạn"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:textColor="@color/textForLight"
+            />
+
+        <RatingBar
+            android:id="@+id/appointment_item_expand_rb"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressTint="@color/secondLight"
+            android:rating="4.5"
+            android:layout_marginVertical="8dp"
+            android:stepSize="0.5" />
+
+        <TextView
+            android:id="@+id/appointment_item_expand_comment_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comment here!"/>
+    </LinearLayout>
 </RelativeLayout>
 
 

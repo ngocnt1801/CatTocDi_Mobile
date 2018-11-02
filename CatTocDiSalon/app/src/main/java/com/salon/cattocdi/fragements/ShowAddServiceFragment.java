@@ -49,15 +49,7 @@ private Button btnChoose;
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Bundle bundle = new Bundle();
                 String name = "Cắt tóc";
-                //bundle.putString("s1",name);
-               // SearchFragment searchFragment = new SearchFragment();
-                //searchFragment.setArguments(bundle);
-               // Toast.makeText(getActivity(),"Bạn đã chọn dịch vụ",Toast.LENGTH_SHORT).show();
-                //SearchFragment searchFragment = new SearchFragment();
-                //getFragmentManager().beginTransaction().replace(R.id.activity_salon_appointment, searchFragment, null)
-                        //.addToBackStack(null).commit();
                 Toast.makeText(getActivity(),"Bạn đã chọn dịch vụ",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), SalonAppointmentActivity.class);
                 intent.putExtra("s1", name);
@@ -82,12 +74,6 @@ private Button btnChoose;
 
     }
     private void fillItems(List<Model> items) {
-        /*HashMap<String, List<String>> services = new HashMap<>();
-        List<String> categories = new ArrayList<String>();
-        categories.add("Cắt tóc");
-        categories.add("Nhuộm");
-        categories.add("Uốn");
-        categories.add("Duỗi");*/
 
         List<String> listServices = new ArrayList<String>();
         listServices.add("Cắt tóc");
@@ -101,15 +87,6 @@ private Button btnChoose;
         listServices.add("Cắt móng");
         listServices.add("Đắp mặt nạ");
         listServices.add("Mát xa da đầu");
-        /*services.put(categories.get(0), listServices);
-        services.put(categories.get(1), listServices);
-        services.put(categories.get(2), listServices);
-        services.put(categories.get(3), listServices);*/
-       /* List<String> listService = new ArrayList<>();
-        listService.add("Cat toc");
-        listService.add("Nhuom");
-        listService.add("Uon");
-        listService.add("Duoi");*/
 
        for (int i = 0; i < listServices.size(); i++) {
            Model model = new Model();
