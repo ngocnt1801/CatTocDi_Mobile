@@ -18,6 +18,8 @@ public class MyContants {
     public static final int RV_ITEM_VOUCHER = 1;
     public static final int RV_ITEM_NEW = 2;
     public static final int RV_ITEM_NORMAL = 3;
+    public static final int SERVICE_ADD = 1;
+    public static final int SERVICE_CHECKBOX = 2;
     public static final int[] SALON_IMAGE_IDS = {
             R.drawable.salon1,
             R.drawable.salon2,
@@ -105,13 +107,15 @@ public class MyContants {
     };
 
     public static final Appointment[] APPOINTMENTS = {
-            new Appointment(SALONS[3], Timestamp.valueOf("2018-11-2 14:00:00"), Timestamp.valueOf("2018-11-2 16:00:00"), toList(SERVICES_APPOINTMENT), 40, AppointmentStatus.NOT_APPROVED),
+            new Appointment(SALONS[3], Timestamp.valueOf("2018-11-2 16:00:00"), Timestamp.valueOf("2018-11-2 17:00:00"), toList(SERVICES_APPOINTMENT), 40, AppointmentStatus.NOT_APPROVED),
             new Appointment(SALONS[0], Timestamp.valueOf("2018-12-5 16:00:00"), Timestamp.valueOf("2018-12-5 17:00:00"), toList(SERVICES_APPOINTMENT), 30, AppointmentStatus.NOT_APPROVED),
             new Appointment(SALONS[5], Timestamp.valueOf("2018-10-20 9:00:00"), Timestamp.valueOf("2018-10-20 10:30:00"), toList(SERVICES_APPOINTMENT), 25, AppointmentStatus.APPROVED),
 
     };
 
-    private static <T> ArrayList<T> toList(T[] array) {
+
+
+    public static <T> ArrayList<T> toList(T[] array) {
         ArrayList<T> list = new ArrayList<>();
         for (T item :
                 array) {

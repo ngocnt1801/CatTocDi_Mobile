@@ -2,9 +2,7 @@ package com.salon.cattocdi;
 
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -18,25 +16,18 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.salon.cattocdi.adapters.AppointmentServiceRecycleViewAdapter;
-import com.salon.cattocdi.adapters.ServiceRecycleViewAdapter;
 import com.salon.cattocdi.adapters.TimeSlotRecycleViewAdapter;
-import com.salon.cattocdi.fragements.ShowAddServiceFragment;
-import com.salon.cattocdi.fragements.ShowServiceFragment;
+import com.salon.cattocdi.models.Service;
 
-import java.time.Month;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
-import devs.mulham.horizontalcalendar.HorizontalCalendarView;
-import devs.mulham.horizontalcalendar.model.CalendarEvent;
-import devs.mulham.horizontalcalendar.utils.CalendarEventsPredicate;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
 
@@ -62,14 +53,7 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         ViewCompat.setNestedScrollingEnabled(rvAfternoon, false);
         ViewCompat.setNestedScrollingEnabled(rvNight, false);
 
-        btnAddService = findViewById(R.id.btn_add_more_service_to_appointment);
-        btnAddService.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowAddServiceFragment showAddServiceFragment = new ShowAddServiceFragment();
-                showFragment(showAddServiceFragment);
-            }
-        });
+
 
         /* starts before 1 month from now */
         Calendar startDate = Calendar.getInstance();
@@ -144,9 +128,29 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         });
 
         loadTimeSlotList(true);
-        rvService.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rvService.setAdapter(new AppointmentServiceRecycleViewAdapter());
 
+        final List<Service> checkedList = (List<Service>) getIntent().getSerializableExtra("checked_list");
+
+        Service service = (Service)getIntent().getSerializableExtra("service_choosen");
+        if(service != null){
+            List<Service> servicesChoosen = new ArrayList<>();
+        }
+
+
+        rvService.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvService.setAdapter(new AppointmentServiceRecycleViewAdapter(checkedList));
+
+        btnAddService = findViewById(R.id.btn_add_more_service_to_appointment);
+        btnAddService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SalonAppointmentActivity.this, ServiceAppointmentBookActivity.class);
+                if(checkedList != null){
+                    intent.putExtra("checked_list", (Serializable) checkedList);
+                }
+                startActivity(intent);
+            }
+        });
 
     }
 

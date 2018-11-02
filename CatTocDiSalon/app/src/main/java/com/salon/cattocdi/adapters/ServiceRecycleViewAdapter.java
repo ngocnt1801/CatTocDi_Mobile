@@ -17,6 +17,7 @@ import com.salon.cattocdi.models.Service;
 
 import org.w3c.dom.Text;
 
+import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -44,7 +45,7 @@ public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecyc
     @Override
     public void onBindViewHolder(@NonNull ServiceViewHolder serviceViewHolder, int i) {
 
-        Service service = services.get(i);
+        final Service service = services.get(i);
         serviceViewHolder.tvServiceTitle.setText(service.getName());
         serviceViewHolder.tvPriceTime.setText(NumberFormat.getNumberInstance(Locale.US).format(service.getPrice()) + " vnd trong " + service.getMinutes() + " phút");
 
@@ -53,6 +54,7 @@ public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecyc
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SalonAppointmentActivity.class);
+                intent.putExtra("service_choosen", (Serializable) service);
                 context.startActivity(intent);
             }
         });

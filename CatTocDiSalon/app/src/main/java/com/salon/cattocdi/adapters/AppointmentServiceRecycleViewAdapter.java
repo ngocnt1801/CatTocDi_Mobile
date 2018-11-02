@@ -14,10 +14,17 @@ import android.widget.TextView;
 
 import com.salon.cattocdi.LoginActivity;
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.models.Service;
+
+import java.util.List;
 
 public class AppointmentServiceRecycleViewAdapter extends RecyclerView.Adapter<AppointmentServiceRecycleViewAdapter.AppointmentSeriveViewHolder> {
 
-    private int count = 4;
+    private List<Service> services;
+
+    public AppointmentServiceRecycleViewAdapter(List<Service> services) {
+        this.services = services;
+    }
 
     @NonNull
     @Override
@@ -31,28 +38,20 @@ public class AppointmentServiceRecycleViewAdapter extends RecyclerView.Adapter<A
         viewHolder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                count--;
+                services.remove(i);
                 notifyItemRemoved(i);
                 notifyDataSetChanged();
             }
         });
-        if(i == 0){
-            viewHolder.tvService.setText("Cắt tóc");
-        }if(i == 1){
-            viewHolder.tvService.setText("Gội đầu");
-        }if(i == 2){
-            viewHolder.tvService.setText("Uốn tóc");
-        }if(i == 3){
-            viewHolder.tvService.setText("Hấp dầu");
-        }
-
-
-
+        viewHolder.tvService.setText(services.get(i).getName());
     }
 
     @Override
     public int getItemCount() {
-        return count;
+        if(services == null){
+            return 0;
+        }
+        return services.size();
     }
 
     public class AppointmentSeriveViewHolder extends RecyclerView.ViewHolder {

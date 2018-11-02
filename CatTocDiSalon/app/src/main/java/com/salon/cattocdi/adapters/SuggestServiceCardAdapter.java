@@ -9,20 +9,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
+import android.widget.LinearLayout;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.models.Service;
 import com.salon.cattocdi.utils.Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SuggestServiceCardAdapter extends RecyclerView.Adapter<SuggestServiceCardAdapter.ViewHolder> {
 
-    private List<Model> items = new ArrayList<>();
+    private List<Service> items, checkedList, currentCheckedList = new ArrayList<>();
+
+
     public SuggestServiceCardAdapter() {
     }
 
+    public SuggestServiceCardAdapter(List<Service> items) {
+        this.items = items;
+    }
 
+    public SuggestServiceCardAdapter(List<Service> items, List<Service> checkedList) {
+        this.items = items;
+        this.checkedList = checkedList;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -34,8 +47,35 @@ public class SuggestServiceCardAdapter extends RecyclerView.Adapter<SuggestServi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.bind(position);
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+//        holder.bind(position);
+        final Service service = items.get(position);
+        holder.mCheckedTextView.setText(service.getName());
+        if(checkedList == null){
+            checkedList = new ArrayList<>();
+        }
+        for (Service checked :
+                checkedList) {
+            if(checked.getName().equals(service.getName())){
+                holder.mCheckedTextView.setChecked(true);
+
+                currentCheckedList.add(service);
+            }
+        }
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.mCheckedTextView.setChecked(!holder.mCheckedTextView.isChecked());
+                if (holder.mCheckedTextView.isChecked()) {
+
+                    currentCheckedList.add(service);
+                } else {
+                    currentCheckedList.remove(service);
+                }
+            }
+        });
+
+
     }
 
     @Override
@@ -46,46 +86,54 @@ public class SuggestServiceCardAdapter extends RecyclerView.Adapter<SuggestServi
         return items.size();
     }
 
-    public void loadItems(List<Model> listServices) {
-        this.items = listServices;
-        notifyDataSetChanged();
+    public List<Service> getCheckedList() {
+        if(currentCheckedList == null){
+            return new ArrayList<>();
+        }
+        return currentCheckedList;
     }
 
+    //    public void loadItems(List<Model> listServices) {
+//        this.items = listServices;
+//        notifyDataSetChanged();
+//    }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        CheckedTextView mCheckedTextView;
+    class ViewHolder extends RecyclerView.ViewHolder {
+
+        public CheckedTextView mCheckedTextView;
+        public LinearLayout item;
 
         ViewHolder(View itemView) {
             super(itemView);
             mCheckedTextView = itemView.findViewById(R.id.checked_text_view);
-            itemView.setOnClickListener(this);
+            this.item = (LinearLayout) itemView;
         }
 
-        void bind(int position) {
-            // check the state of the model
-            if (!items.get(position).getChecked()) {
-                mCheckedTextView.setChecked(false);}
-            else {
-                mCheckedTextView.setChecked(true);
-            }
-            //mCheckedTextView.setText(String.valueOf(items.get(position).getItem()));
-
-            mCheckedTextView.setText(items.get(position).getItem());
-        }
-
-        @Override
-        public void onClick(View v) {
-            int adapterPosition = getAdapterPosition();
-            if (!items.get(adapterPosition).getChecked()) {
-                mCheckedTextView.setChecked(true);
-                items.get(adapterPosition).setChecked(true);
-            }
-            else  {
-                mCheckedTextView.setChecked(false);
-                items.get(adapterPosition).setChecked(false);
-            }
-        }
+//        void bind(int position) {
+//            // check the state of the model
+//            if (!items.get(position).getChecked()) {
+//                mCheckedTextView.setChecked(false);}
+//            else {
+//                mCheckedTextView.setChecked(true);
+//            }
+//            //mCheckedTextView.setText(String.valueOf(items.get(position).getItem()));
+//
+//            mCheckedTextView.setText(items.get(position).getItem());
+//        }
+//
+//        @Override
+//        public void onClick(View v) {
+//            int adapterPosition = getAdapterPosition();
+//            if (!items.get(adapterPosition).getChecked()) {
+//                mCheckedTextView.setChecked(true);
+//                items.get(adapterPosition).setChecked(true);
+//            }
+//            else  {
+//                mCheckedTextView.setChecked(false);
+//                items.get(adapterPosition).setChecked(false);
+//            }
+//        }
 
     }
 }

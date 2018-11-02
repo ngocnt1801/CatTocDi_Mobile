@@ -15,6 +15,7 @@ import com.salon.cattocdi.R;
 import com.salon.cattocdi.adapters.CategoryAdapter;
 import com.salon.cattocdi.adapters.SalonDetailPromotionRecycleView;
 import com.salon.cattocdi.adapters.ServiceRecycleViewAdapter;
+import com.salon.cattocdi.utils.MyContants;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,7 +41,7 @@ public class SalonDetailServiceFragment extends Fragment {
         if(salonId >= 0){
             RecyclerView serviceRecycleView = view.findViewById(R.id.salon_service_recycle_view);
             serviceRecycleView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-            serviceRecycleView.setAdapter(new CategoryAdapter(getActivity()));
+            serviceRecycleView.setAdapter(new CategoryAdapter(getActivity(), MyContants.SERVICE_ADD));
 
             RecyclerView promotionRecycleView = view.findViewById(R.id.salon_promotion_recycle_view);
             promotionRecycleView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));

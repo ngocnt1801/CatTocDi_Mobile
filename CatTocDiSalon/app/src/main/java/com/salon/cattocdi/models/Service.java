@@ -1,6 +1,8 @@
 package com.salon.cattocdi.models;
 
-public class Service {
+import java.io.Serializable;
+
+public class Service implements Serializable{
     private int id;
     private String name;
     private float price;
