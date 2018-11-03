@@ -16,6 +16,7 @@ import com.salon.cattocdi.models.Service;
 import com.salon.cattocdi.utils.MyContants;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,7 @@ public class ServiceAppointmentBookActivity extends Activity {
 
         final RecyclerView rvService = findViewById(R.id.recyclerview);
         rvService.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        final CategoryAdapter adapter = new CategoryAdapter(this, MyContants.SERVICE_CHECKBOX, checkedList);
+        final CategoryAdapter adapter = new CategoryAdapter(this, MyContants.SERVICE_CHECKBOX, checkedList, new ArrayList<Category>());
         rvService.setAdapter(adapter);
         TextView tvChoose = findViewById(R.id.btn_get_service);
         tvChoose.setOnClickListener(new View.OnClickListener() {
@@ -44,4 +45,6 @@ public class ServiceAppointmentBookActivity extends Activity {
             }
         });
     }
+
+
 }

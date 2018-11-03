@@ -15,7 +15,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.salon.cattocdi.models.Account;
+import com.salon.cattocdi.models.Customer;
+import com.salon.cattocdi.models.ResponseMessage;
 import com.salon.cattocdi.requests.AccountApi;
 import com.salon.cattocdi.requests.ApiClient;
 import com.salon.cattocdi.utils.MyContants;
@@ -27,9 +30,8 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
 
-
-    private Button btnLogin ;
-    private TextView tvRegister,btnSkip;
+    private Button btnLogin;
+    private TextView tvRegister, btnSkip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkLogin()){
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }else{
-                    showDialogLoginFail();
-                }
-
+                checkLogin();
             }
         });
 
@@ -63,30 +59,36 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private boolean checkLogin(){
+    private boolean checkLogin() {
         boolean result = false;
         EditText etPhone = findViewById(R.id.login_activity_phone_et);
-        EditText etPassword= findViewById(R.id.login_activity_password_et);
+        EditText etPassword = findViewById(R.id.login_activity_password_et);
 
         ApiClient.getInstance()
                 .create(AccountApi.class)
-                .login(new Account(etPhone.getText().toString(), etPassword.getText().toString()))
-                .enqueue(new Callback<String>() {
+                .login(etPhone.getText().toString(), etPassword.getText().toString(), "password")
+                .enqueue(new Callback<Customer>() {
                     @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        Log.d("RESPONSE", response.message());
+                    public void onResponse(Call<Customer> call, Response<Customer> response) {
+                        if (response.code() == 200) {
+                            MyContants.TOKEN = response.body().getToken();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            showDialogLoginFail();
+                        }
                     }
 
                     @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-                        Log.d("FAILURE", t.getMessage());
+                    public void onFailure(Call<Customer> call, Throwable t) {
+                        showDialogLoginFail();
                     }
                 });
 
         return result;
     }
 
-    private void showDialogLoginFail(){
+    private void showDialogLoginFail() {
         final AlertDialog dialog = new AlertDialog.Builder(LoginActivity.this).create();
         dialog.setTitle("Không chính xác");
         dialog.setMessage("Số điện thoại hoặc mật khẩu không chính xác");

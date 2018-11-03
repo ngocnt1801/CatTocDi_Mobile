@@ -6,8 +6,8 @@
     <dimen name="pd_button_login_page">8dp</dimen>
     <dimen name="mg_top_login_page">16dp</dimen>
     <dimen name="ts_button_login_page">16dp</dimen>
-    <dimen name="width_border_et">2dp</dimen>
-    <dimen name="radius_border_et">10dp</dimen>
+    <dimen name="width_border_et">1dp</dimen>
+    <dimen name="radius_border_et">5dp</dimen>
     <dimen name="pd_et">12dp</dimen>
     <dimen name="mr_bottom_not_cover_content">40dp</dimen>
     <dimen name="fab_margin">16dp</dimen>

@@ -28,6 +28,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     private int type;
     private List<SuggestServiceCardAdapter> adapterList;
     private List<Service> checkedList;
+    private List<Category> categories;
 
 
     public CategoryAdapter(Context context, int type) {
@@ -35,10 +36,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         this.type = type;
     }
 
-    public CategoryAdapter(Context context, int type, List<Service> checkedList) {
+    public CategoryAdapter(Context context, int type, List<Service> checkedList, List<Category> categories) {
         this.context = context;
         this.type = type;
         this.checkedList = checkedList;
+        this.categories = categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     @NonNull
@@ -50,7 +56,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     @Override
     public void onBindViewHolder(@NonNull final CategoryViewHolder holder, int i) {
-        Category category = MyContants.CATEGORIES[i];
+        Category category = categories.get(i);
         holder.tvCategory.setText(category.getName());
         holder.icExpand.setImageResource(R.drawable.ic_collapse);
         holder.rvService.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
@@ -84,7 +90,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     @Override
     public int getItemCount() {
-        return MyContants.CATEGORIES.length;
+        if(categories == null){
+            return 0;
+        }
+        return categories.size();
     }
 
     public List<Service> getCheckedList() {

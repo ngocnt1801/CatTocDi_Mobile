@@ -62,12 +62,12 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
 
 //        myCardViewHolder.salonRatingBar.setRating(4.6f);
         if (type == RV_ITEM_NORMAL) {
-            myCardViewHolder.salonTitle.setText(SALONS[i].getName());
-            myCardViewHolder.salonAddress.setText(SALONS[i].getAddress());
-            myCardViewHolder.tvDiscount.setText(SALONS[i].getDiscount() + "% OFF");
-            myCardViewHolder.salonRatingBar.setRating(SALONS[i].getRatingNumber());
+            myCardViewHolder.salonTitle.setText(MyContants.SalonList.get(i).getName());
+            myCardViewHolder.salonAddress.setText(MyContants.SalonList.get(i).getAddress());
+            myCardViewHolder.tvDiscount.setText(MyContants.SalonList.get(i).getDiscount() + "% OFF");
+            myCardViewHolder.salonRatingBar.setRating(MyContants.SalonList.get(i).getRatingNumber());
             if(myCardViewHolder.salonReviewsAmount != null){
-                myCardViewHolder.salonReviewsAmount.setText("("+SALONS[i].getReviewsAmount()+")");
+                myCardViewHolder.salonReviewsAmount.setText("("+MyContants.SalonList.get(i).getReviewsAmount()+")");
             }
         }
 
@@ -101,7 +101,7 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
 
     @Override
     public int getItemCount() {
-        return SALONS.length;
+        return MyContants.SalonList.size();
     }
 
     public class MyCardViewHolder extends RecyclerView.ViewHolder {

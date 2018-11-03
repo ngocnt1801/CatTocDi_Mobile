@@ -1,9 +1,13 @@
 package com.salon.cattocdi.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Service implements Serializable{
+    @SerializedName("ServiceId")
     private int id;
+    @SerializedName("Name")
     private String name;
     private float price;
     private int minutes;

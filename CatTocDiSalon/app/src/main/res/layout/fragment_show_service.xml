@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/mr_bottom_not_cover_content"
-    android:background="@color/textForDark">
+    android:background="@color/textForDark"
+    >
 
     <TextView
         android:id="@+id/fg_search_service_title"

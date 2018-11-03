@@ -20,9 +20,18 @@ import com.salon.cattocdi.ListSalonActivity;
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.SearchResultActivity;
 import com.salon.cattocdi.adapters.ExpandableListViewAdapter;
+import com.salon.cattocdi.models.Salon;
+import com.salon.cattocdi.requests.ApiClient;
+import com.salon.cattocdi.requests.SalonApi;
 import com.salon.cattocdi.utils.MyContants;
 
+import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +42,7 @@ public class SearchFragment extends Fragment {
     private Button btSearch;
     ExpandableListView listService;
     CircularImageView circularImageView1, circularImageView2, circularImageView3, circularImageView4;
+    private String service;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -58,7 +68,7 @@ public class SearchFragment extends Fragment {
                 DatePickerDialog dialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        etDate.setText(day + "/"+month +"/"+year);
+                        etDate.setText(day + "/" + month + "/" + year);
                     }
                 }, mYear, mMonth, mDay);
                 dialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
@@ -111,40 +121,51 @@ public class SearchFragment extends Fragment {
 
         btSearch = view.findViewById(R.id.fg_search_search_btn);
 
-            String service = null;
-            Bundle bundle = null;
-            service = getBundle(bundle);
-            etService.setText(service, TextView.BufferType.EDITABLE);
+        service = "";
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            service = bundle.getString("service_name");
+        }
+        etService.setText(service, TextView.BufferType.EDITABLE);
 
         btSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ListSalonActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("title", "Kết quả tìm kiếm");
-                bundle.putInt("type", MyContants.RV_ITEM_NORMAL);
-                intent.putExtra("activity_content",bundle);
-                startActivity(intent);
+
+                ApiClient.getInstance().create(SalonApi.class)
+                        .searchSalon("Bearer " + MyContants.TOKEN, etPlace.getText().toString(), service)
+                        .enqueue(new Callback<List<Salon>>() {
+                            @Override
+                            public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
+                                Intent intent = new Intent(getActivity(), ListSalonActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("list", (Serializable) response.body());
+                                bundle.putString("title", "Kết quả tìm kiếm");
+                                bundle.putInt("type", MyContants.RV_ITEM_NORMAL);
+                                intent.putExtra("activity_content", bundle);
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<Salon>> call, Throwable t) {
+
+                            }
+                        });
+
+
             }
         });
 
 
         return view;
     }
-    private String getBundle(Bundle bundle){
-         bundle = getArguments();
-        String service = null;
-         if (bundle != null){
-              service = bundle.getString("s1");
-         }
-        return service;
-    }
-    private void searchTrend(String nameTrend){
+
+    private void searchTrend(String nameTrend) {
         Intent intent = new Intent(getActivity(), ListSalonActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("title", "Xu hướng tìm kiếm " + nameTrend);
         bundle.putInt("type", MyContants.RV_ITEM_NORMAL);
-        intent.putExtra("activity_content",bundle);
+        intent.putExtra("activity_content", bundle);
         startActivity(intent);
     }
 

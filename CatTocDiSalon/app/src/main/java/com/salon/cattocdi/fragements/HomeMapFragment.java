@@ -20,6 +20,7 @@ import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,11 +51,17 @@ import com.salon.cattocdi.MapsActivity;
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.SalonDetailActivity;
 import com.salon.cattocdi.models.Salon;
+import com.salon.cattocdi.requests.ApiClient;
+import com.salon.cattocdi.requests.SalonApi;
 import com.salon.cattocdi.utils.MyContants;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.Context.LOCATION_SERVICE;
 
@@ -72,6 +79,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
     Geocoder geocoder;
     List<LatLng> addressList;
     LayoutInflater mInflater;
+
     public HomeMapFragment() {
         // Required empty public constructor
     }
@@ -87,6 +95,8 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.salons_map);
         mapFragment.getMapAsync(this);
         geocoder = new Geocoder(getActivity(), Locale.getDefault());
+        loadAllSalon();
+
 //        addressList = new ArrayList<>();
 //        initData();
         return view;
@@ -110,13 +120,12 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1200);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
                 mFusuedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallBack, Looper.myLooper());
                 mMap.setMyLocationEnabled(false);
-                LocationManager mLocationManager = (LocationManager)getActivity().getSystemService(LOCATION_SERVICE);
+                LocationManager mLocationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
                 List<String> providers = mLocationManager.getProviders(true);
                 Location currentLocation = null;
                 for (String provider : providers) {
@@ -129,16 +138,28 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
                         currentLocation = l;
                     }
                 }
+                if (currentLocation != null) {
+                    LatLng currentPosition = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                    CameraPosition cameraPosition = new CameraPosition.Builder()
+                            .target(currentPosition)
+                            .zoom(17f)
+                            .build();
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+                    mMap.animateCamera(cameraUpdate);
+                    Marker myLocationMarker = createMarker(currentPosition);
+                    myLocationMarker.setTag("Me");
+                } else {
+                    LatLng currentPosition = new LatLng(MyContants.LATITUDE_DEFAULT, MyContants.LONGTITUDE_DEFAULT);
+                    CameraPosition cameraPosition = new CameraPosition.Builder()
+                            .target(currentPosition)
+                            .zoom(MyContants.ZOOM_DEFAULT)
+                            .build();
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+                    mMap.animateCamera(cameraUpdate);
 
-                LatLng currentPosition = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .target(currentPosition)
-                        .zoom(17f)
-                        .build();
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
-                mMap.animateCamera(cameraUpdate);
-                Marker myLocationMarker = createMarker(currentPosition);
-                myLocationMarker.setTag("Me");
+
+                }
+
                 makeMarker();
 
             } else {
@@ -147,7 +168,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
         }
     }
 
-    private Marker createMarker(LatLng location){
+    private Marker createMarker(LatLng location) {
         Drawable drawable = getResources().getDrawable(R.drawable.ic_my_location_arrow);
         Canvas canvas = new Canvas();
         Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
@@ -178,16 +199,41 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
     private void makeMarker() {
         Bitmap bm;
 //        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        for (int i = 0; i < MyContants.SALONS.length; i++) {
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(MyContants.SALONS[i].getLatLng());
+        if (MyContants.SalonList != null) {
+
+            for (int i = 0; i < MyContants.SalonList.size(); i++) {
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(MyContants.SalonList.get(i).getLatLng());
 //            builder.include(addressList.get(i));
-            bm = createBitmapFromLayoutWithText(MyContants.SALONS[i]);
+                bm = createBitmapFromLayoutWithText(MyContants.SalonList.get(i));
 //            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bm));
-            mCurrLocationmMarker = mMap.addMarker(markerOptions);
-            mCurrLocationmMarker.setTag(i);
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bm));
+                mCurrLocationmMarker = mMap.addMarker(markerOptions);
+                mCurrLocationmMarker.setTag(i);
+            }
         }
+    }
+
+    private void loadAllSalon(){
+        ApiClient.getInstance().create(SalonApi.class)
+                .getAllSalon("Bearer " + MyContants.TOKEN)
+                .enqueue(new Callback<List<Salon>>() {
+                    @Override
+                    public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
+                        if(response.body() != null ){
+                            MyContants.SalonList = response.body();
+                        }else{
+                            MyContants.SalonList = new ArrayList<>();
+                        }
+                        makeMarker();
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Salon>> call, Throwable t) {
+                        Log.d("FAIL_GET", t.getMessage());
+                        MyContants.SalonList = new ArrayList<>();
+                    }
+                });
     }
 
     public Bitmap createBitmapFromLayoutWithText(Salon salon) {
@@ -270,9 +316,9 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
     @Override
     public boolean onMarkerClick(Marker marker) {
         mMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
-        if(!marker.getTag().equals("Me")){
+        if (!marker.getTag().equals("Me")) {
             Intent intent = new Intent(getActivity(), SalonDetailActivity.class);
-            intent.putExtra("salon_id", (int)marker.getTag());
+            intent.putExtra("salon_id", (int) marker.getTag());
             startActivity(intent);
         }
         return true;

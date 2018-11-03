@@ -1,23 +1,31 @@
 package com.salon.cattocdi.models;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.annotations.SerializedName;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 public class Salon {
+    @SerializedName("SalonId")
     private int salonId;
+    @SerializedName("SalonName")
     private String name;
+    @SerializedName("Address")
     private String address;
     private String phone;
     private String email;
+    @SerializedName("RatingAvarage")
     private float ratingNumber;
     private boolean full;
     private int discount;
     private String imageUrl;
+    @SerializedName("ReviewCount")
     private int reviewsAmount;
     private Timestamp startTime;
+    @SerializedName("lattitude")
     private double latitude;
+    @SerializedName("longtitude")
     private double longtitude;
     private List<Category> categories;
     private List<DayWorkingHour> workingHours;

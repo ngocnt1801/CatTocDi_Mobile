@@ -7,14 +7,23 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.models.Salon;
+import com.salon.cattocdi.requests.ApiClient;
+import com.salon.cattocdi.requests.SalonApi;
+import com.salon.cattocdi.utils.MyContants;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,90 +45,37 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-//        rvNew = view.findViewById(R.id.fg_home_rv_new);
-//        rvRating = view.findViewById(R.id.fg_home_rv_rating);
-//        rvSale = view.findViewById(R.id.fg_home_rv_sale);
-//
-//        etSearch = view.findViewById(R.id.fg_home_search_et);
-//
-//        voucherSeeAllTv = view.findViewById(R.id.fg_home_voucher_see_all_tv);
-//        newSeeAllTv = view.findViewById(R.id.fg_home_new_see_all_tv);
-//
-//        //set layout
-//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-//        rvSale.setLayoutManager(mLayoutManager);
-//
-//        rvRating.setLayoutManager(new GridLayoutManager(getActivity(),1));
-//
-//        rvNew.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-//
-////        testRecycleViewAdapter(rvBookmark);,
-//        testRecycleViewAdapter(rvRating, MyContants.RV_ITEM_NORMAL);
-//        testRecycleViewAdapter(rvSale, MyContants.RV_ITEM_VOUCHER);
-//        testRecycleViewAdapter(rvNew, MyContants.RV_ITEM_NEW);
-//
-//        ViewCompat.setNestedScrollingEnabled(rvRating, false);
-//
-//
-//        etSearch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                SearchFragment searchFragment = new SearchFragment();
-//                showFragment(searchFragment);
-//                BottomNavigationView navigationView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_nav);
-//                navigationView.getMenu().getItem(2).setChecked(true);
-//            }
-//        });
-//
-//
-//        voucherSeeAllTv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), ListSalonActivity.class);
-//                Bundle option = ActivityOptionsCompat.makeScaleUpAnimation(voucherSeeAllTv,0,0,voucherSeeAllTv.getWidth(), voucherSeeAllTv.getLineHeight()).toBundle();
-//                Bundle bundle = new Bundle();
-//                bundle.putString("title","Khuyến mãi");
-//                bundle.putInt("type", MyContants.RV_ITEM_VOUCHER);
-//                intent.putExtra("activity_content", bundle);
-//                ActivityCompat.startActivity(getActivity(), intent, option);
-//
-//            }
-//        });
-//
-//        newSeeAllTv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), ListSalonActivity.class);
-//                Bundle option = ActivityOptionsCompat.makeScaleUpAnimation(voucherSeeAllTv,0,0,voucherSeeAllTv.getWidth(), voucherSeeAllTv.getLineHeight()).toBundle();
-//                Bundle bundle = new Bundle();
-//                bundle.putString("title","Cửa hàng mới");
-//                bundle.putInt("type", MyContants.RV_ITEM_NORMAL);
-//                intent.putExtra("activity_content", bundle);
-//                ActivityCompat.startActivity(getActivity(), intent, option);
-//            }
-//        });
+
         ViewPager viewPager = view.findViewById(R.id.detail_pager);
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
         TabLayout tabs = view.findViewById(R.id.detail_tab_layout);
         tabs.setupWithViewPager(viewPager);
+//        loadAllSalon();
         return view;
     }
 
-    //    private void testRecycleViewAdapter(RecyclerView rv, int type){
-//        //Show RECYCLEVIEW
+//    private void loadAllSalon(){
+//        ApiClient.getInstance().create(SalonApi.class)
+//                .getAllSalon("Bearer " + MyContants.TOKEN)
+//                .enqueue(new Callback<List<Salon>>() {
+//                    @Override
+//                    public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
+//                        if(response.body() != null ){
+//                            MyContants.SalonList = response.body();
+//                        }else{
+//                            MyContants.SalonList = new ArrayList<>();
+//                        }
+//                    }
 //
-//        rv.setItemAnimator(new DefaultItemAnimator());
-//        SalonAdapter adapter = new SalonAdapter(type, getActivity());
-//        rv.setAdapter(adapter);
+//                    @Override
+//                    public void onFailure(Call<List<Salon>> call, Throwable t) {
+//                        Log.d("FAIL_GET", t.getMessage());
+//                        MyContants.SalonList = new ArrayList<>();
+//                    }
+//                });
 //    }
-//
-//    private void showFragment(Fragment fragment){
-//        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.activity_main_container_fl, fragment);
-//        transaction.addToBackStack(null);
-//        transaction.commit();
-//    }
+
 // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
 

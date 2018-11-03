@@ -13,6 +13,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,17 @@ import android.widget.TextView;
 import com.salon.cattocdi.ListSalonActivity;
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.adapters.SalonAdapter;
+import com.salon.cattocdi.models.Salon;
+import com.salon.cattocdi.requests.ApiClient;
+import com.salon.cattocdi.requests.SalonApi;
 import com.salon.cattocdi.utils.MyContants;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,8 +96,34 @@ public class HomeListFragment extends Fragment {
 
             }
         });
+
+        loadAllSalon();
         return view;
     }
+
+    private void loadAllSalon(){
+        ApiClient.getInstance().create(SalonApi.class)
+                .getAllSalon("Bearer " + MyContants.TOKEN)
+                .enqueue(new Callback<List<Salon>>() {
+                    @Override
+                    public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
+                        if(response.body() != null ){
+                            MyContants.SalonList = response.body();
+                        }else{
+                            MyContants.SalonList = new ArrayList<>();
+                        }
+                        testRecycleViewAdapter(rvRating, MyContants.RV_ITEM_NORMAL);
+                        testRecycleViewAdapter(rvSale, MyContants.RV_ITEM_VOUCHER);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Salon>> call, Throwable t) {
+                        Log.d("FAIL_GET", t.getMessage());
+                        MyContants.SalonList = new ArrayList<>();
+                    }
+                });
+    }
+
     private void testRecycleViewAdapter(RecyclerView rv, int type){
         //Show RECYCLEVIEW
         rv.setItemAnimator(new DefaultItemAnimator());
