@@ -70,39 +70,6 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
                 myCardViewHolder.salonReviewsAmount.setText("("+SALONS[i].getReviewsAmount()+")");
             }
         }
-        if (type == RV_ITEM_NORMAL) {
-            if (i == 0) {
-
-                myCardViewHolder.tvDistance.setText("200m");
-            }
-            if (i == 1) {
-
-                myCardViewHolder.tvDistance.setText("400m");
-            }
-            if (i == 2) {
-
-                myCardViewHolder.tvDistance.setText("500m");
-            }
-            if (i == 3) {
-
-                myCardViewHolder.tvDistance.setText("700m");
-            }
-            if (i == 4) {
-
-                myCardViewHolder.tvDistance.setText("800m");
-            }
-            if (i == 5) {
-
-            }
-            if (i == 8) {
-
-                myCardViewHolder.tvDistance.setText("1.2km");
-            }
-            if (i == 9) {
-
-                myCardViewHolder.tvDistance.setText("1.4km");
-            }
-        }
 
         myCardViewHolder.salonImage.setBackgroundResource(MyContants.SALON_IMAGE_IDS[i]);
 
@@ -130,32 +97,6 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
                 }
             });
         }
-      /* myCardViewHolder.btnBook.setOnClickListener(new View.OnClickListener() {
-          @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, SalonAppointmentActivity.class);
-                context.startActivity(intent);
-            }
-        });*/
-
-
-//        if (isFavorite) {
-//            myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
-//        }
-//        if (myCardViewHolder.icFavorite != null) {
-//            myCardViewHolder.icFavorite.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//
-//                    if (myCardViewHolder.icFavorite.getDrawable().getConstantState().equals(context.getDrawable(R.drawable.ic_favorite_border).getConstantState())) {
-//                        myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_fill);
-//                    } else {
-//                        myCardViewHolder.icFavorite.setImageResource(R.drawable.ic_favorite_border);
-//                    }
-//                }
-//            });
-//        }
-
     }
 
     @Override
@@ -168,26 +109,20 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
         public View salonImage;
         public TextView salonTitle, salonAddress, salonReviewsAmount;
         public RatingBar salonRatingBar;
-        public RelativeLayout searchService;
         public CardView item;
         public ImageView icFavorite;
         public TextView tvDiscount;
-        public TextView tvDistance;
-        //public Button btnBook;
 
 
         public MyCardViewHolder(@NonNull View itemView) {
             super(itemView);
-//            salonImage = itemView.findViewById(R.id.fg_home_rv_item_img);
             salonTitle = itemView.findViewById(R.id.fg_home_rv_item_title_tv);
             salonAddress = itemView.findViewById(R.id.fg_home_rv_item_address_tv);
             salonReviewsAmount = itemView.findViewById(R.id.fg_home_rv_item_amount_review_tv);
             salonRatingBar = itemView.findViewById(R.id.fg_home_rv_item_rb);
             salonImage = itemView.findViewById(R.id.fg_home_rv_item_img);
-            tvDistance = itemView.findViewById(R.id.fg_home_rv_item_time_tv);
             icFavorite = itemView.findViewById(R.id.fg_home_rv_item_favorite_ic);
             tvDiscount = itemView.findViewById(R.id.rv_discount);
-            //btnBook = itemView.findViewById(R.id.btn_book_service);
             item = (CardView) itemView;
         }
     }

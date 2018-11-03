@@ -56,7 +56,7 @@ public class SuggestServiceCardAdapter extends RecyclerView.Adapter<SuggestServi
         }
         for (Service checked :
                 checkedList) {
-            if(checked.getName().equals(service.getName())){
+            if(checked.getId() == service.getId()){
                 holder.mCheckedTextView.setChecked(true);
 
                 currentCheckedList.add(service);

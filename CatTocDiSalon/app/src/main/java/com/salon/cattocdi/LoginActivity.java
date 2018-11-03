@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -14,7 +15,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.salon.cattocdi.models.Account;
+import com.salon.cattocdi.requests.AccountApi;
+import com.salon.cattocdi.requests.ApiClient;
 import com.salon.cattocdi.utils.MyContants;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -59,9 +67,22 @@ public class LoginActivity extends AppCompatActivity {
         boolean result = false;
         EditText etPhone = findViewById(R.id.login_activity_phone_et);
         EditText etPassword= findViewById(R.id.login_activity_password_et);
-        if(etPhone.getText().toString().equals(MyContants.PHONE_TEST) && etPassword.getText().toString().equals(MyContants.PASSWORD_TEST) ){
-            result = true;
-        }
+
+        ApiClient.getInstance()
+                .create(AccountApi.class)
+                .login(new Account(etPhone.getText().toString(), etPassword.getText().toString()))
+                .enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        Log.d("RESPONSE", response.message());
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Log.d("FAILURE", t.getMessage());
+                    }
+                });
+
         return result;
     }
 

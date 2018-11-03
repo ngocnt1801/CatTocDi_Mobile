@@ -19,11 +19,14 @@ import android.widget.TextView;
 
 import com.salon.cattocdi.adapters.AppointmentServiceRecycleViewAdapter;
 import com.salon.cattocdi.adapters.TimeSlotRecycleViewAdapter;
+import com.salon.cattocdi.models.DateSlot;
 import com.salon.cattocdi.models.Service;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -35,6 +38,7 @@ public class SalonAppointmentActivity extends AppCompatActivity {
 
     private RecyclerView rvMorning, rvAfternoon, rvNight, rvService;
     private Button btnAddService;
+    private List<Service> checkedList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +73,7 @@ public class SalonAppointmentActivity extends AppCompatActivity {
 
         /* ends after 1 month from now */
         Calendar endDate = Calendar.getInstance();
-        endDate.add(Calendar.MONTH, 1);
+        endDate.add(Calendar.DATE, 7);
 
         // Default Date set to Today.
         final Calendar defaultSelectedDate = Calendar.getInstance();
@@ -85,8 +89,6 @@ public class SalonAppointmentActivity extends AppCompatActivity {
             @Override
             public void onDateSelected(Calendar date, int position) {
                 String selectedDateStr = DateFormat.format("EEE, MMM d, yyyy", date).toString();
-//                Toast.makeText(SalonAppointmentActivity.this, selectedDateStr + " selected!", Toast.LENGTH_SHORT).show();
-//                Log.i("onDateSelected", selectedDateStr + " - Position = " + position);
                 TextView titleDate = findViewById(R.id.activity_appoinment_title_date);
                 int day = date.get(Calendar.DAY_OF_WEEK);
                 String textDay = "Chủ nhật";
@@ -129,11 +131,13 @@ public class SalonAppointmentActivity extends AppCompatActivity {
 
         loadTimeSlotList(true);
 
-        final List<Service> checkedList = (List<Service>) getIntent().getSerializableExtra("checked_list");
-
+        checkedList = (List<Service>) getIntent().getSerializableExtra("checked_list");
+        if(checkedList == null){
+            checkedList = new ArrayList<>();
+        }
         Service service = (Service)getIntent().getSerializableExtra("service_choosen");
         if(service != null){
-            List<Service> servicesChoosen = new ArrayList<>();
+            checkedList.add(service);
         }
 
 
@@ -158,13 +162,13 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         Random random = new Random();
 
         rvMorning.setLayoutManager(new GridLayoutManager(this, 4));
-        rvMorning.setAdapter(new TimeSlotRecycleViewAdapter(this, random.nextInt(5), TimeSlotRecycleViewAdapter.MORNING, isToday));
+        rvMorning.setAdapter(new TimeSlotRecycleViewAdapter(this, TimeSlotRecycleViewAdapter.MORNING, new Timestamp(Calendar.getInstance().getTimeInMillis()), checkedList, new ArrayList<DateSlot.Slot>()));
 
         rvAfternoon.setLayoutManager(new GridLayoutManager(this, 4));
-        rvAfternoon.setAdapter(new TimeSlotRecycleViewAdapter(this, random.nextInt(5),TimeSlotRecycleViewAdapter.AFTERNOON, isToday ));
+        rvMorning.setAdapter(new TimeSlotRecycleViewAdapter(this, TimeSlotRecycleViewAdapter.AFTERNOON, new Timestamp(Calendar.getInstance().getTimeInMillis()), checkedList, new ArrayList<DateSlot.Slot>()));
 
         rvNight.setLayoutManager(new GridLayoutManager(this, 4));
-        rvNight.setAdapter(new TimeSlotRecycleViewAdapter(this, random.nextInt(5), TimeSlotRecycleViewAdapter.EVENING, isToday));
+        rvMorning.setAdapter(new TimeSlotRecycleViewAdapter(this, TimeSlotRecycleViewAdapter.EVENING, new Timestamp(Calendar.getInstance().getTimeInMillis()), checkedList, new ArrayList<DateSlot.Slot>()));
 
     }
     @SuppressLint("ResourceType")

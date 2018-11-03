@@ -24,7 +24,6 @@ import com.salon.cattocdi.fragements.ShowServiceFragment;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
-    private RecyclerView rvListNearest;
     private int currentPos = 0, nextPos;
 
     @Override
@@ -58,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
                         SearchFragment searchFragment = new SearchFragment();
                         showFragment(searchFragment);
                         return true;
-                    case R.id.bottom_nav_favorite_item:
-                        currentPos = nextPos;
-                        nextPos = 3;
-                        FavoriteFragment favoriteFragment = new FavoriteFragment();
-                        showFragment(favoriteFragment);
-                        return true;
+//                    case R.id.bottom_nav_favorite_item:
+//                        currentPos = nextPos;
+//                        nextPos = 3;
+//                        FavoriteFragment favoriteFragment = new FavoriteFragment();
+//                        showFragment(favoriteFragment);
+//                        return true;
                     case R.id.bottom_nav_profile_item:
                         currentPos = nextPos;
                         nextPos = 4;
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         flag = intent.getStringExtra("done");
         if (flag != null) {
-            BottomNavigationView navigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
+            BottomNavigationView navigationView = findViewById(R.id.bottom_nav);
             navigationView.getMenu().getItem(1).setChecked(true);
             AppointmentFragment appointmentFragment = new AppointmentFragment();
             showFragment(appointmentFragment);

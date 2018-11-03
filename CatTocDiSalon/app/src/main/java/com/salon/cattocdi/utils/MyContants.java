@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class MyContants {
+    public static final String BASE_URL = "192.168.2.192/cattocdi.api";
     public static final String PHONE_TEST = "0123456789";
     public static final String PASSWORD_TEST = "123";
     public static final int RV_ITEM_VOUCHER = 1;
@@ -123,5 +124,9 @@ public class MyContants {
         }
         return list;
     }
+
+
+
+
 
 }

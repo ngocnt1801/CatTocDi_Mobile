@@ -12,31 +12,31 @@ import android.widget.Button;
 
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.ReviewAppointmentActivity;
+import com.salon.cattocdi.models.Service;
+import com.salon.cattocdi.models.DateSlot;
 
-import java.util.Random;
+import java.sql.Timestamp;
+import java.util.List;
 
 public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRecycleViewAdapter.TimeSlotViewHolder>{
 
     private Context context;
-    private int count;
     private int type;
-    private boolean isToday = false;
+    private Timestamp date;
+    private List<Service> services;
+    private List<DateSlot.Slot> dateSlots;
 
     public static final int MORNING = 1;
     public static final int AFTERNOON = 2;
     public static int EVENING = 3;
 
-    public TimeSlotRecycleViewAdapter(Context context, int count, int type) {
-        this.context = context;
-        this.count = count;
-        this.type = type;
-    }
 
-    public TimeSlotRecycleViewAdapter(Context context, int count, int type, boolean isToday) {
+    public TimeSlotRecycleViewAdapter(Context context, int type, Timestamp date, List<Service> services, List<DateSlot.Slot> slots) {
         this.context = context;
-        this.count = count;
         this.type = type;
-        this.isToday = isToday;
+        this.date = date;
+        this.services = services;
+        this.dateSlots = slots;
     }
 
     @NonNull
@@ -49,27 +49,6 @@ public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRec
     @Override
     public void onBindViewHolder(@NonNull final TimeSlotViewHolder timeSlotViewHolder, int i) {
 
-        if(type == MORNING){
-            int hour = i + 8;
-            String textMinute = i%2==0?"00" : "30";
-            timeSlotViewHolder.item.setText(hour + ":" + textMinute);
-        }else if (type == AFTERNOON){
-            int hour = 16;
-            if(isToday){
-                hour = i + 16;
-            }else{
-                hour = i + 12;
-            }
-            int minute = 30 * (i%2);
-            String textMinute = i%2==0?"00" : "30";
-            timeSlotViewHolder.item.setText(hour + ":" + textMinute);
-        }else if (type == EVENING){
-            int hour = i + 18;
-            int minute = 30 * (i%2);
-            String textMinute = i%2==0?"00" : "30";
-            timeSlotViewHolder.item.setText(hour + ":" + textMinute);
-        }
-
         timeSlotViewHolder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,8 +60,7 @@ public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRec
 
     @Override
     public int getItemCount() {
-        if (type == MORNING && isToday)  return 0;
-        return count > 0 ? count : 1;
+        return dateSlots.size();
     }
 
     public class TimeSlotViewHolder extends RecyclerView.ViewHolder{
