@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class Comment {
     private String customerName;
-    private float rating;
+    private int rating;
     private Date date;
     private String content;
 
-    public Comment(String customerName, float rating, Date date, String content) {
+    public Comment(String customerName, int rating, Date date, String content) {
         this.customerName = customerName;
         this.rating = rating;
         this.date = date;
@@ -23,11 +23,11 @@ public class Comment {
         this.customerName = customerName;
     }
 
-    public float getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 

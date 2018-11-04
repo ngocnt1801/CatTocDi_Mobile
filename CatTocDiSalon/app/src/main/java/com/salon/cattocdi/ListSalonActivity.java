@@ -9,7 +9,10 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.salon.cattocdi.adapters.SalonAdapter;
+import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.utils.MyContants;
+
+import java.util.List;
 
 public class ListSalonActivity extends AppCompatActivity {
 
@@ -27,18 +30,19 @@ public class ListSalonActivity extends AppCompatActivity {
         rv = findViewById(R.id.activity_list_rv);
 
         Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra("activity_content");
+        Bundle bundle = intent.getBundleExtra("bundle");
         String title = (String) bundle.get("title");
+        List<Salon> salonList = (List<Salon>) bundle.getSerializable("salon");
         titleTv.setText(title);
 
         int type = bundle.getInt("type");
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         switch (type){
             case MyContants.RV_ITEM_VOUCHER:
-                rv.setAdapter(new SalonAdapter(MyContants.RV_ITEM_VOUCHER, this));
+                rv.setAdapter(new SalonAdapter(MyContants.RV_ITEM_VOUCHER, this, salonList));
                 break;
             case MyContants.RV_ITEM_NORMAL:
-                rv.setAdapter(new SalonAdapter(MyContants.RV_ITEM_NORMAL, this));
+                rv.setAdapter(new SalonAdapter(MyContants.RV_ITEM_NORMAL, this, salonList));
                 break;
         }
 

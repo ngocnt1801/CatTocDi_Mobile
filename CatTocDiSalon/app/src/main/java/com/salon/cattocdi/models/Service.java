@@ -7,10 +7,16 @@ import java.io.Serializable;
 public class Service implements Serializable{
     @SerializedName("ServiceId")
     private int id;
-    @SerializedName("Name")
+    @SerializedName("ServiceName")
     private String name;
+    @SerializedName("Price")
     private float price;
+    @SerializedName("AverageTime")
     private int minutes;
+    @SerializedName("CategoryId")
+    private int categoryId;
+    @SerializedName("CategoryName")
+    private String categoryName;
 
     public Service(int id, String name, float price, int minutes) {
         this.id = id;
@@ -48,5 +54,21 @@ public class Service implements Serializable{
 
     public void setMinutes(int minutes) {
         this.minutes = minutes;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

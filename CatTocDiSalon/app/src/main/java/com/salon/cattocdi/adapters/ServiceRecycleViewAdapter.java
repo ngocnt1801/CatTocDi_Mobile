@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.SalonAppointmentActivity;
+import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.models.Service;
 
 import org.w3c.dom.Text;
@@ -25,14 +26,16 @@ import java.util.Locale;
 public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecycleViewAdapter.ServiceViewHolder> {
     private Context context;
     private List<Service> services;
+    private Salon salon;
 
     public ServiceRecycleViewAdapter(Context context) {
         this.context = context;
     }
 
-    public ServiceRecycleViewAdapter(Context context, List<Service> services) {
+    public ServiceRecycleViewAdapter(Context context, List<Service> services, Salon salon) {
         this.context = context;
         this.services = services;
+        this.salon = salon;
     }
 
     @NonNull
@@ -55,6 +58,7 @@ public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecyc
             public void onClick(View view) {
                 Intent intent = new Intent(context, SalonAppointmentActivity.class);
                 intent.putExtra("service_choosen", (Serializable) service);
+                intent.putExtra("salon", (Serializable) salon);
                 context.startActivity(intent);
             }
         });

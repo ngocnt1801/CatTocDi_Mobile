@@ -26,21 +26,23 @@
             android:src="@drawable/ic_account_circle_black_24dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Nhi Nguyen"
-            android:textColor="@color/textForDark"
-            android:textSize="22dp" />
-
-        <TextView
+            android:id="@+id/fg_view_profile_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
-            android:text="Thành viên"
+            android:text="Nhi Nguyen"
             android:textColor="@color/textForDark"
-            android:textSize="18dp" />
+            android:textSize="22dp" />
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginBottom="16dp"-->
+            <!--android:text="Thành viên"-->
+            <!--android:textColor="@color/textForDark"-->
+            <!--android:textSize="18dp" />-->
     </LinearLayout>
 
 
@@ -99,6 +101,7 @@
                                 android:textSize="@dimen/size_name_shop" />
 
                             <TextView
+                                android:id="@+id/fg_view_profile_lastname_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingBottom="8dp"
@@ -128,6 +131,7 @@
                                 android:textSize="@dimen/size_name_shop" />
 
                             <TextView
+                                android:id="@+id/fg_view_profile_firstname_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingBottom="8dp"
@@ -156,6 +160,7 @@
                                 android:textSize="@dimen/size_name_shop" />
 
                             <TextView
+                                android:id="@+id/fg_view_profile_phone_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingBottom="8dp"
@@ -184,6 +189,7 @@
                                 android:textSize="@dimen/size_name_shop" />
 
                             <TextView
+                                android:id="@+id/fg_view_profile_email_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingBottom="8dp"

@@ -3,10 +3,13 @@ package com.salon.cattocdi.models;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class Salon {
+public class Salon implements Serializable {
     @SerializedName("SalonId")
     private int salonId;
     @SerializedName("SalonName")
@@ -28,7 +31,13 @@ public class Salon {
     @SerializedName("longtitude")
     private double longtitude;
     private List<Category> categories;
+    @SerializedName("Services")
+    private List<Service> services;
     private List<DayWorkingHour> workingHours;
+    @SerializedName("Reviews")
+    private List<Comment> reviews;
+    @SerializedName("Promotions")
+    private List<Promotion> promotions;
 
 
     public Salon() {
@@ -143,6 +152,22 @@ public class Salon {
     }
 
     public List<Category> getCategories() {
+        HashMap<Integer, Category> tmp = new HashMap<>();
+        for (Service service : services) {
+            Integer categoryId = service.getCategoryId();
+            if (tmp.get(categoryId) == null) {
+                Category category = new Category(service.getId(), service.getName());
+                category.setServices(new ArrayList<Service>());
+                category.getServices().add(service);
+                tmp.put(categoryId, category);
+            } else {
+                tmp.get(categoryId).getServices().add(service);
+            }
+
+            categories = new ArrayList<Category>(tmp.values());
+
+
+        }
         return categories;
     }
 
@@ -158,7 +183,7 @@ public class Salon {
         this.workingHours = workingHours;
     }
 
-    public LatLng getLatLng(){
+    public LatLng getLatLng() {
         return new LatLng(latitude, longtitude);
     }
 
@@ -178,7 +203,31 @@ public class Salon {
         this.email = email;
     }
 
-    public class DayWorkingHour{
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
+
+    public List<Comment> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Comment> reviews) {
+        this.reviews = reviews;
+    }
+
+    public List<Promotion> getPromotions() {
+        return promotions;
+    }
+
+    public void setPromotions(List<Promotion> promotions) {
+        this.promotions = promotions;
+    }
+
+    public class DayWorkingHour {
         private int dayInWeek;
         private float startHour;
         private float endHour;

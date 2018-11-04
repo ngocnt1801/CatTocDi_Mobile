@@ -84,7 +84,6 @@ public class ShowServiceFragment extends Fragment {
                     }
                 });
 
-        loadData(rcService);
         btnChoose = view.findViewById(R.id.btn_get_service);
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +93,7 @@ public class ShowServiceFragment extends Fragment {
                 String serviceName = "";
                 for (Service service :
                         services) {
-                    serviceName += service;
+                    serviceName += service.getName() + ", ";
                 }
 
                 bundle.putString("service_name", serviceName);
@@ -108,71 +107,15 @@ public class ShowServiceFragment extends Fragment {
 
         return view;
     }
-
-    private void loadData(RecyclerView rv) {
-        //Show RECYCLEVIEW
-        List<Model> items = new ArrayList<>();
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        rv.setLayoutManager(mLayoutManager);
-        rv.setAdapter(new CategoryAdapter(getActivity(), MyContants.SERVICE_CHECKBOX, new ArrayList<Service>(), categories));
-
-    }
-
-    private void fillItems(List<Model> items) {
-        /*HashMap<String, List<String>> services = new HashMap<>();
-        List<String> categories = new ArrayList<String>();
-        categories.add("Cắt tóc");
-        categories.add("Nhuộm");
-        categories.add("Uốn");
-        categories.add("Duỗi");*/
-
-        List<String> listServices = new ArrayList<String>();
-        listServices.add("Cắt tóc");
-        listServices.add("Nhuộm");
-        listServices.add("Hấp dầu");
-        listServices.add("Bấm tóc");
-        listServices.add("Uốn");
-        listServices.add("Duỗi");
-        listServices.add("Tạo kiểu");
-        listServices.add("Gội đầu");
-        listServices.add("Cắt móng");
-        listServices.add("Đắp mặt nạ");
-        /*services.put(categories.get(0), listServices);
-        services.put(categories.get(1), listServices);
-        services.put(categories.get(2), listServices);
-        services.put(categories.get(3), listServices);*/
-       /* List<String> listService = new ArrayList<>();
-        listService.add("Cat toc");
-        listService.add("Nhuom");
-        listService.add("Uon");
-        listService.add("Duoi");*/
-
-        for (int i = 0; i < listServices.size(); i++) {
-            Model model = new Model();
-            // model.setPosition(i + 1);
-            model.setItem(listServices.get(i));
-            items.add(model);
-        }
-    }
-
-    private void loadListCategory() {
-
-        ApiClient.getInstance().create(CategoryApi.class)
-                .getAllCategory("Bearer " + MyContants.TOKEN)
-                .enqueue(new Callback<List<Category>>() {
-                    @Override
-                    public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Category>> call, Throwable t) {
-
-                    }
-                });
-
-    }
+//
+//    private void loadData(RecyclerView rv) {
+//        //Show RECYCLEVIEW
+//        List<Model> items = new ArrayList<>();
+//
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+//        rv.setLayoutManager(mLayoutManager);
+//        rv.setAdapter(new CategoryAdapter(getActivity(), MyContants.SERVICE_CHECKBOX, new ArrayList<Service>(), categories));
+//
+//    }
 
 }

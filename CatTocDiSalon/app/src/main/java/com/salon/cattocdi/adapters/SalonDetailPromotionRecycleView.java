@@ -9,10 +9,19 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.models.Promotion;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
+import java.util.List;
+
 public class SalonDetailPromotionRecycleView extends RecyclerView.Adapter<SalonDetailPromotionRecycleView.PromotionViewHolder>{
+
+    private List<Promotion> promotions;
+
+    public SalonDetailPromotionRecycleView(List<Promotion> promotions) {
+        this.promotions = promotions;
+    }
 
     @NonNull
     @Override
@@ -37,7 +46,7 @@ public class SalonDetailPromotionRecycleView extends RecyclerView.Adapter<SalonD
     }
     @Override
     public int getItemCount() {
-        return 1;
+        return promotions.size();
     }
 
     public class PromotionViewHolder extends RecyclerView.ViewHolder{

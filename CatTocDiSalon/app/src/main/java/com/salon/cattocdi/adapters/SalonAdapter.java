@@ -17,10 +17,22 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.common.api.Api;
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.SalonAppointmentActivity;
 import com.salon.cattocdi.SalonDetailActivity;
+import com.salon.cattocdi.models.Salon;
+import com.salon.cattocdi.requests.ApiClient;
+import com.salon.cattocdi.requests.SalonApi;
+import com.salon.cattocdi.utils.AlertError;
 import com.salon.cattocdi.utils.MyContants;
+
+import java.io.Serializable;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.salon.cattocdi.utils.MyContants.RV_ITEM_NORMAL;
 import static com.salon.cattocdi.utils.MyContants.RV_ITEM_VOUCHER;
@@ -31,6 +43,7 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
     private int type;
     private Context context;
     private boolean isFavorite = false;
+    private List<Salon> salons;
 
     public SalonAdapter(int type, Context context) {
         this.context = context;
@@ -41,6 +54,12 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
         this.context = context;
         this.type = type;
         this.isFavorite = isFavorite;
+    }
+
+    public SalonAdapter(int type, Context context, List<Salon> salons) {
+        this.type = type;
+        this.context = context;
+        this.salons = salons;
     }
 
     @NonNull
@@ -62,12 +81,12 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
 
 //        myCardViewHolder.salonRatingBar.setRating(4.6f);
         if (type == RV_ITEM_NORMAL) {
-            myCardViewHolder.salonTitle.setText(MyContants.SalonList.get(i).getName());
-            myCardViewHolder.salonAddress.setText(MyContants.SalonList.get(i).getAddress());
-            myCardViewHolder.tvDiscount.setText(MyContants.SalonList.get(i).getDiscount() + "% OFF");
-            myCardViewHolder.salonRatingBar.setRating(MyContants.SalonList.get(i).getRatingNumber());
+            myCardViewHolder.salonTitle.setText(salons.get(i).getName());
+            myCardViewHolder.salonAddress.setText(salons.get(i).getAddress());
+            myCardViewHolder.tvDiscount.setText(salons.get(i).getDiscount() + "% OFF");
+            myCardViewHolder.salonRatingBar.setRating(salons.get(i).getRatingNumber());
             if(myCardViewHolder.salonReviewsAmount != null){
-                myCardViewHolder.salonReviewsAmount.setText("("+MyContants.SalonList.get(i).getReviewsAmount()+")");
+                myCardViewHolder.salonReviewsAmount.setText("("+salons.get(i).getReviewsAmount()+")");
             }
         }
 
@@ -77,11 +96,33 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
         myCardViewHolder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, SalonDetailActivity.class);
-                Bundle options = ActivityOptionsCompat.makeScaleUpAnimation(
-                        myCardViewHolder.item, 0, 0, myCardViewHolder.item.getWidth(), myCardViewHolder.item.getHeight()).toBundle();
-                intent.putExtra("salon_id", i);
-                ActivityCompat.startActivity(context, intent, options);
+
+                ApiClient.getInstance().create(SalonApi.class)
+                        .getSalonById("Bearer " + MyContants.TOKEN, salons.get(i).getSalonId())
+                        .enqueue(new Callback<Salon>() {
+                            @Override
+                            public void onResponse(Call<Salon> call, Response<Salon> response) {
+                                if(response.code() == 200){
+                                    Intent intent = new Intent(context, SalonDetailActivity.class);
+                                    Bundle options = ActivityOptionsCompat.makeScaleUpAnimation(
+                                            myCardViewHolder.item, 0, 0, myCardViewHolder.item.getWidth(), myCardViewHolder.item.getHeight()).toBundle();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable("salon", (Serializable) response.body());
+                                    intent.putExtra("bundle", bundle);
+                                    ActivityCompat.startActivity(context, intent, options);
+                                }else{
+                                    AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng thử lại sau");
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Salon> call, Throwable t) {
+                                AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng kiểm tra lại kết nối mạng");
+                            }
+                        });
+
+
 
             }
         });
@@ -101,7 +142,8 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
 
     @Override
     public int getItemCount() {
-        return MyContants.SalonList.size();
+        if(salons == null) return 0;
+        return salons.size();
     }
 
     public class MyCardViewHolder extends RecyclerView.ViewHolder {

@@ -6,12 +6,20 @@ import com.salon.cattocdi.models.Appointment;
 import java.util.List;
 
 public class Customer {
+    @SerializedName("CustomerID")
     private int id;
+    @SerializedName("Firstname")
     private String name;
+    @SerializedName("Lastname")
+    private String lastname;
+    @SerializedName("Phone")
     private String phone;
+    @SerializedName("Email")
     private String email;
     @SerializedName("access_token")
     private String token;
+    @SerializedName("Gender")
+    private boolean gender;
     private List<Appointment> appointments;
 
     public Customer() {
@@ -24,6 +32,8 @@ public class Customer {
         this.email = email;
         this.appointments = appointments;
     }
+
+
 
     public String getToken() {
         return token;
@@ -71,5 +81,29 @@ public class Customer {
 
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
     }
 }

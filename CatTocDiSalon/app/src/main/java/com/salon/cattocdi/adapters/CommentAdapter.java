@@ -14,9 +14,15 @@ import com.salon.cattocdi.models.Comment;
 import com.salon.cattocdi.utils.MyContants;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentViewHolder>{
 
+    private List<Comment> reviews;
+
+    public CommentAdapter(List<Comment> reviews) {
+        this.reviews = reviews;
+    }
 
     @NonNull
     @Override
@@ -27,7 +33,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
     @Override
     public void onBindViewHolder(@NonNull CommentViewHolder holder, int i) {
-        Comment comment = MyContants.COMMENTS[i];
+        Comment comment = reviews.get(i);
         holder.rbRating.setRating(comment.getRating());
         holder.tvName.setText(comment.getCustomerName());
         holder.tvContent.setText(comment.getContent());
@@ -36,7 +42,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
     @Override
     public int getItemCount() {
-        return MyContants.COMMENTS.length;
+        return reviews != null ? reviews.size() : 0;
     }
 
     public class CommentViewHolder extends RecyclerView.ViewHolder{

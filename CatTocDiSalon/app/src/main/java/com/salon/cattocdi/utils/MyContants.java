@@ -4,6 +4,7 @@ import com.salon.cattocdi.R;
 import com.salon.cattocdi.models.Appointment;
 import com.salon.cattocdi.models.Category;
 import com.salon.cattocdi.models.Comment;
+import com.salon.cattocdi.models.Customer;
 import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.models.Service;
 import com.salon.cattocdi.models.enums.AppointmentStatus;
@@ -14,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 public class MyContants {
-    public static final String BASE_URL = "http://192.168.1.113/cattocdi.userapi/";
+    public static final String BASE_URL = "http://192.168.1.90/cattocdi.userapi/";
     public static final String PHONE_TEST = "0123456789";
     public static final String PASSWORD_TEST = "123";
     public static final int RV_ITEM_VOUCHER = 1;
@@ -120,6 +121,7 @@ public class MyContants {
     };
 
     public static List<Salon> SalonList = new ArrayList<>();
+    public static Customer Customer;
 
     public static <T> ArrayList<T> toList(T[] array) {
         ArrayList<T> list = new ArrayList<>();

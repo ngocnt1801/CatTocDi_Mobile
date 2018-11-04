@@ -41,12 +41,14 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<FragementAppointmentTestAdapter.AppointmentCardViewHolder> {
-    Context context;
-    Location curLocation;
-    private int count = 5;
+    private Context context;
+    private Location curLocation;
+    private List<Appointment> appointments;
+
 
     public FragementAppointmentTestAdapter(Context context, Location curLocation) {
         this.context = context;
@@ -274,7 +276,9 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 
     @Override
     public int getItemCount() {
-        return MyContants.APPOINTMENTS.length;
+        if(appointments == null) return 0;
+        return appointments.size();
+
     }
 
     public class AppointmentCardViewHolder extends RecyclerView.ViewHolder {

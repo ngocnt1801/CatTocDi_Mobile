@@ -127,7 +127,7 @@ public class HomeListFragment extends Fragment {
     private void testRecycleViewAdapter(RecyclerView rv, int type){
         //Show RECYCLEVIEW
         rv.setItemAnimator(new DefaultItemAnimator());
-        SalonAdapter adapter = new SalonAdapter(type, getActivity());
+        SalonAdapter adapter = new SalonAdapter(type, getActivity(), MyContants.SalonList);
         rv.setAdapter(adapter);
     }
 

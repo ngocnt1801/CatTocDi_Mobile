@@ -62,7 +62,7 @@
                 android:textAlignment="5" />
 
             <ProgressBar
-                android:id="@+id/determinateSalonReviews5"
+                android:id="@+id/salon_detail_review_5_pb"
                 style="@android:style/Widget.Holo.ProgressBar.Horizontal"
                 android:layout_width="140dp"
                 android:layout_height="8dp"
@@ -74,6 +74,7 @@
                 android:progressDrawable="@drawable/custom_progress" />
 
             <TextView
+                android:id="@+id/salon_detail_review_5_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -114,7 +115,7 @@
                 android:textAlignment="5" />
 
             <ProgressBar
-                android:id="@+id/determinateSalonReviews4"
+                android:id="@+id/salon_detail_review_4_pb"
                 style="@android:style/Widget.Holo.ProgressBar.Horizontal"
                 android:layout_width="140dp"
                 android:layout_height="8dp"
@@ -126,6 +127,7 @@
                 android:progressDrawable="@drawable/custom_progress" />
 
             <TextView
+                android:id="@+id/salon_detail_review_4_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -166,7 +168,7 @@
                 android:textAlignment="5" />
 
             <ProgressBar
-                android:id="@+id/determinateSalonReviews3"
+                android:id="@+id/salon_detail_review_3_pb"
                 style="@android:style/Widget.Holo.ProgressBar.Horizontal"
                 android:layout_width="140dp"
                 android:layout_height="8dp"
@@ -174,10 +176,11 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="8dp"
                 android:max="100"
-                android:progress="0"
+                android:progress="10"
                 android:progressDrawable="@drawable/custom_progress" />
 
             <TextView
+                android:id="@+id/salon_detail_review_3_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -218,7 +221,7 @@
                 android:textAlignment="5" />
 
             <ProgressBar
-                android:id="@+id/determinateSalonReviews2"
+                android:id="@+id/salon_detail_review_2_pb"
                 style="@android:style/Widget.Holo.ProgressBar.Horizontal"
                 android:layout_width="140dp"
                 android:layout_height="8dp"
@@ -226,10 +229,11 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="8dp"
                 android:max="100"
-                android:progress="0"
+                android:progress="10"
                 android:progressDrawable="@drawable/custom_progress" />
 
             <TextView
+                android:id="@+id/salon_detail_review_2_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -270,7 +274,7 @@
                 android:textAlignment="5" />
 
             <ProgressBar
-                android:id="@+id/determinateSalonReviews1"
+                android:id="@+id/salon_detail_review_1_pb"
                 style="@android:style/Widget.Holo.ProgressBar.Horizontal"
                 android:layout_width="140dp"
                 android:layout_height="8dp"
@@ -278,10 +282,11 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="8dp"
                 android:max="100"
-                android:progress="0"
+                android:progress="10"
                 android:progressDrawable="@drawable/custom_progress" />
 
             <TextView
+                android:id="@+id/salon_detail_review_1_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.salon.cattocdi.adapters.AppointmentServiceRecycleViewAdapter;
 import com.salon.cattocdi.adapters.TimeSlotRecycleViewAdapter;
 import com.salon.cattocdi.models.DateSlot;
+import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.models.Service;
 
 import java.io.Serializable;
@@ -39,9 +40,9 @@ public class SalonAppointmentActivity extends AppCompatActivity {
     private RecyclerView rvMorning, rvAfternoon, rvNight, rvService;
     private Button btnAddService;
     private List<Service> checkedList;
-
+    private Salon salon;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -144,6 +145,7 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         rvService.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvService.setAdapter(new AppointmentServiceRecycleViewAdapter(checkedList));
 
+        salon = (Salon) getIntent().getSerializableExtra("salon");
         btnAddService = findViewById(R.id.btn_add_more_service_to_appointment);
         btnAddService.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +154,7 @@ public class SalonAppointmentActivity extends AppCompatActivity {
                 if(checkedList != null){
                     intent.putExtra("checked_list", (Serializable) checkedList);
                 }
+                intent.putExtra("salon", (Serializable) salon);
                 startActivity(intent);
             }
         });

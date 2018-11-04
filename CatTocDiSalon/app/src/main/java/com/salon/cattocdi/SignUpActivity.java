@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.salon.cattocdi.models.ResponseMessage;
 import com.salon.cattocdi.requests.AccountApi;
 import com.salon.cattocdi.requests.ApiClient;
+import com.salon.cattocdi.utils.AlertError;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -83,7 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
                 boolean result = validRegister();
                 if(result){
                     ApiClient.getInstance().create(AccountApi.class)
-                            .register(etPhone.getText().toString(), etPassword.getText().toString(), isMale, etName.getText().toString(), etPhone.getText().toString() )
+                            .register(etPhone.getText().toString(), etPassword.getText().toString(), isMale, etName.getText().toString(),etName.getText().toString(), etPhone.getText().toString() )
                             .enqueue(new Callback<ResponseMessage>() {
                                 @Override
                                 public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
@@ -91,13 +92,13 @@ public class SignUpActivity extends AppCompatActivity {
                                         Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                         startActivity(intent);
                                     }else{
-                                        showDialogLoginFail("Số điện thoại này đã được đăng ký");
+                                        AlertError.showDialogLoginFail(SignUpActivity.this,"Số điện thoại này đã được đăng ký");
                                     }
                                 }
 
                                 @Override
                                 public void onFailure(Call<ResponseMessage> call, Throwable t) {
-                                    showDialogLoginFail("Có lỗi xảy ra, vui lòng thử lại!");
+                                    AlertError.showDialogLoginFail(SignUpActivity.this, "Có lỗi xảy ra, vui lòng thử lại!");
                                 }
                             });
                 }
@@ -125,18 +126,5 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         return result;
-    }
-
-    private void showDialogLoginFail(String msg){
-        final AlertDialog dialog = new AlertDialog.Builder(SignUpActivity.this).create();
-        dialog.setTitle("Không thành công");
-        dialog.setMessage(msg);
-        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
     }
 }

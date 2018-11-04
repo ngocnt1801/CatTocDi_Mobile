@@ -139,10 +139,10 @@ public class SearchFragment extends Fragment {
                             public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
                                 Intent intent = new Intent(getActivity(), ListSalonActivity.class);
                                 Bundle bundle = new Bundle();
-                                bundle.putSerializable("list", (Serializable) response.body());
+                                bundle.putSerializable("salon", (Serializable) response.body());
                                 bundle.putString("title", "Kết quả tìm kiếm");
                                 bundle.putInt("type", MyContants.RV_ITEM_NORMAL);
-                                intent.putExtra("activity_content", bundle);
+                                intent.putExtra("bundle", bundle);
                                 startActivity(intent);
                             }
 

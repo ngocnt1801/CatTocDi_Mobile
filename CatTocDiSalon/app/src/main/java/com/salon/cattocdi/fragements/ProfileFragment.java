@@ -15,16 +15,23 @@ import android.widget.TextView;
 
 import com.salon.cattocdi.EditProfileActivity;
 import com.salon.cattocdi.R;
+import com.salon.cattocdi.models.Customer;
+import com.salon.cattocdi.requests.AccountApi;
+import com.salon.cattocdi.requests.ApiClient;
+import com.salon.cattocdi.utils.MyContants;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends Fragment {
-    TextView editProfile, showLike, helpTv, showPoint, showHistory;
+    private TextView editProfile, showLike, helpTv, showPoint, showHistory, tvName;
     //TextView logout;
-    Context context;
-    //private ProfileFragment profileFragment;
-
+    private Context context;
+    private Customer customer;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -36,14 +43,14 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        context = view.getContext();
+        context = getActivity();
+        loadProfile();
+        tvName = view.findViewById(R.id.fg_profile_name_tv);
+
         editProfile = view.findViewById(R.id.edit_information_tv);
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //swapFragment();
-                /*Intent intent = new Intent(context, EditProfileActivity.class);
-                startActivity(intent);*/
                 ViewProifileFragment viewProifileFragment = new ViewProifileFragment();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fg_profile, viewProifileFragment, null).addToBackStack(null).commit();
@@ -58,8 +65,6 @@ public class ProfileFragment extends Fragment {
                 ShowTopFragment showTopFragment = new ShowTopFragment();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fg_profile, showTopFragment, null).addToBackStack(null).commit();
-               /*ShowTopFragment showTopFragment = new ShowTopFragment();
-               showFragment(showTopFragment);*/
             }
         });
 
@@ -72,14 +77,14 @@ public class ProfileFragment extends Fragment {
                         .beginTransaction().replace(R.id.fg_profile, helpFragment, null).addToBackStack(null).commit();
             }
         });
-        showPoint = view.findViewById(R.id.show_user_point);
-        showPoint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               PointFragment pointFragment = new PointFragment();
-               getFragmentManager().beginTransaction().replace(R.id.fg_profile, pointFragment, null).addToBackStack(null).commit();
-            }
-        });
+//        showPoint = view.findViewById(R.id.show_user_point);
+//        showPoint.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//               PointFragment pointFragment = new PointFragment();
+//               getFragmentManager().beginTransaction().replace(R.id.fg_profile, pointFragment, null).addToBackStack(null).commit();
+//            }
+//        });
         showHistory = view.findViewById(R.id.fg_show_history);
         showHistory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +97,25 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        return  view;
+        return view;
+    }
+
+    private void loadProfile() {
+        ApiClient.getInstance().create(AccountApi.class)
+                .getProfile("Bearer " + MyContants.TOKEN)
+                .enqueue(new Callback<Customer>() {
+                    @Override
+                    public void onResponse(Call<Customer> call, Response<Customer> response) {
+                        customer = response.body();
+                        MyContants.Customer = customer;
+                        tvName.setText(customer.getName());
+                    }
+
+                    @Override
+                    public void onFailure(Call<Customer> call, Throwable t) {
+
+                    }
+                });
     }
 
 }

@@ -44,25 +44,22 @@
                     android:src="@drawable/ic_account_circle_black_24dp" />
 
                 <TextView
+                    android:id="@+id/fg_profile_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_gravity="center"
                     android:text="Nhi Nguyen"
                     android:textColor="@color/textForDark"
-
                     android:textSize="20dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:text="Thành viên"
-                    android:textColor="@color/textForDark"
-
-                    android:textSize="14dp" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_marginTop="8dp"-->
+                    <!--android:text="Thành viên"-->
+                    <!--android:textColor="@color/textForDark"-->
+                    <!--android:textSize="14dp" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -117,35 +114,35 @@
                         android:background="@color/light"></View>
                 </android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="match_parent"
+                <!--<android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                    <!--android:layout_width="match_parent"-->
 
-                    android:layout_height="wrap_content">
+                    <!--android:layout_height="wrap_content">-->
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="24dp"
-                        android:src="@drawable/ic_dollar" />
+                    <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:padding="24dp"-->
+                        <!--android:src="@drawable/ic_dollar" />-->
 
-                    <TextView
-                        android:id="@+id/show_user_point"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="48dp"
-                        android:clickable="true"
-                        android:padding="24dp"
-                        android:text="Điểm tích lũy"
-                        android:textColor="@color/textForLight"
-                        android:textSize="16dp" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/show_user_point"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginLeft="48dp"-->
+                        <!--android:clickable="true"-->
+                        <!--android:padding="24dp"-->
+                        <!--android:text="Điểm tích lũy"-->
+                        <!--android:textColor="@color/textForLight"-->
+                        <!--android:textSize="16dp" />-->
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_gravity="bottom"
-                        android:background="@color/light"></View>
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0.5dp"-->
+                        <!--android:layout_gravity="bottom"-->
+                        <!--android:background="@color/light"></View>-->
 
-                </android.support.v7.widget.CardView>
+                <!--</android.support.v7.widget.CardView>-->
 
                 <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"

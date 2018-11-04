@@ -21,6 +21,7 @@ import com.salon.cattocdi.models.Customer;
 import com.salon.cattocdi.models.ResponseMessage;
 import com.salon.cattocdi.requests.AccountApi;
 import com.salon.cattocdi.requests.ApiClient;
+import com.salon.cattocdi.utils.AlertError;
 import com.salon.cattocdi.utils.MyContants;
 
 import retrofit2.Call;
@@ -75,31 +76,20 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                         } else {
-                            showDialogLoginFail();
+                            AlertError.showDialogLoginFail(LoginActivity.this, "Số điện thoại hoặc mật khẩu không chính xác");
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Customer> call, Throwable t) {
-                        showDialogLoginFail();
+                        AlertError.showDialogLoginFail(LoginActivity.this, "Có lỗi xảy ra vui lòng đăng nhập lại");
                     }
                 });
 
         return result;
     }
 
-    private void showDialogLoginFail() {
-        final AlertDialog dialog = new AlertDialog.Builder(LoginActivity.this).create();
-        dialog.setTitle("Không chính xác");
-        dialog.setMessage("Số điện thoại hoặc mật khẩu không chính xác");
-        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }
+
 
 //    private void sendRequest(){
 //        RequestQueue queue = Volley.newRequestQueue(this);

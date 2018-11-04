@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.models.Category;
+import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.models.Service;
 import com.salon.cattocdi.utils.MyContants;
 
@@ -29,11 +30,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     private List<SuggestServiceCardAdapter> adapterList;
     private List<Service> checkedList;
     private List<Category> categories;
+    private Salon salon;
 
 
-    public CategoryAdapter(Context context, int type) {
+    public CategoryAdapter(Context context, int type, List<Category> categories, Salon salon) {
         this.context = context;
         this.type = type;
+        this.categories = categories;
+        this.salon = salon;
     }
 
     public CategoryAdapter(Context context, int type, List<Service> checkedList, List<Category> categories) {
@@ -41,6 +45,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         this.type = type;
         this.checkedList = checkedList;
         this.categories = categories;
+
     }
 
     public void setCategories(List<Category> categories) {
@@ -61,7 +66,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.icExpand.setImageResource(R.drawable.ic_collapse);
         holder.rvService.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         if (type == MyContants.SERVICE_ADD) {
-            holder.rvService.setAdapter(new ServiceRecycleViewAdapter(context, category.getServices()));
+            holder.rvService.setAdapter(new ServiceRecycleViewAdapter(context, category.getServices(), salon));
 
         }else{
             SuggestServiceCardAdapter adapter = new SuggestServiceCardAdapter(category.getServices(), checkedList);

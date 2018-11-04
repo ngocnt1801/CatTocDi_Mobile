@@ -35,14 +35,13 @@ public class SalonDetailContactFragment extends Fragment implements OnMapReadyCa
     private Salon salon;
     private TextView tvAddress, tvPhone, tvEmail;
 
-
     public SalonDetailContactFragment() {
         // Required empty public constructor
     }
 
     @SuppressLint("ValidFragment")
-    public SalonDetailContactFragment(int salonId) {
-        this.salon = MyContants.SALONS[salonId];
+    public SalonDetailContactFragment(Salon salon) {
+        this.salon = salon;
     }
 
     @Override
