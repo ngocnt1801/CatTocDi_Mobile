@@ -5,8 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class Service implements Serializable{
-    @SerializedName("ServiceId")
+    @SerializedName("SalonServiceId")
     private int id;
+    @SerializedName("ServiceId")
+    private int serviceId;
     @SerializedName("ServiceName")
     private String name;
     @SerializedName("Price")
@@ -19,7 +21,7 @@ public class Service implements Serializable{
     private String categoryName;
 
     public Service(int id, String name, float price, int minutes) {
-        this.id = id;
+        this.serviceId = id;
         this.name = name;
         this.price = price;
         this.minutes = minutes;
@@ -30,6 +32,14 @@ public class Service implements Serializable{
 
     public int getId() {
         return id;
+    }
+
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    public int getServiceId() {
+        return serviceId;
     }
 
     public String getName() {

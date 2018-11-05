@@ -26,17 +26,29 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.adapters.FragementAppointmentTestAdapter;
+import com.salon.cattocdi.models.Appointment;
+import com.salon.cattocdi.requests.ApiClient;
+import com.salon.cattocdi.requests.AppointmentApi;
+import com.salon.cattocdi.utils.MyContants;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class AppointmentFragment extends Fragment {
 
-    RecyclerView rvUpcomming;
-    FusedLocationProviderClient mFusedLocationClient;
-    Location mCurrentLocation;
-    LocationCallback mlocationCallback;
-    LocationRequest mLocationRequest;
+    private RecyclerView rvUpcomming;
+    private FusedLocationProviderClient mFusedLocationClient;
+    private Location mCurrentLocation;
+    private LocationCallback mlocationCallback;
+    private LocationRequest mLocationRequest;
+    private List<Appointment> appointments;
 
 
     public AppointmentFragment() {
@@ -50,10 +62,9 @@ public class AppointmentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_appointment, container, false);
         rvUpcomming = view.findViewById(R.id.fg_appointment_rv_upcoming);
         getLocation();
+        appointments = new ArrayList<>();
         testRecycleViewAdapter();
-
-
-
+        loadAppointment();
         return view;
     }
 
@@ -61,7 +72,7 @@ public class AppointmentFragment extends Fragment {
         //Show RECYCLEVIEW
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        FragementAppointmentTestAdapter adapter = new FragementAppointmentTestAdapter(getActivity(), mCurrentLocation);
+        FragementAppointmentTestAdapter adapter = new FragementAppointmentTestAdapter(getActivity(), mCurrentLocation, appointments);
         rvUpcomming.setAdapter(adapter);
         rvUpcomming.setLayoutManager(mLayoutManager);
         rvUpcomming.setItemAnimator(new DefaultItemAnimator());
@@ -120,5 +131,22 @@ public class AppointmentFragment extends Fragment {
                 }, 99);
             }
         }
+    }
+
+    private void loadAppointment(){
+        ApiClient.getInstance().create(AppointmentApi.class)
+                .getAllAppointment("Bearer " + MyContants.TOKEN)
+                .enqueue(new Callback<List<Appointment>>() {
+                    @Override
+                    public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
+                        appointments = response.body();
+                        testRecycleViewAdapter();
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Appointment>> call, Throwable t) {
+
+                    }
+                });
     }
 }

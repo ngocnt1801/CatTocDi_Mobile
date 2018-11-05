@@ -30,8 +30,12 @@ import android.widget.Toast;
 
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.models.Appointment;
+import com.salon.cattocdi.models.Comment;
 import com.salon.cattocdi.models.Service;
 import com.salon.cattocdi.models.enums.AppointmentStatus;
+import com.salon.cattocdi.requests.ApiClient;
+import com.salon.cattocdi.requests.AppointmentApi;
+import com.salon.cattocdi.utils.AlertError;
 import com.salon.cattocdi.utils.MyContants;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
@@ -44,6 +48,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<FragementAppointmentTestAdapter.AppointmentCardViewHolder> {
     private Context context;
     private Location curLocation;
@@ -53,6 +61,12 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
     public FragementAppointmentTestAdapter(Context context, Location curLocation) {
         this.context = context;
         this.curLocation = curLocation;
+    }
+
+    public FragementAppointmentTestAdapter(Context context, Location curLocation, List<Appointment> appointments) {
+        this.context = context;
+        this.curLocation = curLocation;
+        this.appointments = appointments;
     }
 
     public FragementAppointmentTestAdapter() {
@@ -69,7 +83,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 
     @Override
     public void onBindViewHolder(@NonNull final AppointmentCardViewHolder viewHolder, final int i) {
-        final Appointment appointment = MyContants.APPOINTMENTS[i];
+        final Appointment appointment = appointments.get(i);
 
         viewHolder.tvSalonName.setText(appointment.getSalon().getName());
 
@@ -83,6 +97,12 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
             viewHolder.appointmentRl.setBackgroundColor(Color.parseColor("#eeeeee"));
             viewHolder.icDelete.setVisibility(View.GONE);
             viewHolder.btnReview.setVisibility(View.VISIBLE);
+        }
+
+        if(appointment.getStatus() == AppointmentStatus.CANCEL){
+            viewHolder.appointmentRl.setBackgroundColor(Color.parseColor("#eeeeee"));
+            viewHolder.icDelete.setVisibility(View.GONE);
+            viewHolder.tvCancelStatus.setVisibility(View.VISIBLE);
         }
 
         if (i == 0) {
@@ -119,26 +139,41 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                 rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
                     @Override
                     public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                       ratingBar.setRating(v);
+                        ratingBar.setRating(v);
                     }
                 });
 
-                //send comment
+                //send comment  .
                 //disappear reviewBtn
                 //visible comment in expand
                 Button btnSend = dialog.findViewById(R.id.review_dialog_btn);
                 btnSend.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        EditText et = dialog.findViewById(R.id.review_dialog_et);
-                        float rating = rb.getRating();
+                        final EditText et = dialog.findViewById(R.id.review_dialog_et);
+                        final float rating = rb.getRating();
 
-                        viewHolder.tvComment.setText(et.getText().toString());
-                        viewHolder.rb.setRating(rating);
-                        viewHolder.commentLn.setVisibility(View.VISIBLE);
+                        ApiClient.getInstance().create(AppointmentApi.class)
+                                .reviewAppointment("Bearer " + MyContants.TOKEN, new Comment(appointment.getAppointmentId(), (int) rating, et.getText().toString()))
+                                .enqueue(new Callback<String>() {
+                                    @Override
+                                    public void onResponse(Call<String> call, Response<String> response) {
+                                        viewHolder.tvComment.setText(et.getText().toString());
+                                        viewHolder.rb.setRating(rating);
+                                        viewHolder.commentLn.setVisibility(View.VISIBLE);
 
-                        viewHolder.btnReview.setVisibility(View.GONE);
-                        dialog.dismiss();
+                                        viewHolder.btnReview.setVisibility(View.GONE);
+                                        dialog.dismiss();
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<String> call, Throwable t) {
+                                        dialog.dismiss();
+                                        AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng thử lại");
+                                    }
+                                });
+
+
                     }
                 });
 
@@ -208,7 +243,23 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                     btnOk.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            dialog.dismiss();
+                            ApiClient.getInstance().create(AppointmentApi.class)
+                                    .cancelAppointment("Bearer " + MyContants.TOKEN, appointment.getAppointmentId())
+                                    .enqueue(new Callback<String>() {
+                                        @Override
+                                        public void onResponse(Call<String> call, Response<String> response) {
+                                            if (response.code() == 200) {
+                                                dialog.dismiss();
+                                            } else {
+                                                AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng thử lại");
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<String> call, Throwable t) {
+                                            AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng thử lại");
+                                        }
+                                    });
                         }
                     });
 
@@ -269,14 +320,14 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         tvDiscount.setText(appointment.getDiscount() + "%");
 
         TextView tvTotal = holder.appointmentDetail.findViewById(R.id.appointment_item_expand_total_tv);
-        float total = subTotal * (1 - (float)appointment.getDiscount()/100);
+        float total = subTotal * (1 - (float) appointment.getDiscount() / 100);
         tvTotal.setText(NumberFormat.getNumberInstance(Locale.US).format(total));
 
     }
 
     @Override
     public int getItemCount() {
-        if(appointments == null) return 0;
+        if (appointments == null) return 0;
         return appointments.size();
 
     }
@@ -293,7 +344,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         public RatingBar rb;
         public LinearLayout commentLn;
 
-        public TextView tvAppoinmentType, tvDate, tvSalonName, tvTime, tvComment;
+        public TextView tvAppoinmentType, tvDate, tvSalonName, tvTime, tvComment, tvCancelStatus;
 
         public AppointmentCardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -314,6 +365,8 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
             rb = itemView.findViewById(R.id.appointment_item_expand_rb);
             tvComment = itemView.findViewById(R.id.appointment_item_expand_comment_tv);
 
+            tvCancelStatus = itemView.findViewById(R.id.appointment_item_cancel_status_tv);
+
             item = itemView;
 
         }
@@ -330,7 +383,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //        itemView.tvDot.setTextColor(Color.parseColor("#ffffff"));
 //        itemView.tvEndTime.setTextColor(Color.parseColor("#ffffff"));
         itemView.icExpand.setImageResource(R.drawable.ic_collapse);
-        if(status == AppointmentStatus.APPROVED){
+        if (status == AppointmentStatus.APPROVED) {
             itemView.appointmentDetail.setBackgroundColor(Color.parseColor("#fafafa"));
         }
     }
@@ -345,7 +398,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //        itemView.tvDot.setTextColor(Color.parseColor("#000000"));
 //        itemView.tvEndTime.setTextColor(Color.parseColor("#000000"));
         itemView.icExpand.setImageResource(R.drawable.ic_expand);
-        if(status == AppointmentStatus.APPROVED){
+        if (status == AppointmentStatus.APPROVED) {
             itemView.appointmentDetail.setBackgroundColor(Color.parseColor("#eeeeee"));
         }
     }

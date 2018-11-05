@@ -63,7 +63,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener{
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     GoogleMap mMap;
     SupportMapFragment mapFragment;
     LocationRequest mLocationRequest;
@@ -71,9 +71,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     Marker mCurrLocationmMarker;
     FusedLocationProviderClient mFusuedLocationClient;
     Geocoder geocoder;
-    List<LatLng> addressList;
+    //    List<LatLng> addressList;
     LatLng currentPosition;
-    Marker myLocationMarker;
+    //    Marker myLocationMarker;
+    private List<Salon> salons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,19 +85,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.salons_map);
         mapFragment.getMapAsync(this);
         geocoder = new Geocoder(this, Locale.getDefault());
-        addressList = new ArrayList<>();
+//        addressList = new ArrayList<>();
 
-        initData();
-    }
-
-    private void initData() {
-        Double[] lattitude = {10.858228, 10.855226, 10.850321, 10.849861, 10.850826};
-        Double[] longtitude = {106.629373, 106.624505, 106.623503, 106.627374, 106.631089};
-        for (int i = 0; i < lattitude.length; i++) {
-            addressList.add(new LatLng(lattitude[i], longtitude[i]));
+        salons = (List<Salon>) getIntent().getSerializableExtra("salon_list");
+        if (salons == null) {
+            salons = new ArrayList<>();
         }
-
+//        initData();
     }
+
+//    private void initData() {
+////        Double[] lattitude = {10.858228, 10.855226, 10.850321, 10.849861, 10.850826};
+////        Double[] longtitude = {106.629373, 106.624505, 106.623503, 106.627374, 106.631089};
+//        for (int i = 0; i < salons.size(); i++) {
+//            addressList.add(salons.get(i).getLatLng());
+//        }
+//
+//    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -112,8 +117,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
                 mFusuedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallBack, Looper.myLooper());
-                mMap.setMyLocationEnabled(true);
-                LocationManager mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
+                mMap.setMyLocationEnabled(false);
+                LocationManager mLocationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
                 List<String> providers = mLocationManager.getProviders(true);
                 Location currentLocation = null;
                 for (String provider : providers) {
@@ -126,14 +131,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         currentLocation = l;
                     }
                 }
-
-                currentPosition = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .target(currentPosition)
-                        .zoom(17f)
-                        .build();
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
-                mMap.animateCamera(cameraUpdate);
+                if (currentLocation != null) {
+                    LatLng currentPosition = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                    CameraPosition cameraPosition = new CameraPosition.Builder()
+                            .target(currentPosition)
+                            .zoom(17f)
+                            .build();
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+                    mMap.animateCamera(cameraUpdate);
+                    Marker myLocationMarker = createMarker(currentPosition);
+                    myLocationMarker.setTag("Me");
+                } else {
+                    LatLng currentPosition = new LatLng(MyContants.LATITUDE_DEFAULT, MyContants.LONGTITUDE_DEFAULT);
+                    CameraPosition cameraPosition = new CameraPosition.Builder()
+                            .target(currentPosition)
+                            .zoom(MyContants.ZOOM_DEFAULT)
+                            .build();
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+                    mMap.animateCamera(cameraUpdate);
+                }
 
             } else {
                 checkLocationPermission();
@@ -141,7 +157,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    private Marker createMarker(LatLng location){
+    private Marker createMarker(LatLng location) {
         Drawable drawable = getResources().getDrawable(R.drawable.ic_my_location_arrow);
         Canvas canvas = new Canvas();
         Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
@@ -150,18 +166,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         drawable.draw(canvas);
 
         MarkerOptions markerOptions = new MarkerOptions().position(location)
-                                                        .icon(BitmapDescriptorFactory.fromBitmap(bitmap));
+                .icon(BitmapDescriptorFactory.fromBitmap(bitmap));
         return mMap.addMarker(markerOptions);
     }
 
     private void makeMarker() {
         Bitmap bm;
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        for (int i = 0; i < addressList.size(); i++) {
+        for (int i = 0; i < salons.size(); i++) {
             MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(addressList.get(i));
-            builder.include(addressList.get(i));
-            bm = createBitmapFromLayoutWithText(MyContants.SALONS[i]);
+            markerOptions.position(salons.get(i).getLatLng());
+            builder.include(salons.get(i).getLatLng());
+            bm = createBitmapFromLayoutWithText(salons.get(i));
 //            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bm));
             mCurrLocationmMarker = mMap.addMarker(markerOptions);
@@ -265,15 +281,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
-
-
     @Override
     public boolean onMarkerClick(Marker marker) {
         mMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
         return true;
     }
 
-    private double bearingBetweenLocations(LatLng latLng1,LatLng latLng2) {
+    private double bearingBetweenLocations(LatLng latLng1, LatLng latLng2) {
 
         double PI = 3.14159;
         double lat1 = latLng1.latitude * PI / 180;
@@ -296,8 +310,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private boolean isMarkerRotating = false;
+
     private void rotateMarker(final Marker marker, final float toRotation) {
-        if(!isMarkerRotating) {
+        if (!isMarkerRotating) {
             final Handler handler = new Handler();
             final long start = SystemClock.uptimeMillis();
             final float startRotation = marker.getRotation();

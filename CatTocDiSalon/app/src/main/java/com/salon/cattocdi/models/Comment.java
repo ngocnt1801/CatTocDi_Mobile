@@ -1,18 +1,31 @@
 package com.salon.cattocdi.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Comment {
+    @SerializedName("id")
+    private int appointmentId;
     private String customerName;
+    @SerializedName("rateNumber")
     private int rating;
-    private Date date;
+    @SerializedName("content")
     private String content;
+    private Date date;
 
-    public Comment(String customerName, int rating, Date date, String content) {
-        this.customerName = customerName;
+    public Comment(int appointmentId, int rating, String content) {
+        this.appointmentId = appointmentId;
         this.rating = rating;
-        this.date = date;
         this.content = content;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getCustomerName() {
@@ -29,14 +42,6 @@ public class Comment {
 
     public void setRating(int rating) {
         this.rating = rating;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getContent() {

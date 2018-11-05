@@ -28,6 +28,7 @@ import com.salon.cattocdi.requests.ApiClient;
 import com.salon.cattocdi.requests.SalonApi;
 import com.salon.cattocdi.utils.MyContants;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,38 +92,39 @@ public class HomeListFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("title","Khuyến mãi");
                 bundle.putInt("type", MyContants.RV_ITEM_VOUCHER);
-                intent.putExtra("activity_content", bundle);
+                bundle.putSerializable("salon", (Serializable) MyContants.SalonList);
+                intent.putExtra("bundle", bundle);
                 ActivityCompat.startActivity(getActivity(), intent, option);
 
             }
         });
 
-        loadAllSalon();
+//        loadAllSalon();
         return view;
     }
 
-    private void loadAllSalon(){
-        ApiClient.getInstance().create(SalonApi.class)
-                .getAllSalon("Bearer " + MyContants.TOKEN)
-                .enqueue(new Callback<List<Salon>>() {
-                    @Override
-                    public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
-                        if(response.body() != null ){
-                            MyContants.SalonList = response.body();
-                        }else{
-                            MyContants.SalonList = new ArrayList<>();
-                        }
-                        testRecycleViewAdapter(rvRating, MyContants.RV_ITEM_NORMAL);
-                        testRecycleViewAdapter(rvSale, MyContants.RV_ITEM_VOUCHER);
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Salon>> call, Throwable t) {
-                        Log.d("FAIL_GET", t.getMessage());
-                        MyContants.SalonList = new ArrayList<>();
-                    }
-                });
-    }
+//    private void loadAllSalon(){
+//        ApiClient.getInstance().create(SalonApi.class)
+//                .getAllSalon("Bearer " + MyContants.TOKEN)
+//                .enqueue(new Callback<List<Salon>>() {
+//                    @Override
+//                    public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
+//                        if(response.body() != null ){
+//                            MyContants.SalonList = response.body();
+//                        }else{
+//                            MyContants.SalonList = new ArrayList<>();
+//                        }
+//                        testRecycleViewAdapter(rvRating, MyContants.RV_ITEM_NORMAL);
+//                        testRecycleViewAdapter(rvSale, MyContants.RV_ITEM_VOUCHER);
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<List<Salon>> call, Throwable t) {
+//                        Log.d("FAIL_GET", t.getMessage());
+//                        MyContants.SalonList = new ArrayList<>();
+//                    }
+//                });
+//    }
 
     private void testRecycleViewAdapter(RecyclerView rv, int type){
         //Show RECYCLEVIEW

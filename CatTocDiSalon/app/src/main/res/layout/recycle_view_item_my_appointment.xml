@@ -106,6 +106,14 @@
             android:stateListAnimator="@drawable/click_effect_btn"
             android:theme="@style/MyButton"
             android:textColor="@color/textForDark"/>
+        <TextView
+            android:id="@+id/appointment_item_cancel_status_tv"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ĐÃ HỦY"
+            android:layout_alignParentRight="true"
+            android:textColor="#808080"/>
 
     </RelativeLayout>
 

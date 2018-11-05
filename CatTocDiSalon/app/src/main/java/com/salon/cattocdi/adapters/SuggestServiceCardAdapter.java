@@ -1,24 +1,18 @@
 package com.salon.cattocdi.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.LinearLayout;
 
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.models.Service;
-import com.salon.cattocdi.utils.Model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SuggestServiceCardAdapter extends RecyclerView.Adapter<SuggestServiceCardAdapter.ViewHolder> {
 
@@ -56,7 +50,7 @@ public class SuggestServiceCardAdapter extends RecyclerView.Adapter<SuggestServi
         }
         for (Service checked :
                 checkedList) {
-            if(checked.getId() == service.getId()){
+            if(checked.getServiceId() == service.getServiceId()){
                 holder.mCheckedTextView.setChecked(true);
 
                 currentCheckedList.add(service);

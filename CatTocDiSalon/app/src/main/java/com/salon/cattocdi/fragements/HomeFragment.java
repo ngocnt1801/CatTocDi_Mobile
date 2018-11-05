@@ -46,35 +46,36 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        ViewPager viewPager = view.findViewById(R.id.detail_pager);
-        setupViewPager(viewPager);
-        // Set Tabs inside Toolbar
-        TabLayout tabs = view.findViewById(R.id.detail_tab_layout);
-        tabs.setupWithViewPager(viewPager);
-//        loadAllSalon();
+        loadAllSalon(view);
         return view;
     }
 
-//    private void loadAllSalon(){
-//        ApiClient.getInstance().create(SalonApi.class)
-//                .getAllSalon("Bearer " + MyContants.TOKEN)
-//                .enqueue(new Callback<List<Salon>>() {
-//                    @Override
-//                    public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
-//                        if(response.body() != null ){
-//                            MyContants.SalonList = response.body();
-//                        }else{
-//                            MyContants.SalonList = new ArrayList<>();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<List<Salon>> call, Throwable t) {
-//                        Log.d("FAIL_GET", t.getMessage());
-//                        MyContants.SalonList = new ArrayList<>();
-//                    }
-//                });
-//    }
+    private void loadAllSalon(final View view){
+        ApiClient.getInstance().create(SalonApi.class)
+                .getAllSalon("Bearer " + MyContants.TOKEN)
+                .enqueue(new Callback<List<Salon>>() {
+                    @Override
+                    public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
+                        if(response.body() != null ){
+                            MyContants.SalonList = response.body();
+                        }else{
+                            MyContants.SalonList = new ArrayList<>();
+                        }
+                        ViewPager viewPager = view.findViewById(R.id.detail_pager);
+                        setupViewPager(viewPager);
+                        // Set Tabs inside Toolbar
+                        TabLayout tabs = view.findViewById(R.id.detail_tab_layout);
+                        tabs.setupWithViewPager(viewPager);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Salon>> call, Throwable t) {
+                        Log.d("FAIL_GET", t.getMessage());
+                        MyContants.SalonList = new ArrayList<>();
+                    }
+                });
+    }
+
 
 // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {

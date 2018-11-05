@@ -24,14 +24,14 @@ public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRec
     private int type;
     private Timestamp date;
     private List<Service> services;
-    private List<DateSlot.Slot> dateSlots;
+    private List<DateSlot> dateSlots;
 
     public static final int MORNING = 1;
     public static final int AFTERNOON = 2;
     public static int EVENING = 3;
 
 
-    public TimeSlotRecycleViewAdapter(Context context, int type, Timestamp date, List<Service> services, List<DateSlot.Slot> slots) {
+    public TimeSlotRecycleViewAdapter(Context context, int type, Timestamp date, List<Service> services, List<DateSlot> slots) {
         this.context = context;
         this.type = type;
         this.date = date;

@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class Salon implements Serializable {
     private List<Comment> reviews;
     @SerializedName("Promotions")
     private List<Promotion> promotions;
+    private List<CloseDate> closeDates;
+    private List<DateSlot> dateSlots;
 
 
     public Salon() {
@@ -104,7 +107,22 @@ public class Salon implements Serializable {
     }
 
     public int getDiscount() {
-        return discount;
+        if (promotions == null){
+            return 0;
+        }
+
+        for (Promotion promotion :
+                promotions) {
+
+            if(Calendar.getInstance().getTimeInMillis() >= promotion.getStartPeriod().getTime()
+                    && Calendar.getInstance().getTimeInMillis() <= promotion.getEndPeriod().getTime()){
+                return promotion.getDiscount();
+            }
+
+        }
+
+        return 0;
+
     }
 
     public void setDiscount(int discount) {
@@ -156,7 +174,7 @@ public class Salon implements Serializable {
         for (Service service : services) {
             Integer categoryId = service.getCategoryId();
             if (tmp.get(categoryId) == null) {
-                Category category = new Category(service.getId(), service.getName());
+                Category category = new Category(service.getCategoryId(), service.getCategoryName());
                 category.setServices(new ArrayList<Service>());
                 category.getServices().add(service);
                 tmp.put(categoryId, category);
@@ -165,7 +183,6 @@ public class Salon implements Serializable {
             }
 
             categories = new ArrayList<Category>(tmp.values());
-
 
         }
         return categories;
@@ -225,6 +242,22 @@ public class Salon implements Serializable {
 
     public void setPromotions(List<Promotion> promotions) {
         this.promotions = promotions;
+    }
+
+    public List<CloseDate> getCloseDates() {
+        return closeDates;
+    }
+
+    public void setCloseDates(List<CloseDate> closeDates) {
+        this.closeDates = closeDates;
+    }
+
+    public List<DateSlot> getDateSlots() {
+        return dateSlots;
+    }
+
+    public void setDateSlots(List<DateSlot> dateSlots) {
+        this.dateSlots = dateSlots;
     }
 
     public class DayWorkingHour {

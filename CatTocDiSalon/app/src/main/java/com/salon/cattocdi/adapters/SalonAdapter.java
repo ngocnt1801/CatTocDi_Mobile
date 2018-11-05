@@ -36,7 +36,6 @@ import retrofit2.Response;
 
 import static com.salon.cattocdi.utils.MyContants.RV_ITEM_NORMAL;
 import static com.salon.cattocdi.utils.MyContants.RV_ITEM_VOUCHER;
-import static com.salon.cattocdi.utils.MyContants.SALONS;
 
 public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHolder> {
 
@@ -83,14 +82,18 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
         if (type == RV_ITEM_NORMAL) {
             myCardViewHolder.salonTitle.setText(salons.get(i).getName());
             myCardViewHolder.salonAddress.setText(salons.get(i).getAddress());
-            myCardViewHolder.tvDiscount.setText(salons.get(i).getDiscount() + "% OFF");
+            if(salons.get(i).getDiscount() == 0){
+                myCardViewHolder.tvDiscount.setVisibility(View.GONE);
+            }else{
+                myCardViewHolder.tvDiscount.setText(salons.get(i).getDiscount() + "% OFF");
+            }
             myCardViewHolder.salonRatingBar.setRating(salons.get(i).getRatingNumber());
             if(myCardViewHolder.salonReviewsAmount != null){
                 myCardViewHolder.salonReviewsAmount.setText("("+salons.get(i).getReviewsAmount()+")");
             }
         }
 
-        myCardViewHolder.salonImage.setBackgroundResource(MyContants.SALON_IMAGE_IDS[i]);
+        myCardViewHolder.salonImage.setBackgroundResource(MyContants.SALON_IMAGE_IDS[i % 10]);
 
 
         myCardViewHolder.item.setOnClickListener(new View.OnClickListener() {

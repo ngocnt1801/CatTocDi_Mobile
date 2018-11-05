@@ -88,12 +88,17 @@ public class SignUpActivity extends AppCompatActivity {
                             .enqueue(new Callback<ResponseMessage>() {
                                 @Override
                                 public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
-                                    if(response.body().isSuccess()){
-                                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                                        startActivity(intent);
+                                    if(response != null){
+                                        if(response.body() != null && response.body().isSuccess()){
+                                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                            startActivity(intent);
+                                        }else{
+                                            AlertError.showDialogLoginFail(SignUpActivity.this,"Số điện thoại này đã được đăng ký");
+                                        }
                                     }else{
-                                        AlertError.showDialogLoginFail(SignUpActivity.this,"Số điện thoại này đã được đăng ký");
+                                        AlertError.showDialogLoginFail(SignUpActivity.this,"Có lỗi xảy ra vui lòng thử lại");
                                     }
+
                                 }
 
                                 @Override

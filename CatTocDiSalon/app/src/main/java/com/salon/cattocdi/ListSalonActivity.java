@@ -1,23 +1,28 @@
 package com.salon.cattocdi;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.salon.cattocdi.adapters.SalonAdapter;
 import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.utils.MyContants;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class ListSalonActivity extends AppCompatActivity {
 
     private TextView titleTv;
     private RecyclerView rv;
+    private FloatingActionButton btnOpenMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,7 @@ public class ListSalonActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
         String title = (String) bundle.get("title");
-        List<Salon> salonList = (List<Salon>) bundle.getSerializable("salon");
+        final List<Salon> salonList = (List<Salon>) bundle.getSerializable("salon");
         titleTv.setText(title);
 
         int type = bundle.getInt("type");
@@ -46,6 +51,15 @@ public class ListSalonActivity extends AppCompatActivity {
                 break;
         }
 
+        btnOpenMap = findViewById(R.id.btOpenMap);
+        btnOpenMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListSalonActivity.this, MapsActivity.class);
+                intent.putExtra("salon_list", (Serializable) salonList);
+                startActivity(intent);
+            }
+        });
 
     }
 }
