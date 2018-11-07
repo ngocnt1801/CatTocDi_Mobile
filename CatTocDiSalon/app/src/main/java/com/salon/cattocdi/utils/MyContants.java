@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 public class MyContants {
-    public static final String BASE_URL = "http://192.168.1.72/cattocdi.userapi/";
+    public static final String BASE_URL = "http://192.168.1.60/cattocdi.userapi/";
     public static final String PHONE_TEST = "0123456789";
     public static final String PASSWORD_TEST = "123";
     public static final int RV_ITEM_VOUCHER = 1;

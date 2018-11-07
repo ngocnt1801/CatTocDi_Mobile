@@ -150,7 +150,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
                     mMap.animateCamera(cameraUpdate);
                 }
-
+                makeMarker();
             } else {
                 checkLocationPermission();
             }
@@ -195,7 +195,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (mCurrLocationmMarker != null) {
                     mCurrLocationmMarker.remove();
                 }
-                makeMarker();
             }
 
         }

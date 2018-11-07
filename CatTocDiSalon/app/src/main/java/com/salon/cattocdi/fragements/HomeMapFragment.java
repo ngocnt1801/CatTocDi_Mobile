@@ -252,6 +252,10 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
             tv.setTextColor(Color.parseColor("#616161"));
         }
 
+        if(salon.getDiscount() == 0){
+            tvDiscount.setVisibility(View.GONE);
+        }
+
         //Provide it with a layout params. It should necessarily be wrapping the
         //content as we not really going to have a parent for it.
         view.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,

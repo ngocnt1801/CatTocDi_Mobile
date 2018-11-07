@@ -54,60 +54,65 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        etDate = view.findViewById(R.id.fg_search_date_et);
+//        etDate = view.findViewById(R.id.fg_search_date_et);
         // Get Current Date
-        final Calendar c = Calendar.getInstance();
-        final int mYear = c.get(Calendar.YEAR);
-        final int mMonth = c.get(Calendar.MONTH);
-        final int mDay = c.get(Calendar.DAY_OF_MONTH);
+//        final Calendar c = Calendar.getInstance();
+//        final int mYear = c.get(Calendar.YEAR);
+//        final int mMonth = c.get(Calendar.MONTH);
+//        final int mDay = c.get(Calendar.DAY_OF_MONTH);
+//
+//
+//        etDate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                DatePickerDialog dialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+//                        etDate.setText(day + "/" + month + "/" + year);
+//                    }
+//                }, mYear, mMonth, mDay);
+//                dialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+//                dialog.show();
+//            }
+//        });
 
 
-        etDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatePickerDialog dialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        etDate.setText(day + "/" + month + "/" + year);
-                    }
-                }, mYear, mMonth, mDay);
-                dialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-                dialog.show();
-            }
-        });
-
+//        circularImageView1 = (CircularImageView) view.findViewById(R.id.img_district_1);
+//        circularImageView1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                searchTrend("Quận 1");
+//            }
+//        });
+//        circularImageView2 = (CircularImageView) view.findViewById(R.id.img_district_2);
+//        circularImageView2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                searchTrend("Quận 2");
+//            }
+//        });
+//        circularImageView3 = (CircularImageView) view.findViewById(R.id.img_district_3);
+//        circularImageView3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                searchTrend("Quận 3");
+//            }
+//        });
+//        circularImageView4 = (CircularImageView) view.findViewById(R.id.img_district_4);
+//        circularImageView4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                searchTrend("Quận 10");
+//            }
+//        });
+//
+//
+//
+//
 
         etPlace = (EditText) view.findViewById(R.id.edt_place_fg_search);
-        circularImageView1 = (CircularImageView) view.findViewById(R.id.img_district_1);
-        circularImageView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchTrend("Quận 1");
-            }
-        });
-        circularImageView2 = (CircularImageView) view.findViewById(R.id.img_district_2);
-        circularImageView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchTrend("Quận 2");
-            }
-        });
-        circularImageView3 = (CircularImageView) view.findViewById(R.id.img_district_3);
-        circularImageView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchTrend("Quận 3");
-            }
-        });
-        circularImageView4 = (CircularImageView) view.findViewById(R.id.img_district_4);
-        circularImageView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchTrend("Quận 10");
-            }
-        });
-
         etService = (EditText) view.findViewById(R.id.fg_search_service_et);
+        btSearch = view.findViewById(R.id.fg_search_search_btn);
 
         etService.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,8 +123,6 @@ public class SearchFragment extends Fragment {
                         .addToBackStack(null).commit();
             }
         });
-
-        btSearch = view.findViewById(R.id.fg_search_search_btn);
 
         service = "";
         Bundle bundle = getArguments();
