@@ -22,6 +22,7 @@ import com.salon.cattocdi.adapters.TimeSlotRecycleViewAdapter;
 import com.salon.cattocdi.models.DateSlot;
 import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.models.Service;
+import com.salon.cattocdi.utils.MyContants;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -30,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -44,15 +46,18 @@ public class SalonAppointmentActivity extends AppCompatActivity {
     private TextView tvTitle;
     private List<Service> checkedList;
     private Salon salon;
-    private List<DateSlot> slots;
+    private HashMap<String, List<DateSlot.Slot>> dateSlots;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_salon_appointment);
+        salon = (Salon) getIntent().getSerializableExtra("salon");
 
         tvTitle = findViewById(R.id.activity_appointment_title);
+        tvTitle.setText("Đặt lịch với " + salon.getName());
 
         rvService = findViewById(R.id.activity_salon_appointment_service_rv);
         rvMorning = findViewById(R.id.activity_salon_appointment_morning_rv);
@@ -64,6 +69,9 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         ViewCompat.setNestedScrollingEnabled(rvAfternoon, false);
         ViewCompat.setNestedScrollingEnabled(rvNight, false);
 
+        rvMorning.setLayoutManager(new GridLayoutManager(this, 4));
+        rvAfternoon.setLayoutManager(new GridLayoutManager(this, 4));
+        rvNight.setLayoutManager(new GridLayoutManager(this, 4));
 
 
         /* starts before 1 month from now */
@@ -90,12 +98,10 @@ public class SalonAppointmentActivity extends AppCompatActivity {
                 .datesNumberOnScreen(5)
                 .defaultSelectedDate(defaultSelectedDate)
                 .build();
-        Log.i("Default Date", DateFormat.format("EEE, MMM d, yyyy", defaultSelectedDate).toString());
 
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
-                String selectedDateStr = DateFormat.format("EEE, MMM d, yyyy", date).toString();
                 TextView titleDate = findViewById(R.id.activity_appoinment_title_date);
                 int day = date.get(Calendar.DAY_OF_WEEK);
                 String textDay = getDateStrVn(day);
@@ -116,19 +122,20 @@ public class SalonAppointmentActivity extends AppCompatActivity {
                 }
 
                 titleDate.setText(textDay + ", " + textDayOfMonth + "/" + textMonth);
-                loadTimeSlotList(dayOfMonth == now.get(Calendar.DAY_OF_MONTH));
+                loadTimeSlotList(date.getTime());
             }
         });
 
-        slots = (List<DateSlot>) getIntent().getSerializableExtra("slots");
-        loadTimeSlotList(true);
+        List<DateSlot> slots = (List<DateSlot>) getIntent().getSerializableExtra("slots");
+        dateSlots = parseToMap(slots);
+        loadTimeSlotList(Calendar.getInstance().getTime());
 
         checkedList = (List<Service>) getIntent().getSerializableExtra("checked_list");
-        if(checkedList == null){
+        if (checkedList == null) {
             checkedList = new ArrayList<>();
         }
-        Service service = (Service)getIntent().getSerializableExtra("service_choosen");
-        if(service != null){
+        Service service = (Service) getIntent().getSerializableExtra("service_choosen");
+        if (service != null) {
             checkedList.add(service);
         }
 
@@ -136,13 +143,12 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         rvService.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvService.setAdapter(new AppointmentServiceRecycleViewAdapter(checkedList));
 
-        salon = (Salon) getIntent().getSerializableExtra("salon");
         btnAddService = findViewById(R.id.btn_add_more_service_to_appointment);
         btnAddService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SalonAppointmentActivity.this, ServiceAppointmentBookActivity.class);
-                if(checkedList != null){
+                if (checkedList != null) {
                     intent.putExtra("checked_list", (Serializable) checkedList);
                 }
                 intent.putExtra("salon", (Serializable) salon);
@@ -150,27 +156,49 @@ public class SalonAppointmentActivity extends AppCompatActivity {
             }
         });
 
-        tvTitle.setText("Đặt lịch với " + salon.getName());
 
     }
 
-    private void loadTimeSlotList(boolean isToday){
+    private void loadTimeSlotList(Date date) {
+        if (dateSlots != null) {
+            List<DateSlot.Slot> currentSlots = dateSlots.get(new SimpleDateFormat("dd/MM/yyyy").format(date));
+            if (currentSlots != null) {
+                List<DateSlot.Slot> morningSlot = new ArrayList<>();
+                List<DateSlot.Slot> afternoonSlot = new ArrayList<>();
+                List<DateSlot.Slot> eveningSlot = new ArrayList<>();
 
+                for (DateSlot.Slot slot :
+                        currentSlots) {
+                    if (slot.getIndex() < 48) {
+                        morningSlot.add(slot);
+                    } else if (slot.getIndex() < 68) {
+                        afternoonSlot.add(slot);
+                    } else {
+                        eveningSlot.add(slot);
+                    }
+                }
 
-        rvMorning.setLayoutManager(new GridLayoutManager(this, 4));
-        rvMorning.setAdapter(new TimeSlotRecycleViewAdapter(this, TimeSlotRecycleViewAdapter.MORNING, new Timestamp(Calendar.getInstance().getTimeInMillis()), checkedList, new ArrayList<DateSlot>()));
+                rvMorning.setAdapter(new TimeSlotRecycleViewAdapter(this, TimeSlotRecycleViewAdapter.MORNING, new Timestamp(Calendar.getInstance().getTimeInMillis()), checkedList, morningSlot, salon));
 
-        rvAfternoon.setLayoutManager(new GridLayoutManager(this, 4));
-        rvMorning.setAdapter(new TimeSlotRecycleViewAdapter(this, TimeSlotRecycleViewAdapter.AFTERNOON, new Timestamp(Calendar.getInstance().getTimeInMillis()), checkedList, new ArrayList<DateSlot>()));
+                rvAfternoon.setAdapter(new TimeSlotRecycleViewAdapter(this, TimeSlotRecycleViewAdapter.AFTERNOON, new Timestamp(Calendar.getInstance().getTimeInMillis()), checkedList, afternoonSlot, salon));
 
-        rvNight.setLayoutManager(new GridLayoutManager(this, 4));
-        rvMorning.setAdapter(new TimeSlotRecycleViewAdapter(this, TimeSlotRecycleViewAdapter.EVENING, new Timestamp(Calendar.getInstance().getTimeInMillis()), checkedList, new ArrayList<DateSlot>()));
+                rvNight.setAdapter(new TimeSlotRecycleViewAdapter(this, TimeSlotRecycleViewAdapter.EVENING, new Timestamp(Calendar.getInstance().getTimeInMillis()), checkedList, eveningSlot, salon));
+            }else{
+                rvMorning.setAdapter(new TimeSlotRecycleViewAdapter(this, TimeSlotRecycleViewAdapter.MORNING, new Timestamp(Calendar.getInstance().getTimeInMillis()), checkedList, new ArrayList<DateSlot.Slot>(), salon));
+
+                rvAfternoon.setAdapter(new TimeSlotRecycleViewAdapter(this, TimeSlotRecycleViewAdapter.AFTERNOON, new Timestamp(Calendar.getInstance().getTimeInMillis()), checkedList, new ArrayList<DateSlot.Slot>(), salon));
+
+                rvNight.setAdapter(new TimeSlotRecycleViewAdapter(this, TimeSlotRecycleViewAdapter.EVENING, new Timestamp(Calendar.getInstance().getTimeInMillis()), checkedList, new ArrayList<DateSlot.Slot>(), salon));
+            }
+
+        }
+
 
     }
 
-    private int getTotalDuration(){
+    private int getTotalDuration() {
         int total = 0;
-        if(checkedList != null){
+        if (checkedList != null) {
             for (Service service :
                     checkedList) {
                 total += service.getMinutes();
@@ -179,15 +207,15 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         return total;
     }
 
-    private int getSlotNumber(int duration){
+    private int getSlotNumber(int duration) {
         int slotTmp = duration / 15;
-        if (duration > slotTmp * 15){
+        if (duration > slotTmp * 15) {
             slotTmp++;
         }
         return slotTmp;
     }
 
-    private Timestamp parseToTime(int slot){
+    private Timestamp parseToTime(int slot) {
         int minute = (slot * 15) % 60;
         int hour = (slot * 15) / 60;
         String slotStr = hour + ":" + minute;
@@ -200,21 +228,21 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         return null;
     }
 
-    private int parseToSlot(String slotStr){
+    private int parseToSlot(String slotStr) {
         String[] item = slotStr.split(":");
         int hour = Integer.parseInt(item[0]);
         int minute = Integer.parseInt(item[1]);
-        return getSlotNumber(hour*60 + minute);
+        return getSlotNumber(hour * 60 + minute);
     }
 
     @SuppressLint("ResourceType")
-    private void showFragment(android.support.v4.app.Fragment fragment){
+    private void showFragment(android.support.v4.app.Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.activity_salon_appointment, fragment);
         transaction.commit();
     }
 
-    private String getDateStrVn(int day){
+    private String getDateStrVn(int day) {
         String textDay = "Chủ nhật";
         switch (day) {
             case 2:
@@ -238,5 +266,21 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         }
         return textDay;
     }
+
+    private HashMap<String, List<DateSlot.Slot>> parseToMap(List<DateSlot> slots) {
+        if (slots != null) {
+            HashMap<String, List<DateSlot.Slot>> slotMap = new HashMap<>();
+
+            for (DateSlot date :
+                    slots) {
+                slotMap.put(new SimpleDateFormat("dd/MM/yyyy").format(date.getSlotDate()), date.getSlots());
+            }
+
+            return slotMap;
+        }
+        return null;
+
+    }
+
 
 }

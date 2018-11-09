@@ -1,6 +1,7 @@
 package com.salon.cattocdi.requests;
 
 import com.salon.cattocdi.models.Appointment;
+import com.salon.cattocdi.models.AppointmentCreateModel;
 import com.salon.cattocdi.models.Comment;
 import com.salon.cattocdi.models.DateSlot;
 import com.salon.cattocdi.models.Service;
@@ -26,7 +27,7 @@ public interface AppointmentApi {
     @POST("api/appointment/review")
     Call<String> reviewAppointment(@Header("Authorization") String auth, @Body Comment comment);
 
-    @GET("api/appointment/slot")
-    Call<List<DateSlot>> getSlots(@Header("Authoriztion") String auth, @Body List<Service> services);
+    @POST("api/appointment")
+    Call<String> addAppointment(@Header("Authorization") String auth, @Body AppointmentCreateModel appointmentCreateModel);
 
 }

@@ -1,35 +1,45 @@
 package com.salon.cattocdi.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class DateSlot implements Serializable{
-    private int id;
-    private int salonId;
+    @SerializedName("date")
+    private String dateStr;
+    @SerializedName("slots")
+    private List<Slot> slots;
     private Date slotDate;
-    private Timestamp slotTime;
-    private int dayOfWeek;
-    private byte status;
 
-    public int getId() {
-        return id;
+    public String getDateStr() {
+        return dateStr;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDateStr(String dateStr) {
+        this.dateStr = dateStr;
     }
 
-    public int getSalonId() {
-        return salonId;
+    public List<Slot> getSlots() {
+        return slots;
     }
 
-    public void setSalonId(int salonId) {
-        this.salonId = salonId;
+    public void setSlots(List<Slot> slots) {
+        this.slots = slots;
     }
 
     public Date getSlotDate() {
+        String value = dateStr.replace("T"," ");
+        try {
+            slotDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(value);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return slotDate;
     }
 
@@ -37,27 +47,76 @@ public class DateSlot implements Serializable{
         this.slotDate = slotDate;
     }
 
-    public Timestamp getSlotTime() {
-        return slotTime;
-    }
+    public class Slot implements Serializable{
+        @SerializedName("Id")
+        private int id;
+        @SerializedName("SalonId")
+        private int salonId;
+        @SerializedName("SlotDate")
+        private String slotDate;
+        @SerializedName("Time")
+        private String time;
+        @SerializedName("Capacity")
+        private int capacity;
+        @SerializedName("Index")
+        private int index;
 
-    public void setSlotTime(Timestamp slotTime) {
-        this.slotTime = slotTime;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public int getDayOfWeek() {
-        return dayOfWeek;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public void setDayOfWeek(int dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
+        public int getSalonId() {
+            return salonId;
+        }
 
-    public byte getStatus() {
-        return status;
-    }
+        public void setSalonId(int salonId) {
+            this.salonId = salonId;
+        }
 
-    public void setStatus(byte status) {
-        this.status = status;
+        public String getSlotDate() {
+            return slotDate;
+        }
+
+        public void setSlotDate(String slotDate) {
+            this.slotDate = slotDate;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public String getTimeSlotStr(){
+            try {
+                Timestamp timestamp =  new Timestamp(new SimpleDateFormat("hh:mm:ss").parse(time).getTime());
+                return new SimpleDateFormat("hh:mm").format(timestamp);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
+
+        public int getCapacity() {
+            return capacity;
+        }
+
+        public void setCapacity(int capacity) {
+            this.capacity = capacity;
+        }
+
+        public int getIndex() {
+            return index;
+        }
+
+        public void setIndex(int index) {
+            this.index = index;
+        }
     }
 }

@@ -12,9 +12,12 @@ import android.widget.Button;
 
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.ReviewAppointmentActivity;
+import com.salon.cattocdi.models.Appointment;
+import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.models.Service;
 import com.salon.cattocdi.models.DateSlot;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -24,19 +27,21 @@ public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRec
     private int type;
     private Timestamp date;
     private List<Service> services;
-    private List<DateSlot> dateSlots;
+    private Salon salon;
+    private List<DateSlot.Slot> dateSlots;
 
     public static final int MORNING = 1;
     public static final int AFTERNOON = 2;
-    public static int EVENING = 3;
+    public static final int EVENING = 3;
 
 
-    public TimeSlotRecycleViewAdapter(Context context, int type, Timestamp date, List<Service> services, List<DateSlot> slots) {
+    public TimeSlotRecycleViewAdapter(Context context, int type, Timestamp date, List<Service> services, List<DateSlot.Slot> slots, Salon salon) {
         this.context = context;
         this.type = type;
         this.date = date;
         this.services = services;
         this.dateSlots = slots;
+        this.salon = salon;
     }
 
     @NonNull
@@ -47,12 +52,21 @@ public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRec
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final TimeSlotViewHolder timeSlotViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final TimeSlotViewHolder timeSlotViewHolder,final int i) {
+        final DateSlot.Slot slot = dateSlots.get(i);
+        timeSlotViewHolder.item.setText(slot.getTimeSlotStr());
 
         timeSlotViewHolder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ReviewAppointmentActivity.class);
+                intent.putExtra("salon", (Serializable) salon);
+                intent.putExtra("services", (Serializable) services);
+                intent.putExtra("date_slots", (Serializable) dateSlots);
+                intent.putExtra("slot_choose", (Serializable) dateSlots.get(i));
+
+
+
                 context.startActivity(intent);
             }
         });
@@ -60,7 +74,7 @@ public class TimeSlotRecycleViewAdapter extends RecyclerView.Adapter<TimeSlotRec
 
     @Override
     public int getItemCount() {
-        return dateSlots.size();
+        return dateSlots != null ? dateSlots.size() : 0;
     }
 
     public class TimeSlotViewHolder extends RecyclerView.ViewHolder{

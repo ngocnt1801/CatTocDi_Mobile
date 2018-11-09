@@ -3,9 +3,10 @@ package com.salon.cattocdi.models;
 import com.google.gson.annotations.SerializedName;
 import com.salon.cattocdi.models.Appointment;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Customer {
+public class Customer implements Serializable{
     @SerializedName("CustomerID")
     private int id;
     @SerializedName("Firstname")

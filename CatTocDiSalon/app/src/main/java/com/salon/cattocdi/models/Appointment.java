@@ -2,10 +2,11 @@ package com.salon.cattocdi.models;
 
 import com.salon.cattocdi.models.enums.AppointmentStatus;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class Appointment {
+public class Appointment implements Serializable{
     private int appointmentId;
     private Salon salon;
     private AppointmentStatus status;

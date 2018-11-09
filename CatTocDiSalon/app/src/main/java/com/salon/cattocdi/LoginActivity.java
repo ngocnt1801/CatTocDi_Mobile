@@ -73,9 +73,9 @@ public class LoginActivity extends AppCompatActivity {
         ApiClient.getInstance()
                 .create(AccountApi.class)
                 .login(etPhone.getText().toString(), etPassword.getText().toString(), "password")
-                .enqueue(new Callback<Customer>() {
+                .enqueue(new Callback<Account>() {
                     @Override
-                    public void onResponse(Call<Customer> call, Response<Customer> response) {
+                    public void onResponse(Call<Account> call, Response<Account> response) {
                         if (response.code() == 200) {
                             MyContants.TOKEN = response.body().getToken();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<Customer> call, Throwable t) {
+                    public void onFailure(Call<Account> call, Throwable t) {
                         AlertError.showDialogLoginFail(LoginActivity.this, "Có lỗi xảy ra vui lòng đăng nhập lại");
                     }
                 });

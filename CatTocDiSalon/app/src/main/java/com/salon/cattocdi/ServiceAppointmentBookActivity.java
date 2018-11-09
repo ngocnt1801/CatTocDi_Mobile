@@ -17,6 +17,7 @@ import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.models.Service;
 import com.salon.cattocdi.requests.ApiClient;
 import com.salon.cattocdi.requests.AppointmentApi;
+import com.salon.cattocdi.requests.SlotApi;
 import com.salon.cattocdi.utils.AlertError;
 import com.salon.cattocdi.utils.MyContants;
 
@@ -31,13 +32,16 @@ import retrofit2.Response;
 
 public class ServiceAppointmentBookActivity extends Activity {
 
+    private Salon salon;
+    private List<Service> checkedList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_show_service);
 
-        List<Service> checkedList = (List<Service>) getIntent().getSerializableExtra("checked_list");
-        final Salon salon = (Salon) getIntent().getSerializableExtra("salon");
+        checkedList = (List<Service>) getIntent().getSerializableExtra("checked_list");
+        salon = (Salon) getIntent().getSerializableExtra("salon");
         final RecyclerView rvService = findViewById(R.id.recyclerview);
         rvService.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         final CategoryAdapter adapter = new CategoryAdapter(this, MyContants.SERVICE_CHECKBOX, checkedList, salon.getCategories());
@@ -48,8 +52,8 @@ public class ServiceAppointmentBookActivity extends Activity {
             public void onClick(View v) {
                 final List<Service> checkedList = adapter.getCheckedList();
 
-                ApiClient.getInstance().create(AppointmentApi.class)
-                        .getSlots("Bearer " + MyContants.TOKEN, checkedList)
+                ApiClient.getInstance().create(SlotApi.class)
+                        .getSlots("Bearer " + MyContants.TOKEN, salon.getSalonId(), getTotalDuration())
                         .enqueue(new Callback<List<DateSlot>>() {
                             @Override
                             public void onResponse(Call<List<DateSlot>> call, Response<List<DateSlot>> response) {
@@ -72,5 +76,15 @@ public class ServiceAppointmentBookActivity extends Activity {
         });
     }
 
+    private int getTotalDuration(){
+        int total = 0;
+        if(checkedList != null){
+            for (Service service :
+                    checkedList) {
+                total += service.getMinutes();
+            }
+        }
+        return total;
+    }
 
 }

@@ -37,37 +37,13 @@ public class Salon implements Serializable {
     private List<DayWorkingHour> workingHours;
     @SerializedName("Reviews")
     private List<Comment> reviews;
-    @SerializedName("Promotions")
+    @SerializedName("Promotion")
     private List<Promotion> promotions;
     private List<CloseDate> closeDates;
     private List<DateSlot> dateSlots;
 
 
     public Salon() {
-    }
-
-    public Salon(String name,
-                 float ratingNumber,
-                 boolean full,
-                 int discount,
-                 List<Category> categories,
-                 double latitude,
-                 double longtitude,
-                 String address,
-                 int reviewsAmount,
-                 String phone,
-                 String email) {
-        this.name = name;
-        this.ratingNumber = ratingNumber;
-        this.full = full;
-        this.discount = discount;
-        this.categories = categories;
-        this.latitude = latitude;
-        this.longtitude = longtitude;
-        this.address = address;
-        this.reviewsAmount = reviewsAmount;
-        this.phone = phone;
-        this.email = email;
     }
 
     public int getSalonId() {

@@ -18,7 +18,7 @@ import retrofit2.http.PUT;
 public interface AccountApi {
     @FormUrlEncoded
     @POST("login")
-    Call<Customer> login(@Field("username") String username, @Field("password") String password, @Field("grant_type") String grantType);
+    Call<Account> login(@Field("username") String username, @Field("password") String password, @Field("grant_type") String grantType);
 
     @FormUrlEncoded
     @POST("api/Account/Register")

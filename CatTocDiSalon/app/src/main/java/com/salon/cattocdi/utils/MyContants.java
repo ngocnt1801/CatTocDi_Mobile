@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 public class MyContants {
-    public static final String BASE_URL = "http://192.168.1.60/cattocdi.userapi/";
+    public static final String BASE_URL = "http://192.168.1.23/cattocdi.userapi/";
     public static final String PHONE_TEST = "0123456789";
     public static final String PASSWORD_TEST = "123";
     public static final int RV_ITEM_VOUCHER = 1;
@@ -27,6 +27,10 @@ public class MyContants {
     public static final double LONGTITUDE_DEFAULT = 106.6678123;
     public static final float ZOOM_DEFAULT = 13;
     public static String TOKEN = "";
+    public static final int MORNING = 1;
+    public static final int AFTERNOON = 2;
+    public static final int EVENING = 3;
+
     public static final int[] SALON_IMAGE_IDS = {
             R.drawable.salon1,
             R.drawable.salon2,
