@@ -93,10 +93,8 @@ public class ReviewAppointmentActivity extends AppCompatActivity {
         tvSubtotal.setText(NumberFormat.getNumberInstance(Locale.US).format(subTotal));
 
         TextView tvDiscount = findViewById(R.id.appointment_item_expand_discount_tv);
-//        tvDiscount.setText(appointment.getDiscount() + "%");
 
         TextView tvTotal = findViewById(R.id.appointment_item_expand_total_tv);
-//        float total = subTotal * (1 - (float) appointment.getDiscount() / 100);
         float total = subTotal;
         tvTotal.setText(NumberFormat.getNumberInstance(Locale.US).format(total));
 

@@ -390,14 +390,6 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
     }
 
     public void activeAppointment(AppointmentCardViewHolder itemView, int status) {
-//        itemView.appointmentRl.setBackgroundResource(R.color.icLogin);
-//        itemView.tvAppoinmentType.setTextColor(Color.parseColor("#ffffff"));
-//        itemView.tvAppoinmentType.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_calendar_white, 0,0,0);
-//        itemView.tvSalonName.setTextColor(Color.parseColor("#ffffff"));
-//        itemView.tvDate.setTextColor(Color.parseColor("#ffffff"));
-//        itemView.tvStartTime.setTextColor(Color.parseColor("#ffffff"));
-//        itemView.tvDot.setTextColor(Color.parseColor("#ffffff"));
-//        itemView.tvEndTime.setTextColor(Color.parseColor("#ffffff"));
         itemView.icExpand.setImageResource(R.drawable.ic_collapse);
         if (status == AppointmentStatus.APPROVED.getStatus()) {
             itemView.appointmentDetail.setBackgroundColor(Color.parseColor("#fafafa"));
@@ -405,14 +397,6 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
     }
 
     public void inactiveAppointment(AppointmentCardViewHolder itemView, int status) {
-//        itemView.appointmentRl.setBackgroundResource(0);
-//        itemView.tvAppoinmentType.setTextColor(Color.parseColor("#6b5b95"));
-//        itemView.tvAppoinmentType.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_calendar_active, 0,0,0);
-//        itemView.tvSalonName.setTextColor(Color.parseColor("#000000"));
-//        itemView.tvDate.setTextColor(Color.parseColor("#000000"));
-//        itemView.tvStartTime.setTextColor(Color.parseColor("#000000"));
-//        itemView.tvDot.setTextColor(Color.parseColor("#000000"));
-//        itemView.tvEndTime.setTextColor(Color.parseColor("#000000"));
         itemView.icExpand.setImageResource(R.drawable.ic_expand);
         if (status == AppointmentStatus.APPROVED.getStatus()) {
             itemView.appointmentDetail.setBackgroundColor(Color.parseColor("#eeeeee"));
