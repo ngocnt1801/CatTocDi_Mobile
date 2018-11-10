@@ -69,7 +69,7 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_rating, viewGroup, false);
         } else if (type == RV_ITEM_VOUCHER) {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_voucher, viewGroup, false);
-        } else{
+        } else {
             itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item_salon_rating, viewGroup, false);
         }
         return new MyCardViewHolder(itemView);
@@ -82,15 +82,21 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
         if (type == RV_ITEM_NORMAL) {
             myCardViewHolder.salonTitle.setText(salons.get(i).getName());
             myCardViewHolder.salonAddress.setText(salons.get(i).getAddress());
-            if(salons.get(i).getDiscount() == 0){
+            if (salons.get(i).getDiscount() == 0) {
                 myCardViewHolder.tvDiscount.setVisibility(View.GONE);
-            }else{
+            } else {
                 myCardViewHolder.tvDiscount.setText(salons.get(i).getDiscount() + "% OFF");
             }
             myCardViewHolder.salonRatingBar.setRating(salons.get(i).getRatingNumber());
-            if(myCardViewHolder.salonReviewsAmount != null){
-                myCardViewHolder.salonReviewsAmount.setText("("+salons.get(i).getReviewsAmount()+")");
+            if (myCardViewHolder.salonReviewsAmount != null) {
+                myCardViewHolder.salonReviewsAmount.setText("(" + salons.get(i).getReviewsAmount() + ")");
             }
+        }
+
+        if(type == RV_ITEM_VOUCHER){
+            myCardViewHolder.tvDiscount.setText(salons.get(i).getPromotion().getDiscount() + "% OFF");
+            myCardViewHolder.tvDiscountDate.setText(salons.get(i).getPromotion().getStartDateStr() + " - " + salons.get(i).getPromotion().getEndDateStr());
+            myCardViewHolder.tvDiscountContent.setText(salons.get(i).getPromotion().getDescription());
         }
 
         myCardViewHolder.salonImage.setBackgroundResource(MyContants.SALON_IMAGE_IDS[i % 10]);
@@ -105,15 +111,14 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
                         .enqueue(new Callback<Salon>() {
                             @Override
                             public void onResponse(Call<Salon> call, Response<Salon> response) {
-                                if(response.code() == 200){
+                                if (response.code() == 200) {
                                     Intent intent = new Intent(context, SalonDetailActivity.class);
                                     Bundle options = ActivityOptionsCompat.makeScaleUpAnimation(
                                             myCardViewHolder.item, 0, 0, myCardViewHolder.item.getWidth(), myCardViewHolder.item.getHeight()).toBundle();
-                                    Bundle bundle = new Bundle();
-                                    bundle.putSerializable("salon", (Serializable) response.body());
-                                    intent.putExtra("bundle", bundle);
+                                    Salon salon = response.body();
+                                    intent.putExtra("salon", (Serializable) salon);
                                     ActivityCompat.startActivity(context, intent, options);
-                                }else{
+                                } else {
                                     AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng thử lại sau");
                                 }
 
@@ -126,7 +131,6 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
                         });
 
 
-
             }
         });
         if (type == RV_ITEM_NORMAL) {
@@ -137,6 +141,7 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, SalonAppointmentActivity.class);
+                    intent.putExtra("salon", (Serializable) salons.get(i));
                     context.startActivity(intent);
                 }
             });
@@ -145,7 +150,7 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
 
     @Override
     public int getItemCount() {
-        if(salons == null) return 0;
+        if (salons == null) return 0;
         return salons.size();
     }
 
@@ -156,7 +161,7 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
         public RatingBar salonRatingBar;
         public CardView item;
         public ImageView icFavorite;
-        public TextView tvDiscount;
+        public TextView tvDiscount, tvDiscountContent, tvDiscountDate;
 
 
         public MyCardViewHolder(@NonNull View itemView) {
@@ -168,6 +173,8 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
             salonImage = itemView.findViewById(R.id.fg_home_rv_item_img);
             icFavorite = itemView.findViewById(R.id.fg_home_rv_item_favorite_ic);
             tvDiscount = itemView.findViewById(R.id.rv_discount);
+            tvDiscountContent = itemView.findViewById(R.id.rv_discount_content);
+            tvDiscountDate = itemView.findViewById(R.id.rv_discount_date);
             item = (CardView) itemView;
         }
     }

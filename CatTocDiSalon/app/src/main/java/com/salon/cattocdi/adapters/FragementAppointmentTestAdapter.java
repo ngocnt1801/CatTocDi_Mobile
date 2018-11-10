@@ -31,6 +31,7 @@ import android.widget.Toast;
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.models.Appointment;
 import com.salon.cattocdi.models.Comment;
+import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.models.Service;
 import com.salon.cattocdi.models.enums.AppointmentStatus;
 import com.salon.cattocdi.requests.ApiClient;
@@ -56,6 +57,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
     private Context context;
     private Location curLocation;
     private List<Appointment> appointments;
+    private Salon salon;
 
 
     public FragementAppointmentTestAdapter(Context context, Location curLocation) {
@@ -84,22 +86,29 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
     @Override
     public void onBindViewHolder(@NonNull final AppointmentCardViewHolder viewHolder, final int i) {
         final Appointment appointment = appointments.get(i);
-
-        viewHolder.tvSalonName.setText(appointment.getSalon().getName());
+        salon = MyContants.SalonList.get(appointment.getSalonId());
+        viewHolder.tvSalonName.setText(salon != null ? salon.getName() : "");
 
         viewHolder.tvDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(appointment.getStartTime()));
-        viewHolder.tvTime.setText(new SimpleDateFormat("hh:mm a").format(appointment.getStartTime())
+        viewHolder.tvTime.setText(new SimpleDateFormat("HH:mm a").format(appointment.getStartTime())
                 + " - "
-                + new SimpleDateFormat("hh:mm a").format(appointment.getEndTime()));
+                + new SimpleDateFormat("HH:mm a").format(appointment.getEndTime()));
         loadDataToTable(viewHolder, appointment);
         if (appointment.getStartTime().getTime() <= Calendar.getInstance().getTimeInMillis()) {
             viewHolder.tvAppoinmentType.setText("Lịch đã qua");
             viewHolder.appointmentRl.setBackgroundColor(Color.parseColor("#eeeeee"));
             viewHolder.icDelete.setVisibility(View.GONE);
-            viewHolder.btnReview.setVisibility(View.VISIBLE);
+            if(appointment.getReview() == null){
+                viewHolder.btnReview.setVisibility(View.VISIBLE);
+
+            }else{
+                viewHolder.commentLn.setVisibility(View.VISIBLE);
+                viewHolder.rb.setRating(appointment.getReview().getRating());
+                viewHolder.tvComment.setText(appointment.getReview().getContent());
+            }
         }
 
-        if(appointment.getStatus() == AppointmentStatus.CANCEL){
+        if (appointment.getStatus() == AppointmentStatus.CANCEL.getStatus()) {
             viewHolder.appointmentRl.setBackgroundColor(Color.parseColor("#eeeeee"));
             viewHolder.icDelete.setVisibility(View.GONE);
             viewHolder.tvCancelStatus.setVisibility(View.VISIBLE);
@@ -158,12 +167,15 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                                 .enqueue(new Callback<String>() {
                                     @Override
                                     public void onResponse(Call<String> call, Response<String> response) {
-                                        viewHolder.tvComment.setText(et.getText().toString());
-                                        viewHolder.rb.setRating(rating);
-                                        viewHolder.commentLn.setVisibility(View.VISIBLE);
+                                        if (response.code() == 200) {
+                                            viewHolder.tvComment.setText(et.getText().toString());
+                                            viewHolder.rb.setRating(rating);
+                                            viewHolder.commentLn.setVisibility(View.VISIBLE);
 
-                                        viewHolder.btnReview.setVisibility(View.GONE);
-                                        dialog.dismiss();
+                                            viewHolder.btnReview.setVisibility(View.GONE);
+                                            dialog.dismiss();
+                                        }
+
                                     }
 
                                     @Override
@@ -180,6 +192,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                 dialog.show();
             }
         });
+
 
         viewHolder.icDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -250,6 +263,9 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                                         public void onResponse(Call<String> call, Response<String> response) {
                                             if (response.code() == 200) {
                                                 dialog.dismiss();
+                                                viewHolder.icDelete.setVisibility(View.GONE);
+                                                viewHolder.tvCancelStatus.setVisibility(View.VISIBLE);
+                                                viewHolder.appointmentRl.setBackgroundColor(Color.parseColor("#eeeeee"));
                                             } else {
                                                 AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng thử lại");
                                             }
@@ -274,13 +290,13 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 
     private void loadDataToTable(AppointmentCardViewHolder holder, final Appointment appointment) {
         TextView tvName = holder.appointmentDetail.findViewById(R.id.appointment_item_expand_name_tv);
-        tvName.setText(appointment.getSalon().getName());
+        tvName.setText(salon != null ? salon.getName() : "");
 
         TextView tvDate = holder.appointmentDetail.findViewById(R.id.appointment_item_expand_date_tv);
         tvDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(appointment.getStartTime()));
 
         TextView tvTime = holder.appointmentDetail.findViewById(R.id.appointment_item_expand_time_tv);
-        tvTime.setText(new SimpleDateFormat("hh:mm a").format(appointment.getStartTime()) + " - " + new SimpleDateFormat("hh:mm a").format(appointment.getEndTime()));
+        tvTime.setText(new SimpleDateFormat("HH:mm a").format(appointment.getStartTime()) + " - " + new SimpleDateFormat("HH:mm a").format(appointment.getEndTime()));
 
         holder.directionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -289,7 +305,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                     Intent intent = new Intent(Intent.ACTION_VIEW,
                             Uri.parse("http://maps.google.com/maps?saddr="
                                     + Double.toString(curLocation.getLatitude())
-                                    + "," + Double.toString(curLocation.getLongitude()) + "&daddr=" + appointment.getSalon().getLatitude() + "," + appointment.getSalon().getLongtitude() + ""));
+                                    + "," + Double.toString(curLocation.getLongitude()) + "&daddr=" + salon.getLatitude() + "," + salon.getLongtitude() + ""));
                     context.startActivity(intent);
                 } else {
                     Toast.makeText(context, "Hãy bật vị trí để chúng tôi có thể chỉ đường cho bạn!", Toast.LENGTH_SHORT).show();
@@ -373,7 +389,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 
     }
 
-    public void activeAppointment(AppointmentCardViewHolder itemView, AppointmentStatus status) {
+    public void activeAppointment(AppointmentCardViewHolder itemView, int status) {
 //        itemView.appointmentRl.setBackgroundResource(R.color.icLogin);
 //        itemView.tvAppoinmentType.setTextColor(Color.parseColor("#ffffff"));
 //        itemView.tvAppoinmentType.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_calendar_white, 0,0,0);
@@ -383,12 +399,12 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //        itemView.tvDot.setTextColor(Color.parseColor("#ffffff"));
 //        itemView.tvEndTime.setTextColor(Color.parseColor("#ffffff"));
         itemView.icExpand.setImageResource(R.drawable.ic_collapse);
-        if (status == AppointmentStatus.APPROVED) {
+        if (status == AppointmentStatus.APPROVED.getStatus()) {
             itemView.appointmentDetail.setBackgroundColor(Color.parseColor("#fafafa"));
         }
     }
 
-    public void inactiveAppointment(AppointmentCardViewHolder itemView, AppointmentStatus status) {
+    public void inactiveAppointment(AppointmentCardViewHolder itemView, int status) {
 //        itemView.appointmentRl.setBackgroundResource(0);
 //        itemView.tvAppoinmentType.setTextColor(Color.parseColor("#6b5b95"));
 //        itemView.tvAppoinmentType.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_calendar_active, 0,0,0);
@@ -398,7 +414,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
 //        itemView.tvDot.setTextColor(Color.parseColor("#000000"));
 //        itemView.tvEndTime.setTextColor(Color.parseColor("#000000"));
         itemView.icExpand.setImageResource(R.drawable.ic_expand);
-        if (status == AppointmentStatus.APPROVED) {
+        if (status == AppointmentStatus.APPROVED.getStatus()) {
             itemView.appointmentDetail.setBackgroundColor(Color.parseColor("#eeeeee"));
         }
     }

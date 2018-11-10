@@ -3,6 +3,7 @@ package com.salon.cattocdi.models;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class AppointmentCreateModel implements Serializable {
@@ -34,10 +35,6 @@ public class AppointmentCreateModel implements Serializable {
 
     public void setServicesId(List<Integer> servicesId) {
         this.servicesId = servicesId;
-    }
-
-    public String getStartTime() {
-        return StartTime;
     }
 
     public void setStartTime(String startTime) {

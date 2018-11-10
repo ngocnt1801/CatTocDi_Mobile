@@ -68,8 +68,8 @@ public class HomeListFragment extends Fragment {
 
         rvRating.setLayoutManager(new GridLayoutManager(getActivity(),1));
 
-        testRecycleViewAdapter(rvRating, MyContants.RV_ITEM_NORMAL);
-        testRecycleViewAdapter(rvSale, MyContants.RV_ITEM_VOUCHER);
+        testRecycleViewAdapter(rvRating, MyContants.RV_ITEM_NORMAL, new ArrayList<Salon>(MyContants.SalonList.values()));
+        testRecycleViewAdapter(rvSale, MyContants.RV_ITEM_VOUCHER, MyContants.getPromotions());
 
         ViewCompat.setNestedScrollingEnabled(rvRating, false);
 
@@ -89,11 +89,9 @@ public class HomeListFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ListSalonActivity.class);
                 Bundle option = ActivityOptionsCompat.makeScaleUpAnimation(voucherSeeAllTv,0,0,voucherSeeAllTv.getWidth(), voucherSeeAllTv.getLineHeight()).toBundle();
-                Bundle bundle = new Bundle();
-                bundle.putString("title","Khuyến mãi");
-                bundle.putInt("type", MyContants.RV_ITEM_VOUCHER);
-                bundle.putSerializable("salon", (Serializable) MyContants.SalonList);
-                intent.putExtra("bundle", bundle);
+                intent.putExtra("title", "Khuyễn mãi");
+                intent.putExtra("type", MyContants.RV_ITEM_VOUCHER);
+                intent.putExtra("salon", new ArrayList<>(MyContants.getPromotions()));
                 ActivityCompat.startActivity(getActivity(), intent, option);
 
             }
@@ -126,10 +124,10 @@ public class HomeListFragment extends Fragment {
 //                });
 //    }
 
-    private void testRecycleViewAdapter(RecyclerView rv, int type){
+    private void testRecycleViewAdapter(RecyclerView rv, int type, List<Salon> salons){
         //Show RECYCLEVIEW
         rv.setItemAnimator(new DefaultItemAnimator());
-        SalonAdapter adapter = new SalonAdapter(type, getActivity(), MyContants.SalonList);
+        SalonAdapter adapter = new SalonAdapter(type, getActivity(),salons);
         rv.setAdapter(adapter);
     }
 

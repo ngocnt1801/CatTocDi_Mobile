@@ -24,37 +24,37 @@
         android:textColor="@color/textForLight" />
 
     <TextView
-        android:id="@+id/appointment_item_expand_start_time_tv"
+        android:id="@+id/appointment_item_expand_time_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/appointment_item_expand_date_tv"
         android:text="3:00PM"
         android:textColor="@color/textForLight" />
 
-    <TextView
-        android:id="@+id/appointment_item_expand_dot_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/appointment_item_expand_date_tv"
-        android:layout_marginHorizontal="4dp"
-        android:layout_toRightOf="@id/appointment_item_expand_start_time_tv"
-        android:text="-"
-        android:textColor="@color/textForLight" />
+    <!--<TextView-->
+        <!--android:id="@+id/appointment_item_expand_dot_tv"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/appointment_item_expand_date_tv"-->
+        <!--android:layout_marginHorizontal="4dp"-->
+        <!--android:layout_toRightOf="@id/appointment_item_expand_start_time_tv"-->
+        <!--android:text="-"-->
+        <!--android:textColor="@color/textForLight" />-->
 
-    <TextView
-        android:id="@+id/appointment_item_expand_end_time_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/appointment_item_expand_date_tv"
-        android:layout_toRightOf="@id/appointment_item_expand_dot_tv"
-        android:text="4:00PM"
-        android:textColor="@color/textForLight" />
+    <!--<TextView-->
+        <!--android:id="@+id/appointment_item_expand_end_time_tv"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/appointment_item_expand_date_tv"-->
+        <!--android:layout_toRightOf="@id/appointment_item_expand_dot_tv"-->
+        <!--android:text="4:00PM"-->
+        <!--android:textColor="@color/textForLight" />-->
 
     <TableLayout
         android:id="@+id/tbl_service_bill"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/appointment_item_expand_start_time_tv"
+        android:layout_below="@id/appointment_item_expand_time_tv"
         android:layout_marginTop="16dp"
         android:stretchColumns="0">
 
@@ -75,7 +75,7 @@
             <TextView
                 android:id="@+id/appointment_item_expand_sub_total_tv"
                 android:layout_marginRight="4dp"
-                android:text="550,000"
+                android:text="0"
                 android:textAlignment="textEnd"
                 android:textColor="@color/textForLight"
                 android:textSize="16dp"
@@ -108,7 +108,7 @@
             <TextView
                 android:id="@+id/appointment_item_expand_discount_tv"
                 android:layout_gravity="right"
-                android:text="30%"
+                android:text="0%"
                 android:textColor="@color/textForLight"
                 android:textSize="16dp"
                 android:textStyle="bold" />
@@ -142,7 +142,7 @@
             <TextView
                 android:id="@+id/appointment_item_expand_total_tv"
                 android:layout_marginRight="4dp"
-                android:text="385,000"
+                android:text="0"
                 android:textAlignment="textEnd"
                 android:textColor="@color/textLogin"
                 android:textSize="16dp"

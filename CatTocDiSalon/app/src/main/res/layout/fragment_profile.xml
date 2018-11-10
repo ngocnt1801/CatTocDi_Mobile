@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Nhi Nguyen"
+                    android:text=""
                     android:textColor="@color/textForDark"
                     android:textSize="20dp" />
 
@@ -68,49 +68,49 @@
 
                 >
 
-                <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_btn">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="24dp"
-                        android:src="@drawable/ic_grade_black_24dp" />
-
-                    <TextView
-                        android:id="@+id/show_top_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="48dp"
-                        android:clickable="true"
-                        android:padding="24dp"
-                        android:text="Top cửa hàng"
-                        android:textColor="@color/textForLight"
-                        android:textSize="16dp" />
-
+                <!--<android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@drawable/ripple_btn">-->
 
                     <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:padding="24dp"-->
+                        <!--android:src="@drawable/ic_grade_black_24dp" />-->
 
-                    <!--android:layout_width="wrap_content"-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/show_top_tv"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="48dp"-->
+                        <!--android:clickable="true"-->
+                        <!--android:padding="24dp"-->
+                        <!--android:text="Top cửa hàng"-->
+                        <!--android:textColor="@color/textForLight"-->
+                        <!--android:textSize="16dp" />-->
 
-                    <!--android:layout_height="wrap_content"-->
 
-                    <!--android:layout_gravity="right|center_vertical"-->
+                    <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
 
-                    <!--android:layout_marginRight="16dp"-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
 
-                    <!--android:clickable="true"-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
 
-                    <!--android:src="@drawable/ic_arrow_right" />-->
+                    <!--&lt;!&ndash;android:layout_gravity="right|center_vertical"&ndash;&gt;-->
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_gravity="bottom"
-                        android:background="@color/light"></View>
-                </android.support.v7.widget.CardView>
+                    <!--&lt;!&ndash;android:layout_marginRight="16dp"&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;android:clickable="true"&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;android:src="@drawable/ic_arrow_right" />&ndash;&gt;-->
+
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0.5dp"-->
+                        <!--android:layout_gravity="bottom"-->
+                        <!--android:background="@color/light"></View>-->
+                <!--</android.support.v7.widget.CardView>-->
 
                 <!--<android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
                     <!--android:layout_width="match_parent"-->

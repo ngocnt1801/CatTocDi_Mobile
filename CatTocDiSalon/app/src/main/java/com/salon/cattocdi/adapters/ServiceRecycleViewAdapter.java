@@ -13,8 +13,14 @@ import android.widget.TextView;
 
 import com.salon.cattocdi.R;
 import com.salon.cattocdi.SalonAppointmentActivity;
+import com.salon.cattocdi.ServiceAppointmentBookActivity;
+import com.salon.cattocdi.models.DateSlot;
 import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.models.Service;
+import com.salon.cattocdi.requests.ApiClient;
+import com.salon.cattocdi.requests.SlotApi;
+import com.salon.cattocdi.utils.AlertError;
+import com.salon.cattocdi.utils.MyContants;
 
 import org.w3c.dom.Text;
 
@@ -22,6 +28,10 @@ import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecycleViewAdapter.ServiceViewHolder> {
     private Context context;
@@ -56,10 +66,23 @@ public class ServiceRecycleViewAdapter extends RecyclerView.Adapter<ServiceRecyc
         serviceViewHolder.btnAddService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, SalonAppointmentActivity.class);
-                intent.putExtra("service_choosen", (Serializable) service);
-                intent.putExtra("salon", (Serializable) salon);
-                context.startActivity(intent);
+                ApiClient.getInstance().create(SlotApi.class)
+                        .getSlots("Bearer " + MyContants.TOKEN, salon.getSalonId(), service.getMinutes())
+                        .enqueue(new Callback<List<DateSlot>>() {
+                            @Override
+                            public void onResponse(Call<List<DateSlot>> call, Response<List<DateSlot>> response) {
+                                Intent intent = new Intent(context, SalonAppointmentActivity.class);
+                                intent.putExtra("service_choosen", (Serializable) service);
+                                intent.putExtra("slots", (Serializable) response.body());
+                                intent.putExtra("salon", salon);
+                                context.startActivity(intent);
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<DateSlot>> call, Throwable t) {
+                                AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng kiểm tra lại kết nối");
+                            }
+                        });
             }
         });
     }

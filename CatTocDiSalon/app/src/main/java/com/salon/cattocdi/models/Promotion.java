@@ -29,7 +29,7 @@ public class Promotion implements Serializable{
     public Timestamp getStartPeriod() {
         try {
 
-            startPeriod = new Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(startPeriodStr.replace("T"," ")).getTime());
+            startPeriod = new Timestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startPeriodStr.replace("T"," ")).getTime());
         } catch (ParseException e) {
             e.printStackTrace();
             return null;
@@ -59,7 +59,7 @@ public class Promotion implements Serializable{
 
     public Timestamp getEndPeriod() {
         try {
-            endPeriod = new Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(endPeriodStr.replace("T"," ")).getTime());
+            endPeriod = new Timestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endPeriodStr.replace("T"," ")).getTime());
         } catch (ParseException e) {
             e.printStackTrace();
             return null;

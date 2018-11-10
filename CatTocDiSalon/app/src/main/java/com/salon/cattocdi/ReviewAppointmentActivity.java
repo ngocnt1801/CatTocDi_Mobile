@@ -70,10 +70,10 @@ public class ReviewAppointmentActivity extends AppCompatActivity {
         tvName.setText(salon.getName());
 
         TextView tvDate = findViewById(R.id.appointment_item_expand_date_tv);
-        tvDate.setText(chooseSlot.getTimeSlotStr());
+        tvDate.setText(chooseSlot.getSlotDate());
 
-        TextView tvTime =findViewById(R.id.appointment_item_expand_time_tv);
-//        tvTime.setText(new SimpleDateFormat("hh:mm a").format(appointment.getStartTime()) + " - " + new SimpleDateFormat("hh:mm a").format(appointment.getEndTime()));
+        TextView tvTime = findViewById(R.id.appointment_item_expand_time_tv);
+        tvTime.setText(chooseSlot.getTimeSlotStr());
 
         TableLayout table = findViewById(R.id.tbl_service_bill);
         float subTotal = 0;
@@ -121,13 +121,13 @@ public class ReviewAppointmentActivity extends AppCompatActivity {
         model.setServicesId(servicesId);
         model.setSlotId(chooseSlot.getId());
         try {
-            long t = new SimpleDateFormat("yyyy-MM-dd").parse(chooseSlot.getSlotDate()).getTime();
+            long t = new SimpleDateFormat("dd/MM/yyyy").parse(chooseSlot.getSlotDate()).getTime();
             String[] unit = chooseSlot.getTimeSlotStr().split(":");
             int hour = Integer.parseInt(unit[0]);
             int minute = Integer.parseInt(unit[1]);
             t += hour*60*60*1000 + minute*60*1000;
-            model.setStartTime(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Timestamp(t)));
-
+            model.setStartTime(new SimpleDateFormat("yyyy-MM-dd hh:mm a").format(new Timestamp(t)));
+//            model.setStartTime(new Timestamp(t));
         } catch (ParseException e) {
             e.printStackTrace();
         }

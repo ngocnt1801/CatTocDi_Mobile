@@ -23,6 +23,7 @@ public class ListSalonActivity extends AppCompatActivity {
     private TextView titleTv;
     private RecyclerView rv;
     private FloatingActionButton btnOpenMap;
+    private List<Salon> salonList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +36,12 @@ public class ListSalonActivity extends AppCompatActivity {
         rv = findViewById(R.id.activity_list_rv);
 
         Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra("bundle");
-        String title = (String) bundle.get("title");
-        final List<Salon> salonList = (List<Salon>) bundle.getSerializable("salon");
+//        Bundle bundle = intent.getBundleExtra("bundle");
+        String title = (String) intent.getStringExtra("title");
+        salonList = (List<Salon>) intent.getSerializableExtra("salon");
         titleTv.setText(title);
 
-        int type = bundle.getInt("type");
+        int type = intent.getIntExtra("type", 0);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         switch (type){
             case MyContants.RV_ITEM_VOUCHER:
@@ -56,7 +57,7 @@ public class ListSalonActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListSalonActivity.this, MapsActivity.class);
-                intent.putExtra("salon_list", (Serializable) salonList);
+                intent.putExtra("salon", (Serializable) salonList);
                 startActivity(intent);
             }
         });

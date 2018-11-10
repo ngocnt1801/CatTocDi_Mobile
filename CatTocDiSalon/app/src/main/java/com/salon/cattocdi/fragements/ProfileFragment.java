@@ -58,15 +58,15 @@ public class ProfileFragment extends Fragment {
 
 
         });
-        showLike = view.findViewById(R.id.show_top_tv);
-        showLike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowTopFragment showTopFragment = new ShowTopFragment();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fg_profile, showTopFragment, null).addToBackStack(null).commit();
-            }
-        });
+//        showLike = view.findViewById(R.id.show_top_tv);
+//        showLike.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ShowTopFragment showTopFragment = new ShowTopFragment();
+//                getFragmentManager().beginTransaction()
+//                        .replace(R.id.fg_profile, showTopFragment, null).addToBackStack(null).commit();
+//            }
+//        });
 
         helpTv = view.findViewById(R.id.help_tv);
         helpTv.setOnClickListener(new View.OnClickListener() {

@@ -51,10 +51,8 @@ public class ReviewsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reviews, container, false);
 
         tvRatingNumber = view.findViewById(R.id.fg_reviews_sum);
-        tvRatingNumber.setRating(salon.getRatingNumber());
 
         tvTotalReviews = view.findViewById(R.id.salon_detail_total_reviews_tv);
-        tvTotalReviews.setText(salon.getReviewsAmount() + " Đánh giá");
 
         rvComments = view.findViewById(R.id.salon_detail_comment_rv);
         ViewCompat.setNestedScrollingEnabled(rvComments, false);
@@ -66,7 +64,7 @@ public class ReviewsFragment extends Fragment {
         return view;
     }
 
-    private void setProgressBar(View view){
+    private void setProgressBar(View view) {
 
         ProgressBar pb1, pb2, pb3, pb4, pb5;
         TextView tv1, tv2, tv3, tv4, tv5;
@@ -82,38 +80,44 @@ public class ReviewsFragment extends Fragment {
         tv5 = view.findViewById(R.id.salon_detail_review_5_tv);
 
         int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0;
-        for (Comment com :
-                salon.getReviews()) {
-            switch (com.getRating()){
-                case 1:
-                    count1++;
-                    break;
-                case 2:
-                    count2++;
-                    break;
-                case 3:
-                    count3++;
-                    break;
-                case 4:
-                    count4++;
-                    break;
-                case 5:
-                    count5++;
-                    break;
+        if (salon.getReviews() != null && salon.getReviews().size() > 0) {
+            for (Comment com :
+                    salon.getReviews()) {
+                switch (com.getRating()) {
+                    case 1:
+                        count1++;
+                        break;
+                    case 2:
+                        count2++;
+                        break;
+                    case 3:
+                        count3++;
+                        break;
+                    case 4:
+                        count4++;
+                        break;
+                    case 5:
+                        count5++;
+                        break;
+                }
             }
+
+            pb1.setProgress(Math.round((float) count1 / salon.getReviews().size())*100);
+            pb2.setProgress(Math.round((float) count2 / salon.getReviews().size())*100);
+            pb3.setProgress(Math.round((float) count3 / salon.getReviews().size())*100);
+            pb4.setProgress(Math.round((float) count4 / salon.getReviews().size())*100);
+            pb5.setProgress(Math.round((float) count5 / salon.getReviews().size())*100);
+
+            tv1.setText(Math.round((float) count1 / salon.getReviews().size()) + "");
+            tv2.setText(Math.round((float) count2 / salon.getReviews().size()) + "");
+            tv3.setText(Math.round((float) count3 / salon.getReviews().size()) + "");
+            tv4.setText(Math.round((float) count4 / salon.getReviews().size()) + "");
+            tv5.setText(Math.round((float) count5 / salon.getReviews().size()) + "");
+
+            float avgRating = (count1 + count2 * 2 + count3 * 3 + count4 * 4 + count5 * 5) / (count1 + count2 + count3 + count4 + count5);
+            tvRatingNumber.setRating(avgRating);
+            tvTotalReviews.setText(salon.getReviews().size() + " Đánh giá");
         }
-
-        pb1.setProgress(Math.round((float) count1 / salon.getReviewsAmount()));
-        pb2.setProgress(Math.round((float) count2 / salon.getReviewsAmount()));
-        pb3.setProgress(Math.round((float) count3 / salon.getReviewsAmount()));
-        pb4.setProgress(Math.round((float) count4 / salon.getReviewsAmount()));
-        pb5.setProgress(Math.round((float) count5 / salon.getReviewsAmount()));
-
-        tv1.setText(Math.round((float) count1 / salon.getReviewsAmount()) + "");
-        tv2.setText(Math.round((float) count2 / salon.getReviewsAmount()) + "");
-        tv3.setText(Math.round((float) count3 / salon.getReviewsAmount()) + "");
-        tv4.setText(Math.round((float) count4 / salon.getReviewsAmount()) + "");
-        tv5.setText(Math.round((float) count5 / salon.getReviewsAmount()) + "");
 
 
     }

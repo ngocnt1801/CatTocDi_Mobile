@@ -1,8 +1,9 @@
 package com.salon.cattocdi.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CloseDate {
+public class CloseDate implements Serializable{
     private int salonId;
     private Date date;
     private String description;

@@ -50,10 +50,11 @@ public class ServiceAppointmentBookActivity extends Activity {
         tvChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final List<Service> checkedList = adapter.getCheckedList();
 
                 ApiClient.getInstance().create(SlotApi.class)
-                        .getSlots("Bearer " + MyContants.TOKEN, salon.getSalonId(), getTotalDuration())
+                        .getSlots("Bearer " + MyContants.TOKEN, salon.getSalonId(), getTotalDuration(checkedList))
                         .enqueue(new Callback<List<DateSlot>>() {
                             @Override
                             public void onResponse(Call<List<DateSlot>> call, Response<List<DateSlot>> response) {
@@ -70,13 +71,11 @@ public class ServiceAppointmentBookActivity extends Activity {
                             }
                         });
 
-
-
             }
         });
     }
 
-    private int getTotalDuration(){
+    private int getTotalDuration(List<Service> checkedList){
         int total = 0;
         if(checkedList != null){
             for (Service service :

@@ -21,10 +21,10 @@ public interface AppointmentApi {
     @GET("api/appointment")
     Call<List<Appointment>> getAllAppointment(@Header("Authorization") String auth);
 
-    @DELETE("api/appointment")
+    @POST("api/appointment/delete")
     Call<String> cancelAppointment(@Header("Authorization") String auth, @Query("id") int id);
 
-    @POST("api/appointment/review")
+    @POST("api/reviews")
     Call<String> reviewAppointment(@Header("Authorization") String auth, @Body Comment comment);
 
     @POST("api/appointment")

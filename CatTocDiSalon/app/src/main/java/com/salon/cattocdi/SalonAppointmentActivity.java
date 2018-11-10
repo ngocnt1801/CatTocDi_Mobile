@@ -128,7 +128,6 @@ public class SalonAppointmentActivity extends AppCompatActivity {
 
         List<DateSlot> slots = (List<DateSlot>) getIntent().getSerializableExtra("slots");
         dateSlots = parseToMap(slots);
-        loadTimeSlotList(Calendar.getInstance().getTime());
 
         checkedList = (List<Service>) getIntent().getSerializableExtra("checked_list");
         if (checkedList == null) {
@@ -138,7 +137,7 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         if (service != null) {
             checkedList.add(service);
         }
-
+        loadTimeSlotList(Calendar.getInstance().getTime());
 
         rvService.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvService.setAdapter(new AppointmentServiceRecycleViewAdapter(checkedList));
@@ -220,7 +219,7 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         int hour = (slot * 15) / 60;
         String slotStr = hour + ":" + minute;
         try {
-            return new Timestamp(new SimpleDateFormat("hh:mm").parse(slotStr).getTime());
+            return new Timestamp(new SimpleDateFormat("HH:mm").parse(slotStr).getTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -281,6 +280,4 @@ public class SalonAppointmentActivity extends AppCompatActivity {
         return null;
 
     }
-
-
 }

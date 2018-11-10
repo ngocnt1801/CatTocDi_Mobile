@@ -2,15 +2,16 @@ package com.salon.cattocdi.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Comment {
-    @SerializedName("id")
+public class Comment implements Serializable{
+    @SerializedName("AppointmentId")
     private int appointmentId;
     private String customerName;
-    @SerializedName("rateNumber")
+    @SerializedName("RateNumber")
     private int rating;
-    @SerializedName("content")
+    @SerializedName("Comment")
     private String content;
     private Date date;
 

@@ -14,6 +14,7 @@ import com.salon.cattocdi.models.Comment;
 import com.salon.cattocdi.utils.MyContants;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentViewHolder>{
@@ -37,7 +38,9 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         holder.rbRating.setRating(comment.getRating());
         holder.tvName.setText(comment.getCustomerName());
         holder.tvContent.setText(comment.getContent());
-        holder.tvDate.setText(comment.getDate().getDate() + "/" + comment.getDate().getMonth() + "/" + comment.getDate().getYear());
+        if(comment.getDate() != null){
+            holder.tvDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(comment.getDate()));
+        }
     }
 
     @Override

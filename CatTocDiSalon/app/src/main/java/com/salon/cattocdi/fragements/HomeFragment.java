@@ -19,6 +19,7 @@ import com.salon.cattocdi.requests.SalonApi;
 import com.salon.cattocdi.utils.MyContants;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -57,9 +58,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
                         if(response.body() != null ){
-                            MyContants.SalonList = response.body();
-                        }else{
-                            MyContants.SalonList = new ArrayList<>();
+                            MyContants.SalonList = parseToMap(response.body());
                         }
                         ViewPager viewPager = view.findViewById(R.id.detail_pager);
                         setupViewPager(viewPager);
@@ -71,21 +70,28 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onFailure(Call<List<Salon>> call, Throwable t) {
                         Log.d("FAIL_GET", t.getMessage());
-                        MyContants.SalonList = new ArrayList<>();
                     }
                 });
     }
 
+    private HashMap<Integer, Salon> parseToMap(List<Salon> salons){
+        HashMap<Integer, Salon> map = new HashMap<>();
+        if(salons != null && salons.size() > 0){
+            for (Salon salon :
+                    salons) {
+                map.put(salon.getSalonId(), salon);
+            }
+            return map;
+        }
+        return map;
+    }
 
 // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
-
-
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new HomeMapFragment(), "Bản đồ");
         adapter.addFragment(new HomeListFragment(), "Danh sách");
         viewPager.setAdapter(adapter);
-
 
     }
 

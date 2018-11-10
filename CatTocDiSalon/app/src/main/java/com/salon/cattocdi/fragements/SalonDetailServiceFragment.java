@@ -15,6 +15,7 @@ import com.salon.cattocdi.R;
 import com.salon.cattocdi.adapters.CategoryAdapter;
 import com.salon.cattocdi.adapters.SalonDetailPromotionRecycleView;
 import com.salon.cattocdi.adapters.ServiceRecycleViewAdapter;
+import com.salon.cattocdi.adapters.WorkingHourAdapter;
 import com.salon.cattocdi.models.Category;
 import com.salon.cattocdi.models.Promotion;
 import com.salon.cattocdi.models.Salon;
@@ -57,7 +58,11 @@ public class SalonDetailServiceFragment extends Fragment {
 
         }
 
-
+        if(salon.getWorkingHours() != null){
+            RecyclerView workingHourRecycleView = view.findViewById(R.id.working_hour_rv);
+            workingHourRecycleView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+            workingHourRecycleView.setAdapter(new WorkingHourAdapter(salon.getWorkingHours()));
+        }
         return view;
     }
 

@@ -87,7 +87,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         geocoder = new Geocoder(this, Locale.getDefault());
 //        addressList = new ArrayList<>();
 
-        salons = (List<Salon>) getIntent().getSerializableExtra("salon_list");
+        salons = (List<Salon>) getIntent().getSerializableExtra("salon");
         if (salons == null) {
             salons = new ArrayList<>();
         }
@@ -233,7 +233,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //        tv.setText("Beat It!!");
 
         TextView tvDiscount = layout.findViewById(R.id.salon_image);
-        tvDiscount.setText(salon.getDiscount() + "%");
+        if(salon.getPromotion() != null && salon.getPromotion().getDiscount() > 0){
+            tvDiscount.setText(salon.getPromotion().getDiscount() + "%");
+        }else{
+            tvDiscount.setVisibility(View.GONE);
+        }
 
         TextView tvName = layout.findViewById(R.id.salon_name_map);
         tvName.setText(salon.getName());
@@ -254,6 +258,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             tv.setText("Hết chỗ");
             tv.setTextColor(Color.parseColor("#616161"));
         }
+
+
 
         //Provide it with a layout params. It should necessarily be wrapping the
         //content as we not really going to have a parent for it.

@@ -29,7 +29,7 @@
             android:isIndicator="true"
             android:numStars="5"
             android:progressTint="@color/secondLight"
-            android:rating="4.5"
+            android:rating="0"
             android:stepSize="0.5" />
 
         <RelativeLayout
@@ -70,7 +70,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="8dp"
                 android:max="100"
-                android:progress="94"
+                android:progress="0"
                 android:progressDrawable="@drawable/custom_progress" />
 
             <TextView
@@ -80,7 +80,7 @@
                 android:layout_marginTop="4dp"
                 android:gravity="right"
                 android:paddingRight="104dp"
-                android:text="94%"
+                android:text="0%"
                 android:textColor="@color/textForLight"
                 android:textSize="14dp" />
         </RelativeLayout>
@@ -123,7 +123,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="8dp"
                 android:max="100"
-                android:progress="6"
+                android:progress="0"
                 android:progressDrawable="@drawable/custom_progress" />
 
             <TextView
@@ -133,7 +133,7 @@
                 android:layout_marginTop="4dp"
                 android:gravity="right"
                 android:paddingRight="104dp"
-                android:text="6%"
+                android:text="0%"
                 android:textColor="@color/textForLight"
                 android:textSize="14dp" />
         </RelativeLayout>
@@ -176,7 +176,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="8dp"
                 android:max="100"
-                android:progress="10"
+                android:progress="0"
                 android:progressDrawable="@drawable/custom_progress" />
 
             <TextView
@@ -229,7 +229,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="8dp"
                 android:max="100"
-                android:progress="10"
+                android:progress="0"
                 android:progressDrawable="@drawable/custom_progress" />
 
             <TextView
@@ -282,7 +282,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="8dp"
                 android:max="100"
-                android:progress="10"
+                android:progress="0"
                 android:progressDrawable="@drawable/custom_progress" />
 
             <TextView
@@ -315,7 +315,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:gravity="center"
-                android:text="2 Nhận xét"
+                android:text="0 Nhận xét"
                 android:textColor="@color/textForLight"
                 android:textStyle="bold" />
 

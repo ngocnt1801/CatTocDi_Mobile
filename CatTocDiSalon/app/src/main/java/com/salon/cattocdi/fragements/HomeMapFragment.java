@@ -79,9 +79,11 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
     Geocoder geocoder;
     List<LatLng> addressList;
     LayoutInflater mInflater;
+    List<Salon> salons;
 
     public HomeMapFragment() {
         // Required empty public constructor
+        this.salons = new ArrayList<>(MyContants.SalonList.values());
     }
 
 
@@ -186,17 +188,17 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
     private void makeMarker() {
         Bitmap bm;
 //        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        if (MyContants.SalonList != null) {
+        if (salons != null) {
 
-            for (int i = 0; i < MyContants.SalonList.size(); i++) {
+            for (int i = 0; i < salons.size(); i++) {
                 MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(MyContants.SalonList.get(i).getLatLng());
+                markerOptions.position(salons.get(i).getLatLng());
 //            builder.include(addressList.get(i));
-                bm = createBitmapFromLayoutWithText(MyContants.SalonList.get(i));
+                bm = createBitmapFromLayoutWithText(salons.get(i));
 //            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
                 markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bm));
                 mCurrLocationmMarker = mMap.addMarker(markerOptions);
-                mCurrLocationmMarker.setTag(i);
+                mCurrLocationmMarker.setTag(salons.get(i).getSalonId());
             }
         }
     }
@@ -208,9 +210,9 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
 //                    @Override
 //                    public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
 //                        if(response.body() != null ){
-//                            MyContants.SalonList = response.body();
+//                            salons = response.body();
 //                        }else{
-//                            MyContants.SalonList = new ArrayList<>();
+//                            salons = new ArrayList<>();
 //                        }
 //                        makeMarker();
 //                    }
@@ -218,7 +220,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
 //                    @Override
 //                    public void onFailure(Call<List<Salon>> call, Throwable t) {
 //                        Log.d("FAIL_GET", t.getMessage());
-//                        MyContants.SalonList = new ArrayList<>();
+//                        salons = new ArrayList<>();
 //                    }
 //                });
 //    }
@@ -230,7 +232,9 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
         View layout = mInflater.inflate(R.layout.info_window_marker, view, true);
 
         TextView tvDiscount = layout.findViewById(R.id.salon_image);
-        tvDiscount.setText(salon.getDiscount() + "%");
+        if(salon.getPromotion() != null){
+            tvDiscount.setText(salon.getPromotion().getDiscount() + "%");
+        }
 
         TextView tvName = layout.findViewById(R.id.salon_name_map);
         tvName.setText(salon.getName());
@@ -252,7 +256,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
             tv.setTextColor(Color.parseColor("#616161"));
         }
 
-        if(salon.getDiscount() == 0){
+        if(salon.getPromotion() == null || salon.getPromotion().getDiscount() == 0){
             tvDiscount.setVisibility(View.GONE);
         }
 
@@ -309,7 +313,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
         mMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
         if (!marker.getTag().equals("Me")) {
             Intent intent = new Intent(getActivity(), SalonDetailActivity.class);
-            intent.putExtra("salon_id", (int) marker.getTag());
+            intent.putExtra("salon", MyContants.SalonList.get((int)marker.getTag()));
             startActivity(intent);
         }
         return true;

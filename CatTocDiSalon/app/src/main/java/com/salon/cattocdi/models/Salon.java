@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -34,14 +36,16 @@ public class Salon implements Serializable {
     private List<Category> categories;
     @SerializedName("Services")
     private List<Service> services;
+    @SerializedName("WorkingHours")
     private List<DayWorkingHour> workingHours;
     @SerializedName("Reviews")
     private List<Comment> reviews;
-    @SerializedName("Promotion")
+    @SerializedName("Promotions")
     private List<Promotion> promotions;
     private List<CloseDate> closeDates;
     private List<DateSlot> dateSlots;
-
+    @SerializedName("Promotion")
+    private Promotion promotion;
 
     public Salon() {
     }
@@ -83,15 +87,15 @@ public class Salon implements Serializable {
     }
 
     public int getDiscount() {
-        if (promotions == null){
+        if (promotions == null) {
             return 0;
         }
 
         for (Promotion promotion :
                 promotions) {
 
-            if(Calendar.getInstance().getTimeInMillis() >= promotion.getStartPeriod().getTime()
-                    && Calendar.getInstance().getTimeInMillis() <= promotion.getEndPeriod().getTime()){
+            if (Calendar.getInstance().getTimeInMillis() >= promotion.getStartPeriod().getTime()
+                    && Calendar.getInstance().getTimeInMillis() <= promotion.getEndPeriod().getTime()) {
                 return promotion.getDiscount();
             }
 
@@ -103,6 +107,14 @@ public class Salon implements Serializable {
 
     public void setDiscount(int discount) {
         this.discount = discount;
+    }
+
+    public Promotion getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
     }
 
     public String getImageUrl() {
@@ -147,20 +159,23 @@ public class Salon implements Serializable {
 
     public List<Category> getCategories() {
         HashMap<Integer, Category> tmp = new HashMap<>();
-        for (Service service : services) {
-            Integer categoryId = service.getCategoryId();
-            if (tmp.get(categoryId) == null) {
-                Category category = new Category(service.getCategoryId(), service.getCategoryName());
-                category.setServices(new ArrayList<Service>());
-                category.getServices().add(service);
-                tmp.put(categoryId, category);
-            } else {
-                tmp.get(categoryId).getServices().add(service);
+        if (services != null) {
+            for (Service service : services) {
+                Integer categoryId = service.getCategoryId();
+                if (tmp.get(categoryId) == null) {
+                    Category category = new Category(service.getCategoryId(), service.getCategoryName());
+                    category.setServices(new ArrayList<Service>());
+                    category.getServices().add(service);
+                    tmp.put(categoryId, category);
+                } else {
+                    tmp.get(categoryId).getServices().add(service);
+                }
+
+                categories = new ArrayList<Category>(tmp.values());
+
             }
-
-            categories = new ArrayList<Category>(tmp.values());
-
         }
+
         return categories;
     }
 
@@ -236,17 +251,57 @@ public class Salon implements Serializable {
         this.dateSlots = dateSlots;
     }
 
-    public class DayWorkingHour {
+    public class DayWorkingHour implements Serializable{
+        @SerializedName("DayOfWeek")
         private int dayInWeek;
-        private float startHour;
-        private float endHour;
-        private boolean open;
+        @SerializedName("FromHour")
+        private String startHour;
+        @SerializedName("ToHour")
+        private String endHour;
+        @SerializedName("IsClosed")
+        private boolean close;
 
-        public DayWorkingHour(int dayInWeek, float startHour, float endHour, boolean open) {
-            this.dayInWeek = dayInWeek;
-            this.startHour = startHour;
-            this.endHour = endHour;
-            this.open = open;
+        public int getDayInWeek() {
+            return dayInWeek;
         }
+
+        public void setDayInWeek(int dayInWeek) {
+            this.dayInWeek = dayInWeek;
+        }
+
+        public String getStartHour() {
+            String value = startHour.replace("T", " ");
+            try {
+                Timestamp timestamp = new Timestamp(new SimpleDateFormat("HH:mm:ss").parse(value).getTime());
+                return new SimpleDateFormat("HH:mm").format(timestamp);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return startHour;
+        }
+
+        public void setStartHour(String startHour) {
+            this.startHour = startHour;
+        }
+
+        public String getEndHour() {
+            String value = endHour.replace("T", " ");
+            try {
+                Timestamp timestamp = new Timestamp(new SimpleDateFormat("HH:mm:ss").parse(value).getTime());
+                return new SimpleDateFormat("HH:mm").format(timestamp);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return endHour;
+        }
+
+        public void setEndHour(String endHour) {
+            this.endHour = endHour;
+        }
+
+        public boolean isClose() {
+            return close;
+        }
+
     }
 }

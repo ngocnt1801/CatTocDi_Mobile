@@ -29,6 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
     private Button loginBtn, maleBtn, femaleBtn, signupBtn;
     private EditText etPhone, etPassword, etName;
     private boolean isMale = true;
+    private String firstName, lastName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +82,18 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                boolean result = validRegister();
-                if(result){
+                if(validRegister()){
+                    String name = etName.getText().toString().trim();
+                    if(name.indexOf(" ") > 0){
+                        firstName = name.substring(0, name.indexOf(" ")).trim();
+                        lastName = name.substring(name.indexOf(" ")).trim();
+                    }else{
+                        firstName = name;
+                        lastName = "";
+                    }
+
                     ApiClient.getInstance().create(AccountApi.class)
-                            .register(etPhone.getText().toString(), etPassword.getText().toString(), isMale, etName.getText().toString(),etName.getText().toString(), etPhone.getText().toString() )
+                            .register(etPhone.getText().toString(), etPassword.getText().toString(), isMale, firstName,lastName, etPhone.getText().toString() )
                             .enqueue(new Callback<ResponseMessage>() {
                                 @Override
                                 public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {

@@ -23,6 +23,7 @@ import com.salon.cattocdi.adapters.ExpandableListViewAdapter;
 import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.requests.ApiClient;
 import com.salon.cattocdi.requests.SalonApi;
+import com.salon.cattocdi.utils.AlertError;
 import com.salon.cattocdi.utils.MyContants;
 
 import java.io.Serializable;
@@ -50,7 +51,7 @@ public class SearchFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
@@ -140,18 +141,26 @@ public class SearchFragment extends Fragment {
                         .enqueue(new Callback<List<Salon>>() {
                             @Override
                             public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
-                                Intent intent = new Intent(getActivity(), ListSalonActivity.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putSerializable("salon", (Serializable) response.body());
-                                bundle.putString("title", "Kết quả tìm kiếm");
-                                bundle.putInt("type", MyContants.RV_ITEM_NORMAL);
-                                intent.putExtra("bundle", bundle);
-                                startActivity(intent);
+                                if(response.body().size() == 0){
+                                    AlertError.showDialog(getActivity(),"Không tìm thấy salon nào");
+                                }else{
+                                    Intent intent = new Intent(getActivity(), ListSalonActivity.class);
+//                                    Bundle bundle = new Bundle();
+//                                    bundle.putSerializable("salon", (Serializable) response.body());
+//                                    bundle.putString("title", "Kết quả tìm kiếm");
+//                                    bundle.putInt("type", MyContants.RV_ITEM_NORMAL);
+//                                    intent.putExtra("bundle", bundle);
+                                    intent.putExtra("type", MyContants.RV_ITEM_NORMAL);
+                                    intent.putExtra("title", "Kết quả tìm kiếm");
+                                    intent.putExtra("salon", (Serializable) response.body());
+                                    startActivity(intent);
+                                }
+
                             }
 
                             @Override
                             public void onFailure(Call<List<Salon>> call, Throwable t) {
-
+                                AlertError.showDialogLoginFail(getActivity(), "Có lỗi xảy ra vui lòng kiểm tra lại kết nối");
                             }
                         });
 

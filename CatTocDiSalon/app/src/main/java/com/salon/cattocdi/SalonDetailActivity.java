@@ -23,8 +23,7 @@ public class SalonDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_salon_detail);
 
         Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra("bundle");
-        Salon salon = (Salon) bundle.getSerializable("salon");
+        Salon salon = (Salon) intent.getSerializableExtra("salon");
         if(salon != null){
             //set name salon
             TextView tvName = findViewById(R.id.salon_detail_name);

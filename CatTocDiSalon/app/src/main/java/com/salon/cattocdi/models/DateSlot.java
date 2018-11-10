@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class DateSlot implements Serializable{
+public class DateSlot implements Serializable {
     @SerializedName("date")
     private String dateStr;
     @SerializedName("slots")
@@ -34,9 +34,9 @@ public class DateSlot implements Serializable{
     }
 
     public Date getSlotDate() {
-        String value = dateStr.replace("T"," ");
+        String value = dateStr.replace("T", " ");
         try {
-            slotDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(value);
+            slotDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class DateSlot implements Serializable{
         this.slotDate = slotDate;
     }
 
-    public class Slot implements Serializable{
+    public class Slot implements Serializable {
         @SerializedName("Id")
         private int id;
         @SerializedName("SalonId")
@@ -78,8 +78,15 @@ public class DateSlot implements Serializable{
         }
 
         public String getSlotDate() {
-            return slotDate;
+            String value = slotDate.replace("T", " ");
+            try {
+                return new SimpleDateFormat("dd/MM/yyyy").format( new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(value));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return "";
         }
+
 
         public void setSlotDate(String slotDate) {
             this.slotDate = slotDate;
@@ -89,14 +96,9 @@ public class DateSlot implements Serializable{
             return time;
         }
 
-        public String getTimeSlotStr(){
-            try {
-                Timestamp timestamp =  new Timestamp(new SimpleDateFormat("hh:mm:ss").parse(time).getTime());
-                return new SimpleDateFormat("hh:mm").format(timestamp);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            return "";
+        public String getTimeSlotStr() {
+            String[] items = time.split(":");
+            return items[0] + ":" + items[1];
         }
 
         public void setTime(String time) {
