@@ -31,9 +31,28 @@ public class Appointment implements Serializable{
     private int duration;
     @SerializedName("Reviews")
     private Comment review;
+    @SerializedName("CancelledReason")
+    private String reason;
+
 
 
     public Appointment() {
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     public String getStartTimeStr() {

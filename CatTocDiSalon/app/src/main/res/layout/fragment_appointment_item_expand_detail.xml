@@ -163,6 +163,7 @@
         android:id="@+id/appointment_item_expand_review_ln">
 
         <TextView
+            android:id="@+id/tvReasonTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Đánh giá của bạn"
