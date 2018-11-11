@@ -90,70 +90,58 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                 + new SimpleDateFormat("HH:mm a").format(appointment.getEndTime()));
         loadDataToTable(viewHolder, appointment);
 
-        if (appointment.getStartTime().getTime() <= Calendar.getInstance().getTimeInMillis()
-                && appointment.getEndTime().getTime() <= Calendar.getInstance().getTimeInMillis()) {
-            viewHolder.tvAppoinmentType.setText("Lịch đã qua");
-            viewHolder.icDelete.setVisibility(View.GONE);
+       if(appointment.getStatus() == AppointmentStatus.NOT_APPROVED.getStatus()) {
+           if (appointment.getStartTime().getTime() <= Calendar.getInstance().getTimeInMillis() + 15 * 60) {
+               viewHolder.tvAppoinmentType.setText("Đã quá hạn");
+               viewHolder.icDelete.setVisibility(View.GONE);
+               viewHolder.tvCancelStatus.setVisibility(View.GONE);
+               viewHolder.btnReview.setVisibility(View.GONE);
+               viewHolder.commentLn.setVisibility(View.GONE);
+           } else  if (appointment.getStartTime().getTime() >= Calendar.getInstance().getTimeInMillis() + 15 * 60) {
+               viewHolder.tvAppoinmentType.setText("Lịch sắp tới");
+               viewHolder.icDelete.setVisibility(View.VISIBLE);
+               viewHolder.tvCancelStatus.setVisibility(View.GONE);
+               viewHolder.btnReview.setVisibility(View.GONE);
+               viewHolder.commentLn.setVisibility(View.GONE);
+           }
 
-            if(appointment.getStatus() == AppointmentStatus.CANCEL.getStatus()) {
-                viewHolder.btnReview.setVisibility(View.GONE);
-                viewHolder.tvCancelStatus.setVisibility(View.GONE);
-                viewHolder.tvAppoinmentType.setText("Lịch Đã Hủy");
-                viewHolder.commentLn.setVisibility(View.VISIBLE);
-                viewHolder.rb.setVisibility(View.GONE);
-                if(appointment.getReason() != null && appointment.getReason().length() > 0 ) {
-                    viewHolder.tvReasonTitle.setText("Lý Do Hủy");
-                    viewHolder.tvComment.setText(appointment.getReason());
-                    viewHolder.tvComment.setVisibility(View.VISIBLE);
-                } else {
-                    viewHolder.tvReasonTitle.setText("Bạn Đã Hủy");
-                    viewHolder.tvComment.setVisibility(View.GONE);
-                }
+       } else if(appointment.getStatus() == AppointmentStatus.APPROVED.getStatus()) {
+           viewHolder.tvAppoinmentType.setText("Lịch đã qua");
+           viewHolder.icDelete.setVisibility(View.GONE);
+           viewHolder.tvCancelStatus.setVisibility(View.GONE);
 
+           if(appointment.getReview() != null) {
+               viewHolder.commentLn.setVisibility(View.VISIBLE);
+               viewHolder.rb.setRating(appointment.getReview().getRating());
+               viewHolder.tvComment.setText(appointment.getReview().getContent());
+               viewHolder.btnReview.setVisibility(View.GONE);
+               viewHolder.rb.setVisibility(View.VISIBLE);
+               viewHolder.tvComment.setVisibility(View.VISIBLE);
+           }else {
+               viewHolder.commentLn.setVisibility(View.GONE);
+               viewHolder.btnReview.setVisibility(View.VISIBLE);
+               viewHolder.btnReview.setVisibility(View.VISIBLE);
+           }
 
-
-
-            } else if(appointment.getStatus() == AppointmentStatus.NOT_APPROVED.getStatus()){
-                viewHolder.btnReview.setVisibility(View.GONE);
-                viewHolder.tvAppoinmentType.setText("Đã Quá Hạn");
-                viewHolder.tvCancelStatus.setVisibility(View.GONE);
-                viewHolder.commentLn.setVisibility(View.GONE);
-
-            } else {
-                viewHolder.tvCancelStatus.setVisibility(View.GONE);
-                if(appointment.getReview() != null) {
-                    viewHolder.commentLn.setVisibility(View.VISIBLE);
-                    viewHolder.rb.setRating(appointment.getReview().getRating());
-                    viewHolder.tvComment.setText(appointment.getReview().getContent());
-                }else {
-                    viewHolder.commentLn.setVisibility(View.GONE);
-                    viewHolder.btnReview.setVisibility(View.VISIBLE);
-                }
-            }
-
-
-        } else  if (appointment.getStartTime().getTime() <= Calendar.getInstance().getTimeInMillis()
-                && appointment.getEndTime().getTime() >= Calendar.getInstance().getTimeInMillis()
-                && appointment.getStatus() == AppointmentStatus.APPROVED.getStatus()) {
-            viewHolder.tvAppoinmentType.setText("Đang thực hiện");
-            viewHolder.btnReview.setVisibility(View.GONE);
-            viewHolder.tvCancelStatus.setVisibility(View.GONE);
-            viewHolder.icDelete.setVisibility(View.GONE);
-
-        } else if (appointment.getStartTime().getTime() <= Calendar.getInstance().getTimeInMillis() + 15 * 60
-                && appointment.getEndTime().getTime() >= Calendar.getInstance().getTimeInMillis()
-                && appointment.getStatus() == AppointmentStatus.NOT_APPROVED.getStatus()) {
-            viewHolder.tvAppoinmentType.setText("Đã Quá Hạn");
-            viewHolder.btnReview.setVisibility(View.GONE);
-            viewHolder.tvCancelStatus.setVisibility(View.GONE);
-            viewHolder.icDelete.setVisibility(View.GONE);
-
-        } else {
-            viewHolder.tvAppoinmentType.setText("Lịch Sắp Tới");
-            viewHolder.btnReview.setVisibility(View.GONE);
-            viewHolder.tvCancelStatus.setVisibility(View.GONE);
-            viewHolder.icDelete.setVisibility(View.VISIBLE);
-        }
+       } else {
+           //cancelled
+           viewHolder.tvAppoinmentType.setText("Lịch đã hủy");
+           viewHolder.icDelete.setVisibility(View.GONE);
+           viewHolder.tvCancelStatus.setVisibility(View.VISIBLE);
+           viewHolder.btnReview.setVisibility(View.GONE);
+           if(appointment.getReason() != null && appointment.getReason().length() > 0 ) {
+               viewHolder.commentLn.setVisibility(View.VISIBLE);
+               viewHolder.tvReasonTitle.setText("Lý Do Hủy");
+               viewHolder.tvComment.setText(appointment.getReason());
+               viewHolder.tvComment.setVisibility(View.VISIBLE);
+               viewHolder.rb.setVisibility(View.GONE);
+           } else {
+               viewHolder.commentLn.setVisibility(View.VISIBLE);
+               viewHolder.tvReasonTitle.setText("Bạn Đã Hủy");
+               viewHolder.tvComment.setVisibility(View.GONE);
+               viewHolder.rb.setVisibility(View.GONE);
+           }
+       }
 
 
         viewHolder.appointmentRl.setOnClickListener(new View.OnClickListener() {

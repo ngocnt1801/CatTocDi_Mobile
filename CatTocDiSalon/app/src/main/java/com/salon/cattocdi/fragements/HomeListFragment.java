@@ -101,29 +101,7 @@ public class HomeListFragment extends Fragment {
         return view;
     }
 
-//    private void loadAllSalon(){
-//        ApiClient.getInstance().create(SalonApi.class)
-//                .getAllSalon("Bearer " + MyContants.TOKEN)
-//                .enqueue(new Callback<List<Salon>>() {
-//                    @Override
-//                    public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
-//                        if(response.body() != null ){
-//                            MyContants.SalonList = response.body();
-//                        }else{
-//                            MyContants.SalonList = new ArrayList<>();
-//                        }
-//                        testRecycleViewAdapter(rvRating, MyContants.RV_ITEM_NORMAL);
-//                        testRecycleViewAdapter(rvSale, MyContants.RV_ITEM_VOUCHER);
-//                    }
 //
-//                    @Override
-//                    public void onFailure(Call<List<Salon>> call, Throwable t) {
-//                        Log.d("FAIL_GET", t.getMessage());
-//                        MyContants.SalonList = new ArrayList<>();
-//                    }
-//                });
-//    }
-
     private void testRecycleViewAdapter(RecyclerView rv, int type, List<Salon> salons){
         //Show RECYCLEVIEW
         rv.setItemAnimator(new DefaultItemAnimator());
