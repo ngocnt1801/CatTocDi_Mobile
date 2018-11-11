@@ -26,6 +26,7 @@ import com.salon.cattocdi.requests.ApiClient;
 import com.salon.cattocdi.requests.SalonApi;
 import com.salon.cattocdi.utils.AlertError;
 import com.salon.cattocdi.utils.MyContants;
+import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.List;
@@ -82,24 +83,43 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
         if (type == RV_ITEM_NORMAL) {
             myCardViewHolder.salonTitle.setText(salons.get(i).getName());
             myCardViewHolder.salonAddress.setText(salons.get(i).getAddress());
-            if (salons.get(i).getDiscount() == 0) {
+            if(salons.get(i).getPromotion() == null){
                 myCardViewHolder.tvDiscount.setVisibility(View.GONE);
-            } else {
-                myCardViewHolder.tvDiscount.setText(salons.get(i).getDiscount() + "% OFF");
+            }else{
+                if (salons.get(i).getPromotion().getDiscount() == 0) {
+                    myCardViewHolder.tvDiscount.setVisibility(View.GONE);
+                } else {
+                    myCardViewHolder.tvDiscount.setText(salons.get(i).getPromotion().getDiscount() + "% OFF");
+                }
             }
+
             myCardViewHolder.salonRatingBar.setRating(salons.get(i).getRatingNumber());
             if (myCardViewHolder.salonReviewsAmount != null) {
                 myCardViewHolder.salonReviewsAmount.setText("(" + salons.get(i).getReviewsAmount() + ")");
             }
         }
 
+
+
+
         if(type == RV_ITEM_VOUCHER){
             myCardViewHolder.tvDiscount.setText(salons.get(i).getPromotion().getDiscount() + "% OFF");
             myCardViewHolder.tvDiscountDate.setText(salons.get(i).getPromotion().getStartDateStr() + " - " + salons.get(i).getPromotion().getEndDateStr());
             myCardViewHolder.tvDiscountContent.setText(salons.get(i).getPromotion().getDescription());
+            myCardViewHolder.item.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    goToSalonDetail(myCardViewHolder, i);
+                }
+            });
         }
 
-        myCardViewHolder.salonImage.setBackgroundResource(MyContants.SALON_IMAGE_IDS[i % 10]);
+        if(salons.get(i).getImageUrl() != null){
+            Picasso.get().load(salons.get(i).getImageUrl()).into(myCardViewHolder.salonImage);
+        }else{
+                    myCardViewHolder.salonImage.setBackgroundResource(MyContants.SALON_IMAGE_IDS[0]);
+
+        }
 
         if (type == RV_ITEM_NORMAL) {
 
@@ -109,34 +129,38 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
                 @Override
                 public void onClick(View view) {
 
-                    ApiClient.getInstance().create(SalonApi.class)
-                            .getSalonById("Bearer " + MyContants.TOKEN, salons.get(i).getSalonId())
-                            .enqueue(new Callback<Salon>() {
-                                @Override
-                                public void onResponse(Call<Salon> call, Response<Salon> response) {
-                                    if (response.code() == 200) {
-                                        Intent intent = new Intent(context, SalonDetailActivity.class);
-                                        Bundle options = ActivityOptionsCompat.makeScaleUpAnimation(
-                                                myCardViewHolder.item, 0, 0, myCardViewHolder.item.getWidth(), myCardViewHolder.item.getHeight()).toBundle();
-                                        Salon salon = response.body();
-                                        intent.putExtra("salon", (Serializable) salon);
-                                        ActivityCompat.startActivity(context, intent, options);
-                                    } else {
-                                        AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng thử lại sau");
-                                    }
-
-                                }
-
-                                @Override
-                                public void onFailure(Call<Salon> call, Throwable t) {
-                                    AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng kiểm tra lại kết nối mạng");
-                                }
-                            });
-
+                    goToSalonDetail(myCardViewHolder, i);
 
                 }
             });
         }
+    }
+
+    private void goToSalonDetail(final MyCardViewHolder myCardViewHolder, int i){
+        ApiClient.getInstance().create(SalonApi.class)
+                .getSalonById("Bearer " + MyContants.TOKEN, salons.get(i).getSalonId())
+                .enqueue(new Callback<Salon>() {
+                    @Override
+                    public void onResponse(Call<Salon> call, Response<Salon> response) {
+                        if (response.code() == 200) {
+                            Intent intent = new Intent(context, SalonDetailActivity.class);
+                            Bundle options = ActivityOptionsCompat.makeScaleUpAnimation(
+                                    myCardViewHolder.item, 0, 0, myCardViewHolder.item.getWidth(), myCardViewHolder.item.getHeight()).toBundle();
+                            Salon salon = response.body();
+                            intent.putExtra("salon", (Serializable) salon);
+                            ActivityCompat.startActivity(context, intent, options);
+                        } else {
+                            AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng thử lại sau");
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Salon> call, Throwable t) {
+                        AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng kiểm tra lại kết nối mạng");
+                    }
+                });
+
     }
 
     @Override
@@ -147,7 +171,7 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
 
     public class MyCardViewHolder extends RecyclerView.ViewHolder {
 
-        public View salonImage;
+        public ImageView salonImage;
         public TextView salonTitle, salonAddress, salonReviewsAmount;
         public RatingBar salonRatingBar;
         public CardView item;

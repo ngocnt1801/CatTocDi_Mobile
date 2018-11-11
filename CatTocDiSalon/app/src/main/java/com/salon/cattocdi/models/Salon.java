@@ -27,6 +27,7 @@ public class Salon implements Serializable {
     private float ratingNumber;
     private boolean full;
     private int discount;
+    @SerializedName("ImageUrl")
     private String imageUrl;
     @SerializedName("ReviewCount")
     private int reviewsAmount;
