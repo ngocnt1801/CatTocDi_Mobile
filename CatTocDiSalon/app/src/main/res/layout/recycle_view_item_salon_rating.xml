@@ -97,7 +97,7 @@
                 android:background="@drawable/ripple_btn"
                 android:clickable="true"
                 android:stateListAnimator="@drawable/click_effect_btn"
-                android:text="@string/vn_book_appointment"
+                android:text="Chi Tiết"
                 android:textAllCaps="false"
                 android:layout_marginBottom="12dp"
                 android:layout_marginHorizontal="8dp"

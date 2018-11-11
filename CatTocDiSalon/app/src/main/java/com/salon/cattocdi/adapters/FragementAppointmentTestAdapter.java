@@ -60,11 +60,6 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
     private Salon salon;
 
 
-    public FragementAppointmentTestAdapter(Context context, Location curLocation) {
-        this.context = context;
-        this.curLocation = curLocation;
-    }
-
     public FragementAppointmentTestAdapter(Context context, Location curLocation, List<Appointment> appointments) {
         this.context = context;
         this.curLocation = curLocation;
@@ -94,30 +89,60 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                 + " - "
                 + new SimpleDateFormat("HH:mm a").format(appointment.getEndTime()));
         loadDataToTable(viewHolder, appointment);
-        if (appointment.getStartTime().getTime() <= Calendar.getInstance().getTimeInMillis()) {
-            viewHolder.tvAppoinmentType.setText("Lịch đã qua");
-            viewHolder.appointmentRl.setBackgroundColor(Color.parseColor("#eeeeee"));
-            viewHolder.icDelete.setVisibility(View.GONE);
-            if(appointment.getReview() == null){
-                viewHolder.btnReview.setVisibility(View.VISIBLE);
 
-            }else{
-                viewHolder.commentLn.setVisibility(View.VISIBLE);
-                viewHolder.rb.setRating(appointment.getReview().getRating());
-                viewHolder.tvComment.setText(appointment.getReview().getContent());
-            }
-        }
+       if(appointment.getStatus() == AppointmentStatus.NOT_APPROVED.getStatus()) {
+           if (appointment.getStartTime().getTime() <= Calendar.getInstance().getTimeInMillis() + 15 * 60) {
+               viewHolder.tvAppoinmentType.setText("Đã quá hạn");
+               viewHolder.icDelete.setVisibility(View.GONE);
+               viewHolder.tvCancelStatus.setVisibility(View.GONE);
+               viewHolder.btnReview.setVisibility(View.GONE);
+               viewHolder.commentLn.setVisibility(View.GONE);
+           } else  if (appointment.getStartTime().getTime() >= Calendar.getInstance().getTimeInMillis() + 15 * 60) {
+               viewHolder.tvAppoinmentType.setText("Lịch sắp tới");
+               viewHolder.icDelete.setVisibility(View.VISIBLE);
+               viewHolder.tvCancelStatus.setVisibility(View.GONE);
+               viewHolder.btnReview.setVisibility(View.GONE);
+               viewHolder.commentLn.setVisibility(View.GONE);
+           }
 
-        if (appointment.getStatus() == AppointmentStatus.CANCEL.getStatus()) {
-            viewHolder.appointmentRl.setBackgroundColor(Color.parseColor("#eeeeee"));
-            viewHolder.icDelete.setVisibility(View.GONE);
-            viewHolder.tvCancelStatus.setVisibility(View.VISIBLE);
-        }
+       } else if(appointment.getStatus() == AppointmentStatus.APPROVED.getStatus()) {
+           viewHolder.tvAppoinmentType.setText("Lịch đã qua");
+           viewHolder.icDelete.setVisibility(View.GONE);
+           viewHolder.tvCancelStatus.setVisibility(View.GONE);
 
-        if (i == 0) {
-            viewHolder.appointmentDetail.expand();
-            activeAppointment(viewHolder, appointment.getStatus());
-        }
+           if(appointment.getReview() != null) {
+               viewHolder.commentLn.setVisibility(View.VISIBLE);
+               viewHolder.rb.setRating(appointment.getReview().getRating());
+               viewHolder.tvComment.setText(appointment.getReview().getContent());
+               viewHolder.btnReview.setVisibility(View.GONE);
+               viewHolder.rb.setVisibility(View.VISIBLE);
+               viewHolder.tvComment.setVisibility(View.VISIBLE);
+           }else {
+               viewHolder.commentLn.setVisibility(View.GONE);
+               viewHolder.btnReview.setVisibility(View.VISIBLE);
+               viewHolder.btnReview.setVisibility(View.VISIBLE);
+           }
+
+       } else {
+           //cancelled
+           viewHolder.tvAppoinmentType.setText("Lịch đã hủy");
+           viewHolder.icDelete.setVisibility(View.GONE);
+           viewHolder.tvCancelStatus.setVisibility(View.VISIBLE);
+           viewHolder.btnReview.setVisibility(View.GONE);
+           if(appointment.getReason() != null && appointment.getReason().length() > 0 ) {
+               viewHolder.commentLn.setVisibility(View.VISIBLE);
+               viewHolder.tvReasonTitle.setText("Lý Do Hủy");
+               viewHolder.tvComment.setText(appointment.getReason());
+               viewHolder.tvComment.setVisibility(View.VISIBLE);
+               viewHolder.rb.setVisibility(View.GONE);
+           } else {
+               viewHolder.commentLn.setVisibility(View.VISIBLE);
+               viewHolder.tvReasonTitle.setText("Bạn Đã Hủy");
+               viewHolder.tvComment.setVisibility(View.GONE);
+               viewHolder.rb.setVisibility(View.GONE);
+           }
+       }
+
 
         viewHolder.appointmentRl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +183,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                 Button btnSend = dialog.findViewById(R.id.review_dialog_btn);
                 btnSend.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(final View view) {
                         final EditText et = dialog.findViewById(R.id.review_dialog_et);
                         final float rating = rb.getRating();
 
@@ -171,8 +196,9 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
                                             viewHolder.tvComment.setText(et.getText().toString());
                                             viewHolder.rb.setRating(rating);
                                             viewHolder.commentLn.setVisibility(View.VISIBLE);
-
+                                            viewHolder.tvReasonTitle.setText("Đánh giá của bạn");
                                             viewHolder.btnReview.setVisibility(View.GONE);
+                                            Toast.makeText(context, "Cảm ơn bạn đã để lại đánh giá! Rất vui vì được phục vụ bạn", Toast.LENGTH_SHORT).show();
                                             dialog.dismiss();
                                         }
 
@@ -360,7 +386,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         public RatingBar rb;
         public LinearLayout commentLn;
 
-        public TextView tvAppoinmentType, tvDate, tvSalonName, tvTime, tvComment, tvCancelStatus;
+        public TextView tvAppoinmentType, tvDate, tvSalonName, tvTime, tvComment, tvCancelStatus, tvReasonTitle;
 
         public AppointmentCardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -382,7 +408,7 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
             tvComment = itemView.findViewById(R.id.appointment_item_expand_comment_tv);
 
             tvCancelStatus = itemView.findViewById(R.id.appointment_item_cancel_status_tv);
-
+            tvReasonTitle = itemView.findViewById(R.id.tvReasonTitle);
             item = itemView;
 
         }

@@ -101,48 +101,39 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.MyCardViewHo
 
         myCardViewHolder.salonImage.setBackgroundResource(MyContants.SALON_IMAGE_IDS[i % 10]);
 
-
-        myCardViewHolder.item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                ApiClient.getInstance().create(SalonApi.class)
-                        .getSalonById("Bearer " + MyContants.TOKEN, salons.get(i).getSalonId())
-                        .enqueue(new Callback<Salon>() {
-                            @Override
-                            public void onResponse(Call<Salon> call, Response<Salon> response) {
-                                if (response.code() == 200) {
-                                    Intent intent = new Intent(context, SalonDetailActivity.class);
-                                    Bundle options = ActivityOptionsCompat.makeScaleUpAnimation(
-                                            myCardViewHolder.item, 0, 0, myCardViewHolder.item.getWidth(), myCardViewHolder.item.getHeight()).toBundle();
-                                    Salon salon = response.body();
-                                    intent.putExtra("salon", (Serializable) salon);
-                                    ActivityCompat.startActivity(context, intent, options);
-                                } else {
-                                    AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng thử lại sau");
-                                }
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<Salon> call, Throwable t) {
-                                AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng kiểm tra lại kết nối mạng");
-                            }
-                        });
-
-
-            }
-        });
         if (type == RV_ITEM_NORMAL) {
 
             Button btnBook;
             btnBook = myCardViewHolder.item.findViewById(R.id.btn_book_service);
             btnBook.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, SalonAppointmentActivity.class);
-                    intent.putExtra("salon", (Serializable) salons.get(i));
-                    context.startActivity(intent);
+                public void onClick(View view) {
+
+                    ApiClient.getInstance().create(SalonApi.class)
+                            .getSalonById("Bearer " + MyContants.TOKEN, salons.get(i).getSalonId())
+                            .enqueue(new Callback<Salon>() {
+                                @Override
+                                public void onResponse(Call<Salon> call, Response<Salon> response) {
+                                    if (response.code() == 200) {
+                                        Intent intent = new Intent(context, SalonDetailActivity.class);
+                                        Bundle options = ActivityOptionsCompat.makeScaleUpAnimation(
+                                                myCardViewHolder.item, 0, 0, myCardViewHolder.item.getWidth(), myCardViewHolder.item.getHeight()).toBundle();
+                                        Salon salon = response.body();
+                                        intent.putExtra("salon", (Serializable) salon);
+                                        ActivityCompat.startActivity(context, intent, options);
+                                    } else {
+                                        AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng thử lại sau");
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<Salon> call, Throwable t) {
+                                    AlertError.showDialogLoginFail(context, "Có lỗi xảy ra vui lòng kiểm tra lại kết nối mạng");
+                                }
+                            });
+
+
                 }
             });
         }
