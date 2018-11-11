@@ -81,9 +81,8 @@ public class AppointmentFragment extends Fragment {
     public void getLocation() {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
-
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(1200);
+        mLocationRequest.setInterval(12000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         mlocationCallback = new LocationCallback(){
@@ -93,7 +92,7 @@ public class AppointmentFragment extends Fragment {
                     return;
                 }
                 mCurrentLocation = locationResult.getLastLocation();
-                FragementAppointmentTestAdapter adapter = new FragementAppointmentTestAdapter(getActivity(), mCurrentLocation);
+                FragementAppointmentTestAdapter adapter = new FragementAppointmentTestAdapter(getActivity(), mCurrentLocation, appointments);
                 rvUpcomming.setAdapter(adapter);
             }
         };

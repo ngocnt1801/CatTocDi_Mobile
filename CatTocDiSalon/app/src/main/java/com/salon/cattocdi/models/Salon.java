@@ -19,7 +19,9 @@ public class Salon implements Serializable {
     private String name;
     @SerializedName("Address")
     private String address;
+    @SerializedName("Phone")
     private String phone;
+    @SerializedName("Email")
     private String email;
     @SerializedName("RatingAvarage")
     private float ratingNumber;
