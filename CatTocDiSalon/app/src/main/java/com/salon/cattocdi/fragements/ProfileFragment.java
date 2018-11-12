@@ -108,7 +108,7 @@ public class ProfileFragment extends Fragment {
                     public void onResponse(Call<Customer> call, Response<Customer> response) {
                         customer = response.body();
                         MyContants.Customer = customer;
-                        tvName.setText(MyContants.Customer.getName() + " " + MyContants.Customer.getLastname());
+                        tvName.setText(MyContants.Customer.getName());
                     }
 
                     @Override
