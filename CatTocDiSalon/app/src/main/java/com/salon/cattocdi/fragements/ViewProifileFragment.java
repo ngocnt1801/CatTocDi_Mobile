@@ -43,7 +43,7 @@ public class ViewProifileFragment extends Fragment {
         TextView tvPhone = view.findViewById(R.id.fg_view_profile_phone_tv);
         TextView tvEmail = view.findViewById(R.id.fg_view_profile_email_tv);
 
-        tvName.setText(MyContants.Customer.getName() + " " + MyContants.Customer.getLastname());
+        tvName.setText(MyContants.Customer.getName());
         tvFirstName.setText(MyContants.Customer.getName());
         tvLastName.setText(MyContants.Customer.getLastname());
         tvPhone.setText(MyContants.Customer.getPhone());

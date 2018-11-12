@@ -35,7 +35,7 @@ public class EditProfileActivity extends Activity {
         setContentView(R.layout.activity_edit_profile);
 
         TextView tvName = findViewById(R.id.acitivty_edit_profile_name_tv);
-        tvName.setText(MyContants.Customer.getName() + " " + MyContants.Customer.getLastname());
+        tvName.setText(MyContants.Customer.getName());
 
         final EditText etFirstName = findViewById(R.id.activity_edit_profile_firstname_et);
         final EditText etLastName = findViewById(R.id.activity_edit_profile_lastname_et);
