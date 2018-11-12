@@ -91,13 +91,13 @@ public class FragementAppointmentTestAdapter extends RecyclerView.Adapter<Fragem
         loadDataToTable(viewHolder, appointment);
 
        if(appointment.getStatus() == AppointmentStatus.NOT_APPROVED.getStatus()) {
-           if (appointment.getStartTime().getTime() <= Calendar.getInstance().getTimeInMillis() + 15 * 60) {
+           if (appointment.getStartTime().getTime()  + 15 * 60*1000<= Calendar.getInstance().getTimeInMillis()) {
                viewHolder.tvAppoinmentType.setText("Đã quá hạn");
                viewHolder.icDelete.setVisibility(View.GONE);
                viewHolder.tvCancelStatus.setVisibility(View.GONE);
                viewHolder.btnReview.setVisibility(View.GONE);
                viewHolder.commentLn.setVisibility(View.GONE);
-           } else  if (appointment.getStartTime().getTime() >= Calendar.getInstance().getTimeInMillis() + 15 * 60) {
+           } else  if (appointment.getStartTime().getTime()  + 15 * 60*1000 >= Calendar.getInstance().getTimeInMillis()) {
                viewHolder.tvAppoinmentType.setText("Lịch sắp tới");
                viewHolder.icDelete.setVisibility(View.VISIBLE);
                viewHolder.tvCancelStatus.setVisibility(View.GONE);
