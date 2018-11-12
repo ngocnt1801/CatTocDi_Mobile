@@ -53,6 +53,7 @@ import com.salon.cattocdi.SalonDetailActivity;
 import com.salon.cattocdi.models.Salon;
 import com.salon.cattocdi.requests.ApiClient;
 import com.salon.cattocdi.requests.SalonApi;
+import com.salon.cattocdi.utils.AlertError;
 import com.salon.cattocdi.utils.MyContants;
 
 import java.util.ArrayList;
@@ -312,9 +313,28 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback, Goo
     public boolean onMarkerClick(Marker marker) {
         mMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
         if (!marker.getTag().equals("Me")) {
-            Intent intent = new Intent(getActivity(), SalonDetailActivity.class);
-            intent.putExtra("salon", MyContants.SalonList.get((int)marker.getTag()));
-            startActivity(intent);
+            ApiClient.getInstance().create(SalonApi.class)
+                    .getSalonById("Bearer " + MyContants.TOKEN, MyContants.SalonList.get((int)marker.getTag()).getSalonId())
+                    .enqueue(new Callback<Salon>() {
+                        @Override
+                        public void onResponse(Call<Salon> call, Response<Salon> response) {
+                            if(response.code() == 200 && response.body() != null){
+                                Intent intent = new Intent(getActivity(), SalonDetailActivity.class);
+                                intent.putExtra("salon", response.body());
+                                startActivity(intent);
+                            }else{
+                                AlertError.showDialogLoginFail(getActivity(), "Có lỗi xảy ra vui lòng thử lại sau");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Salon> call, Throwable t) {
+                            AlertError.showDialogLoginFail(getActivity(), "Có lỗi xảy ra vui lòng kiểm tra lại kết nối");
+                        }
+                    });
+
+
+
         }
         return true;
     }
